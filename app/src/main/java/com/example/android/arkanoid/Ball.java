@@ -12,7 +12,7 @@ public class Ball {
         this.y = y;
         vytvorRychlost();
     }
-
+    //ciao
     // vytvorí random rýchlosť lopticky
     protected void vytvorRychlost() {
         int maxX = 13;
