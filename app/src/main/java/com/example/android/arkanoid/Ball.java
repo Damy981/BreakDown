@@ -12,8 +12,8 @@ public class Ball {
         this.y = y;
         vytvorRychlost();
     }
-    //ciao
-    // vytvorí random rýchlosť lopticky
+
+    // creates a random velocity ball
     protected void vytvorRychlost() {
         int maxX = 13;
         int minX = 7;
@@ -26,7 +26,7 @@ public class Ball {
         yRychlost = (int) (Math.random() * rangeY) + minY;
     }
 
-    // zmeni smer podla rychlosti
+    // changes direction according to speed
     protected void zmenSmer() {
         if (xRychlost > 0 && yRychlost < 0) {
             otocXRychlost();
@@ -39,13 +39,13 @@ public class Ball {
         }
     }
 
-    // zvyši rychlost na zaklade levelu
+    // increase speed based on level
     protected void zvysRychlost(int level) {
         xRychlost = xRychlost + (1 * level);
         yRychlost = yRychlost - (1 * level);
     }
 
-    // zmeni smer podla toho akej steny sa dotkla a rychlosti
+    // changes direction and speed depending on which wall it touched
     protected void zmenSmer(String stena) {
         if (xRychlost > 0 && yRychlost < 0 && stena.equals("prava")) {
             otocXRychlost();
@@ -64,7 +64,7 @@ public class Ball {
         }
     }
 
-    // zisti ci je lopticka blizko
+    // check if the ball is close
     private boolean jeBlizko(float ax, float ay, float bx, float by) {
         bx += 12;
         by += 11;
@@ -78,7 +78,7 @@ public class Ball {
         return false;
     }
 
-    // zisti či je lopticka blizko tehly
+    // check if the ball is close to a brick
     private boolean jeBlizkoBrick(float ax, float ay, float bx, float by) {
         bx += 12;
         by += 11;
@@ -86,12 +86,12 @@ public class Ball {
         return d < 80;
     }
 
-    // ak sa zrazila lopta s padlom tak zmeni smer
+    // if the ball collides with the fall, it changes direction - ak sa zrazila lopta s padlom tak zmeni smer
     protected void NarazPaddle(float xPaddle, float yPaddle) {
         if (jeBlizko(xPaddle, yPaddle, getX(), getY())) zmenSmer();
     }
 
-    // ak sa zrazila lopta s tehlou tak zmeni smer
+    // if the ball collides with a brick, it changes direction
     protected boolean NarazBrick(float xBrick, float yBrick) {
         if (jeBlizkoBrick(xBrick, yBrick, getX(), getY())) {
             zmenSmer();
@@ -99,7 +99,7 @@ public class Ball {
         } else return false;
     }
 
-    // pohne sa o zadanu rychlost
+    //moves by the specified speed
     protected void pohni() {
         x = x + xRychlost;
         y = y + yRychlost;
