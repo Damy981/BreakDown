@@ -21,17 +21,17 @@ import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
-    private Bitmap pozadie;
+    private Bitmap background;
     private Bitmap redBall;
-    private Bitmap roztiahnuty;
-    private Bitmap paddle_p;
+    private Bitmap scaledBackground;
+    private Bitmap paddle_bitmap;
 
     private Display display;
     private Point size;
     private Paint paint;
 
-    private Ball lopticka;
-    private ArrayList<Brick> zoznam;
+    private Ball ball;
+    private ArrayList<Brick> brickList;
     private Paddle paddle;
 
     private RectF r;
@@ -39,20 +39,20 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private SensorManager sManager;
     private Sensor accelerometer;
 
-    private int lifes;
+    private int lives;
     private int score;
     private int level;
     private boolean start;
     private boolean gameOver;
     private Context context;
 
-    public Game(Context context, int lifes, int score) {
+    public Game(Context context, int lives, int score) {
         super(context);
         paint = new Paint();
 
         // set context, lives, scores and levels
         this.context = context;
-        this.lifes = lifes;
+        this.lives = lives;
         this.score = score;
         level = 0;
 
@@ -65,34 +65,34 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         sManager = (SensorManager) context.getSystemService(Context.SENSOR_SERVICE);
         accelerometer = sManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
-        nacitajPozadie(context);
+        setBackground(context);
 
         // creates a bitmap for the ball and paddle
         redBall = BitmapFactory.decodeResource(getResources(), R.drawable.redball);
-        paddle_p = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
+        paddle_bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
 
         //creates a new ball, paddle, and list of bricks
-        lopticka = new Ball(size.x / 2, size.y - 480);
+        ball = new Ball(size.x / 2, size.y - 480);
         paddle = new Paddle(size.x / 2, size.y - 400);
-        zoznam = new ArrayList<Brick>();
+        brickList = new ArrayList<Brick>();
 
-        vygenerujBricks(context);
+        generateBricks(context);
         this.setOnTouchListener(this);
 
     }
 
     //fill the list with bricks
-    private void vygenerujBricks(Context context) {
+    private void generateBricks(Context context) {
         for (int i = 3; i < 7; i++) {
             for (int j = 1; j < 6; j++) {
-                zoznam.add(new Brick(context, j * 150, i * 100));
+                brickList.add(new Brick(context, j * 150, i * 100));
             }
         }
     }
 
     //set background
-    private void nacitajPozadie(Context context) {
-        pozadie = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
+    private void setBackground(Context context) {
+        background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         display = wm.getDefaultDisplay();
         size = new Point();
@@ -101,24 +101,24 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     protected void onDraw(Canvas canvas) {
         // creates a background only once
-        if (roztiahnuty == null) {
-            roztiahnuty = Bitmap.createScaledBitmap(pozadie, size.x, size.y, false);
+        if (scaledBackground == null) {
+            scaledBackground = Bitmap.createScaledBitmap(background, size.x, size.y, false);
         }
-        canvas.drawBitmap(roztiahnuty, 0, 0, paint);
+        canvas.drawBitmap(scaledBackground, 0, 0, paint);
 
         // draw the ball
         paint.setColor(Color.RED);
-        canvas.drawBitmap(redBall, lopticka.getX(), lopticka.getY(), paint);
+        canvas.drawBitmap(redBall, ball.getX(), ball.getY(), paint);
 
-        // vykresli padlo - drawn fell
+        // draw paddle
         paint.setColor(Color.WHITE);
         r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + 200, paddle.getY() + 40);
-        canvas.drawBitmap(paddle_p, null, r, paint);
+        canvas.drawBitmap(paddle_bitmap, null, r, paint);
 
         // draw bricks
         paint.setColor(Color.GREEN);
-        for (int i = 0; i < zoznam.size(); i++) {
-            Brick b = zoznam.get(i);
+        for (int i = 0; i < brickList.size(); i++) {
+            Brick b = brickList.get(i);
             r = new RectF(b.getX(), b.getY(), b.getX() + 100, b.getY() + 80);
             canvas.drawBitmap(b.getBrick(), null, r, paint);
         }
@@ -126,10 +126,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // draw text
         paint.setColor(Color.WHITE);
         paint.setTextSize(50);
-        canvas.drawText("" + lifes, 400, 100, paint);
+        canvas.drawText("" + lives, 400, 100, paint);
         canvas.drawText("" + score, 700, 100, paint);
 
-        //in case of loss draw "Game over!"
+        //in case of lose draw "Game over!"
         if (gameOver) {
             paint.setColor(Color.RED);
             paint.setTextSize(100);
@@ -138,56 +138,56 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     //check that the ball has not touched the edge
-    private void skontrolujOkraje() {
-        if (lopticka.getX() + lopticka.getxRychlost() >= size.x - 60) {
-            lopticka.zmenSmer("prava");
-        } else if (lopticka.getX() + lopticka.getxRychlost() <= 0) {
-            lopticka.zmenSmer("lava");
-        } else if (lopticka.getY() + lopticka.getyRychlost() <= 150) {
-            lopticka.zmenSmer("hore");
-        } else if (lopticka.getY() + lopticka.getyRychlost() >= size.y - 200) {
-            skontrolujZivoty();
+    private void checkEdges() {
+        if (ball.getX() + ball.getXSpeed() >= size.x - 60) {
+            ball.changeDirection("right");
+        } else if (ball.getX() + ball.getXSpeed() <= 0) {
+            ball.changeDirection("left");
+        } else if (ball.getY() + ball.getYSpeed() <= 150) {
+            ball.changeDirection("up");
+        } else if (ball.getY() + ball.getYSpeed() >= size.y - 200) {
+            checkLives();
         }
     }
 
     // checks the status of the game. whether my lives or whether the game is over
-    private void skontrolujZivoty() {
-        if (lifes == 1) {
+    private void checkLives() {
+        if (lives == 1) {
             gameOver = true;
             start = false;
             invalidate();
         } else {
-            lifes--;
-            lopticka.setX(size.x / 2);
-            lopticka.setY(size.y - 480);
-            lopticka.vytvorRychlost();
-            lopticka.zvysRychlost(level);
+            lives--;
+            ball.setX(size.x / 2);
+            ball.setY(size.y - 480);
+            ball.generateSpeed();
+            ball.increaseSpeed(level);
             start = false;
         }
     }
 
-    // each step checks whether there is a collision, a loss or a win, etc.
+    // each step checks whether there is a collision, a lose or a win, etc.
     public void update() {
         if (start) {
-            vyhra();
-            skontrolujOkraje();
-            lopticka.NarazPaddle(paddle.getX(), paddle.getY());
-            for (int i = 0; i < zoznam.size(); i++) {
-                Brick b = zoznam.get(i);
-                if (lopticka.NarazBrick(b.getX(), b.getY())) {
-                    zoznam.remove(i);
+            win();
+            checkEdges();
+            ball.touchPaddle(paddle.getX(), paddle.getY());
+            for (int i = 0; i < brickList.size(); i++) {
+                Brick b = brickList.get(i);
+                if (ball.touchBrick(b.getX(), b.getY())) {
+                    brickList.remove(i);
                     score = score + 80;
                 }
             }
-            lopticka.pohni();
+            ball.moveBall();
         }
     }
 
-    public void zastavSnimanie() {
+    public void stopListener() {
         sManager.unregisterListener(this);
     }
 
-    public void spustiSnimanie() {
+    public void startListener() {
         sManager.registerListener(this, accelerometer, SensorManager.SENSOR_DELAY_GAME);
     }
 
@@ -214,7 +214,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     public boolean onTouch(View v, MotionEvent event) {
         if (gameOver == true && start == false) {
             score = 0;
-            lifes = 3;
+            lives = 3;
             resetLevel();
             gameOver = false;
 
@@ -226,19 +226,19 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     // sets the game to start
     private void resetLevel() {
-        lopticka.setX(size.x / 2);
-        lopticka.setY(size.y - 480);
-        lopticka.vytvorRychlost();
-        zoznam = new ArrayList<Brick>();
-        vygenerujBricks(context);
+        ball.setX(size.x / 2);
+        ball.setY(size.y - 480);
+        ball.generateSpeed();
+        brickList = new ArrayList<Brick>();
+        generateBricks(context);
     }
 
     // find out if the player won or not
-    private void vyhra() {
-        if (zoznam.isEmpty()) {
+    private void win() {
+        if (brickList.isEmpty()) {
             ++level;
             resetLevel();
-            lopticka.zvysRychlost(level);
+            ball.increaseSpeed(level);
             start = false;
         }
     }

@@ -1,5 +1,6 @@
 package com.example.android.arkanoid;
 
+import android.annotation.SuppressLint;
 import android.content.pm.ActivityInfo;
 import android.os.Handler;
 import android.os.Message;
@@ -24,12 +25,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(game);
 
         // create a handler and thread
-        VytvorHandler();
+        createHandler();
         myThread = new UpdateThread(updateHandler);
         myThread.start();
     }
 
-    private void VytvorHandler() {
+    @SuppressLint("HandlerLeak")
+    private void createHandler() {
         updateHandler = new Handler() {
             public void handleMessage(Message msg) {
                 game.invalidate();
@@ -41,12 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        game.zastavSnimanie();
+        game.stopListener();
     }
 
     protected void onResume() {
         super.onResume();
-        game.spustiSnimanie();
+        game.startListener();
     }
 
 }
