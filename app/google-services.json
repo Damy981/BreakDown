@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "367230282833",
+    "project_id": "progetto-mobile-9d876",
+    "storage_bucket": "progetto-mobile-9d876.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:367230282833:android:13ea83765e056452ee9c70",
+        "android_client_info": {
+          "package_name": "com.example.android.arkanoid"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "367230282833-f64ibmllltqingqvraq0a2mpirejnval.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB-Tk5CXkVZHqO3K8p5EomrUWCGyaxpgUg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "367230282833-f64ibmllltqingqvraq0a2mpirejnval.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
