@@ -24,9 +24,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         setContentView(R.layout.activity_splash_screen);
 
         mAuth = FirebaseAuth.getInstance();
-        // Check if user is signed in (non-null) and update the string with the right class name.
+        // Check if user is signed in with an active account (non-null) and update the string with the right class name.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null) {
+        if (currentUser == null || !currentUser.isEmailVerified()) {
             activityToStart = "com.example.android.arkanoid.LoginActivity";
         }
         else {

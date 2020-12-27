@@ -9,4 +9,13 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="enter_username">Enter username...</string>
+    <string name="login">Login</string>
+    <string name="enter_password">Enter password...</string>
+    <string name="non_sei_registrato">Non sei registrato?</string>
+    <string name="register">Register</string>
+    <string name="password_dimenticata">Password dimenticata?</string>
+    <string name="confirm_password">Confirm password</string>
+    <string name="enter_email_address">Enter Email address</string>
+    <string name="confirm">Confirm</string>
 </resources>
