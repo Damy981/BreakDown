@@ -15,6 +15,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -53,11 +54,11 @@ public class RegistrationActivity extends AppCompatActivity {
         else if(!validatePassword(password)){
             Toast.makeText(getApplicationContext(),"Email address or password not valid, password must have at least 6 characters", Toast.LENGTH_SHORT).show();
         }else {
-            createFirebaseUser(email, password);
+            createFirebaseUser(email, password, name);
         }
     }
 
-    private void createFirebaseUser(final String email, final String password){
+    private void createFirebaseUser(final String email, final String password, final String nome){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -66,6 +67,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(RegistrationActivity.this, "Registration success.",
                                     Toast.LENGTH_SHORT).show();
+                            setName(nome);
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
@@ -75,6 +77,18 @@ public class RegistrationActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void setName(String name) {
+        FirebaseUser user = mAuth.getCurrentUser();
+
+        UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
+                .setDisplayName(name)
+                .build();
+
+        if (user != null) {
+            user.updateProfile(changeRequest);
+        }
     }
 
     private boolean validateMail (String mail) {
