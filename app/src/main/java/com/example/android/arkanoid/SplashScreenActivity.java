@@ -27,7 +27,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         // Check if user is signed in (non-null) and update the string with the right class name.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser == null) {
-            activityToStart = "com.example.android.arkanoid.RegistrationActivity";
+            activityToStart = "com.example.android.arkanoid.LoginActivity";
         }
         else {
             activityToStart = "com.example.android.arkanoid.MenuActivity";
