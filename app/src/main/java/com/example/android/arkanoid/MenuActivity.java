@@ -37,4 +37,14 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
+
+    public void btnProfileClick(View view) {
+        Intent intentProfile = new Intent(this, ProfileActivity.class);
+        startActivity(intentProfile);
+    }
+
+    public void btnShopClick(View view) {
+        Intent intentShop = new Intent(this, ShopActivity.class);
+        startActivity(intentShop);
+    }
 }
