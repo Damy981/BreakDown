@@ -9,7 +9,7 @@
         android:roundIcon="@drawable/redball"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".ShopActivity"></activity>
+        <activity android:name=".ShopActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MenuActivity" />

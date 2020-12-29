@@ -2,9 +2,10 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/btnProfile"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorPrimaryDark"
+    android:background="@color/light_blue_600"
     android:visibility="visible"
     tools:context=".MenuActivity">
 
@@ -23,8 +24,8 @@
 
     <Button
         android:id="@+id/BtnPlay"
-        android:layout_width="128dp"
-        android:layout_height="81dp"
+        android:layout_width="168dp"
+        android:layout_height="80dp"
         android:text="@string/gioca"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -36,22 +37,21 @@
 
     <Button
         android:id="@+id/btnShop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="142dp"
+        android:layout_height="54dp"
         android:onClick="btnShopClick"
         android:text="@string/shop"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.439"
+        app:layout_constraintHorizontal_bias="0.475"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.446" />
+        app:layout_constraintVertical_bias="0.478" />
 
-    <Button
+    <ImageButton
         android:id="@+id/btnSettings"
-        android:layout_width="wrap_content"
-        android:layout_height="48dp"
-        android:text="Impostazioni"
+        android:layout_width="96dp"
+        android:layout_height="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.873"
@@ -71,11 +71,10 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.775" />
 
-    <Button
+    <ImageView
         android:id="@+id/btnLevelEditor"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Livelli"
+        android:layout_width="90dp"
+        android:layout_height="66dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.885"
@@ -95,16 +94,17 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.907" />
 
-    <ImageButton
-        android:id="@+id/btnProfile"
-        android:layout_width="77dp"
-        android:layout_height="62dp"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="110dp"
+        android:layout_height="106dp"
         android:onClick="btnProfileClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004"
+        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/user_image" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
