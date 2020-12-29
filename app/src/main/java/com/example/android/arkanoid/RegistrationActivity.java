@@ -3,6 +3,7 @@ package com.example.android.arkanoid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -51,10 +52,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //validate input
         if(!validateMail(email)){
-            Toast.makeText(getApplicationContext(),"Email not valid", Toast.LENGTH_SHORT).show();
+            showDialogBox("Email address not valid", "Error", android.R.drawable.ic_dialog_alert);
         }
         else if(!validatePassword(password)){
-            Toast.makeText(getApplicationContext(),"Email address or password not valid, password must have at least 6 characters", Toast.LENGTH_SHORT).show();
+            showDialogBox("Password not valid, password must have at least 6 characters", "Error", android.R.drawable.ic_dialog_alert);
         }else {
             if (mAuth.getCurrentUser() == null)
                 createFirebaseUser(email, password, name);
@@ -72,15 +73,14 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(RegistrationActivity.this, "Registration success.",
+                            Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
                                     Toast.LENGTH_SHORT).show();
                             setName(name);
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegistrationActivity.this, "Registration failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
@@ -115,14 +115,24 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             setName(name);
+
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
+    }
+
+    private void showDialogBox(String message, String title, int icon) {
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(icon)
+                .show();
     }
 
 }
