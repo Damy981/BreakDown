@@ -32,6 +32,8 @@ public class SplashScreenActivity extends AppCompatActivity {
             } else if (currentUser.isEmailVerified()) {
                 activityToStart = "com.example.android.arkanoid.MenuActivity";
             }
+            else
+                activityToStart = "com.example.android.arkanoid.LoginActivity";
         }
         else {
             activityToStart = "com.example.android.arkanoid.LoginActivity";

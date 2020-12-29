@@ -3,6 +3,7 @@ package com.example.android.arkanoid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,7 +13,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -49,31 +52,35 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //validate input
         if(!validateMail(email)){
-            Toast.makeText(getApplicationContext(),"Email not valid", Toast.LENGTH_SHORT).show();
+            showDialogBox("Email address not valid", "Error", android.R.drawable.ic_dialog_alert);
         }
         else if(!validatePassword(password)){
-            Toast.makeText(getApplicationContext(),"Email address or password not valid, password must have at least 6 characters", Toast.LENGTH_SHORT).show();
+            showDialogBox("Password not valid, password must have at least 6 characters", "Error", android.R.drawable.ic_dialog_alert);
         }else {
-            createFirebaseUser(email, password, name);
+            if (mAuth.getCurrentUser() == null)
+                createFirebaseUser(email, password, name);
+            else {
+                AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+                createFirebaseUserFromGuest(credential, name);
+            }
         }
     }
 
-    private void createFirebaseUser(final String email, final String password, final String nome){
+    private void createFirebaseUser(final String email, final String password, final String name){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            Toast.makeText(RegistrationActivity.this, "Registration success.",
+                            Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
                                     Toast.LENGTH_SHORT).show();
-                            setName(nome);
+                            setName(name);
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(RegistrationActivity.this, "Registration failed.",
-                                    Toast.LENGTH_SHORT).show();
+                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
@@ -99,6 +106,33 @@ public class RegistrationActivity extends AppCompatActivity {
     private boolean validatePassword (String password) {
         String confirmPasswordString = etConfirmPassword.getText().toString();
         return confirmPasswordString.equals(password) && password.length() >= 6;
+    }
+
+    private void createFirebaseUserFromGuest ( AuthCredential credential, final String name) {
+        mAuth.getCurrentUser().linkWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            setName(name);
+
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            startActivity(intent);
+                        } else {
+                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
+                        }
+                    }
+                });
+    }
+
+    private void showDialogBox(String message, String title, int icon) {
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(icon)
+                .show();
     }
 
 }

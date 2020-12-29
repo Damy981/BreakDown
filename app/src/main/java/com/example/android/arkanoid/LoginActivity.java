@@ -3,7 +3,9 @@ package com.example.android.arkanoid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -52,8 +54,7 @@ public class LoginActivity extends AppCompatActivity {
         if (email.contains("@") && password.length() >= 6)
             loginFirebaseUser(email, password);
         else
-            Toast.makeText(LoginActivity.this, "Please insert mail and password.",
-                    Toast.LENGTH_SHORT).show();
+            showDialogBox("Please insert email address and password", "Error", android.R.drawable.ic_dialog_alert);
     }
 
     private void loginFirebaseUser(String email, String password) {
@@ -64,12 +65,10 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             FirebaseUser user = mAuth.getCurrentUser();
-
                             if (user.isEmailVerified())
-                                updateUI(user);
+                                updateUI();
                             else {
-                                Toast.makeText(LoginActivity.this, "Your email address is not verified, email has been sent. Verify and try again.",
-                                        Toast.LENGTH_LONG).show();
+                                showDialogBox("Your email address is not verified, email has been sent. Verify and try again.", "Info", android.R.drawable.ic_dialog_info);
                                 user.sendEmailVerification();
                             }
                         } else {
@@ -81,7 +80,7 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
+    private void updateUI() {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
@@ -111,7 +110,7 @@ public class LoginActivity extends AppCompatActivity {
                             Toast.makeText(context, "Mail sent.", Toast.LENGTH_LONG).show();
                             changeVisibility();
                         } else {
-                            Toast.makeText(context, "This mail is not registered.", Toast.LENGTH_LONG).show();
+                            showDialogBox("This email address is not registered", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
@@ -136,9 +135,8 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+                            // Sign in success, show alert
+                            showGuestAlert();
                         } else {
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "Authentication failed.",
@@ -146,5 +144,29 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private void showDialogBox(String message, String title, int icon) {
+
+        new AlertDialog.Builder(this)
+                .setTitle(title)
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(icon)
+                .show();
+    }
+
+    private void showGuestAlert () {
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(this)
+                .setTitle("Info")
+                .setMessage("Registered as a guest, if you don't complete you registration from your profile you will lose all your progress when you logout")
+                .setIcon(android.R.drawable.ic_dialog_info)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        updateUI();
+                    }
+                });
+        alert.show();
     }
 }
