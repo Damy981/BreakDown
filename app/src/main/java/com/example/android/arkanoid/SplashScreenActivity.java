@@ -15,7 +15,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     // Duration of wait
     private final int SPLASH_DISPLAY_LENGTH = 1000;
     private FirebaseAuth mAuth;
-    String activityToStart;
+    private String activityToStart;
 
     // Called when the activity is first created.
     @Override
@@ -26,11 +26,15 @@ public class SplashScreenActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         // Check if user is signed in with an active account (non-null) and update the string with the right class name.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser == null || !currentUser.isEmailVerified()) {
-            activityToStart = "com.example.android.arkanoid.LoginActivity";
+        if (currentUser != null) {
+            if (currentUser.isAnonymous()) {
+                activityToStart = "com.example.android.arkanoid.MenuActivity";
+            } else if (currentUser.isEmailVerified()) {
+                activityToStart = "com.example.android.arkanoid.MenuActivity";
+            }
         }
         else {
-            activityToStart = "com.example.android.arkanoid.MenuActivity";
+            activityToStart = "com.example.android.arkanoid.LoginActivity";
         }
 
         /* New Handler to start the Menu-Activity

@@ -19,12 +19,12 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 
 public class RegistrationActivity extends AppCompatActivity {
 
-    EditText etConfirmPassword;
-    EditText etMail;
-    EditText etPassword;
-    EditText etName;
+    private EditText etConfirmPassword;
+    private EditText etMail;
+    private EditText etPassword;
+    private EditText etName;
     private FirebaseAuth mAuth;
-    Context context = this;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

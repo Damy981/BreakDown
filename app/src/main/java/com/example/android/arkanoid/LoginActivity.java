@@ -21,13 +21,13 @@ import com.google.firebase.auth.FirebaseUser;
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
-    EditText etMail;
-    EditText etPassword;
-    TextView notRegistered;
-    TextView forgotPassword;
-    Button login;
-    Button sendMail;
-    Context context = this;
+    private EditText etMail;
+    private EditText etPassword;
+    private TextView notRegistered;
+    private TextView forgotPassword;
+    private Button login;
+    private Button sendMail;
+    private Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -128,5 +128,23 @@ public class LoginActivity extends AppCompatActivity {
         login.setVisibility(View.VISIBLE);
         etPassword.setVisibility(View.VISIBLE);
         sendMail.setVisibility(View.GONE);
+    }
+
+    public void guestLogin(View view) {
+        mAuth.signInAnonymously()
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            // Sign in success, update UI with the signed-in user's information
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            updateUI(user);
+                        } else {
+                            // If sign in fails, display a message to the user.
+                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 }
