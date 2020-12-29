@@ -12,7 +12,9 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
@@ -54,11 +56,16 @@ public class RegistrationActivity extends AppCompatActivity {
         else if(!validatePassword(password)){
             Toast.makeText(getApplicationContext(),"Email address or password not valid, password must have at least 6 characters", Toast.LENGTH_SHORT).show();
         }else {
-            createFirebaseUser(email, password, name);
+            if (mAuth.getCurrentUser() == null)
+                createFirebaseUser(email, password, name);
+            else {
+                AuthCredential credential = EmailAuthProvider.getCredential(email, password);
+                createFirebaseUserFromGuest(credential, name);
+            }
         }
     }
 
-    private void createFirebaseUser(final String email, final String password, final String nome){
+    private void createFirebaseUser(final String email, final String password, final String name){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -67,7 +74,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(RegistrationActivity.this, "Registration success.",
                                     Toast.LENGTH_SHORT).show();
-                            setName(nome);
+                            setName(name);
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
@@ -99,6 +106,23 @@ public class RegistrationActivity extends AppCompatActivity {
     private boolean validatePassword (String password) {
         String confirmPasswordString = etConfirmPassword.getText().toString();
         return confirmPasswordString.equals(password) && password.length() >= 6;
+    }
+
+    private void createFirebaseUserFromGuest ( AuthCredential credential, final String name) {
+        mAuth.getCurrentUser().linkWithCredential(credential)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+                            setName(name);
+                            Intent intent = new Intent(context, LoginActivity.class);
+                            startActivity(intent);
+                        } else {
+                            Toast.makeText(RegistrationActivity.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 }

@@ -13,7 +13,7 @@ public class MenuActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    protected boolean isGuestUser;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +21,6 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        if (user.isAnonymous())
-            isGuestUser = true;
-        else
-            isGuestUser = false;
     }
 
     @Override
