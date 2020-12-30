@@ -22,13 +22,13 @@ import java.util.ArrayList;
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
     private Bitmap background;
-    private Bitmap redBall;
+    final  Bitmap redBall;
     private Bitmap scaledBackground;
-    private Bitmap paddle_bitmap;
+    final private Bitmap paddle_bitmap;
 
     private Display display;
     private Point size;
-    private Paint paint;
+    final private Paint paint;
 
     private Ball ball;
     private ArrayList<Brick> brickList;
@@ -36,15 +36,15 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     private RectF r;
 
-    private SensorManager sManager;
-    private Sensor accelerometer;
+    final private SensorManager sManager;
+    final private Sensor accelerometer;
 
     private int lives;
     private int score;
     private int level;
     private boolean start;
     private boolean gameOver;
-    private Context context;
+    final private Context context;
 
     public Game(Context context, int lives, int score) {
         super(context);
@@ -55,7 +55,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.lives = lives;
         this.score = score;
         level = 0;
-
+        
 
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
@@ -212,7 +212,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // serves to suspend the game in case of a new game
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (gameOver == true && start == false) {
+        if (gameOver && !start) {
             score = 0;
             lives = 3;
             resetLevel();
