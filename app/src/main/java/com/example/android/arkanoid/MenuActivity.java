@@ -43,4 +43,24 @@ public class MenuActivity extends AppCompatActivity {
         Intent intentShop = new Intent(this, ShopActivity.class);
         startActivity(intentShop);
     }
+
+    public void btnQuestClick(View view) {
+        Intent intentQuest = new Intent(this,QuestActivity.class);
+        startActivity(intentQuest);
+    }
+
+    public void btnLevelEditorClick(View view) {
+        Intent intentLevelEditor = new Intent(this, LevelEditorActivity.class);
+        startActivity(intentLevelEditor);
+    }
+
+    public void btnRankingClick(View view) {
+        Intent intentRanking = new Intent(this,RankingActivity.class);
+        startActivity(intentRanking);
+    }
+
+    public void btnSettingsClick(View view) {
+        Intent intentSettings = new Intent(this, SettingsActivity.class);
+        startActivity(intentSettings);
+    }
 }

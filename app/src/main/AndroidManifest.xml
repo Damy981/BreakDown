@@ -9,6 +9,10 @@
         android:roundIcon="@drawable/redball"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".SettingsActivity"></activity>
+        <activity android:name=".QuestActivity" />
+        <activity android:name=".RankingActivity" />
+        <activity android:name=".LevelEditorActivity" />
         <activity android:name=".ShopActivity" />
         <activity android:name=".LoginActivity" />
         <activity android:name=".ProfileActivity" />

@@ -25,4 +25,9 @@
     <string name="gioca">GIOCA</string>
     <string name="shop">Shop</string>
     <string name="profilo">PROFILO</string>
+    <string name="plays">Plays</string>
+    <string name="level_editor">Level Editor</string>
+    <string name="ranking">Ranking</string>
+    <string name="quest">Quest</string>
+    <string name="todo">TODO</string>
 </resources>
