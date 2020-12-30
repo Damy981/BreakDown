@@ -45,7 +45,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnQuestClick(View view) {
-        Intent intentQuest = new Intent(this,QuestActivity.class);
+        Intent intentQuest = new Intent(this, QuestActivity.class);
         startActivity(intentQuest);
     }
 
@@ -55,12 +55,17 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnRankingClick(View view) {
-        Intent intentRanking = new Intent(this,RankingActivity.class);
+        Intent intentRanking = new Intent(this, RankingActivity.class);
         startActivity(intentRanking);
     }
 
     public void btnSettingsClick(View view) {
         Intent intentSettings = new Intent(this, SettingsActivity.class);
         startActivity(intentSettings);
+    }
+
+    public void startGame(View view) {
+        Intent intentGame = new Intent(this, GameActivity.class);
+        startActivity(intentGame);
     }
 }

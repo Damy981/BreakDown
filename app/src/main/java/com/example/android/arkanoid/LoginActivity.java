@@ -147,7 +147,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showDialogBox(String message, String title, int icon) {
-
         new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(message)
@@ -157,7 +156,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void showGuestAlert () {
-
         AlertDialog.Builder alert = new AlertDialog.Builder(this)
                 .setTitle("Info")
                 .setMessage("Registered as a guest, if you don't complete you registration from your profile you will lose all your progress when you logout")

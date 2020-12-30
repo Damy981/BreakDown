@@ -33,6 +33,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private Ball ball;
     private ArrayList<Brick> brickList;
     private Paddle paddle;
+    private Level levelMap;
 
     private RectF r;
 
@@ -74,20 +75,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         //creates a new ball, paddle, and list of bricks
         ball = new Ball(size.x / 2, size.y - 480);
         paddle = new Paddle(size.x / 2, size.y - 400);
-        brickList = new ArrayList<Brick>();
-
-        generateBricks(context);
+        levelMap = new Level(context);
+        brickList = levelMap.getBrickList();
         this.setOnTouchListener(this);
 
-    }
-
-    //fill the list with bricks
-    private void generateBricks(Context context) {
-        for (int i = 3; i < 7; i++) {
-            for (int j = 1; j < 6; j++) {
-                brickList.add(new Brick(context, j * 150, i * 100));
-            }
-        }
     }
 
     //set background
@@ -229,8 +220,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();
-        brickList = new ArrayList<Brick>();
-        generateBricks(context);
+        levelMap = new Level(context);
+        brickList = levelMap.getBrickList();
     }
 
     // find out if the player won or not
