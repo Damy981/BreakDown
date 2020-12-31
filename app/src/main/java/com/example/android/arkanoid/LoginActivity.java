@@ -136,6 +136,8 @@ public class LoginActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, show alert
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            RegistrationActivity.initializeProfile(user, null);
                             showGuestAlert();
                         } else {
                             // If sign in fails, display a message to the user.

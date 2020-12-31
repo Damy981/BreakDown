@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -19,6 +20,8 @@ import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -75,27 +78,35 @@ public class RegistrationActivity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
                                     Toast.LENGTH_SHORT).show();
-                            setName(name);
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            setName(name, user);
+                            initializeProfile(user, name);
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
+                            showDialogBox("Registration failed, please try again", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
     }
 
-    private void setName(String name) {
-        FirebaseUser user = mAuth.getCurrentUser();
+    private void setName(String name, FirebaseUser user) {
 
         UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
                 .setDisplayName(name)
                 .build();
 
-        if (user != null) {
-            user.updateProfile(changeRequest);
-        }
+        user.updateProfile(changeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Log.i("setNome", "Name updated succesfully");
+                }else{
+                    Log.i("setNome", "Error");
+                }
+            }
+        });
     }
 
     private boolean validateMail (String mail) {
@@ -114,12 +125,21 @@ public class RegistrationActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            setName(name);
+                            Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
+                                    Toast.LENGTH_SHORT).show();
+
+                            FirebaseUser user = mAuth.getCurrentUser();
+                            setName(name, user);
+
+                            FirebaseDatabase database = FirebaseDatabase.getInstance();
+                            String userId = user.getUid();
+                            DatabaseReference myRef = database.getReference("Profiles");
+                            myRef.child(userId).child("UserName").setValue(name);
 
                             Intent intent = new Intent(context, LoginActivity.class);
                             startActivity(intent);
                         } else {
-                            showDialogBox("Registration failed", "Error", android.R.drawable.ic_dialog_alert);
+                            showDialogBox("Registration failed, please try again", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
@@ -135,4 +155,18 @@ public class RegistrationActivity extends AppCompatActivity {
                 .show();
     }
 
+    static protected void initializeProfile(FirebaseUser user, String name) {
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        String userId = user.getUid();
+        DatabaseReference myRef = database.getReference("Profiles");
+
+        myRef.child(userId).child("LevelNumber").setValue(1);
+        myRef.child(userId).child("Coins").setValue(0);
+        if (user.isAnonymous())
+            myRef.child(userId).child("UserName").setValue("GuestUser");
+        else
+            myRef.child(userId).child("UserName").setValue(name);
+        //aggiungere i power up
+    }
 }
