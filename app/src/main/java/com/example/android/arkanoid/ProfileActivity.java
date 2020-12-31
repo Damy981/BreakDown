@@ -1,33 +1,37 @@
 package com.example.android.arkanoid;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.HashMap;
 
 public class ProfileActivity extends AppCompatActivity {
 
     private Button guestRegisterButton;
-    private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String userId;
-    private int levelNumber;
+    private DatabaseReference myRef;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
-        if (user != null) {
-            userId = user.getUid();
-
-        }
+        profile = new Profile();
+        user = profile.getUser();
         guestRegisterButton = findViewById(R.id.btnGuestRegister);
 
         if (user.isAnonymous()) {
@@ -38,9 +42,5 @@ public class ProfileActivity extends AppCompatActivity {
     public void guestRegister(View view) {
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
-    }
-
-    public void increaseLevel() {
-        levelNumber++;
     }
 }
