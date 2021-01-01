@@ -1,83 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#2B2A81"
+    android:background="#EAE7D2"
     tools:context=".LoginActivity">
 
-    <EditText
-        android:id="@+id/etPass"
-        android:layout_width="231dp"
-        android:layout_height="55dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="88dp"
-        android:layout_marginBottom="318dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/enter_password"
-        android:inputType="textPassword"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="383dp" />
-
-    <EditText
-        android:id="@+id/etMail"
-        android:layout_width="222dp"
-        android:layout_height="56dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="91dp"
-        android:layout_marginBottom="390dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:hint="@string/enter_email_address"
-        android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="88dp"
-        tools:layout_editor_absoluteY="309dp" />
-
-    <Button
-        android:id="@+id/btnLogin"
-        android:layout_width="150dp"
-        android:layout_height="65dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="201dp"
-        android:background="#2B7CD6"
-        android:onClick="login"
-        android:text="@string/login"
-        tools:layout_editor_absoluteX="236dp"
-        tools:layout_editor_absoluteY="499dp" />
 
     <TextView
         android:id="@+id/tvNotRegistered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="101dp"
-        android:layout_marginBottom="123dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginBottom="28dp"
         android:onClick="openRegisterActivity"
         android:text="@string/not_registered_yet_register_now"
-        tools:layout_editor_absoluteX="111dp"
-        tools:layout_editor_absoluteY="613dp" />
-
-    <TextView
-        android:id="@+id/tvForgotPassword"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="148dp"
-        android:layout_marginBottom="86dp"
-        android:onClick="forgotPassword"
-        android:text="@string/forgot_password"
+        android:textColor="#1B1818"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btnForgotPass"
@@ -86,7 +28,6 @@
         android:onClick="sendResetPasswordMail"
         android:text="@string/confirm"
         android:visibility="gone"
-        app:layout_constraintBottom_toTopOf="@+id/etPass"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
         app:layout_constraintStart_toStartOf="parent"
@@ -95,29 +36,150 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="149dp"
-        android:layout_height="62dp"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="46dp"
-        android:layout_marginBottom="204dp"
-        android:layout_toStartOf="@+id/btnLogin"
+        android:layout_width="114dp"
+        android:layout_height="51dp"
+        android:layout_marginBottom="28dp"
         android:background="#2B7CD6"
         android:onClick="guestLogin"
         android:text="@string/enter_as_guest"
-        tools:layout_editor_absoluteX="36dp"
-        tools:layout_editor_absoluteY="509dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        tools:layout_editor_absoluteX="31dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
+        android:layout_height="290dp"
+        android:background="#FFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="#F8F5F5"
+                android:text="Login"
+                android:textAlignment="center"
+                android:textColor="#290202"
+                android:textSize="25sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/enter_email_address"
+                android:text="Enter email address..."
+                android:textColor="#01030E">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:hint="@string/enter_password"
+                android:text="Enter password..."
+                android:textColor="#1E0303">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="10dp"
+                android:onClick="forgotPassword"
+                android:text="@string/forgot_password"
+                android:textColor="#3F51B5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="190dp"
-        android:layout_height="182dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="61dp"
-        android:layout_marginEnd="112dp"
-        android:layout_marginBottom="488dp"
-        android:background="#FFFFFF" />
-       <!-- app:srcCompat="@drawable/freccia_giu" /> -->
+        android:id="@+id/imageView2"
+        android:layout_width="152dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="135dp"
+        android:layout_marginEnd="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_image" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:layout_width="413dp"
+        android:layout_height="124dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <CheckBox
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginStart="15dp"
+            android:text="Remember me"
+            android:textColor="@color/black_overlay" />
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:layout_marginStart="100dp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginBottom="152dp"
+            android:background="#2B7CD6"
+            android:onClick="login"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+    </LinearLayout>
+
+
+    <!-- app:srcCompat="@drawable/freccia_giu" /> -->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
