@@ -46,7 +46,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean start;
     private boolean gameOver;
     final private Context context;
-    Profile profile;
+
 
     public Game(Context context, int lives, int score) {
         super(context);
@@ -57,7 +57,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.lives = lives;
         this.score = score;
         level = 0;
-        profile = new Profile();
+
 
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
