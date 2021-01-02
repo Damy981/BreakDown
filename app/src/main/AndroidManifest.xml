@@ -12,7 +12,6 @@
         <activity android:name=".Activities.GameActivity"/>
         <activity android:name=".Activities.LevelEditorActivity" />
         <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.ProfileActivity" />
         <activity android:name=".Activities.MenuActivity" />
         <activity android:name=".Activities.SplashScreenActivity" />
         <activity android:name=".Activities.RegistrationActivity" />

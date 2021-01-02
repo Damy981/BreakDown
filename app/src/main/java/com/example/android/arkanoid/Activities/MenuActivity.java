@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Fragments.ProfileFragment;
 import com.example.android.arkanoid.Fragments.QuestFragment;
 import com.example.android.arkanoid.R;
 import com.example.android.arkanoid.Fragments.RankingFragment;
@@ -66,9 +67,14 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnProfileClick(View view) {
-        Intent intentProfile = new Intent(this, ProfileActivity.class);
-        intentProfile.putExtra("profile", profile);
-        startActivity(intentProfile);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("profile", profile);
+        fragment = new ProfileFragment();
+        fragment.setArguments(bundle);
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
     }
 
     public void btnShopClick(View view) {
