@@ -7,8 +7,12 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Profile;
@@ -28,6 +32,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
 
+    private final int LOADING_TIME = 1200;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
     private String userId;
@@ -38,6 +43,8 @@ public class MenuActivity extends AppCompatActivity {
     private FragmentTransaction tx;
     private Fragment fragment;
     private ConstraintLayout menu;
+    private Bundle bundle;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +56,9 @@ public class MenuActivity extends AppCompatActivity {
 
         fm = getSupportFragmentManager();
         retrieveProfileData();  //fare in modo che si chiama ogni volta che si passa dal menu (forse onResume)
+        bundle = new Bundle();
+        preferences = getPreferences(MODE_PRIVATE);
+        loadingScreen();
     }
 
 
@@ -67,7 +77,6 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnProfileClick(View view) {
-        Bundle bundle = new Bundle();
         bundle.putSerializable("profile", profile);
         fragment = new ProfileFragment();
         fragment.setArguments(bundle);
@@ -107,7 +116,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnSettingsClick(View view) {
+        bundle.putSerializable("profile", profile);
         fragment = new SettingsFragment();
+        fragment.setArguments(bundle);
         changeVisibility();
         tx = fm.beginTransaction();
         tx.add(R.id.fragment_place, fragment);
@@ -116,6 +127,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void startGame(View view) {
         Intent intentGame = new Intent(this, GameActivity.class);
+        intentGame.putExtra("profile", profile);
         startActivity(intentGame);
     }
 
@@ -135,7 +147,7 @@ public class MenuActivity extends AppCompatActivity {
                 int levelNumber = dataSnapshot.child("LevelNumber").getValue(int.class);
                 int coins = dataSnapshot.child("Coins").getValue(int.class);
                 String userName = dataSnapshot.child("UserName").getValue(String.class);
-                profile = new Profile(levelNumber, coins, userName);
+                profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false));
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
@@ -152,5 +164,16 @@ public class MenuActivity extends AppCompatActivity {
             tx.remove(fragment).commit();
             menu.setVisibility(View.VISIBLE);
         }
+    }
+
+    private void loadingScreen() {
+        findViewById(R.id.menu).setVisibility(View.GONE);
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                findViewById(R.id.loadingBar).setVisibility(View.GONE);
+                findViewById(R.id.menu).setVisibility(View.VISIBLE);
+            }
+        }, LOADING_TIME);
     }
 }

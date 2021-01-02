@@ -2,16 +2,16 @@ package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
 
-import com.example.android.arkanoid.Classes.Brick;
-
 import java.util.ArrayList;
 
 public class Level {
 
     ArrayList<Brick> brickList = new ArrayList<>();
-    //livello giocatore
-    public Level(Context context) {
+    int level;
+
+    public Level(Context context, int level) {
         generateBricks(context);
+        this.level = level;
     }
 
     private void generateBricks(Context context) {

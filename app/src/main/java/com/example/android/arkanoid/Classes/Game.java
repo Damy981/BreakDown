@@ -48,9 +48,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean start;
     private boolean gameOver;
     final private Context context;
+    private Profile profile;
 
 
-    public Game(Context context, int lives, int score) {
+    public Game(Context context, int lives, int score, Profile profile) {
         super(context);
         paint = new Paint();
 
@@ -58,7 +59,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.context = context;
         this.lives = lives;
         this.score = score;
-        level = 0;
+        this.profile = profile;
+        level = this.profile.getLevelNumber();
 
 
         //start a gameOver to find out if the game is standing and if the player has lost
@@ -78,7 +80,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         //creates a new ball, paddle, and list of bricks
         ball = new Ball(size.x / 2, size.y - 480);
         paddle = new Paddle(size.x / 2, size.y - 400);
-        levelMap = new Level(context);
+        levelMap = new Level(context, level);
         brickList = levelMap.getBrickList();
         this.setOnTouchListener(this);
 
@@ -223,7 +225,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();
-        levelMap = new Level(context);
+        levelMap = new Level(context, level);
         brickList = levelMap.getBrickList();
     }
 
@@ -236,4 +238,30 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             start = false;
         }
     }
+
+    public boolean onTouchEvent(MotionEvent event)
+    {
+        switch(event.getAction())
+        {
+            case MotionEvent.ACTION_DOWN: {
+            }
+            break;
+
+            case MotionEvent.ACTION_MOVE:
+            {
+                paddle.setX((float)event.getX());
+
+                invalidate();
+            }
+
+            break;
+            case MotionEvent.ACTION_UP:
+
+                paddle.setX((float)event.getX());
+                invalidate();
+                break;
+        }
+        return true;
+    }
+
 }

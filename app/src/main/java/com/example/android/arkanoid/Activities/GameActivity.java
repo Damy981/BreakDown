@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.android.arkanoid.Classes.Game;
+import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.UpdateThread;
 import com.example.android.arkanoid.R;
 
@@ -16,14 +17,16 @@ public class GameActivity extends AppCompatActivity {
     private Game game;
     private UpdateThread myThread;
     private Handler updateHandler;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
 
+        profile = (Profile) getIntent().getSerializableExtra("profile");
         // create a new game
-        game = new Game(this, 3, 0);
+        game = new Game(this, 3, 0, profile);
         setContentView(game);
         createHandler();
         myThread = new UpdateThread(updateHandler);
@@ -43,11 +46,13 @@ public class GameActivity extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        game.stopListener();
+        if (profile.isUsedAccelerometer())
+            game.stopListener();
     }
 
     protected void onResume() {
         super.onResume();
-        game.startListener();
+        if (profile.isUsedAccelerometer())
+            game.startListener();
     }
 }
