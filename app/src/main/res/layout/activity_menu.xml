@@ -2,117 +2,130 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/menu"
+    android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#03B8E5"
     android:visibility="visible"
     tools:context=".MenuActivity">
 
-    <Button
-        android:id="@+id/btnLogout"
-        android:layout_width="105dp"
-        android:layout_height="64dp"
-        android:onClick="logout"
-        android:text="@string/logout"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/BtnPlay"
-        android:layout_width="247dp"
-        android:layout_height="107dp"
-        android:onClick="startGame"
-        android:text="@string/play"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.451"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.301" />
+        <Button
+            android:id="@+id/btnLogout"
+            android:layout_width="105dp"
+            android:layout_height="64dp"
+            android:onClick="logout"
+            android:text="@string/logout"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.004" />
 
-    <Button
-        android:id="@+id/btnShop"
-        android:layout_width="178dp"
-        android:layout_height="61dp"
-        android:onClick="btnShopClick"
-        android:text="@string/shop"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.474"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.462" />
+        <Button
+            android:id="@+id/BtnPlay"
+            android:layout_width="247dp"
+            android:layout_height="107dp"
+            android:onClick="startGame"
+            android:text="@string/play"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.451"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.301" />
 
-    <ImageView
-        android:id="@+id/btnSettings"
-        android:layout_width="115dp"
-        android:layout_height="88dp"
-        android:contentDescription="@string/todo"
-        android:onClick="btnSettingsClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.872"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.959"
-        app:srcCompat="@drawable/setting_image" />
+        <Button
+            android:id="@+id/btnShop"
+            android:layout_width="178dp"
+            android:layout_height="61dp"
+            android:onClick="btnShopClick"
+            android:text="@string/shop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.474"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.462" />
 
-    <ImageView
-        android:id="@+id/btnRanking"
-        android:layout_width="123dp"
-        android:layout_height="89dp"
-        android:onClick="btnRankingClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.114"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.727"
-        app:srcCompat="@drawable/ranking_image" />
+        <ImageView
+            android:id="@+id/btnSettings"
+            android:layout_width="115dp"
+            android:layout_height="88dp"
+            android:contentDescription="@string/todo"
+            android:onClick="btnSettingsClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.872"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.959"
+            app:srcCompat="@drawable/setting_image" />
 
-    <ImageView
-        android:id="@+id/btnLevelEditor"
-        android:layout_width="113dp"
-        android:layout_height="86dp"
-        android:onClick="btnLevelEditorClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.868"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.723"
-        app:srcCompat="@drawable/level_editor_image" />
+        <ImageView
+            android:id="@+id/btnRanking"
+            android:layout_width="123dp"
+            android:layout_height="89dp"
+            android:onClick="btnRankingClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.727"
+            app:srcCompat="@drawable/ranking_image" />
 
-    <ImageView
-        android:id="@+id/btnQuest"
-        android:layout_width="105dp"
-        android:layout_height="81dp"
-        android:onClick="btnQuestClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.147"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.952"
-        app:srcCompat="@drawable/mission_image" />
+        <ImageView
+            android:id="@+id/btnLevelEditor"
+            android:layout_width="113dp"
+            android:layout_height="86dp"
+            android:onClick="btnLevelEditorClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.868"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.723"
+            app:srcCompat="@drawable/level_editor_image" />
 
-    <ImageView
-        android:id="@+id/btnProfile"
-        android:layout_width="110dp"
-        android:layout_height="106dp"
-        android:onClick="btnProfileClick"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/user_image" />
+        <ImageView
+            android:id="@+id/btnQuest"
+            android:layout_width="105dp"
+            android:layout_height="81dp"
+            android:onClick="btnQuestClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.147"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.952"
+            app:srcCompat="@drawable/mission_image" />
+
+        <ImageView
+            android:id="@+id/btnProfile"
+            android:layout_width="110dp"
+            android:layout_height="106dp"
+            android:onClick="btnProfileClick"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/user_image" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fragment_place"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

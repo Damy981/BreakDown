@@ -3,9 +3,12 @@ package com.example.android.arkanoid;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,7 +27,10 @@ public class MenuActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private Profile profile;
-
+    private FragmentManager fm;
+    private FragmentTransaction tx;
+    private Fragment fragment;
+    private ConstraintLayout menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,13 +38,19 @@ public class MenuActivity extends AppCompatActivity {
         setContentView(R.layout.activity_menu);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        menu = findViewById(R.id.menu);
+
+        fm = getSupportFragmentManager();
         retrieveProfileData();  //fare in modo che si chiama ogni volta che si passa dal menu (forse onResume)
     }
 
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        if (menu.getVisibility() == View.VISIBLE)
+            moveTaskToBack(true);
+        else
+            changeVisibility();
     }
 
     public void logout(View view) {
@@ -54,13 +66,19 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnShopClick(View view) {
-        Intent intentShop = new Intent(this, ShopActivity.class);
-        startActivity(intentShop);
+        fragment = new ShopFragment();
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
     }
 
     public void btnQuestClick(View view) {
-        Intent intentQuest = new Intent(this, QuestActivity.class);
-        startActivity(intentQuest);
+        fragment = new QuestFragment();
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
     }
 
     public void btnLevelEditorClick(View view) {
@@ -69,13 +87,19 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnRankingClick(View view) {
-        Intent intentRanking = new Intent(this, RankingActivity.class);
-        startActivity(intentRanking);
+        fragment = new RankingFragment();
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
     }
 
     public void btnSettingsClick(View view) {
-        Intent intentSettings = new Intent(this, SettingsActivity.class);
-        startActivity(intentSettings);
+        fragment = new SettingsFragment();
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
     }
 
     public void startGame(View view) {
@@ -106,5 +130,15 @@ public class MenuActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void changeVisibility() {
+        if (menu.getVisibility() == View.VISIBLE)
+            menu.setVisibility(View.GONE);
+        else {
+            tx = fm.beginTransaction();
+            tx.remove(fragment).commit();
+            menu.setVisibility(View.VISIBLE);
+        }
     }
 }
