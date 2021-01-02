@@ -1,8 +1,10 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.android.arkanoid.R;
 
 public class LevelEditorActivity extends AppCompatActivity {
 

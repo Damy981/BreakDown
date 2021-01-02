@@ -1,4 +1,4 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -6,6 +6,10 @@ import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+
+import com.example.android.arkanoid.Classes.Game;
+import com.example.android.arkanoid.Classes.UpdateThread;
+import com.example.android.arkanoid.R;
 
 public class GameActivity extends AppCompatActivity {
 

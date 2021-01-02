@@ -1,4 +1,4 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -16,6 +16,8 @@ import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+
+import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
 

@@ -1,4 +1,4 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.os.Handler;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.arkanoid.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -28,15 +29,15 @@ public class SplashScreenActivity extends AppCompatActivity {
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             if (currentUser.isAnonymous()) {
-                activityToStart = "com.example.android.arkanoid.MenuActivity";
+                activityToStart = "com.example.android.arkanoid.Activities.MenuActivity";
             } else if (currentUser.isEmailVerified()) {
-                activityToStart = "com.example.android.arkanoid.MenuActivity";
+                activityToStart = "com.example.android.arkanoid.Activities.MenuActivity";
             }
             else
-                activityToStart = "com.example.android.arkanoid.LoginActivity";
+                activityToStart = "com.example.android.arkanoid.Activities.LoginActivity";
         }
         else {
-            activityToStart = "com.example.android.arkanoid.LoginActivity";
+            activityToStart = "com.example.android.arkanoid.Activities.LoginActivity";
         }
 
         /* New Handler to start the Menu-Activity

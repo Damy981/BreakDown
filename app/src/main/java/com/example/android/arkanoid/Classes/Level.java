@@ -1,7 +1,8 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
-import android.graphics.Point;
+
+import com.example.android.arkanoid.Classes.Brick;
 
 import java.util.ArrayList;
 

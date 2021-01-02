@@ -1,4 +1,4 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Activities;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Fragments.QuestFragment;
+import com.example.android.arkanoid.R;
+import com.example.android.arkanoid.Fragments.RankingFragment;
+import com.example.android.arkanoid.Fragments.SettingsFragment;
+import com.example.android.arkanoid.Fragments.ShopFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;

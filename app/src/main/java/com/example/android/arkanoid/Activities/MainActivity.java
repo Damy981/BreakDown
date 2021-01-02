@@ -1,10 +1,8 @@
-package com.example.android.arkanoid;
+package com.example.android.arkanoid.Activities;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
-import android.os.Handler;
-import android.os.Message;
+
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 
