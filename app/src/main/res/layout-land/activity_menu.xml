@@ -29,41 +29,43 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <ImageView
             android:id="@+id/btnLogout"
-            android:layout_width="59dp"
-            android:layout_height="58dp"
+            android:layout_width="76dp"
+            android:layout_height="64dp"
             android:background="@drawable/back_icon"
+            android:contentDescription="TODO"
             android:onClick="logout"
             android:src="@drawable/effect_button_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.976"
+            app:layout_constraintHorizontal_bias="0.975"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01"
-            android:contentDescription="TODO" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <Button
             android:id="@+id/BtnPlay"
-            android:layout_width="258dp"
-            android:layout_height="92dp"
+            android:layout_width="244dp"
+            android:layout_height="82dp"
             android:background="@drawable/effect_button"
             android:drawableEnd="@drawable/play_icon"
             android:onClick="startGame"
-            android:paddingEnd="27dp"
             android:paddingStart="27dp"
+            android:paddingEnd="27dp"
             android:text="@string/play"
             android:textColor="@android:color/white"
             android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintHorizontal_bias="0.474"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.359"
+            app:layout_constraintVertical_bias="0.209"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
@@ -74,68 +76,69 @@
             android:drawableEnd="@drawable/shop_icon"
             android:ellipsize="middle"
             android:onClick="btnShopClick"
-            android:paddingEnd="23dp"
             android:paddingStart="20dp"
+            android:paddingEnd="23dp"
             android:scrollbarSize="4dp"
             android:text="@string/shop"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.48"
+            app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BtnPlay"
-            app:layout_constraintVertical_bias="0.023" />
+            app:layout_constraintVertical_bias="0.089" />
 
         <ImageView
             android:id="@+id/btnSettings"
-            android:layout_width="80dp"
-            android:layout_height="69dp"
+            android:layout_width="84dp"
+            android:layout_height="71dp"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:onClick="btnSettingsClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.888"
+            app:layout_constraintHorizontal_bias="0.918"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.953"
+            app:layout_constraintVertical_bias="0.902"
             app:srcCompat="@drawable/setting_image" />
 
         <ImageView
             android:id="@+id/btnLevelEditor"
             android:layout_width="78dp"
             android:layout_height="72dp"
-            android:contentDescription="TODO"
             android:background="@drawable/effect_button_image"
+            android:contentDescription="TODO"
             android:onClick="btnLevelEditorClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.877"
+            app:layout_constraintHorizontal_bias="0.621"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.76"
+            app:layout_constraintVertical_bias="0.896"
             app:srcCompat="@drawable/editor_level_image" />
 
         <ImageView
             android:id="@+id/btnQuest"
-            android:layout_width="77dp"
-            android:layout_height="71dp"
+            android:layout_width="84dp"
+            android:layout_height="72dp"
             android:background="@drawable/quest_image"
+            android:contentDescription="TODO"
             android:onClick="btnQuestClick"
-            app:srcCompat="@drawable/effect_button_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.147"
+            app:layout_constraintHorizontal_bias="0.337"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.952"
-            android:contentDescription="TODO" />
+            app:layout_constraintVertical_bias="0.902"
+            app:srcCompat="@drawable/effect_button_image" />
 
         <ImageView
             android:id="@+id/btnProfile"
             android:layout_width="85dp"
             android:layout_height="81dp"
             android:background="@drawable/user_image"
+            android:contentDescription="TODO"
             android:onClick="btnProfileClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -143,87 +146,74 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/effect_button_image"
-            android:contentDescription="TODO" />
+            app:srcCompat="@drawable/effect_button_image" />
 
         <ImageView
             android:id="@+id/btnRanking"
             android:layout_width="78dp"
             android:layout_height="74dp"
-            app:srcCompat="@drawable/effect_button_image"
+            android:background="@drawable/ranking_image"
+            android:contentDescription="@string/todo"
             android:onClick="btnRankingClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
+            app:layout_constraintHorizontal_bias="0.078"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.761"
-            android:background="@drawable/ranking_image"
-            android:contentDescription="@string/todo" />
+            app:layout_constraintVertical_bias="0.91"
+            app:srcCompat="@drawable/effect_button_image" />
 
         <TextView
             android:id="@+id/Ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="62dp"
-            android:layout_marginEnd="291dp"
-            android:layout_marginBottom="36dp"
             android:text="Ranking"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnQuest"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.166"
+            app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnRanking"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.984" />
 
         <TextView
             android:id="@+id/Quest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="55dp"
-            android:layout_marginTop="4dp"
-            android:layout_marginEnd="290dp"
-            android:layout_marginBottom="8dp"
             android:text="Quest"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.35"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnQuest"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.984" />
 
         <TextView
             android:id="@+id/LevelEditor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="34dp"
             android:text="Level Editor"
             android:textSize="18sp"
-            app:layout_constraintBottom_toTopOf="@+id/btnSettings"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.918"
+            app:layout_constraintHorizontal_bias="0.623"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btnLevelEditor"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.984" />
 
         <TextView
             android:id="@+id/Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="202dp"
-            android:layout_marginTop="1dp"
-            android:layout_marginEnd="41dp"
-            android:layout_marginBottom="7dp"
             android:text="Settings"
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/Quest"
-            app:layout_constraintTop_toBottomOf="@+id/btnSettings"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.976" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

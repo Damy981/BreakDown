@@ -170,4 +170,9 @@ public class RegistrationActivity extends AppCompatActivity {
             myRef.child(userId).child("UserName").setValue(name);
         //aggiungere i power up
     }
+
+    public void btnBackClick(View view) {
+        Intent intentBackClick = new Intent(this, LoginActivity.class);
+        startActivity(intentBackClick);
+    }
 }
