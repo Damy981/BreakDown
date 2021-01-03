@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,7 +28,8 @@ public class ShopFragment extends Fragment {
     private TextView tvShopCoins;
     private ListView lv;
     private String[] items = {"Item 1", "Item 2 ", "Item 3 ", "Item 4 ", "Item 5 "};
-    private int[] prices = {1, 1, 1, 1, 1};
+    private int[] prices = {5, 5, 5, 5, 5};
+    private int coins;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -41,11 +43,15 @@ public class ShopFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Profile profile = (Profile) getArguments().getSerializable("profile");
+        coins = profile.getCoins();
         tvShopCoins = getView().findViewById(R.id.tvShopCoins);
-        tvShopCoins.setText(String.valueOf(profile.getCoins()));
+        tvShopCoins.setText(String.valueOf(coins));
 
         lv = getActivity().findViewById(R.id.lvShopItem);
-        ShopItemAdapter adapter = new ShopItemAdapter(this.getActivity(), items, prices);
+        ShopItemAdapter adapter;
+        adapter = new ShopItemAdapter(this.getActivity(), items, prices, profile, tvShopCoins);
         lv.setAdapter(adapter);
+
     }
+
 }
