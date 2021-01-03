@@ -172,7 +172,6 @@ public class RegistrationActivity extends AppCompatActivity {
     }
 
     public void btnBackClick(View view) {
-        Intent intentBackClick = new Intent(this, LoginActivity.class);
-        startActivity(intentBackClick);
+        onBackPressed();
     }
 }

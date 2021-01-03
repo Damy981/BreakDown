@@ -13,9 +13,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
-    // Duration of wait
-    private final int SPLASH_DISPLAY_LENGTH = 1000;
-    private FirebaseAuth mAuth;
     private String activityToStart;
 
     // Called when the activity is first created.
@@ -24,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash_screen);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         // Check if user is signed in with an active account (non-null) and update the string with the right class name.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
@@ -42,6 +39,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         /* New Handler to start the Menu-Activity
            and close this Splash-Screen after some seconds.*/
+        // Duration of wait
+        int SPLASH_DISPLAY_LENGTH = 1000;
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
