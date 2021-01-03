@@ -149,7 +149,7 @@ public class MenuActivity extends AppCompatActivity {
                 int levelNumber = dataSnapshot.child("LevelNumber").getValue(int.class);
                 int coins = dataSnapshot.child("Coins").getValue(int.class);
                 String userName = dataSnapshot.child("UserName").getValue(String.class);
-                profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false));
+                profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false), userId);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

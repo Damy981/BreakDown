@@ -12,12 +12,14 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.example.android.arkanoid.R;
+
 
 import java.util.ArrayList;
 
@@ -50,7 +52,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     final private Context context;
     private Profile profile;
 
-
     public Game(Context context, int lives, int score, Profile profile) {
         super(context);
         paint = new Paint();
@@ -61,8 +62,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.score = score;
         this.profile = profile;
         level = this.profile.getLevelNumber();
-
-
+        Log.i("cacca", String.valueOf(level));
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
         gameOver = false;
@@ -83,6 +83,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         levelMap = new Level(context, level);
         brickList = levelMap.getBrickList();
         this.setOnTouchListener(this);
+        ball.increaseSpeed(level);
 
     }
 
@@ -173,6 +174,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 if (ball.touchBrick(b.getX(), b.getY())) {
                     brickList.remove(i);
                     score = score + 80;
+                    profile.setCoins(profile.getCoins() + 1);
                 }
             }
             ball.moveBall();
@@ -222,6 +224,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     // sets the game to start
     private void resetLevel() {
+        profile.uploadProfile();
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();
@@ -233,6 +236,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private void win() {
         if (brickList.isEmpty()) {
             ++level;
+            profile.increaseLevel();
             resetLevel();
             ball.increaseSpeed(level);
             start = false;
