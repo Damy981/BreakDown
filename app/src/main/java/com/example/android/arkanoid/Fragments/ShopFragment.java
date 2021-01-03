@@ -2,16 +2,32 @@ package com.example.android.arkanoid.Fragments;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.TextView;
 
+import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.ShopItemAdapter;
 import com.example.android.arkanoid.R;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ShopFragment extends Fragment {
+
+    private TextView tvShopCoins;
+    private ListView lv;
+    private String[] items = {"Item 1", "Item 2 ", "Item 3 ", "Item 4 ", "Item 5 "};
+    private int[] prices = {1, 1, 1, 1, 1};
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -19,5 +35,17 @@ public class ShopFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_shop, container, false);
 
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Profile profile = (Profile) getArguments().getSerializable("profile");
+        tvShopCoins = getView().findViewById(R.id.tvShopCoins);
+        tvShopCoins.setText(String.valueOf(profile.getCoins()));
+
+        lv = getActivity().findViewById(R.id.lvShopItem);
+        ShopItemAdapter adapter = new ShopItemAdapter(this.getActivity(), items, prices);
+        lv.setAdapter(adapter);
     }
 }

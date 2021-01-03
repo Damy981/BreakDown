@@ -87,7 +87,9 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void btnShopClick(View view) {
+        bundle.putSerializable("profile", profile);
         fragment = new ShopFragment();
+        fragment.setArguments(bundle);
         changeVisibility();
         tx = fm.beginTransaction();
         tx.add(R.id.fragment_place, fragment);
