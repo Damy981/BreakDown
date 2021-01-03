@@ -9,10 +9,10 @@
 
     <EditText
         android:id="@+id/etMail"
-        android:drawableRight="@drawable/email_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:drawableRight="@drawable/email_icon"
         android:ems="10"
         android:hint="@string/enter_email_address"
         android:inputType="textEmailAddress"
@@ -25,64 +25,66 @@
 
     <EditText
         android:id="@+id/etConfPass"
-        android:drawableRight="@drawable/password_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="68dp"
         android:autofillHints=""
+        android:drawableRight="@drawable/password_icon"
         android:ems="10"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/registerButton"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPass"
-        app:layout_constraintVertical_bias="0.102" />
+        app:layout_constraintTop_toTopOf="@+id/etPass"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@+id/etPass"
-        android:drawableRight="@drawable/password_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="404dp"
+        android:layout_marginBottom="168dp"
+        android:autofillHints=""
+        android:drawableRight="@drawable/password_icon"
         android:ems="10"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/etName"
-        android:drawableRight="@drawable/username_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:drawableRight="@drawable/username_icon"
         android:ems="10"
         android:hint="@string/enter_username"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/etPass"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
+        app:layout_constraintVertical_bias="0.849" />
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="155dp"
-        android:layout_height="77dp"
+        android:layout_width="188dp"
+        android:layout_height="58dp"
         android:background="@drawable/effect_button"
         android:onClick="register"
         android:text="@string/register"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPass" />
+        app:layout_constraintTop_toBottomOf="@+id/etPass"
+        app:layout_constraintVertical_bias="0.893" />
 
     <ImageView
         android:id="@+id/btnBack"
