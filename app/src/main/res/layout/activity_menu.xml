@@ -44,6 +44,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.01"
+            android:elevation="1dp"
             android:contentDescription="TODO" />
 
         <Button
@@ -64,7 +65,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.359"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            android:elevation="1dp"/>
 
         <Button
             android:id="@+id/btnShop"
@@ -84,7 +86,8 @@
             app:layout_constraintHorizontal_bias="0.48"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/BtnPlay"
-            app:layout_constraintVertical_bias="0.023" />
+            app:layout_constraintVertical_bias="0.023"
+            android:elevation="1dp"/>
 
         <ImageView
             android:id="@+id/btnSettings"
@@ -99,6 +102,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.953"
+            android:elevation="1dp"
             app:srcCompat="@drawable/setting_image" />
 
         <ImageView
@@ -114,6 +118,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.76"
+            android:elevation="1dp"
             app:srcCompat="@drawable/editor_level_image" />
 
         <ImageView
@@ -129,6 +134,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.952"
+            android:elevation="1dp"
             android:contentDescription="TODO" />
 
         <ImageView
@@ -144,6 +150,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/effect_button_image"
+            android:elevation="1dp"
             android:contentDescription="TODO" />
 
         <ImageView
@@ -159,6 +166,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.761"
             android:background="@drawable/ranking_image"
+            android:elevation="1dp"
             android:contentDescription="@string/todo" />
 
         <TextView

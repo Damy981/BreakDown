@@ -5,7 +5,7 @@
     android:id="@+id/relativeLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#EAE7D2"
+    android:background="#FFEB3B"
     tools:context=".Activities.LoginActivity">
 
 
@@ -38,17 +38,17 @@
         android:id="@+id/button"
         android:layout_width="120dp"
         android:layout_height="51dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="28dp"
-        android:layout_marginLeft="15dp"
         android:background="@drawable/shadow_button"
+        android:elevation="1dp"
         android:onClick="guestLogin"
         android:text="@string/enter_as_guest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        android:elevation="1dp"/>
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -76,11 +76,11 @@
         android:layout_width="350dp"
         android:layout_height="290dp"
         android:background="#FFFFFF"
+        android:elevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:elevation="16dp">
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -101,14 +101,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMail"
-                android:inputType="textEmailAddress"
-                android:drawableRight="@drawable/email_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
+                android:drawableRight="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
+                android:inputType="textEmailAddress"
                 android:textColor="#01030E"
                 android:textColorHint="#656060">
 
@@ -116,14 +116,14 @@
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
-                android:inputType="textPassword"
-                android:drawableRight="@drawable/password_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
+                android:drawableRight="@drawable/password_icon"
                 android:hint="@string/enter_password"
+                android:inputType="textPassword"
                 android:textColor="#1E0303"
                 android:textColorHint="#656060">
 
@@ -168,26 +168,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginStart="15dp"
-            android:text="Remember me"
-            android:textColor="@color/black_overlay" />
-
         <Button
             android:id="@+id/btnLogin"
             android:layout_width="150dp"
             android:layout_height="60dp"
-            android:layout_marginStart="100dp"
+            android:layout_marginStart="50dp"
             android:layout_marginLeft="80dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="152dp"
             android:background="@drawable/shadow_button"
+            android:elevation="1dp"
             android:onClick="login"
             android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:elevation="1dp"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
     </LinearLayout>
