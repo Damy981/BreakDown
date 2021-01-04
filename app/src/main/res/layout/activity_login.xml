@@ -17,7 +17,7 @@
         android:layout_marginBottom="28dp"
         android:onClick="openRegisterActivity"
         android:text="@string/not_registered_yet_register_now"
-        android:textColor="#1B1818"
+        android:textColor="#3F51B5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -36,17 +36,19 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="114dp"
+        android:layout_width="120dp"
         android:layout_height="51dp"
         android:layout_marginTop="14dp"
         android:layout_marginBottom="28dp"
-        android:background="#2B7CD6"
+        android:layout_marginLeft="15dp"
+        android:background="@drawable/shadow_button"
         android:onClick="guestLogin"
         android:text="@string/enter_as_guest"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        android:elevation="1dp"/>
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -77,13 +79,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:elevation="16dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:orientation="vertical">
+            <!--android:backgroundTint="@drawable/shadow"-->
 
             <TextView
                 android:layout_width="match_parent"
@@ -98,6 +102,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMail"
                 android:inputType="textEmailAddress"
+                android:drawableRight="@drawable/email_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -112,6 +117,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etPass"
                 android:inputType="textPassword"
+                android:drawableRight="@drawable/password_icon"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
@@ -176,11 +182,12 @@
             android:layout_marginStart="100dp"
             android:layout_marginLeft="80dp"
             android:layout_marginBottom="152dp"
-            android:background="#2B7CD6"
+            android:background="@drawable/shadow_button"
             android:onClick="login"
             android:text="@string/login"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            android:elevation="1dp"/>
 
 
     </LinearLayout>
