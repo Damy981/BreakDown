@@ -9,7 +9,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -17,7 +16,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Profile;
@@ -35,10 +33,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 public class MenuActivity extends AppCompatActivity {
 
     private final int LOADING_TIME = 1200;
@@ -54,7 +48,6 @@ public class MenuActivity extends AppCompatActivity {
     private ConstraintLayout menu;
     private Bundle bundle;
     private SharedPreferences preferences;
-    private Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +56,9 @@ public class MenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         menu = findViewById(R.id.menu);
-        context = this;
 
         fm = getSupportFragmentManager();
-        retrieveProfileData();  //fare in modo che si chiama ogni volta che si passa dal menu (forse onResume)
+        retrieveProfileData();
         bundle = new Bundle();
         preferences = getPreferences(MODE_PRIVATE);
         loadingScreen();
@@ -184,7 +176,8 @@ public class MenuActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                hasInternetAccess(context);
+                if(!isNetworkAvailable())
+                    showInternetAlert();
 
                 findViewById(R.id.loadingBar).setVisibility(View.GONE);
                 findViewById(R.id.menu).setVisibility(View.VISIBLE);
@@ -192,30 +185,10 @@ public class MenuActivity extends AppCompatActivity {
         }, LOADING_TIME);
     }
 
-    public boolean hasInternetAccess(Context context) {
-        if (isNetworkAvailable(context)) {
-            try {
-                HttpURLConnection urlc = (HttpURLConnection)
-                        (new URL("http://clients3.google.com/generate_204")
-                                .openConnection());
-                urlc.setRequestProperty("User-Agent", "Android");
-                urlc.setRequestProperty("Connection", "close");
-                urlc.setConnectTimeout(1500);
-                urlc.connect();
-                return (urlc.getResponseCode() == 204 &&
-                        urlc.getContentLength() == 0);
-            } catch (IOException e) {
 
-            }
-        } else {
-            showInternetAlert();
-        }
-        return false;
-    }
-
-    private boolean isNetworkAvailable(Context context) {
+    private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
-                = (ConnectivityManager) getSystemService(context.CONNECTIVITY_SERVICE);
+                = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
         NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
         return activeNetworkInfo != null;
     }
