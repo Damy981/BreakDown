@@ -74,7 +74,7 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
         android:layout_width="350dp"
-        android:layout_height="290dp"
+        android:layout_height="340dp"
         android:background="#FFFFFF"
         android:elevation="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -87,7 +87,6 @@
             android:layout_height="match_parent"
             android:background="#FFFFFF"
             android:orientation="vertical">
-            <!--android:backgroundTint="@drawable/shadow"-->
 
 
             <TextView
@@ -131,13 +130,14 @@
 
             </com.google.android.material.textfield.TextInputEditText>
 
+
             <ProgressBar
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginStart="150dp"
-                android:layout_marginEnd="30dp"
-                android:layout_marginTop="0dp"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
+                android:elevation="20dp"
                 android:indeterminate="true"
                 app:layout_constraintBottom_toTopOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
