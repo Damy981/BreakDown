@@ -65,6 +65,5 @@ public class ShopFragment extends Fragment {
         ShopItemAdapter adapter;
         adapter = new ShopItemAdapter(this.getActivity(), items, prices, profile, tvShopCoins, lv);
         lv.setAdapter(adapter);
-
     }
 }

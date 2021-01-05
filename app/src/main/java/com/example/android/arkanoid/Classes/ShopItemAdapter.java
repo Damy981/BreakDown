@@ -5,12 +5,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.arkanoid.Activities.MainActivity;
 import com.example.android.arkanoid.R;
 
 public class ShopItemAdapter extends BaseAdapter {
@@ -20,7 +22,7 @@ public class ShopItemAdapter extends BaseAdapter {
     private int[] prices;
     private Profile profile;
     private TextView tvShopCoins;
-    ListView lv;
+    private ListView lv;
 
     public ShopItemAdapter(Context context, String[] items, int[] prices, Profile profile, TextView tvShopCoins, ListView lv) {
         this.context = context;
@@ -65,29 +67,25 @@ public class ShopItemAdapter extends BaseAdapter {
                 buyItem(e);
                 for(int i = 0; i < items.length; i++){
                     Button buyItem = lv.getChildAt(i).findViewById(R.id.btnBuy);
-                    Log.i("ListView", String.valueOf(lv.getChildCount()));
-
-                    Log.i("button", String.valueOf(buyItem.getText()));
                     if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < prices[i]) {
                         buyItem.setEnabled(false);
 
-
-
+                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                noCoinsMessage();
+                            }
+                        });
                     }
                 }
                 buyItem.setText("Buy for " + prices[e]);
-                Log.i("shop", String.valueOf(profile.getCoins()) + "  " + prices[e]);
             }
         });
         if (!buyItem.isEnabled()) {
-
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Log.i("ciao", "patate");
-                    String message = "Not enough coins";
-                    Toast toast = null;
-                    toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                    noCoinsMessage();
                 }
             });
         }
@@ -99,5 +97,11 @@ public class ShopItemAdapter extends BaseAdapter {
         tvShopCoins.setText(String.valueOf(profile.getCoins()));
         prices[e] = prices[e] + 5;
         profile.updateProfile();
+    }
+
+    private void noCoinsMessage() {
+        String message = "Not enough coins";
+        Toast toast = null;
+        toast.makeText(context, message, Toast.LENGTH_LONG).show();
     }
 }
