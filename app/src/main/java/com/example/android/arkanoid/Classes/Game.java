@@ -12,7 +12,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -62,7 +61,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.score = score;
         this.profile = profile;
         level = this.profile.getLevelNumber();
-        Log.i("cacca", String.valueOf(level));
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
         gameOver = false;
@@ -224,7 +222,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     // sets the game to start
     private void resetLevel() {
-        profile.uploadProfile();
+        profile.updateProfile();
+
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();

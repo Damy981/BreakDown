@@ -4,25 +4,19 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.UserProfileChangeRequest;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 public class RegistrationActivity extends AppCompatActivity {
 
@@ -31,7 +25,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etPassword;
     private EditText etName;
     private FirebaseAuth mAuth;
-    private Context context = this;
+    private Services services;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +34,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         extractStrings();
+        services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
     }
 
     private void extractStrings() {
@@ -63,10 +58,6 @@ public class RegistrationActivity extends AppCompatActivity {
         }else {
             if (mAuth.getCurrentUser() == null)
                 createFirebaseUser(email, password, name);
-            else {
-                AuthCredential credential = EmailAuthProvider.getCredential(email, password);
-                createFirebaseUserFromGuest(credential, name);
-            }
         }
     }
 
@@ -80,35 +71,24 @@ public class RegistrationActivity extends AppCompatActivity {
                             Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            setName(name, user);
-                            initializeProfile(user, name);
-                            Intent intent = new Intent(context, LoginActivity.class);
+                            String username = getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE).getString("userName", null);
+                            if (!username.equals("GuestUser")) {
+                                services.setSharedPreferences(name, 0, 1, user.getUid());
+                            }
+                            else {
+                                services.setNameAndUserId(name, user.getUid());
+                                services.updateDatabase();
+                            }
+                            Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            showDialogBox("Registration failed, please try again", "Error", android.R.drawable.ic_dialog_alert);
+                            showDialogBox("Registration failed, check your connection and try again", "Error", android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
     }
 
-    private void setName(String name, FirebaseUser user) {
-
-        UserProfileChangeRequest changeRequest = new UserProfileChangeRequest.Builder()
-                .setDisplayName(name)
-                .build();
-
-        user.updateProfile(changeRequest).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Log.i("setNome", "Name updated succesfully");
-                }else{
-                    Log.i("setNome", "Error");
-                }
-            }
-        });
-    }
 
     private boolean validateMail (String mail) {
         return mail.contains("@");
@@ -120,31 +100,6 @@ public class RegistrationActivity extends AppCompatActivity {
         return confirmPasswordString.equals(password) && password.length() >= 6;
     }
 
-    private void createFirebaseUserFromGuest ( AuthCredential credential, final String name) {
-        mAuth.getCurrentUser().linkWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
-                                    Toast.LENGTH_SHORT).show();
-
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            setName(name, user);
-
-                            FirebaseDatabase database = FirebaseDatabase.getInstance();
-                            String userId = user.getUid();
-                            DatabaseReference myRef = database.getReference("Profiles");
-                            myRef.child(userId).child("UserName").setValue(name);
-
-                            Intent intent = new Intent(context, LoginActivity.class);
-                            startActivity(intent);
-                        } else {
-                            showDialogBox("Registration failed, please try again", "Error", android.R.drawable.ic_dialog_alert);
-                        }
-                    }
-                });
-    }
 
     private void showDialogBox(String message, String title, int icon) {
 
@@ -156,20 +111,6 @@ public class RegistrationActivity extends AppCompatActivity {
                 .show();
     }
 
-    static protected void initializeProfile(FirebaseUser user, String name) {
-
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        String userId = user.getUid();
-        DatabaseReference myRef = database.getReference("Profiles");
-
-        myRef.child(userId).child("LevelNumber").setValue(1);
-        myRef.child(userId).child("Coins").setValue(0);
-        if (user.isAnonymous())
-            myRef.child(userId).child("UserName").setValue("GuestUser");
-        else
-            myRef.child(userId).child("UserName").setValue(name);
-        //aggiungere i power up
-    }
 
     public void btnBackClick(View view) {
         onBackPressed();

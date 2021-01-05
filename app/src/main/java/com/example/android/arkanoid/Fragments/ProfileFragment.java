@@ -13,7 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.android.arkanoid.Activities.RegistrationActivity;
+import com.example.android.arkanoid.Activities.LoginActivity;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 import com.google.firebase.auth.FirebaseAuth;
@@ -46,7 +46,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvUsername.setText(profile.getUserName());
         tvCoins.setText(String.valueOf(profile.getCoins()));
 
-        if (user.isAnonymous()) {
+        if (user == null){
             guestRegisterButton.setVisibility(View.VISIBLE);
         }
     }
@@ -61,7 +61,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), RegistrationActivity.class);
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
         startActivity(intent);
     }
 }

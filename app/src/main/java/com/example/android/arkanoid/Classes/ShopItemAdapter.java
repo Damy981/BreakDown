@@ -73,6 +73,6 @@ public class ShopItemAdapter extends BaseAdapter {
         profile.setCoins(profile.getCoins() - prices[e]);
         tvShopCoins.setText(String.valueOf(profile.getCoins()));
         prices[e] = prices[e] + 5;
-        profile.uploadProfile();
+        profile.updateProfile();
     }
 }

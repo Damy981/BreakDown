@@ -8,7 +8,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,7 +52,7 @@ public class SettingsFragment extends Fragment {
         });
     }
     private void getPreferences() {
-        preferences = getActivity().getPreferences(Context.MODE_PRIVATE);
+        preferences = getActivity().getSharedPreferences("com.example.android.arkanoid_preferences" ,Context.MODE_PRIVATE);
         tbAccelStatus = preferences.getBoolean("tbAccelStatus", false);
         tbAccelerometer.setChecked(tbAccelStatus);
     }

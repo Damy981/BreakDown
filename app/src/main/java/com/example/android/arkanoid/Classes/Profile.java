@@ -1,8 +1,10 @@
 package com.example.android.arkanoid.Classes;
 
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+
+import com.example.android.arkanoid.Activities.MainActivity;
 
 import java.io.Serializable;
 
@@ -55,12 +57,11 @@ public class Profile implements Serializable {
         this.coins = coins;
     }
 
-    public void uploadProfile() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Profiles").child(userId);
-        myRef.child("Coins").setValue(coins);
-        myRef.child("LevelNumber").setValue(levelNumber);
+    public void updateProfile() {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putInt("coins", coins);
+        editor.putInt("levelNumber", levelNumber);
+        editor.commit();
     }
-
-
 }

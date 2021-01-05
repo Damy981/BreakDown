@@ -1,6 +1,5 @@
 package com.example.android.arkanoid.Activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -8,17 +7,15 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Fragments.ProfileFragment;
 import com.example.android.arkanoid.Fragments.QuestFragment;
 import com.example.android.arkanoid.R;
@@ -27,20 +24,11 @@ import com.example.android.arkanoid.Fragments.SettingsFragment;
 import com.example.android.arkanoid.Fragments.ShopFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 public class MenuActivity extends AppCompatActivity {
 
-    private final int LOADING_TIME = 1200;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    private String userId;
-    private FirebaseDatabase database;
-    private DatabaseReference myRef;
     private Profile profile;
     private FragmentManager fm;
     private FragmentTransaction tx;
@@ -48,20 +36,24 @@ public class MenuActivity extends AppCompatActivity {
     private ConstraintLayout menu;
     private Bundle bundle;
     private SharedPreferences preferences;
+    private Services services;
+    private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+        services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        if (user == null)
+            findViewById(R.id.btnLogout).setVisibility(View.GONE);
         menu = findViewById(R.id.menu);
 
         fm = getSupportFragmentManager();
-        retrieveProfileData();
+        preferences = getSharedPreferences("com.example.android.arkanoid_preferences" , MODE_PRIVATE);
+        retrieveProfileDataOffline();
         bundle = new Bundle();
-        preferences = getPreferences(MODE_PRIVATE);
-        loadingScreen();
     }
 
 
@@ -75,6 +67,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void logout(View view) {
         mAuth.signOut();
+        user = null;
         Intent intent = new Intent(this, LoginActivity.class);
         startActivity(intent);
     }
@@ -136,29 +129,22 @@ public class MenuActivity extends AppCompatActivity {
         startActivity(intentGame);
     }
 
-    private void retrieveProfileData() {
-        database = FirebaseDatabase.getInstance();
 
-        if (user != null) {
-            userId = user.getUid();
-            myRef = database.getReference("Profiles").child(userId);
+    private void retrieveProfileDataOffline() {
+        profile = services.buildProfile();
+        prefListener =
+                new SharedPreferences.OnSharedPreferenceChangeListener() {
 
+                    @Override
+                    public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
+                        profile = services.buildProfile();
+                        if (isNetworkAvailable() && user != null)
+                            services.updateDatabase();
+                    }
+                };
+        if (preferences != null) {
+            preferences.registerOnSharedPreferenceChangeListener(prefListener);
         }
-        myRef.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                // This method is called once with the initial value and again
-                // whenever data at this location is updated.
-                int levelNumber = dataSnapshot.child("LevelNumber").getValue(int.class);
-                int coins = dataSnapshot.child("Coins").getValue(int.class);
-                String userName = dataSnapshot.child("UserName").getValue(String.class);
-                profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false), userId);
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
-        });
     }
 
     private void changeVisibility() {
@@ -171,20 +157,6 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    private void loadingScreen() {
-        findViewById(R.id.menu).setVisibility(View.GONE);
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-                if(!isNetworkAvailable())
-                    showInternetAlert();
-
-                findViewById(R.id.loadingBar).setVisibility(View.GONE);
-                findViewById(R.id.menu).setVisibility(View.VISIBLE);
-            }
-        }, LOADING_TIME);
-    }
-
 
     private boolean isNetworkAvailable() {
         ConnectivityManager connectivityManager
@@ -193,17 +165,4 @@ public class MenuActivity extends AppCompatActivity {
         return activeNetworkInfo != null;
     }
 
-    private void showInternetAlert () {
-        AlertDialog.Builder alert = new AlertDialog.Builder(this)
-                .setTitle("Error")
-                .setMessage("No internet connection available. Please check your connection and try again.")
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        finishAndRemoveTask();
-                        moveTaskToBack(true);
-                    }
-                });
-        alert.show();
-    }
 }
