@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -37,6 +38,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView forgotPassword;
     private Button login;
     private Button sendMail;
+    private Button guestButton;
     private Services services;
     private FirebaseUser user;
 
@@ -46,6 +48,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         mAuth = FirebaseAuth.getInstance();
+        findViewById(R.id.progressBar).setVisibility(View.GONE);
         services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
         extractUI();
     }
@@ -56,6 +59,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword = findViewById(R.id.tvForgotPassword);
         login = findViewById(R.id.btnLogin);
         sendMail = findViewById(R.id.btnForgotPass);
+        guestButton = findViewById(R.id.guestButton);
     }
 
 
@@ -112,6 +116,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setVisibility(View.GONE);
         login.setVisibility(View.GONE);
         etPassword.setVisibility(View.GONE);
+        guestButton.setVisibility(View.GONE);
         sendMail.setVisibility(View.VISIBLE);
     }
 
@@ -141,6 +146,7 @@ public class LoginActivity extends AppCompatActivity {
         forgotPassword.setVisibility(View.VISIBLE);
         login.setVisibility(View.VISIBLE);
         etPassword.setVisibility(View.VISIBLE);
+        guestButton.setVisibility(View.VISIBLE);
         sendMail.setVisibility(View.GONE);
     }
 
@@ -196,6 +202,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loadingScreen() {
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {

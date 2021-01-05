@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.766" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/guestButton"
         android:layout_width="120dp"
         android:layout_height="51dp"
         android:layout_marginLeft="15dp"
@@ -132,6 +132,7 @@
 
 
             <ProgressBar
+                android:id="@+id/progressBar"
                 android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="100dp"

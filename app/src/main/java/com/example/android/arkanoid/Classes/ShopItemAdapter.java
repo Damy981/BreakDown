@@ -100,8 +100,6 @@ public class ShopItemAdapter extends BaseAdapter {
     }
 
     private void noCoinsMessage() {
-        String message = "Not enough coins";
-        Toast toast = null;
-        toast.makeText(context, message, Toast.LENGTH_LONG).show();
+        Toast.makeText(context, "Not enough coins", Toast.LENGTH_LONG).show();
     }
 }

@@ -13,6 +13,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Services;
@@ -43,18 +44,17 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
+        preferences = getSharedPreferences("com.example.android.arkanoid_preferences" , MODE_PRIVATE);
+        services = new Services(preferences);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         if (user == null)
             findViewById(R.id.btnLogout).setVisibility(View.GONE);
         menu = findViewById(R.id.menu);
         fm = getSupportFragmentManager();
-        preferences = getSharedPreferences("com.example.android.arkanoid_preferences" , MODE_PRIVATE);
         retrieveProfileDataOffline();
         bundle = new Bundle();
     }
-
 
 
     @Override
@@ -66,10 +66,16 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     public void logout(View view) {
-        mAuth.signOut();
-        user = null;
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+        if (isNetworkAvailable()) {
+            services.updateDatabase();
+            mAuth.signOut();
+            user = null;
+            preferences.edit().clear().commit();
+            Intent intent = new Intent(this, LoginActivity.class);
+            startActivity(intent);
+        }
+        else
+            Toast.makeText(MainActivity.context, "Internet connection not available, check your connection and try again", Toast.LENGTH_LONG).show();
     }
 
     public void btnProfileClick(View view) {

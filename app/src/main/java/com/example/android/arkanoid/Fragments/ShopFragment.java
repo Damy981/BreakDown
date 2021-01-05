@@ -41,22 +41,11 @@ public class ShopFragment extends Fragment {
 
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-
-    }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Profile profile = (Profile) getArguments().getSerializable("profile");
+        profile = (Profile) getArguments().getSerializable("profile");
         coins = profile.getCoins();
         tvShopCoins = getView().findViewById(R.id.tvShopCoins);
         tvShopCoins.setText(String.valueOf(coins));
