@@ -33,13 +33,13 @@
             android:src="@drawable/effect_button_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.975"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
         <Button
-            android:id="@+id/BtnPlay"
+            android:id="@+id/btnPlay"
             android:layout_width="244dp"
             android:layout_height="82dp"
             android:background="@drawable/effect_button"
@@ -75,7 +75,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.477"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/BtnPlay"
+            app:layout_constraintTop_toBottomOf="@+id/btnPlay"
             app:layout_constraintVertical_bias="0.089" />
 
         <ImageView

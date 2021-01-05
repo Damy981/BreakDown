@@ -27,6 +27,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -48,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
         services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
         extractUI();
     }
-
     private void extractUI() {
         etMail = findViewById(R.id.etMail);
         etPassword = findViewById(R.id.etPass);
@@ -58,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         sendMail = findViewById(R.id.btnForgotPass);
     }
 
+
     public void login(View view) {
         String email = etMail.getText().toString();
         String password = etPassword.getText().toString();
@@ -66,6 +67,8 @@ public class LoginActivity extends AppCompatActivity {
         else
             showDialogBox("Please insert email address and password", "Error", android.R.drawable.ic_dialog_alert);
     }
+
+
 
     private void loginFirebaseUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)

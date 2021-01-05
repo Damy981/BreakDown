@@ -14,11 +14,13 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="30dp"
         android:hint="item"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="10dp"
+        android:textSize="22sp" />
 
     <Button
         android:id="@+id/btnBuy"
         android:layout_width="173dp"
+        android:background="@drawable/effect_button"
         android:layout_height="wrap_content"
         android:text="Button" />
 </LinearLayout>

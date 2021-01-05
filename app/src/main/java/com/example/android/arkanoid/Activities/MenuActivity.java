@@ -49,12 +49,12 @@ public class MenuActivity extends AppCompatActivity {
         if (user == null)
             findViewById(R.id.btnLogout).setVisibility(View.GONE);
         menu = findViewById(R.id.menu);
-
         fm = getSupportFragmentManager();
         preferences = getSharedPreferences("com.example.android.arkanoid_preferences" , MODE_PRIVATE);
         retrieveProfileDataOffline();
         bundle = new Bundle();
     }
+
 
 
     @Override
@@ -80,6 +80,7 @@ public class MenuActivity extends AppCompatActivity {
         tx = fm.beginTransaction();
         tx.add(R.id.fragment_place, fragment);
         tx.commit();
+
     }
 
     public void btnShopClick(View view) {
