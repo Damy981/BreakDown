@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.android.arkanoid.R;
 
@@ -18,14 +20,16 @@ public class ShopItemAdapter extends BaseAdapter {
     private int[] prices;
     private Profile profile;
     private TextView tvShopCoins;
+    ListView lv;
 
-    public ShopItemAdapter(Context context, String[] items, int[] prices, Profile profile, TextView tvShopCoins) {
+    public ShopItemAdapter(Context context, String[] items, int[] prices, Profile profile, TextView tvShopCoins, ListView lv) {
         this.context = context;
         inflater = (LayoutInflater.from(context));
         this.items = items;
         this.prices = prices;
         this.profile = profile;
         this.tvShopCoins = tvShopCoins;
+        this.lv = lv;
     }
 
     @Override
@@ -59,13 +63,34 @@ public class ShopItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 buyItem(e);
-                if (profile.getCoins() < prices[e]) {
-                    buyItem.setEnabled(false);
+                for(int i = 0; i < items.length; i++){
+                    Button buyItem = lv.getChildAt(i).findViewById(R.id.btnBuy);
+                    Log.i("ListView", String.valueOf(lv.getChildCount()));
+
+                    Log.i("button", String.valueOf(buyItem.getText()));
+                    if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < prices[i]) {
+                        buyItem.setEnabled(false);
+
+
+
+                    }
                 }
                 buyItem.setText("Buy for " + prices[e]);
                 Log.i("shop", String.valueOf(profile.getCoins()) + "  " + prices[e]);
             }
         });
+        if (!buyItem.isEnabled()) {
+
+            view.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("ciao", "patate");
+                    String message = "Not enough coins";
+                    Toast toast = null;
+                    toast.makeText(context, message, Toast.LENGTH_LONG).show();
+                }
+            });
+        }
         return view;
     }
 

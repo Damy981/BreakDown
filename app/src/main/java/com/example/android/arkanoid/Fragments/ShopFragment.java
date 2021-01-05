@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -30,12 +31,25 @@ public class ShopFragment extends Fragment {
     private String[] items = {"Item 1", "Item 2 ", "Item 3 ", "Item 4 ", "Item 5 "};
     private int[] prices = {5, 5, 5, 5, 5};
     private int coins;
+    private Profile profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_shop, container, false);
+
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
 
     }
 
@@ -49,9 +63,8 @@ public class ShopFragment extends Fragment {
 
         lv = getActivity().findViewById(R.id.lvShopItem);
         ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), items, prices, profile, tvShopCoins);
+        adapter = new ShopItemAdapter(this.getActivity(), items, prices, profile, tvShopCoins, lv);
         lv.setAdapter(adapter);
 
     }
-
 }
