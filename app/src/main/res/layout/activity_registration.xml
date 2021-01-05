@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_600"
+    android:background="#BFAE95"
     tools:context=".Activities.RegistrationActivity">
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etMail"
-        android:drawableRight="@drawable/email_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:drawableLeft="@drawable/email_icon"
         android:ems="10"
         android:hint="@string/enter_email_address"
         android:inputType="textEmailAddress"
@@ -23,13 +23,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.659" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etConfPass"
-        android:drawableRight="@drawable/password_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="44dp"
         android:autofillHints=""
+        android:drawableLeft="@drawable/password_icon"
         android:ems="10"
         android:hint="@string/confirm_password"
         android:inputType="textPassword"
@@ -40,27 +40,27 @@
         app:layout_constraintTop_toBottomOf="@+id/etPass"
         app:layout_constraintVertical_bias="0.102" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etPass"
-        android:drawableRight="@drawable/password_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="404dp"
+        android:autofillHints=""
+        android:drawableLeft="@drawable/password_icon"
         android:ems="10"
         android:hint="@string/enter_password"
         android:inputType="textPassword"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/etName"
-        android:drawableRight="@drawable/username_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:autofillHints=""
+        android:drawableLeft="@drawable/username_icon"
         android:ems="10"
         android:hint="@string/enter_username"
         android:inputType="textPersonName"
@@ -73,12 +73,13 @@
 
     <Button
         android:id="@+id/registerButton"
-        android:layout_width="155dp"
+        android:layout_width="280dp"
         android:layout_height="77dp"
-        android:background="@drawable/effect_button"
+        android:background="@drawable/shadow_button"
         android:onClick="register"
         android:text="@string/register"
         android:textSize="20sp"
+        android:elevation="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -96,6 +97,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0"
+        android:layout_marginTop="15dp"
         app:srcCompat="@drawable/effect_button_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
