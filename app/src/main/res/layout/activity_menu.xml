@@ -141,7 +141,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/effect_button_image"
             android:elevation="1dp"
-            android:contentDescription="@string/todo" />
+            android:contentDescription="TODO" />
 
         <ImageView
             android:id="@+id/btnRanking"
