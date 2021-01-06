@@ -18,13 +18,15 @@ public class Services {
     }
 
     //set local data with parameters sent
-    public void setSharedPreferences(String username, int coins, int levelNumber, String userId) {
+    public void setSharedPreferences(String username, int coins, int levelNumber, String userId, String prices, String quantities) {
         editor = preferences.edit();
         editor.putString("userName" , username);
         editor.putInt("coins", coins);
         editor.putInt("levelNumber", levelNumber);
         if (userId != null)
             editor.putString("userId", userId);
+        editor.putString("prices", prices);
+        editor.putString("quantities", quantities);
         editor.commit();
     }
 
@@ -37,7 +39,9 @@ public class Services {
         myRef.child(userId).child("LevelNumber").setValue(preferences.getInt("levelNumber", 1));
         myRef.child(userId).child("Coins").setValue(preferences.getInt("coins", 0));
         myRef.child(userId).child("UserName").setValue(preferences.getString("userName", "GuestUser"));
-        //aggiungere i power up
+        myRef.child(userId).child("Prices").setValue(preferences.getString("prices", "5,5,5,5,5"));
+        myRef.child(userId).child("Quantities").setValue(preferences.getString("quantities", "0,0,0,0,0"));
+
     }
 
     //use the local data to create a profile object which is returned
@@ -45,7 +49,9 @@ public class Services {
         int coins = preferences.getInt("coins", 0);
         int levelNumber = preferences.getInt("levelNumber", 1);
         String userName = preferences.getString("userName", "GuestUser");
-        Profile profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false), null);
+        String prices = preferences.getString("prices", "5,5,5,5,5");
+        String quantities = preferences.getString("quantities", "0,0,0,0,0");
+        Profile profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false), null, prices, quantities);
         return profile;
     }
 

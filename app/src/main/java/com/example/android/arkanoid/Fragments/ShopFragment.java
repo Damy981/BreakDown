@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.android.arkanoid.Classes.PowerUp;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.ShopItemAdapter;
 import com.example.android.arkanoid.R;
@@ -28,8 +29,6 @@ public class ShopFragment extends Fragment {
 
     private TextView tvShopCoins;
     private ListView lv;
-    private String[] items = {"Item 1", "Item 2 ", "Item 3 ", "Item 4 ", "Item 5 "};
-    private int[] prices = {5, 5, 5, 5, 5};
     private int coins;
     private Profile profile;
 
@@ -41,7 +40,6 @@ public class ShopFragment extends Fragment {
 
     }
 
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -52,7 +50,8 @@ public class ShopFragment extends Fragment {
 
         lv = getActivity().findViewById(R.id.lvShopItem);
         ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), items, prices, profile, tvShopCoins, lv);
+        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv);
         lv.setAdapter(adapter);
     }
+
 }

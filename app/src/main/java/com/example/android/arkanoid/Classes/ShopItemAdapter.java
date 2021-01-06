@@ -15,28 +15,29 @@ import android.widget.Toast;
 import com.example.android.arkanoid.Activities.MainActivity;
 import com.example.android.arkanoid.R;
 
+import java.util.ArrayList;
+
 public class ShopItemAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
-    private String[] items;
-    private int[] prices;
     private Profile profile;
     private TextView tvShopCoins;
     private ListView lv;
+    private ArrayList<PowerUp> powerUps;
 
-    public ShopItemAdapter(Context context, String[] items, int[] prices, Profile profile, TextView tvShopCoins, ListView lv) {
+
+    public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv) {
         this.context = context;
         inflater = (LayoutInflater.from(context));
-        this.items = items;
-        this.prices = prices;
         this.profile = profile;
+        powerUps = profile.getPowerUps();
         this.tvShopCoins = tvShopCoins;
         this.lv = lv;
     }
 
     @Override
     public int getCount() {
-        return items.length;
+        return powerUps.size();
     }
 
     @Override
@@ -54,9 +55,9 @@ public class ShopItemAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.item_shopitem, null);
         TextView shopItemName = view.findViewById(R.id.tvItemName);
         final Button buyItem = view.findViewById(R.id.btnBuy);
-        shopItemName.setText(items[i]);
-        buyItem.setText("Buy for " + prices[i]);
-        if (profile.getCoins() < prices[i]){
+        shopItemName.setText(powerUps.get(i).getName());
+        buyItem.setText("Buy for " + powerUps.get(i).getPrice());
+        if (profile.getCoins() < powerUps.get(i).getPrice()){
             buyItem.setEnabled(false);
         }
 
@@ -65,9 +66,9 @@ public class ShopItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 buyItem(e);
-                for(int i = 0; i < items.length; i++){
+                for(int i = 0; i < powerUps.size(); i++){
                     Button buyItem = lv.getChildAt(i).findViewById(R.id.btnBuy);
-                    if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < prices[i]) {
+                    if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < powerUps.get(i).getPrice()) {
                         buyItem.setEnabled(false);
 
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -78,7 +79,7 @@ public class ShopItemAdapter extends BaseAdapter {
                         });
                     }
                 }
-                buyItem.setText("Buy for " + prices[e]);
+                buyItem.setText("Buy for " + powerUps.get(e).getPrice());
             }
         });
         if (!buyItem.isEnabled()) {
@@ -93,9 +94,11 @@ public class ShopItemAdapter extends BaseAdapter {
     }
 
     private void buyItem(int e) {
-        profile.setCoins(profile.getCoins() - prices[e]);
+        profile.setCoins(profile.getCoins() - powerUps.get(e).getPrice());
         tvShopCoins.setText(String.valueOf(profile.getCoins()));
-        prices[e] = prices[e] + 5;
+        if (e < 2){
+            profile.setPrices(powerUps.get(e).getPrice() + 5, e);
+        }
         profile.updateProfile();
     }
 

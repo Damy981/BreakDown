@@ -151,6 +151,9 @@ public class MenuActivity extends AppCompatActivity {
        a listener for rebuild it whenever there is a change.
        If internet is available also update the database   */
     private void retrieveProfileDataOffline() {
+        if(isNetworkAvailable() && user != null) {
+            services.updateDatabase();
+        }
         profile = services.buildProfile();
         prefListener =
                 new SharedPreferences.OnSharedPreferenceChangeListener() {
