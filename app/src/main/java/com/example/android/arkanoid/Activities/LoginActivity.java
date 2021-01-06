@@ -90,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                             user = mAuth.getCurrentUser();
                             // if the logged user confirmed the email retrive the profile from the database and handle that in a loading screen
                             if (user.isEmailVerified()) {
+                                findViewById(R.id.btnLogin).setVisibility(View.INVISIBLE);
                                 retrieveProfileDataOnline();
                                 loadingScreen();
                             }

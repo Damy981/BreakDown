@@ -33,7 +33,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private Point size;
     final private Paint paint;
 
-    private Ball ball;
+    public Ball ball;
     private ArrayList<Brick> brickList;
     private Paddle paddle;
     private Level levelMap;

@@ -77,7 +77,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             //get userName from local data to check if user was already playing as a guest
-                            String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", null);
+                            String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", "null");
                             //if user was not a guest but a new player, create new local profile
                             if (!username.equals("GuestUser")) {
                                 services.setSharedPreferences(name, 0, 1, user.getUid());
