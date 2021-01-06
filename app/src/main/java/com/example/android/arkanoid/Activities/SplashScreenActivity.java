@@ -10,6 +10,7 @@ import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -19,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
     private String activityToStart;
     private FirebaseAuth mAuth;
     private FirebaseUser user;
-    // Called when the activity is first created.
+    // Called when the activity is first created
     @Override
     public void onCreate(Bundle icicle) {
         super.onCreate(icicle);
@@ -27,9 +28,8 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        SharedPreferences preferences = getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE);
-        // Check if user is signed in with an active account (non-null) and update the string with the right class name.
-
+        SharedPreferences preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
+        // Check if user is signed in with an active account (not-null) and update the string with the right class name.
         if(user != null)
             if (user.isEmailVerified())
                 activityToStart = "com.example.android.arkanoid.Activities.MenuActivity";
@@ -43,7 +43,7 @@ public class SplashScreenActivity extends AppCompatActivity {
                activityToStart = "com.example.android.arkanoid.Activities.LoginActivity";
 
 
-        /* New Handler to start the Menu-Activity
+        /* Handler to start the Menu-Activity
            and close this Splash-Screen after some seconds.*/
         // Duration of wait
         int SPLASH_DISPLAY_LENGTH = 1000;

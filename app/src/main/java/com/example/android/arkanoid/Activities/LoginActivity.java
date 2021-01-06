@@ -28,7 +28,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-
+/*Activity that manages the login of a registered user or a guest,
+  the guest user can access and play offline
+  but has limited functionality until he completes the registration.
+*/
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -47,9 +50,10 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
         mAuth = FirebaseAuth.getInstance();
         findViewById(R.id.progressBar).setVisibility(View.GONE);
-        services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
         extractUI();
     }
     private void extractUI() {
@@ -64,6 +68,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
     public void login(View view) {
+        //Get mail and password from the relative editText and check if they are valid
         String email = etMail.getText().toString();
         String password = etPassword.getText().toString();
         if (email.contains("@") && password.length() >= 6)
@@ -73,6 +78,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
 
+    //Use firebase to login with the entered data
 
     private void loginFirebaseUser(String email, String password) {
         mAuth.signInWithEmailAndPassword(email, password)
@@ -80,12 +86,14 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, get current user
                             user = mAuth.getCurrentUser();
+                            // if the logged user confirmed the email retrive the profile from the database and handle that in a loading screen
                             if (user.isEmailVerified()) {
                                 retrieveProfileDataOnline();
                                 loadingScreen();
                             }
+                            //if the logged user did not verify the email, show an error and send confirm email
                             else {
                                 showDialogBox("Your email address is not verified, email has been sent. Verify and try again.", "Info", android.R.drawable.ic_dialog_info);
                                 user.sendEmailVerification();
@@ -99,17 +107,18 @@ public class LoginActivity extends AppCompatActivity {
                 });
     }
 
+    //opens menu activity
     private void updateUI() {
         Intent intent = new Intent(this, MenuActivity.class);
         startActivity(intent);
     }
 
     public void openRegisterActivity(View view) {
-
         Intent intent = new Intent(this, RegistrationActivity.class);
         startActivity(intent);
     }
 
+    //updates the layout when user press "forgot password"
     public void forgotPassword(View view) {
 
         notRegistered.setVisibility(View.GONE);
@@ -119,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
         guestButton.setVisibility(View.GONE);
         sendMail.setVisibility(View.VISIBLE);
     }
-
+    //send email for password reset and show result
     public void sendResetPasswordMail(View view) {
         String email = etMail.getText().toString();
         mAuth.sendPasswordResetEmail(email)
@@ -140,7 +149,7 @@ public class LoginActivity extends AppCompatActivity {
     public void onBackPressed() {
         changeVisibility();
     }
-
+    //revert the layout to the original state
     private void changeVisibility() {
         notRegistered.setVisibility(View.VISIBLE);
         forgotPassword.setVisibility(View.VISIBLE);
@@ -150,8 +159,8 @@ public class LoginActivity extends AppCompatActivity {
         sendMail.setVisibility(View.GONE);
     }
 
+    //create and initialize a local profile for the guest user and show a dialogbox with relative informations
     public void guestLogin(View view) {
-
         services.setSharedPreferences("GuestUser",0,1, null);
         showGuestAlert();
     }
@@ -164,7 +173,7 @@ public class LoginActivity extends AppCompatActivity {
                 .setIcon(icon)
                 .show();
     }
-
+    //show informations for guest user and when ok is clicked move to menu
     private void showGuestAlert () {
         AlertDialog.Builder alert = new AlertDialog.Builder(this)
                 .setTitle("Info")
@@ -178,6 +187,7 @@ public class LoginActivity extends AppCompatActivity {
         alert.show();
     }
 
+    //connect to database and update local profile with data in the database using the userid as a key
     private void retrieveProfileDataOnline() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
 
@@ -201,6 +211,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    //show a loding screen while the data is being downloaded from database, and then move to menu
     private void loadingScreen() {
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable(){

@@ -8,6 +8,9 @@ import com.example.android.arkanoid.Activities.MainActivity;
 
 import java.io.Serializable;
 
+//Fragment that manipulates and update the profile attributes
+
+
 public class Profile implements Serializable {
 
     private int levelNumber;
@@ -57,6 +60,7 @@ public class Profile implements Serializable {
         this.coins = coins;
     }
 
+    //update local data with values in the profile object
     public void updateProfile() {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
         SharedPreferences.Editor editor = preferences.edit();

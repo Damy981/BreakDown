@@ -18,6 +18,11 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+/*Activity that manages the registration of a new user or an existing guest,
+  the guest does not lose local progress because they will be loaded into the new profile
+  in the database.
+*/
+
 public class RegistrationActivity extends AppCompatActivity {
 
     private EditText etConfirmPassword;
@@ -34,7 +39,7 @@ public class RegistrationActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         extractStrings();
-        services = new Services(getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE));
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
     }
 
     private void extractStrings() {
@@ -43,7 +48,7 @@ public class RegistrationActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfPass);
         etName = findViewById(R.id.etName);
     }
-
+    //get the input, validate it and show relative errors, if input is correct create a new user
     public void register(View view) {
         String name = etName.getText().toString();
         String email = etMail.getText().toString();
@@ -60,25 +65,29 @@ public class RegistrationActivity extends AppCompatActivity {
                 createFirebaseUser(email, password, name);
         }
     }
-
+    //register a new user with inserted input
     private void createFirebaseUser(final String email, final String password, final String name){
         mAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
+                            // Sign in success, get current user and show confirm messaege
                             Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
                                     Toast.LENGTH_SHORT).show();
                             FirebaseUser user = mAuth.getCurrentUser();
-                            String username = getSharedPreferences("com.example.android.arkanoid_preferences", MODE_PRIVATE).getString("userName", null);
+                            //get userName from local data to check if user was already playing as a guest
+                            String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", null);
+                            //if user was not a guest but a new player, create new local profile
                             if (!username.equals("GuestUser")) {
                                 services.setSharedPreferences(name, 0, 1, user.getUid());
                             }
+                            //if user was a guest update only username and user id
                             else {
                                 services.setNameAndUserId(name, user.getUid());
-                                services.updateDatabase();
                             }
+                            //upload profile data in the database and move to login activity
+                            services.updateDatabase();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {
@@ -89,12 +98,12 @@ public class RegistrationActivity extends AppCompatActivity {
                 });
     }
 
-
+    //check if mail contains a "@"
     private boolean validateMail (String mail) {
         return mail.contains("@");
     }
 
-
+    //check if password is corrected written two times and contains at least 6 characters
     private boolean validatePassword (String password) {
         String confirmPasswordString = etConfirmPassword.getText().toString();
         return confirmPasswordString.equals(password) && password.length() >= 6;

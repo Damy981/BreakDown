@@ -14,7 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ToggleButton;
 
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
+
+/*Fragment that manages the settings and udpate them in profile
+  and local data.
+*/
 
 public class SettingsFragment extends Fragment {
 
@@ -31,12 +36,14 @@ public class SettingsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
+    /* on view created get settings from local data and add listeners
+       for set on/off in profile and update local data when button is clicked */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         profile = (Profile) getArguments().getSerializable("profile");
         tbAccelerometer = getView().findViewById(R.id.swAccelerometer);
-        getPreferences();
+        getSettingsPreferences();
         tbAccelerometer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -47,17 +54,17 @@ public class SettingsFragment extends Fragment {
                 else {
                     profile.setAccelerometer(false);
                 }
-                setPreferences();
+                setSettingsPreferences();
             }
         });
     }
-    private void getPreferences() {
-        preferences = getActivity().getSharedPreferences("com.example.android.arkanoid_preferences" ,Context.MODE_PRIVATE);
+    private void getSettingsPreferences() {
+        preferences = getActivity().getSharedPreferences(Services.SHARED_PREF_DIR,Context.MODE_PRIVATE);
         tbAccelStatus = preferences.getBoolean("tbAccelStatus", false);
         tbAccelerometer.setChecked(tbAccelStatus);
     }
 
-    private void setPreferences() {
+    private void setSettingsPreferences() {
         editor = preferences.edit();
         editor.putBoolean("tbAccelStatus", tbAccelerometer.isChecked()); // value to store
         editor.commit();
