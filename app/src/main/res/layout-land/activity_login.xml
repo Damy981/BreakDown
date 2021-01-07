@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/constraintLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#BFAE95"
+    tools:context=".Activities.LoginActivity">
+
+
+    <TextView
+        android:id="@+id/tvNotRegistered"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="690dp"
+        android:layout_marginEnd="50dp"
+        android:onClick="openRegisterActivity"
+        android:text="@string/not_registered_yet_register_now"
+        android:textColor="#3F51B5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnForgotPass"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="sendResetPasswordMail"
+        android:text="@string/confirm"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.766" />
+
+
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.95" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.50" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="350dp"
+        android:layout_height="340dp"
+        android:layout_marginTop="145dp"
+        android:background="#FFFFFF"
+        android:elevation="1dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="#F8F5F5"
+                android:text="Login"
+                android:textAlignment="center"
+                android:textColor="#290202"
+                android:textSize="25sp" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/email_icon"
+                android:hint="@string/enter_email_address"
+                android:inputType="textEmailAddress"
+                android:textColor="#01030E"
+                android:textColorHint="#656060">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="10dp"
+                android:drawableLeft="@drawable/password_icon"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword"
+                android:textColor="#1E0303"
+                android:textColorHint="#656060">
+
+            </com.google.android.material.textfield.TextInputEditText>
+
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                android:layout_width="150dp"
+                android:layout_height="100dp"
+                android:layout_marginStart="100dp"
+                android:layout_marginLeft="0dp"
+                android:layout_marginBottom="0dp"
+                android:elevation="20dp"
+                android:indeterminate="true"
+                app:layout_constraintBottom_toTopOf="@+id/textView7"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvForgotPassword"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="200dp"
+                android:layout_marginTop="10dp"
+                android:onClick="forgotPassword"
+                android:text="@string/forgot_password"
+                android:textColor="#3F51B5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="152dp"
+        android:layout_height="86dp"
+        android:layout_marginStart="131dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="128dp"
+        app:layout_constraintBottom_toTopOf="@+id/cardView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/user_image" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="413dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView">
+
+        <Button
+            android:id="@+id/btnLogin"
+            android:layout_width="290dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="152dp"
+            android:background="@drawable/shadow_button"
+            android:elevation="1dp"
+            android:onClick="login"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/guestButton"
+            android:layout_width="200dp"
+            android:layout_height="51dp"
+            android:layout_marginLeft="-240dp"
+            android:layout_marginTop="70dp"
+            android:layout_marginBottom="28dp"
+            android:background="@drawable/shadow_button"
+            android:elevation="1dp"
+            android:onClick="guestLogin"
+            android:text="@string/enter_as_guest"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
