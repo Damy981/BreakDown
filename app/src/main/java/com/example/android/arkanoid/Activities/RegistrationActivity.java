@@ -73,8 +73,8 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, get current user and show confirm messaege
-                            Toast.makeText(RegistrationActivity.this, "Registration success, please login.",
-                                    Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegistrationActivity.this, "Registration success, please confirm your email and login.",
+                                    Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             //get userName from local data to check if user was already playing as a guest
                             String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", "null");
@@ -86,8 +86,9 @@ public class RegistrationActivity extends AppCompatActivity {
                             else {
                                 services.setNameAndUserId(name, user.getUid());
                             }
-                            //upload profile data in the database and move to login activity
+                            //upload profile data in the database, send confirm email and move to login activity
                             services.updateDatabase();
+                            user.sendEmailVerification();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);
                         } else {

@@ -88,16 +88,15 @@ public class LoginActivity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, get current user
                             user = mAuth.getCurrentUser();
-                            // if the logged user confirmed the email retrive the profile from the database and handle that in a loading screen
+                            // if the logged user confirmed the email retrieve the profile from the database and handle that in a loading screen
                             if (user.isEmailVerified()) {
                                 findViewById(R.id.btnLogin).setVisibility(View.INVISIBLE);
                                 retrieveProfileDataOnline();
                                 loadingScreen();
                             }
-                            //if the logged user did not verify the email, show an error and send confirm email
+                            //if the logged user did not verify the email, show an error
                             else {
-                                showDialogBox("Your email address is not verified, email has been sent. Verify and try again.", "Info", android.R.drawable.ic_dialog_info);
-                                user.sendEmailVerification();
+                                showDialogBox("Your email address is not verified. Verify and try again.", "Info", android.R.drawable.ic_dialog_info);
                             }
                         } else {
                             // If sign in fails, display a message to the user.

@@ -60,13 +60,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                             profileImage.setImageDrawable(drawable);
                         }
                     });
-
-
-
         } else {
             guestRegisterButton.setVisibility(View.VISIBLE);
         }
-
     }
 
     @Override
