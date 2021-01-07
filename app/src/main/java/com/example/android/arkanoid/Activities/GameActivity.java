@@ -72,6 +72,7 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void returnToMenu(View view) {
+        game.stopGame();
         finish();
     }
 }

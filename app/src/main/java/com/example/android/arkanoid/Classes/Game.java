@@ -12,6 +12,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -50,6 +51,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean gameOver;
     final private Context context;
     private Profile profile;
+    private double dropRate;
 
     public Game(Context context, int lives, int score, Profile profile) {
         super(context);
@@ -61,6 +63,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.score = score;
         this.profile = profile;
         level = this.profile.getLevelNumber();
+        dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
         gameOver = false;
@@ -88,8 +91,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     //set background
     private void setBackground(Context context) {
         background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
-        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        display = wm.getDefaultDisplay();
+       // WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        display = context.getDisplay();
         size = new Point();
         display.getSize(size);
     }
@@ -172,7 +175,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 if (ball.touchBrick(b.getX(), b.getY())) {
                     brickList.remove(i);
                     score = score + 80;
-                    profile.setCoins(profile.getCoins() + 1);
+                    if (Math.random() < dropRate) {
+                        Log.i("cacca", "soldiiii");
+                        profile.setCoins(profile.getCoins() + 1);
+                    }
                 }
             }
             ball.moveBall();
@@ -246,25 +252,19 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     {
         switch(event.getAction())
         {
-            case MotionEvent.ACTION_DOWN: {
-            }
-            break;
-
             case MotionEvent.ACTION_MOVE:
             {
-                paddle.setX((float)event.getX());
-
+                if (event.getX() < 885)
+                    paddle.setX((float)event.getX());
                 invalidate();
             }
-
             break;
-            case MotionEvent.ACTION_UP:
-
-                paddle.setX((float)event.getX());
-                invalidate();
-                break;
         }
         return true;
+    }
+
+    public void stopGame() {
+        start = false;
     }
 
 }

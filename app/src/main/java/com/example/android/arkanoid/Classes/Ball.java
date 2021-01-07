@@ -88,7 +88,8 @@ public class Ball {
 
     // if the ball collides with the paddle, it changes direction
     protected void touchPaddle(float xPaddle, float yPaddle) {
-        if (isCloseToPaddle(xPaddle, yPaddle, getX(), getY())) changeDirection();
+        if (isCloseToPaddle(xPaddle, yPaddle, getX(), getY()))
+            changeDirection();
     }
 
     // if the ball collides with a brick, it changes direction
