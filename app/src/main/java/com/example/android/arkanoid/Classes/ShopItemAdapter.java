@@ -105,7 +105,7 @@ public class ShopItemAdapter extends BaseAdapter {
         profile.setCoins(profile.getCoins() - powerUps.get(e).getPrice());
         profile.setQuantities(powerUps.get(e).getQuantity() + 1, e);
         tvShopCoins.setText(String.valueOf(profile.getCoins()));
-        if (e < 2){
+        if (e < profile.STATS_NUMBER){
             profile.setPrices(powerUps.get(e).getPrice() + 5, e);
         }
         profile.updateProfile();

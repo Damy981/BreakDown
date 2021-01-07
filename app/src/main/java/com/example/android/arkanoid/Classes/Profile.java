@@ -15,12 +15,13 @@ import java.util.ArrayList;
 
 public class Profile implements Serializable {
 
+    static final int STATS_NUMBER = 2;
     private int levelNumber;
     private int coins;
     private String userName;
     private boolean useAccelerometer;
     private ArrayList<PowerUp> powerUps = new ArrayList<>();
-    private String[] items = {"Item 1", "Item 2 ", "Item 3 ", "Item 4 ", "Item 5 "};
+    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Item 4 ", "Item 5 "};
     private String userId;
     private String prices;
     private String quantities;

@@ -161,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //create and initialize a local profile for the guest user and show a dialogbox with relative informations
     public void guestLogin(View view) {
-        services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "0,0,0,0,0");
+        services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "10,0,0,0,0");
         showGuestAlert();
     }
 

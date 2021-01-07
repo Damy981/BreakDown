@@ -80,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", "null");
                             //if user was not a guest but a new player, create new local profile
                             if (!username.equals("GuestUser")) {
-                                services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "0,0,0,0,0");
+                                services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0");
                             }
                             //if user was a guest update only username and user id
                             else {
