@@ -29,5 +29,9 @@ public class PowerUp implements Serializable {
     public void setPrice(int price) {
         this.price = price;
     }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
 }
 

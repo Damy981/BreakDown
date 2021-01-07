@@ -31,8 +31,11 @@ public class Profile implements Serializable {
         this.coins = coins;
         useAccelerometer = b;
         this.userId = userId;
+        //SharedPreferences cannot store arrays, so numerical data for owned power-ups are stored in String arrays
         this.prices = prices;
         this.quantities = quantities;
+        /*numerical values are extracted from Strings and used to build the arraylist
+        that contains all the information for the power-ups owned by the user*/
         int[] p = retrieveValuesFromString(prices);
         int[] q = retrieveValuesFromString(quantities);
         for(int i = 0; i < items.length; i++){
@@ -57,6 +60,30 @@ public class Profile implements Serializable {
         return powerUps;
     }
 
+    public String getQuantities() {
+        return quantities;
+    }
+
+    //put the price for each power-up in an int array
+    private int[] getPriceArray(int[] array) {
+        for (int j = 0; j < items.length; j++){
+            array[j] = powerUps.get(j).getPrice();
+        }
+        return array;
+    }
+
+    //put the quantity for each power-up in an int array
+    private int[] getQuantitiesArray(int[] array) {
+        for (int j = 0; j < items.length; j++){
+            array[j] = powerUps.get(j).getQuantity();
+        }
+        return array;
+    }
+
+    public String getUserId () {
+        return  userId;
+    }
+
     public void setAccelerometer(boolean b) {
         useAccelerometer = b;
     }
@@ -69,18 +96,22 @@ public class Profile implements Serializable {
         levelNumber++;
     }
 
-    public String getUserId () {
-        return  userId;
-    }
-
     public void setCoins(int coins) {
         this.coins = coins;
     }
 
+    //modify the price of the power-up in the specified position and set the string that contains all the prices
     public void setPrices(int price, int i) {
         powerUps.get(i).setPrice(price);
         int[] array = new int[items.length];
         prices = putValuesIntoString(getPriceArray(array));
+    }
+
+    //modify the quantity of the power-up in the specified position and set the string that contains all the quantities
+    public void setQuantities(int quantity, int i) {
+        powerUps.get(i).setQuantity(quantity);
+        int[] array = new int[items.length];
+        prices = putValuesIntoString(getQuantitiesArray(array));
     }
 
     //update local data with values in the profile object
@@ -98,7 +129,7 @@ public class Profile implements Serializable {
         editor.commit();
     }
 
-    /**/
+    //get a string of numerical characters separated by a comma, and return an array of int values
     private int[] retrieveValuesFromString(String string) {
         String[] strArray = string.split(",");
         int[] intArray = new int[strArray.length];
@@ -108,7 +139,7 @@ public class Profile implements Serializable {
         return intArray;
     }
 
-    /**/
+    //put the values of a int array in a string, dividing each number by a comma, and return that string
     private String putValuesIntoString(int[] array) {
         StringBuilder sb = new StringBuilder();
         String string = "";
@@ -121,19 +152,5 @@ public class Profile implements Serializable {
             }
         }
         return string;
-    }
-
-    private int[] getPriceArray(int[] array) {
-        for (int j = 0; j < items.length; j++){
-            array[j] = powerUps.get(j).getPrice();
-        }
-        return array;
-    }
-
-    private int[] getQuantitiesArray(int[] array) {
-        for (int j = 0; j < items.length; j++){
-            array[j] = powerUps.get(j).getQuantity();
-        }
-        return array;
     }
 }
