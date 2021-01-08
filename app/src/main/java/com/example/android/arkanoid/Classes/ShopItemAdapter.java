@@ -66,6 +66,9 @@ public class ShopItemAdapter extends BaseAdapter {
         if (profile.getCoins() < powerUps.get(i).getPrice()){
             buyItem.setEnabled(false);
         }
+        if(i == (Profile.STATS_NUMBER -1)) {
+            view.findViewById(R.id.vSeparator).setVisibility(View.VISIBLE);
+        }
 
         final int e = i;
         buyItem.setOnClickListener(new View.OnClickListener() {
