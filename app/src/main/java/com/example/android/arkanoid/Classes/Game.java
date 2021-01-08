@@ -16,6 +16,7 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.android.arkanoid.R;
 
@@ -94,8 +95,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     //set background
     private void setBackground(Context context) {
         background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background));
-       // WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        display = context.getDisplay();
+        WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
+        display = wm.getDefaultDisplay();
         size = new Point();
         display.getSize(size);
     }
@@ -127,8 +128,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // draw text
         paint.setColor(Color.WHITE);
         paint.setTextSize(50);
-        canvas.drawText("" + lives, 400, 100, paint);
-        canvas.drawText("" + score, 700, 100, paint);
+        canvas.drawText("Lives: " + lives, 400, 100, paint);
+        canvas.drawText("Score: " + score, 700, 100, paint);
 
         //in case of lose draw "Game over!"
         if (gameOver) {

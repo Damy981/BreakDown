@@ -27,13 +27,13 @@ public class Brick extends View {
         int a = (int) (Math.random() * COLORS_NUMBER);
         switch (a) {
             case 0:
-                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_beige);
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
                 break;
             case 1:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_grey);
                 break;
             case 2:
-                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_light_green);
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_green);
                 break;
             case 3:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_light_orange);
@@ -51,10 +51,10 @@ public class Brick extends View {
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_yellow);
                 break;
             case 8:
-                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_lilac);
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_orange);
                 break;
             case 9:
-                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_light_violet);
+                brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_violet);
                 break;
         }
     }
