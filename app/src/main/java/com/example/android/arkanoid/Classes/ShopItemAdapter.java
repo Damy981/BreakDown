@@ -54,8 +54,14 @@ public class ShopItemAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.item_shopitem, null);
         TextView shopItemName = view.findViewById(R.id.tvItemName);
+        TextView shopItemQuantity = view.findViewById(R.id.tvQuantity);
         final Button buyItem = view.findViewById(R.id.btnBuy);
         shopItemName.setText(powerUps.get(i).getName());
+        if(i == PowerUp.COINS_DROP_RATE) {
+            shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");
+        }else {
+            shopItemQuantity.setText("Owned: " + powerUps.get(i).getQuantity());
+        }
         buyItem.setText("Buy for " + powerUps.get(i).getPrice());
         if (profile.getCoins() < powerUps.get(i).getPrice()){
             buyItem.setEnabled(false);

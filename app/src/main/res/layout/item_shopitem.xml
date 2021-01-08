@@ -17,10 +17,17 @@
         android:paddingLeft="10dp"
         android:textSize="22sp" />
 
+    <TextView
+        android:id="@+id/tvQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="quantity" />
+
     <Button
         android:id="@+id/btnBuy"
         android:layout_width="173dp"
-        android:background="@drawable/effect_button"
         android:layout_height="wrap_content"
+        android:background="@drawable/effect_button"
         android:text="Button" />
 </LinearLayout>
