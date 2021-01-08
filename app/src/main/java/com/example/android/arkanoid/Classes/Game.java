@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.WindowManager;
 
 import com.example.android.arkanoid.R;
 
@@ -25,10 +24,14 @@ import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
+    private final int BRICK_WIDTH = 123;
+    private final int BRICK_HEIGHT = 66;
+
+
     private Bitmap background;
-    final  Bitmap redBall;
+    final  Bitmap ballBitmap;
     private Bitmap scaledBackground;
-    final private Bitmap paddle_bitmap;
+    final private Bitmap paddleBitmap;
 
     private Display display;
     private Point size;
@@ -75,8 +78,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         setBackground(context);
 
         // creates a bitmap for the ball and paddle
-        redBall = BitmapFactory.decodeResource(getResources(), R.drawable.redball);
-        paddle_bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
+        ballBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
+        paddleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
 
         //creates a new ball, paddle, and list of bricks
         ball = new Ball(size.x / 2, size.y - 480);
@@ -90,7 +93,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     //set background
     private void setBackground(Context context) {
-        background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.pozadie_score));
+        background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background));
        // WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         display = context.getDisplay();
         size = new Point();
@@ -106,18 +109,18 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
         // draw the ball
         paint.setColor(Color.RED);
-        canvas.drawBitmap(redBall, ball.getX(), ball.getY(), paint);
+        canvas.drawBitmap(ballBitmap, ball.getX(), ball.getY(), paint);
 
         // draw paddle
         paint.setColor(Color.WHITE);
         r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + 200, paddle.getY() + 40);
-        canvas.drawBitmap(paddle_bitmap, null, r, paint);
+        canvas.drawBitmap(paddleBitmap, null, r, paint);
 
         // draw bricks
         paint.setColor(Color.GREEN);
         for (int i = 0; i < brickList.size(); i++) {
             Brick b = brickList.get(i);
-            r = new RectF(b.getX(), b.getY(), b.getX() + 100, b.getY() + 80);
+            r = new RectF(b.getX(), b.getY(), b.getX() + BRICK_WIDTH, b.getY() + BRICK_HEIGHT);
             canvas.drawBitmap(b.getBrick(), null, r, paint);
         }
 
