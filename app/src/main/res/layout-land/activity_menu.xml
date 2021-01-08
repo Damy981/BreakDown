@@ -106,7 +106,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.896"
-            app:srcCompat="@drawable/editor_level_image" />
+            app:srcCompat="@drawable/level_editor_image" />
 
         <ImageView
             android:id="@+id/btnQuest"

@@ -31,4 +31,7 @@
     <string name="quest">Quest</string>
     <string name="todo">TODO</string>
     <string name="immagine_profilo">immagine profilo</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="return_to_menu">Return to menu</string>
 </resources>

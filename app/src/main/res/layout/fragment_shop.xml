@@ -7,6 +7,18 @@
     android:scrollbarSize="34dp"
     tools:context=".Fragments.ShopFragment">
 
+    <ImageView
+        android:id="@+id/imageShop"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/coins_image"
+        app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
+        app:layout_constraintEnd_toStartOf="@+id/Coins"
+        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.81" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="97dp"
@@ -15,22 +27,23 @@
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintHorizontal_bias="0.522"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.004" />
 
     <TextView
         android:id="@+id/tvShopCoins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="46dp"
+        android:layout_height="34dp"
         android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.116"
+        app:layout_constraintHorizontal_bias="0.468"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.144" />
+        app:layout_constraintVertical_bias="0.772" />
 
     <ListView
         android:id="@+id/lvShopItem"
@@ -42,5 +55,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.912" />
+
+    <TextView
+        android:id="@+id/Coins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Coins:"
+        android:textSize="25dp"
+        app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.249"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.772" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
