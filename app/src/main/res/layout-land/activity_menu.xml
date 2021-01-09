@@ -44,7 +44,7 @@
             android:layout_height="82dp"
             android:background="@drawable/effect_button"
             android:drawableEnd="@drawable/play_icon"
-            android:onClick="startGame"
+            android:onClick="startGameMenu"
             android:paddingStart="27dp"
             android:paddingEnd="27dp"
             android:text="@string/play"

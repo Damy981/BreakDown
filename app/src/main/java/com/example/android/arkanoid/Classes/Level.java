@@ -8,22 +8,28 @@ public class Level {
 
     private final int BRICK_HORIZONTAL_DISTANCE = 123;
     private final int BRICK_VERTICAL_DISTANCE = 93;
+    private final int ROW_START = 3;
+    private final int COLUMN_START = 1;
+    private final int COLUMN_NUMBER = 7;
 
     private ArrayList<Brick> brickList = new ArrayList<>();
     private int level;
-    private int rowNumber; //primo for: 7-3 = 4 righe - non si può mettere 0 invece di 3 altrimenti si sposta tutto sopra
-    private int columnNumber; //stessa cosa delle righe ma nel secondo for
+    private int rowNumber;
 
     public Level(Context context, int level) {
 
         this.level = level;
         generateBricks(context);
-
     }
 
     private void generateBricks(Context context) {
-        for (int i = 3; i < 7; i++) {
-            for (int j = 1; j < 8; j++) {
+        rowNumber = 4;
+        if (level >= 5)
+            rowNumber = 5;
+        if (level >= 15)
+            rowNumber = 6;
+        for (int i = ROW_START; i < ROW_START + rowNumber; i++) {
+            for (int j = COLUMN_START; j < COLUMN_START + COLUMN_NUMBER; j++) {
                 brickList.add(new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE));
             }
         }

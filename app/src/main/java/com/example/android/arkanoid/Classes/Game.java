@@ -128,6 +128,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // draw text
         paint.setColor(Color.WHITE);
         paint.setTextSize(50);
+        canvas.drawText("Level: " + level, 100, 100, paint);
         canvas.drawText("Lives: " + lives, 400, 100, paint);
         canvas.drawText("Score: " + score, 700, 100, paint);
 

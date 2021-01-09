@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Services;
+import com.example.android.arkanoid.Fragments.GameModeMenuFragment;
 import com.example.android.arkanoid.Fragments.ProfileFragment;
 import com.example.android.arkanoid.Fragments.QuestFragment;
 import com.example.android.arkanoid.R;
@@ -85,68 +86,42 @@ public class MenuActivity extends AppCompatActivity {
             Toast.makeText(MainActivity.context, "Internet connection not available, check your connection and try again", Toast.LENGTH_LONG).show();
     }
 
-    //send profile object to the fragment and hide the menu for create and show fragment layout
     public void btnProfileClick(View view) {
-        bundle.putSerializable("profile", profile);
         fragment = new ProfileFragment();
-        fragment.setArguments(bundle);
-        changeVisibility();
-        tx = fm.beginTransaction();
-        tx.add(R.id.fragment_place, fragment);
-        tx.commit();
+        initializeFragment(fragment);
 
     }
 
-    //send profile object to the fragment and hide the menu for create and show fragment layout
     public void btnShopClick(View view) {
-        bundle.putSerializable("profile", profile);
         fragment = new ShopFragment();
-        fragment.setArguments(bundle);
-        changeVisibility();
-        tx = fm.beginTransaction();
-        tx.add(R.id.fragment_place, fragment);
-        tx.commit();
+        initializeFragment(fragment);
     }
 
-    //send profile object to the fragment and hide the menu for create and show fragment layout
     public void btnQuestClick(View view) {
         fragment = new QuestFragment();
-        changeVisibility();
-        tx = fm.beginTransaction();
-        tx.add(R.id.fragment_place, fragment);
-        tx.commit();
+        initializeFragment(fragment);
     }
 
-    //send profile object to the fragment and hide the menu for create and show fragment layout
     public void btnLevelEditorClick(View view) {
         Intent intentLevelEditor = new Intent(this, LevelEditorActivity.class);
         startActivity(intentLevelEditor);
     }
 
-    //send profile object to the fragment and hide the menu for create and show fragment layout
     public void btnRankingClick(View view) {
         fragment = new RankingFragment();
-        changeVisibility();
-        tx = fm.beginTransaction();
-        tx.add(R.id.fragment_place, fragment);
-        tx.commit();
+        initializeFragment(fragment);
     }
-    //send profile object to the fragment and hide the menu for create and show fragment layout
+
     public void btnSettingsClick(View view) {
-        bundle.putSerializable("profile", profile);
         fragment = new SettingsFragment();
-        fragment.setArguments(bundle);
-        changeVisibility();
-        tx = fm.beginTransaction();
-        tx.add(R.id.fragment_place, fragment);
-        tx.commit();
+        initializeFragment(fragment);
     }
-    //send profile object to the game activity and start game activity
-    public void startGame(View view) {
-        Intent intentGame = new Intent(this, GameActivity.class);
-        intentGame.putExtra("profile", profile);
-        startActivity(intentGame);
+
+    public void startGameMenu(View view) {
+        fragment = new GameModeMenuFragment();
+        initializeFragment(fragment);
     }
+
     /* build the profile object using the local data and set
        a listener for rebuild it whenever there is a change.
        If internet is available also update the database   */
@@ -189,4 +164,13 @@ public class MenuActivity extends AppCompatActivity {
         return activeNetworkInfo != null;
     }
 
+    //send profile object to the fragment and hide the menu for create and show fragment layout
+    private void initializeFragment (Fragment fragment) {
+        bundle.putSerializable("profile", profile);
+        fragment.setArguments(bundle);
+        changeVisibility();
+        tx = fm.beginTransaction();
+        tx.add(R.id.fragment_place, fragment);
+        tx.commit();
+    }
 }

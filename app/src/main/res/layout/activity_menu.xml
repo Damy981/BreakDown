@@ -46,7 +46,7 @@
             android:background="@drawable/effect_button"
             android:drawableEnd="@drawable/play_icon"
             android:elevation="1dp"
-            android:onClick="startGame"
+            android:onClick="startGameMenu"
             android:paddingStart="27dp"
             android:paddingEnd="27dp"
             android:text="@string/play"

@@ -213,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    //show a loding screen while the data is being downloaded from database, and then move to menu
+    //show a loading screen while the data is being downloaded from database, and then move to menu
     private void loadingScreen() {
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable(){
