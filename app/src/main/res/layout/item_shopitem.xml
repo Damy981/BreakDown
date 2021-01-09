@@ -57,7 +57,7 @@
         android:layout_height="3dp"
         android:layout_marginTop="55dp"
         android:layout_marginBottom="1dp"
-        android:background="#3f000000"
+        android:background="#FFFFFF"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

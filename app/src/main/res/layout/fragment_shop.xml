@@ -5,12 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbarSize="34dp"
-    tools:context=".Fragments.ShopFragment">
+    tools:context=".Fragments.ShopFragment"
+    android:background="@drawable/background_menu">
 
     <ImageView
         android:id="@+id/imageShop"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:background="@drawable/coins_image"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toStartOf="@+id/Coins"
@@ -20,11 +21,11 @@
         app:layout_constraintVertical_bias="0.81" />
 
     <TextView
-        android:id="@+id/textView"
-        android:layout_width="97dp"
-        android:layout_height="58dp"
+        android:id="@+id/tvShop"
+        android:layout_width="124dp"
+        android:layout_height="65dp"
         android:text="@string/shop"
-        android:textSize="34sp"
+        android:textSize="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
@@ -34,16 +35,16 @@
 
     <TextView
         android:id="@+id/tvShopCoins"
-        android:layout_width="46dp"
-        android:layout_height="34dp"
+        android:layout_width="41dp"
+        android:layout_height="40dp"
         android:text="TextView"
-        android:textSize="25dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.468"
+        app:layout_constraintHorizontal_bias="0.472"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.772" />
+        app:layout_constraintVertical_bias="0.777" />
 
     <ListView
         android:id="@+id/lvShopItem"
@@ -61,7 +62,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Coins:"
-        android:textSize="25dp"
+        android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.249"
