@@ -90,7 +90,7 @@
         android:id="@+id/btnBack"
         android:layout_width="64dp"
         android:layout_height="61dp"
-        android:background="@drawable/back_icon"
+        android:background="@drawable/logout_icon"
         android:onClick="btnBackClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

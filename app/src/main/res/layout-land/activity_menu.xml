@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/light_blue_600"
+    android:background="@drawable/background_menu"
     android:visibility="visible"
     tools:context=".Activities.MenuActivity">
 
@@ -27,7 +27,7 @@
             android:id="@+id/btnLogout"
             android:layout_width="76dp"
             android:layout_height="64dp"
-            android:background="@drawable/back_icon"
+            android:background="@drawable/logout_icon"
             android:contentDescription="TODO"
             android:onClick="logout"
             android:src="@drawable/effect_button_image"
