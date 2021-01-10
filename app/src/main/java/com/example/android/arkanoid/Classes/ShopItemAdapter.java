@@ -24,15 +24,17 @@ public class ShopItemAdapter extends BaseAdapter {
     private TextView tvShopCoins;
     private ListView lv;
     private ArrayList<PowerUp> powerUps;
+    private boolean buyButtonEnabled;
 
 
-    public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv) {
+    public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv, boolean buyButtonEnabled) {
         this.context = context;
         inflater = (LayoutInflater.from(context));
         this.profile = profile;
         powerUps = profile.getPowerUps();
         this.tvShopCoins = tvShopCoins;
         this.lv = lv;
+        this.buyButtonEnabled = buyButtonEnabled;
     }
 
     @Override
@@ -54,18 +56,22 @@ public class ShopItemAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.item_shopitem, null);
         TextView shopItemName = view.findViewById(R.id.tvItemName);
-        TextView shopItemQuantity = view.findViewById(R.id.tvQuantity);
+        final TextView shopItemQuantity = view.findViewById(R.id.tvQuantity);
         final Button buyItem = view.findViewById(R.id.btnBuy);
-        shopItemName.setText(powerUps.get(i).getName());
-        if(i == PowerUp.COINS_DROP_RATE) {
-            shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");
-        }else {
-            shopItemQuantity.setText("Owned: " + powerUps.get(i).getQuantity());
+
+        if(!buyButtonEnabled){
+            buyItem.setVisibility(View.GONE);   //the list view is used in profile too, but we don't need buy button there
         }
+
+        shopItemName.setText(powerUps.get(i).getName());
         buyItem.setText("Buy for " + powerUps.get(i).getPrice());
+
+        setQuantityText(i, shopItemQuantity);
+
         if (profile.getCoins() < powerUps.get(i).getPrice()){
             buyItem.setEnabled(false);
         }
+
         if(i == (Profile.STATS_NUMBER -1)) {
             view.findViewById(R.id.vSeparator).setVisibility(View.VISIBLE);
         }
@@ -77,11 +83,11 @@ public class ShopItemAdapter extends BaseAdapter {
             to buy other items and if he/she can't, the buy button is disabled */
             public void onClick(View view) {
                 buyItem(e);
+                setQuantityText(e, shopItemQuantity);
                 for(int i = 0; i < powerUps.size(); i++){
                     Button buyItem = lv.getChildAt(i).findViewById(R.id.btnBuy);
                     if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < powerUps.get(i).getPrice()) {
                         buyItem.setEnabled(false);
-
                         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                             @Override
                             /*when buy button is disabled the entire row is clickable; when the user clicks, a message is displayed
@@ -124,5 +130,13 @@ public class ShopItemAdapter extends BaseAdapter {
     //contain the message displayed when the user does not have enough coins to buy a power up
     private void noCoinsMessage() {
         Toast.makeText(context, "Not enough coins", Toast.LENGTH_LONG).show();
+    }
+
+    private void setQuantityText(int i, TextView shopItemQuantity) {
+        if(i == PowerUp.COINS_DROP_RATE) {
+            shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");
+        }else {
+            shopItemQuantity.setText("Owned: " + powerUps.get(i).getQuantity());
+        }
     }
 }

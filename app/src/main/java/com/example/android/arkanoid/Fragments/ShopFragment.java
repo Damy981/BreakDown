@@ -50,7 +50,7 @@ public class ShopFragment extends Fragment {
 
         lv = getActivity().findViewById(R.id.lvShopItem);
         ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv);
+        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv, true);
         lv.setAdapter(adapter);
     }
 
