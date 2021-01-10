@@ -89,15 +89,15 @@
         android:id="@+id/btnBack"
         android:layout_width="64dp"
         android:layout_height="61dp"
-        android:background="@drawable/logout_icon"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/button_back"
         android:onClick="btnBackClick"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.994"
+        app:layout_constraintHorizontal_bias="0.046"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginTop="15dp"
+        app:layout_constraintVertical_bias="0.001"
         app:srcCompat="@drawable/effect_button_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
