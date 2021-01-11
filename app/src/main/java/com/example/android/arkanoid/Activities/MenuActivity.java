@@ -50,7 +50,7 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
-        preferences = getSharedPreferences(Services.SHARED_PREF_DIR , MODE_PRIVATE);
+        preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
         services = new Services(preferences);
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
@@ -62,6 +62,7 @@ public class MenuActivity extends AppCompatActivity {
         //Builds the profile object from the local data
         retrieveProfileDataOffline();
         bundle = new Bundle();
+
     }
 
     //show the menu again if it was hidden by the fragment
@@ -72,6 +73,7 @@ public class MenuActivity extends AppCompatActivity {
         else
             changeVisibility();
     }
+
     //if internet is available update the database and then sign out the user erasing all local data
     public void logout(View view) {
         if (isNetworkAvailable()) {
@@ -81,8 +83,7 @@ public class MenuActivity extends AppCompatActivity {
             preferences.edit().clear().commit();
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
-        }
-        else
+        } else
             Toast.makeText(MainActivity.context, "Internet connection not available, check your connection and try again", Toast.LENGTH_LONG).show();
     }
 
@@ -126,7 +127,7 @@ public class MenuActivity extends AppCompatActivity {
        a listener for rebuild it whenever there is a change.
        If internet is available also update the database   */
     private void retrieveProfileDataOffline() {
-        if(isNetworkAvailable() && user != null) {
+        if (isNetworkAvailable() && user != null) {
             services.updateDatabase();
         }
         profile = services.buildProfile();
@@ -144,6 +145,7 @@ public class MenuActivity extends AppCompatActivity {
             preferences.registerOnSharedPreferenceChangeListener(prefListener);
         }
     }
+
     /*if user was in a fragment destroy it and show menu again, if user is opening
       a fragment hide menu  */
     private void changeVisibility() {
@@ -165,7 +167,7 @@ public class MenuActivity extends AppCompatActivity {
     }
 
     //send profile object to the fragment and hide the menu for create and show fragment layout
-    private void initializeFragment (Fragment fragment) {
+    private void initializeFragment(Fragment fragment) {
         bundle.putSerializable("profile", profile);
         fragment.setArguments(bundle);
         changeVisibility();
