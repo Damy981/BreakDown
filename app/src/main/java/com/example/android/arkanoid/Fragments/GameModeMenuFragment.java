@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.android.arkanoid.Activities.GameActivity;
 import com.example.android.arkanoid.Classes.Profile;
@@ -20,6 +21,7 @@ public class GameModeMenuFragment extends Fragment {
 
     Button btnSinglePlayer;
     Button btnMultiPlayer;
+    ImageView btnBack;
     Profile profile;
 
     @Override
@@ -37,6 +39,7 @@ public class GameModeMenuFragment extends Fragment {
 
         btnSinglePlayer = getView().findViewById(R.id.btnSinglePlayer);
         btnMultiPlayer = getView().findViewById(R.id.btnMultiPlayer);
+        btnBack = getView().findViewById(R.id.btnBackModeMenu);
 
         btnSinglePlayer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,6 +54,13 @@ public class GameModeMenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
+            }
+        });
+
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
 

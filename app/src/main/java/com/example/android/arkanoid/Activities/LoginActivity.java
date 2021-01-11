@@ -196,7 +196,7 @@ public class LoginActivity extends AppCompatActivity {
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 int levelNumber = dataSnapshot.child("LevelNumber").getValue(int.class);
@@ -204,6 +204,7 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = dataSnapshot.child("UserName").getValue(String.class);
                 String prices = dataSnapshot.child("Prices").getValue(String.class);
                 String quantities = dataSnapshot.child("Quantities").getValue(String.class);
+                Log.i("cacca", userId);
                 services.setSharedPreferences(userName, coins, levelNumber, userId, prices, quantities);
             }
             @Override
@@ -221,6 +222,6 @@ public class LoginActivity extends AppCompatActivity {
             public void run() {
                 updateUI();
             }
-        }, 1200);
+        }, 1700);
     }
 }

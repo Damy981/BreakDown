@@ -35,16 +35,15 @@
 
     <TextView
         android:id="@+id/tvShopCoins"
-        android:layout_width="41dp"
-        android:layout_height="40dp"
-        android:text="TextView"
+        android:layout_width="100dp"
+        android:layout_height="39dp"
         android:textSize="30dp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.472"
+        app:layout_constraintHorizontal_bias="0.559"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.777" />
+        app:layout_constraintVertical_bias="0.779" />
 
     <ListView
         android:id="@+id/lvShopItem"

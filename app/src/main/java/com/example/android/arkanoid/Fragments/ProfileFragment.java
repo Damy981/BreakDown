@@ -8,6 +8,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +36,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private FirebaseAuth mAuth;
     private ImageView profileImage;
     private ListView lvOwnedItems;
+    private ImageView editName;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -50,6 +52,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         tvCoins = getView().findViewById(R.id.tvCoins);
         lvOwnedItems = getView().findViewById(R.id.lvOwnedItems);
 
+        editName = getView().findViewById(R.id.ivPencilProfile);
+        editName.setOnClickListener(this);
+
         Profile profile = (Profile) getArguments().getSerializable("profile");
         profileImage = view.findViewById(R.id.imageView_profile);
         tvUsername.setText(profile.getUserName());
@@ -59,18 +64,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         adapter = new ShopItemAdapter(this.getActivity(), profile, tvCoins, lvOwnedItems, false);
         lvOwnedItems.setAdapter(adapter);
 
-        // Profile image generation
-        if (user != null) {
-            new ProfileImageGenerator(getContext())
-                    .fetchImageOf(profile.getUserName(), new ProfileImageGenerator.OnImageGeneratedListener() {
-                        @Override
-                        public void onImageGenerated(Drawable drawable) {
-                            profileImage.setImageDrawable(drawable);
-                        }
-                    });
-        } else {
-            guestRegisterButton.setVisibility(View.VISIBLE);
-        }
+        generateProfileImage(profile);
     }
 
     @Override
@@ -81,10 +75,32 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
 
-
     @Override
     public void onClick(View view) {
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
-        startActivity(intent);
+        if (view == guestRegisterButton) {
+            Intent intent = new Intent(getActivity(), LoginActivity.class);
+            startActivity(intent);
+        }
+        if (view == editName) {
+            Log.i("cacca", "edit name pressed");
+        }
+    }
+
+    // Profile image generation
+    private void generateProfileImage(Profile profile) {
+        if (user != null) {
+            new ProfileImageGenerator(getContext())
+                    .fetchImageOf(profile.getUserName(), new ProfileImageGenerator.OnImageGeneratedListener() {
+                        @Override
+                        public void onImageGenerated(Drawable drawable) {
+                            profileImage.setImageDrawable(drawable);
+                        }
+                    });
+        } else {
+            guestRegisterButton.setVisibility(View.VISIBLE);
+            Drawable userImage = getResources().getDrawable(R.drawable.user_image);
+            profileImage.setImageDrawable(userImage);
+            editName.setVisibility(View.INVISIBLE);
+        }
     }
 }

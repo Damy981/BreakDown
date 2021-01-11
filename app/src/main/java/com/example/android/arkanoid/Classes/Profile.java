@@ -21,7 +21,7 @@ public class Profile implements Serializable {
     private String userName;
     private boolean useAccelerometer;
     private ArrayList<PowerUp> powerUps = new ArrayList<>();
-    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Item 4 ", "Item 5 "};
+    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball", "Item 5 "};
     private String userId;
     private String prices;
     private String quantities;
