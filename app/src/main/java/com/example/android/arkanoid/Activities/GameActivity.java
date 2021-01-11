@@ -8,12 +8,14 @@ import android.os.Message;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Game;
+import com.example.android.arkanoid.Classes.GameLayoutView;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.UpdateThread;
 import com.example.android.arkanoid.R;
 
 public class GameActivity extends AppCompatActivity {
 
+    private GameLayoutView gameLayout;
     private Game game;
     private UpdateThread myThread;
     private Handler updateHandler;
@@ -25,13 +27,17 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profile = (Profile) getIntent().getSerializableExtra("profile");
+
         // create a new game
         game = new Game(this, 3, 0, profile);
-        setContentView(game);
+        gameLayout = new GameLayoutView(this, game);
+        setContentView(gameLayout);
+
         createHandler();
         myThread = new UpdateThread(updateHandler);
         myThread.start();
     }
+
     // create a handler and thread
     @SuppressLint("HandlerLeak")
     private void createHandler() {

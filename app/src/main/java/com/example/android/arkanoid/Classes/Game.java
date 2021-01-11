@@ -12,7 +12,6 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -34,8 +33,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     final  Bitmap ballBitmap;
     private Bitmap scaledBackground;
     private final Bitmap paddleBitmap;
-    private Bitmap freezeBitmap;
-    private Bitmap explosiveBallBitmap;
 
     private Display display;
     private Point size;
@@ -45,7 +42,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private ArrayList<Brick> brickList;
     private Paddle paddle;
     private Level levelMap;
-    private boolean explosiveBall;
+    public boolean explosiveBall;
 
     private RectF r;
 
@@ -58,7 +55,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean start;
     private boolean gameOver;
     final private Context context;
-    private Profile profile;
+    public Profile profile;
     private double dropRate;
     private int paddleLength;
 
@@ -74,7 +71,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         level = this.profile.getLevelNumber();
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
-        explosiveBall = false;
+        explosiveBall = true;
 
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
@@ -89,9 +86,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // creates bitmaps
         ballBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.ball);
         paddleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
-        freezeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.freeze);
-        explosiveBallBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.explosion);
-
 
         //creates a new ball, paddle, and list of bricks
         ball = new Ball(size.x / 2, size.y - 460);
@@ -119,16 +113,13 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawBitmap(scaledBackground, 0, 0, paint);
 
         // draw the ball
-        paint.setColor(Color.RED);
         canvas.drawBitmap(ballBitmap, ball.getX(), ball.getY(), paint);
 
         // draw paddle
-        paint.setColor(Color.WHITE);
         r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + paddleLength, paddle.getY() + 65);
         canvas.drawBitmap(paddleBitmap, null, r, paint);
 
         // draw bricks
-        paint.setColor(Color.GREEN);
         for (int i = 0; i < brickList.size(); i++) {
             Brick b = brickList.get(i);
             r = new RectF(b.getX(), b.getY(), b.getX() + BRICK_WIDTH, b.getY() + BRICK_HEIGHT);
@@ -136,15 +127,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
 
         // draw text
-        paint.setColor(Color.WHITE);
         paint.setTextSize(50);
         canvas.drawText("Level: " + level, 100, 100, paint);
         canvas.drawText("Lives: " + lives, 400, 100, paint);
         canvas.drawText("Score: " + score, 700, 100, paint);
-
-        //draw power up buttons
-        canvas.drawBitmap(freezeBitmap, 75, 1800, paint);
-        canvas.drawBitmap(explosiveBallBitmap, 300, 1800, paint);
 
         //in case of lose draw "Game over!"
         if (gameOver) {
@@ -198,11 +184,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                             dropCoin();
                             removeBrick(i + 1);
                             dropCoin();
-                            removeBrick(i + 2);
-                            dropCoin();
-                            removeBrick(i + 3);
-                            dropCoin();
-                            explosiveBall = false;
+                           // explosiveBall = false;
                         }
                     }
                     else {
@@ -280,42 +262,16 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     public boolean onTouchEvent(MotionEvent event)
     {
-        switch(event.getAction())
-        {
-            case MotionEvent.ACTION_MOVE: {
-                if (event.getX() < 885)
-                    paddle.setX((float)event.getX());
-                invalidate();
-            }
-            case MotionEvent.ACTION_DOWN:
-                if(event.getX() > 75  && event.getX() < 75 + 64 && event.getY() > 1800  && event.getY() < 1800 + 64) {
-                    Log.i("cacca", "ciao");
-                    explosiveBall = PowerUp.explosiveBall();
-                }
-                if(event.getX() > 300  && event.getX() < 300 + 64 && event.getY() > 1800  && event.getY() < 1800 + 64) {
-                    Log.i("cacca", "ciao2");
-                    explosiveBall = PowerUp.explosiveBall();
-                }
-            break;
-
+        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+            if (event.getX() < 885)
+                paddle.setX((float) event.getX());
+            invalidate();
         }
         return true;
     }
 
     public void stopGame() {
         start = false;
-    }
-
-
-
-    private void loadingScreen() {
-
-        new Handler().postDelayed(new Runnable(){
-            @Override
-            public void run() {
-
-            }
-        }, 1200);
     }
 
     private void removeBrick(int i) {

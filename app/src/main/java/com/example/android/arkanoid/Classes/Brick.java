@@ -19,11 +19,11 @@ public class Brick extends View {
         super(context);
         this.x = x;
         this.y = y;
-        skin();
+        createSkins();
     }
 
     //assigns a random image to the brick
-    private void skin() {
+    private void createSkins() {
         int a = (int) (Math.random() * COLORS_NUMBER);
         switch (a) {
             case 0:
