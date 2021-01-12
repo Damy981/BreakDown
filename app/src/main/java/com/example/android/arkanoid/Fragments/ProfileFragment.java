@@ -43,6 +43,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
     private ListView lvOwnedItems;
     private ImageView ivEditName;
     private Profile profile;
+    private ImageView ivBackProfile;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -63,16 +64,28 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         ivEditName = getView().findViewById(R.id.ivPencilProfile);
         ivEditName.setOnClickListener(this);
 
+        ivBackProfile = getView().findViewById(R.id.ivBackProfile);
+        ivBackProfile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
+
+
         profile = (Profile) getArguments().getSerializable("profile");
         profileImage = view.findViewById(R.id.imageView_profile);
         etUsername.setText(profile.getUserName());
         tvCoins.setText(String.valueOf(profile.getCoins()));
+
 
         ShopItemAdapter adapter;
         adapter = new ShopItemAdapter(this.getActivity(), profile, tvCoins, lvOwnedItems, false);
         lvOwnedItems.setAdapter(adapter);
 
         generateProfileImage();
+
+
     }
 
     @Override

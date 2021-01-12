@@ -8,14 +8,14 @@
     android:background="@drawable/background_menu"
     android:visibility="visible"
     tools:context=".Activities.MenuActivity">
-
+<!--
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+-->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
@@ -83,7 +83,7 @@
         <ImageView
             android:id="@+id/btnSettings"
             android:layout_width="80dp"
-            android:layout_height="69dp"
+            android:layout_height="75dp"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
@@ -98,8 +98,8 @@
 
         <ImageView
             android:id="@+id/btnLevelEditor"
-            android:layout_width="78dp"
-            android:layout_height="72dp"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
@@ -114,8 +114,8 @@
 
         <ImageView
             android:id="@+id/btnQuest"
-            android:layout_width="77dp"
-            android:layout_height="71dp"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
             android:background="@drawable/quest_image"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
@@ -146,8 +146,8 @@
 
         <ImageView
             android:id="@+id/btnRanking"
-            android:layout_width="78dp"
-            android:layout_height="74dp"
+            android:layout_width="80dp"
+            android:layout_height="75dp"
             android:background="@drawable/ranking_image"
             android:contentDescription="@string/todo"
             android:elevation="1dp"

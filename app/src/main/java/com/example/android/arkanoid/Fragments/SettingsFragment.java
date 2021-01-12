@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ToggleButton;
 
 import com.example.android.arkanoid.Classes.Profile;
@@ -28,6 +29,7 @@ public class SettingsFragment extends Fragment {
     SharedPreferences.Editor editor;
     SharedPreferences preferences;
     private boolean tbAccelStatus;
+    private ImageView ivBackSettings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,6 +45,7 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         profile = (Profile) getArguments().getSerializable("profile");
         tbAccelerometer = getView().findViewById(R.id.swAccelerometer);
+        ivBackSettings = getActivity().findViewById(R.id.ivBackSettings);
         getSettingsPreferences();
         tbAccelerometer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +58,13 @@ public class SettingsFragment extends Fragment {
                     profile.setAccelerometer(false);
                 }
                 setSettingsPreferences();
+            }
+        });
+
+        ivBackSettings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
             }
         });
     }

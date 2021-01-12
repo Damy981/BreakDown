@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -31,6 +32,7 @@ public class ShopFragment extends Fragment {
     private ListView lv;
     private int coins;
     private Profile profile;
+    private ImageView ivBackShop;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -47,11 +49,19 @@ public class ShopFragment extends Fragment {
         coins = profile.getCoins();
         tvShopCoins = getView().findViewById(R.id.tvShopCoins);
         tvShopCoins.setText(String.valueOf(coins));
+        ivBackShop = getActivity().findViewById(R.id.ivBackShop);
 
         lv = getActivity().findViewById(R.id.lvShopItem);
         ShopItemAdapter adapter;
         adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv, true);
         lv.setAdapter(adapter);
+
+        ivBackShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
     }
 
 }

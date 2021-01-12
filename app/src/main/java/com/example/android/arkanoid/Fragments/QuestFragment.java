@@ -1,5 +1,6 @@
 package com.example.android.arkanoid.Fragments;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.arkanoid.R;
@@ -17,6 +19,7 @@ import com.example.android.arkanoid.R;
 public class QuestFragment extends Fragment {
 
     ListView lvQuestItem;
+    ImageView btnBackQuest;
 
 
 
@@ -32,6 +35,15 @@ public class QuestFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
+
+        btnBackQuest = getView().findViewById(R.id.ivBackQuest);
+
+        btnBackQuest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
     }
 }
