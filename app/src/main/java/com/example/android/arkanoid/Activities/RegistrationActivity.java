@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -17,6 +18,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import java.io.File;
+import java.util.ArrayList;
 
 /*Activity that manages the registration of a new user or an existing guest,
   the guest does not lose local progress because they will be loaded into the new profile
@@ -31,6 +35,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etName;
     private FirebaseAuth mAuth;
     private Services services;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +86,8 @@ public class RegistrationActivity extends AppCompatActivity {
                             //if user was not a guest but a new player, create new local profile
                             if (!username.equals("GuestUser")) {
                                 services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0");
+                                //TODO aggiungi la creazione delle quest per l'utente
+                                services.createQuestsFiles(getApplicationContext());
                             }
                             //if user was a guest update only username and user id
                             else {

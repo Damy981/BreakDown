@@ -6,6 +6,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,13 +14,25 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.arkanoid.Classes.QuestAdapter;
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
+
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 public class QuestFragment extends Fragment {
 
     ListView lvQuestItem;
     ImageView btnBackQuest;
-
+    FileInputStream questFile;
+    Services services = new Services();
+    private ArrayList<String> questsList = new ArrayList();
 
 
     @Override
@@ -33,7 +46,6 @@ public class QuestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
 
         btnBackQuest = getView().findViewById(R.id.ivBackQuest);
 
@@ -43,6 +55,25 @@ public class QuestFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+
+        try {
+            questFile = getActivity().openFileInput(services.questsFileName);
+            ObjectInput q = new ObjectInputStream(questFile);
+            questsList = (ArrayList<String>) q.readObject();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
+
+        Log.i("quest", questsList.toString());
+
+        QuestAdapter adapter = new QuestAdapter(getContext(), questsList);
+        lvQuestItem.setAdapter(adapter);
 
     }
 }

@@ -28,6 +28,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.File;
+
 /*Activity that manages the login of a registered user or a guest,
   the guest user can access and play offline
   but has limited functionality until he completes the registration.
@@ -93,6 +95,7 @@ public class LoginActivity extends AppCompatActivity {
                                 findViewById(R.id.btnLogin).setVisibility(View.INVISIBLE);
                                 retrieveProfileDataOnline();
                                 loadingScreen();
+                                //TODO: aggiungi controllo esistenza su file quest generali
                             }
                             //if the logged user did not verify the email, show an error
                             else {
@@ -162,6 +165,8 @@ public class LoginActivity extends AppCompatActivity {
     //create and initialize a local profile for the guest user and show a dialogbox with relative informations
     public void guestLogin(View view) {
         services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "10,0,0,0,0");
+        //TODO aggiungi la creazione delle quest per l'utente
+        services.createQuestsFiles(getApplicationContext());
         showGuestAlert();
     }
 

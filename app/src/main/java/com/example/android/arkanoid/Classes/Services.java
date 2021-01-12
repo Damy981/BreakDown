@@ -1,8 +1,18 @@
 package com.example.android.arkanoid.Classes;
 
+import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 
 /* Class with functions that manages data in the database and local data
  */
@@ -12,6 +22,13 @@ public class Services {
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
+    private ArrayList<String> questsList = new ArrayList();
+    public String questsFileName = "quest.txt";
+
+
+    public Services() {
+
+    }
 
     public Services(SharedPreferences preferences) {
         this.preferences = preferences;
@@ -61,5 +78,33 @@ public class Services {
         editor.putString("userName" , username);
         editor.putString("userId" , userId);
         editor.commit();
+    }
+
+    //create the file with all the possible quests from which user quests will be generated
+    public void createQuestsFiles(Context context) {
+        populateQuestList();
+        try {
+            FileOutputStream questFile = context.openFileOutput(questsFileName, context.MODE_PRIVATE);
+            //Log.i("fileDir", String.valueOf(context.getFilesDir()));
+            try {
+                ObjectOutputStream a = new ObjectOutputStream(questFile);
+                a.writeObject(questsList);
+                questFile.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    //add the quests text to the arraylist which will be write on file with createQuestsFiles
+    private void populateQuestList() {
+        questsList.add("Quest 1");
+        questsList.add("Quest 2");
+        questsList.add("Quest 3");
+        questsList.add("Quest 4");
+        questsList.add("Quest 5");
+        questsList.add("Quest 6");
     }
 }
