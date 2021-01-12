@@ -10,20 +10,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.example.android.arkanoid.Classes.PowerUp;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.ShopItemAdapter;
 import com.example.android.arkanoid.R;
-
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class ShopFragment extends Fragment {

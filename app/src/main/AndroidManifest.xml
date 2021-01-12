@@ -14,7 +14,7 @@
         <activity android:name=".Activities.LevelEditorActivity"/>
         <activity android:name=".Activities.LoginActivity"/>
         <activity android:name=".Activities.MenuActivity"
-            android:configChanges="orientation|screenSize"/>
+            android:configChanges="screenSize|orientation|screenLayout|navigation"/>
         <activity android:name=".Activities.SplashScreenActivity" />
         <activity android:name=".Activities.RegistrationActivity"/>
         <activity android:name=".Activities.MainActivity">

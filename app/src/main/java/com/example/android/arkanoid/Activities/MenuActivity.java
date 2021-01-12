@@ -1,5 +1,6 @@
 package com.example.android.arkanoid.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -9,9 +10,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -174,5 +177,19 @@ public class MenuActivity extends AppCompatActivity {
         tx = fm.beginTransaction();
         tx.add(R.id.fragment_place, fragment);
         tx.commit();
+    }
+
+    @Override
+    public void onConfigurationChanged(@NonNull Configuration newConfig)
+    {
+        super.onConfigurationChanged(newConfig);
+        int orientation = newConfig.orientation;
+
+        if (orientation == Configuration.ORIENTATION_PORTRAIT) {
+            Log.d("cacca", "Portrait");
+        }
+        else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            Log.d("cacca", "Landscape");
+        }
     }
 }
