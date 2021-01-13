@@ -13,24 +13,27 @@
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="0dp"
+        app:layout_constraintStart_toStartOf="parent"
         tools:layout_editor_absoluteY="0dp">
 
         <ImageView
             android:id="@+id/btnLogout"
-            android:layout_width="76dp"
-            android:layout_height="64dp"
-            android:background="@drawable/logout_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@drawable/effect_button_image"
             android:contentDescription="TODO"
+            android:maxWidth="76dp"
+            android:maxHeight="64dp"
             android:onClick="logout"
-            android:src="@drawable/effect_button_image"
+            android:scaleType="centerInside"
+            android:src="@drawable/logout_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -80,10 +83,12 @@
 
         <ImageView
             android:id="@+id/btnSettings"
-            android:layout_width="84dp"
-            android:layout_height="71dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
+            android:maxWidth="78dp"
+            android:maxHeight="74dp"
             android:onClick="btnSettingsClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -91,14 +96,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.902"
-            app:srcCompat="@drawable/setting_image" />
+            app:srcCompat="@drawable/setting_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <ImageView
             android:id="@+id/btnLevelEditor"
-            android:layout_width="78dp"
-            android:layout_height="72dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:background="@drawable/effect_button_image"
             android:contentDescription="TODO"
+            android:maxWidth="78dp"
+            android:maxHeight="74dp"
             android:onClick="btnLevelEditorClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -106,14 +115,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.896"
-            app:srcCompat="@drawable/level_editor_image" />
+            app:srcCompat="@drawable/level_editor_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <ImageView
             android:id="@+id/btnQuest"
-            android:layout_width="84dp"
-            android:layout_height="72dp"
-            android:background="@drawable/quest_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/effect_button_image"
             android:contentDescription="TODO"
+            android:maxWidth="78dp"
+            android:maxHeight="74dp"
             android:onClick="btnQuestClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -121,14 +134,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.902"
-            app:srcCompat="@drawable/effect_button_image" />
+            app:srcCompat="@drawable/quest_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <ImageView
             android:id="@+id/btnProfile"
-            android:layout_width="85dp"
-            android:layout_height="81dp"
-            android:background="@drawable/user_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/effect_button_image"
             android:contentDescription="TODO"
+            android:maxWidth="85dp"
+            android:maxHeight="80dp"
             android:onClick="btnProfileClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -136,14 +153,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/effect_button_image" />
+            app:srcCompat="@drawable/user_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <ImageView
             android:id="@+id/btnRanking"
-            android:layout_width="78dp"
-            android:layout_height="74dp"
-            android:background="@drawable/ranking_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
+            android:maxWidth="78dp"
+            android:maxHeight="74dp"
             android:onClick="btnRankingClick"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -151,7 +172,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.91"
-            app:srcCompat="@drawable/effect_button_image" />
+            app:srcCompat="@drawable/ranking_image"
+            android:scaleType="centerInside"
+            android:adjustViewBounds="true"/>
 
         <TextView
             android:id="@+id/Ranking"
