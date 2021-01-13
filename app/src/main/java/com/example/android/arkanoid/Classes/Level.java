@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
 
 public class Level {
 
@@ -16,14 +18,16 @@ public class Level {
     private ArrayList<Brick> brickList = new ArrayList<>();
     private int level;
     private int rowNumber;
-    private boolean nitroCreated;
-    private boolean switchCreated;
+    private int iNitro;
+    private int jNitro;
+    private int iSwitch;
+    private int jSwitch;
+    private Random random;
 
     public Level(Context context, int level) {
 
         this.level = level;
-        nitroCreated = false;
-        switchCreated = false;
+        random = new Random();
         generateBricks(context);
     }
 
@@ -33,19 +37,39 @@ public class Level {
             rowNumber = 5;
         if (level >= 15)
             rowNumber = 6;
+
+        generateRandomIndex();
+
         for (int i = ROW_START; i < ROW_START + rowNumber; i++) {
             for (int j = COLUMN_START; j < COLUMN_START + COLUMN_NUMBER; j++) {
-                Brick b = new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE, level, nitroCreated, switchCreated);
-                brickList.add(b);
-                if (b.isNitro())
-                    nitroCreated = true;
-                if (b.isSwitch())
-                    switchCreated = true;
+                Brick b = new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE, level);
+
+                if (level >= 5) {
+                    if (i == iNitro && j == jNitro) {
+                        b.createNitro();
+                        b.setHardFalse();
+                    }
+                    if (i == iSwitch && j == jSwitch) {
+                        b.createSwitch();
+                        b.setHardFalse();
+                    }
+                    brickList.add(b);
+                }
             }
         }
     }
 
     protected ArrayList<Brick> getBrickList() {
+        Collections.shuffle(brickList);
         return brickList;
+    }
+
+    private void generateRandomIndex() {
+        iNitro =  random.nextInt((ROW_START + rowNumber) - ROW_START) + ROW_START;
+        jNitro = random.nextInt((COLUMN_START + COLUMN_NUMBER) - COLUMN_START) + COLUMN_START;
+        do {
+            iSwitch =  random.nextInt((ROW_START + rowNumber) - ROW_START) + ROW_START;
+            jSwitch = random.nextInt((COLUMN_START + COLUMN_NUMBER) - COLUMN_START) + COLUMN_START;
+        } while(iNitro == iSwitch && jNitro == jSwitch);
     }
 }

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -134,7 +133,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
         //in case of lose draw "Game over!"
         if (gameOver) {
-            paint.setColor(Color.RED);
             paint.setTextSize(100);
             canvas.drawText("Game over!", size.x / 4, size.y / 2, paint);
         }
@@ -197,12 +195,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                         b.changeHardBrickColor();
                     }
                     else if (b.isSwitch()) {
-                        for (int c = 0; c < brickList.size(); c++) {
-                            Brick b1 = brickList.get(c);
-                            if (b1.isNitro()) {
-                                removeBrick(c);
-                            }
-                        }
+                        removeNitro();
                         b.setSwitchBrickOff();
                         removeBrick(i);
                     }
@@ -280,7 +273,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if (event.getAction() == MotionEvent.ACTION_MOVE) {
             if (event.getX() < 885)
                 paddle.setX((float) event.getX());
-            invalidate();
         }
         return true;
     }
@@ -294,7 +286,16 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         score = score + 80;
     }
 
-    private void dropCoin () {
+    private void removeNitro() {
+        for (int c = 0; c < brickList.size(); c++) {
+            Brick b1 = brickList.get(c);
+            if (b1.isNitro()) {
+                removeBrick(c);
+            }
+        }
+    }
+
+    private void dropCoin() {
         if (Math.random() < dropRate) {
             Log.i("cacca", "soldiiii");
             profile.setCoins(profile.getCoins() + 1);

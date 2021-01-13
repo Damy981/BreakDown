@@ -12,22 +12,18 @@ public class Brick extends View {
     private Bitmap brick;
     private float x;
     private float y;
-    private final int COLORS_NUMBER = 10;
+    private int SKIN_NUMBER = 10;
     private int level;
     private boolean hardBrick;
-    private boolean nitroCreated;
-    private boolean switchCreated;
     private boolean nitroBrick;
     private boolean switchBrick;
 
-    public Brick(Context context, float x, float y, int level, boolean nitroCreated, boolean switchCreated) {
+    public Brick(Context context, float x, float y, int level) {
         super(context);
         this.x = x;
         this.y = y;
         this.level = level;
         hardBrick = false;
-        this.nitroCreated = nitroCreated;
-        this.switchCreated = switchCreated;
         nitroBrick = false;
         switchBrick = false;
         createSkins();
@@ -35,7 +31,7 @@ public class Brick extends View {
 
     //assigns a random image to the brick
     private void createSkins() {
-        int a = (int) (Math.random() * COLORS_NUMBER);
+        int a = (int) (Math.random() * SKIN_NUMBER);
         switch (a) {
             case 0:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_blue);
@@ -49,22 +45,12 @@ public class Brick extends View {
                 break;
             case 2:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_green);
-                if (level >= 5 && !nitroCreated) {
-                    brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_nitro);
-                    nitroCreated = true;
-                    nitroBrick = true;
-                }
                 break;
             case 3:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_light_orange);
                 break;
             case 4:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_pink);
-                if (nitroCreated && !switchCreated) {
-                    brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_switch_on);
-                    switchCreated = true;
-                    switchBrick = true;
-                }
                 break;
             case 5:
                 brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_red);
@@ -132,4 +118,15 @@ public class Brick extends View {
     public void setSwitchBrickOff() {
         brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_switch_off);
     }
+
+    public void createNitro() {
+        brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_nitro);
+        nitroBrick = true;
+    }
+
+    public void createSwitch() {
+        brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_switch_on);
+        switchBrick = true;
+    }
+
 }
