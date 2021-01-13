@@ -13,11 +13,11 @@ import com.example.android.arkanoid.R;
 
 public class GameLayoutView extends RelativeLayout {
 
-    private Game game;
-    ImageView ivFreeze;
-    ImageView ivExplosiveBall;
-    RelativeLayout.LayoutParams params1;
-    RelativeLayout.LayoutParams params2;
+    public Game game;
+    private ImageView ivFreeze;
+    private ImageView ivExplosiveBall;
+    private RelativeLayout.LayoutParams params1;
+    private RelativeLayout.LayoutParams params2;
 
     public GameLayoutView(Context context, Game game) {
         super(context);

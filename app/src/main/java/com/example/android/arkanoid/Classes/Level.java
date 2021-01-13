@@ -1,6 +1,7 @@
 package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -15,10 +16,14 @@ public class Level {
     private ArrayList<Brick> brickList = new ArrayList<>();
     private int level;
     private int rowNumber;
+    private boolean nitroCreated;
+    private boolean switchCreated;
 
     public Level(Context context, int level) {
 
         this.level = level;
+        nitroCreated = false;
+        switchCreated = false;
         generateBricks(context);
     }
 
@@ -30,7 +35,12 @@ public class Level {
             rowNumber = 6;
         for (int i = ROW_START; i < ROW_START + rowNumber; i++) {
             for (int j = COLUMN_START; j < COLUMN_START + COLUMN_NUMBER; j++) {
-                brickList.add(new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE));
+                Brick b = new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE, level, nitroCreated, switchCreated);
+                brickList.add(b);
+                if (b.isNitro())
+                    nitroCreated = true;
+                if (b.isSwitch())
+                    switchCreated = true;
             }
         }
     }

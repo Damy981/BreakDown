@@ -186,10 +186,12 @@ public class MenuActivity extends AppCompatActivity {
         int orientation = newConfig.orientation;
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
-            Log.d("cacca", "Portrait");
+            setContentView(R.layout.activity_menu);
+            menu = findViewById(R.id.menu);
         }
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            Log.d("cacca", "Landscape");
+            setContentView(R.layout.activity_menu_land);
+            menu = findViewById(R.id.menu);
         }
     }
 }

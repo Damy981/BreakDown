@@ -71,7 +71,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         level = this.profile.getLevelNumber();
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
-        explosiveBall = true;
+        explosiveBall = false;
 
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
@@ -179,17 +179,32 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 Brick b = brickList.get(i);
                 if (ball.touchBrick(b.getX(), b.getY())) {
                     if (explosiveBall) {
-                        if (i < brickList.size() -4) {
-                            removeBrick(i);
-                            dropCoin();
-                            removeBrick(i + 1);
-                            dropCoin();
-                           // explosiveBall = false;
-                        }
-                    }
-                    else {
                         removeBrick(i);
                         dropCoin();
+                        removeBrick(i + 1);
+                        dropCoin();
+                        // explosiveBall = false;
+                    }
+                    else if (!b.isHardBrick() && !b.isSwitch()){
+                        if (b.isNitro()) {
+                            lives -= 1;
+                        }
+                        removeBrick(i);
+                        dropCoin();
+                    }
+                    else if (b.isHardBrick()) {
+                        b.setHardFalse();
+                        b.changeHardBrickColor();
+                    }
+                    else if (b.isSwitch()) {
+                        for (int c = 0; c < brickList.size(); c++) {
+                            Brick b1 = brickList.get(c);
+                            if (b1.isNitro()) {
+                                removeBrick(c);
+                            }
+                        }
+                        b.setSwitchBrickOff();
+                        removeBrick(i);
                     }
                 }
             }
