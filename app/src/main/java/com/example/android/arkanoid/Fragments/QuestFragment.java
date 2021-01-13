@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.QuestAdapter;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
@@ -32,7 +33,7 @@ public class QuestFragment extends Fragment {
     ImageView btnBackQuest;
     FileInputStream questFile;
     Services services = new Services();
-    private ArrayList<String> questsList = new ArrayList();
+    private ArrayList questsList = new ArrayList();
 
 
     @Override
@@ -56,10 +57,11 @@ public class QuestFragment extends Fragment {
             }
         });
 
+        //retrieve quests information from file
         try {
             questFile = getActivity().openFileInput(services.questsFileName);
             ObjectInput q = new ObjectInputStream(questFile);
-            questsList = (ArrayList<String>) q.readObject();
+            questsList = (ArrayList<Quest>) q.readObject();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -69,8 +71,6 @@ public class QuestFragment extends Fragment {
         }
 
         lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
-
-        Log.i("quest", questsList.toString());
 
         QuestAdapter adapter = new QuestAdapter(getContext(), questsList);
         lvQuestItem.setAdapter(adapter);

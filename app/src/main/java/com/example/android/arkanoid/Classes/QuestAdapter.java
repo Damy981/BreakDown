@@ -15,14 +15,13 @@ import java.util.ArrayList;
 public class QuestAdapter extends BaseAdapter {
     Context context;
     private LayoutInflater inflater;
-    TextView questText, done, total;
-    private ArrayList<String> questsList = new ArrayList();
+    TextView questText, done, total, reward;
+    private ArrayList<Quest> questsList = new ArrayList();
 
 
-    public QuestAdapter(Context context, ArrayList<String> questsList) {
+    public QuestAdapter(Context context, ArrayList<Quest> questsList) {
         this.questsList = questsList;
         this.context = context;
-        Log.i("questAdapter", String.valueOf(getCount()));
         inflater = (LayoutInflater.from(context));
     }
 
@@ -44,13 +43,15 @@ public class QuestAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.item_questitem, null);
-        Log.i("Position", String.valueOf(position));
         questText = convertView.findViewById(R.id.tvQuestText);
         done = convertView.findViewById(R.id.tvDone);
         total = convertView.findViewById(R.id.tvTotal);
-        questText.setText(questsList.get(position));
-        done.setText("0");
-        total.setText("0");
+        reward = convertView.findViewById(R.id.tvReward);
+
+        questText.setText(questsList.get(position).getQuestText());
+        done.setText(String.valueOf(questsList.get(position).getProgress()));
+        total.setText(String.valueOf(questsList.get(position).getTarget()));
+        reward.setText(String.valueOf(questsList.get(position).getReward()));
 
         return convertView;
     }

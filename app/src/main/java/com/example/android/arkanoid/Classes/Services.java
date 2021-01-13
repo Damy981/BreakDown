@@ -22,8 +22,15 @@ public class Services {
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
-    private ArrayList<String> questsList = new ArrayList();
+    private ArrayList<Quest> questsList = new ArrayList();
     public String questsFileName = "quest.txt";
+    public static int QUEST_DESTROY_BRICKS_100 = 0;
+    public static int QUEST_WIN_5 = 1;
+    public static int QUEST_WIN_3_WITH_ALL_LIVES = 2;
+    public static int QUEST_DESTROY_BRICKS_10000 = 3;
+    public static int QUEST_WIN_50_MULTIPLAYER = 4;
+    public static int QUEST_CREATE_LEVEL = 5;
+    public static int QUEST_REGISTER_PROFILE = 6;
 
 
     public Services() {
@@ -80,12 +87,12 @@ public class Services {
         editor.commit();
     }
 
-    //create the file with all the possible quests from which user quests will be generated
+    //create the file with the user quests
     public void createQuestsFiles(Context context) {
         populateQuestList();
         try {
             FileOutputStream questFile = context.openFileOutput(questsFileName, context.MODE_PRIVATE);
-            //Log.i("fileDir", String.valueOf(context.getFilesDir()));
+            Log.i("fileDir", String.valueOf(context.getFilesDir()));
             try {
                 ObjectOutputStream a = new ObjectOutputStream(questFile);
                 a.writeObject(questsList);
@@ -100,11 +107,12 @@ public class Services {
 
     //add the quests text to the arraylist which will be write on file with createQuestsFiles
     private void populateQuestList() {
-        questsList.add("Quest 1");
-        questsList.add("Quest 2");
-        questsList.add("Quest 3");
-        questsList.add("Quest 4");
-        questsList.add("Quest 5");
-        questsList.add("Quest 6");
+        questsList.add(new Quest("Destroy 100 bricks", 0, 100, 20, true));
+        questsList.add(new Quest("Win 5 games", 0, 5, 20, true));
+        questsList.add(new Quest("Win 3 games without losing lives", 0, 3, 20, true));
+        questsList.add(new Quest("Destroy 10,000 bricks", 0, 10000, 250, false));
+        questsList.add(new Quest("Win 50 games in multiplayer mode", 0, 50, 250, false));
+        questsList.add(new Quest("Create a level", 0, 1, 30, false));
+        questsList.add(new Quest("Register your account", 0, 1, 30, false));
     }
 }
