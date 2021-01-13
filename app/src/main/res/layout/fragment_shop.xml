@@ -10,22 +10,27 @@
 
     <ImageView
         android:id="@+id/imageShop"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:background="@drawable/coins_image"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
+        android:maxWidth="50dp"
+        android:maxHeight="50dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/coins_image"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toStartOf="@+id/Coins"
-        app:layout_constraintHorizontal_bias="0.714"
+        app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.81" />
+        app:layout_constraintVertical_bias="0.758" />
 
     <TextView
         android:id="@+id/tvShop"
         android:layout_width="124dp"
         android:layout_height="65dp"
         android:text="@string/shop"
-        android:textSize="50dp"
+        android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
@@ -37,7 +42,7 @@
         android:id="@+id/tvShopCoins"
         android:layout_width="100dp"
         android:layout_height="39dp"
-        android:textSize="30dp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.559"
@@ -60,8 +65,8 @@
         android:id="@+id/Coins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Coins:"
-        android:textSize="30dp"
+        android:text="@string/coins"
+        android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.249"
@@ -71,8 +76,13 @@
 
     <ImageView
         android:id="@+id/ivBackShop"
-        android:layout_width="87dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:background="@drawable/effect_button_image"
+        android:maxWidth="65dp"
+        android:maxHeight="60dp"
+        android:scaleType="centerInside"
         android:src="@drawable/back_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -80,6 +90,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.004"
-        android:background="@drawable/effect_button_image"/>
+        android:contentDescription="@string/todo" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
