@@ -38,6 +38,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
     private FirebaseUser user;
     private EditText etUsername;
     private TextView tvCoins;
+    private TextView tvBestScore;
     private FirebaseAuth mAuth;
     private ImageView profileImage;
     private ListView lvOwnedItems;
@@ -58,6 +59,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         etUsername = getView().findViewById(R.id.etUsername);
         etUsername.setKeyListener(null);
 
+        tvBestScore = getView().findViewById(R.id.tvBestScore);
         tvCoins = getView().findViewById(R.id.tvCoins);
         lvOwnedItems = getView().findViewById(R.id.lvOwnedItems);
 
@@ -77,7 +79,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         profileImage = view.findViewById(R.id.imageView_profile);
         etUsername.setText(profile.getUserName());
         tvCoins.setText(String.valueOf(profile.getCoins()));
-
+        tvBestScore.setText(String.valueOf(profile.getBestScore()));
 
         ShopItemAdapter adapter;
         adapter = new ShopItemAdapter(this.getActivity(), profile, tvCoins, lvOwnedItems, false);

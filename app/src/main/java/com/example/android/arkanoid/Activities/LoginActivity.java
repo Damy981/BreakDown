@@ -172,7 +172,7 @@ public class LoginActivity extends AppCompatActivity {
 
     //create and initialize a local profile for the guest user and show a dialogbox with relative informations
     public void guestLogin(View view) {
-        services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "10,0,0,0,0");
+        services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "10,0,0,0,0", 0);
         services.createQuestsFiles(getApplicationContext());
         showGuestAlert();
     }
@@ -216,8 +216,8 @@ public class LoginActivity extends AppCompatActivity {
                 String userName = dataSnapshot.child("UserName").getValue(String.class);
                 String prices = dataSnapshot.child("Prices").getValue(String.class);
                 String quantities = dataSnapshot.child("Quantities").getValue(String.class);
-                Log.i("cacca", userId);
-                services.setSharedPreferences(userName, coins, levelNumber, userId, prices, quantities);
+                int bestScore = dataSnapshot.child("BestScore").getValue(int.class);
+                services.setSharedPreferences(userName, coins, levelNumber, userId, prices, quantities, bestScore);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

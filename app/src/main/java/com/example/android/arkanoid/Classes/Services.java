@@ -41,7 +41,7 @@ public class Services {
     }
 
     //set local data with parameters sent
-    public void setSharedPreferences(String username, int coins, int levelNumber, String userId, String prices, String quantities) {
+    public void setSharedPreferences(String username, int coins, int levelNumber, String userId, String prices, String quantities, int bestScore) {
         editor = preferences.edit();
         editor.putString("userName" , username);
         editor.putInt("coins", coins);
@@ -50,6 +50,7 @@ public class Services {
             editor.putString("userId", userId);
         editor.putString("prices", prices);
         editor.putString("quantities", quantities);
+        editor.putInt("bestScore", bestScore);
         editor.commit();
     }
 
@@ -64,7 +65,7 @@ public class Services {
         myRef.child(userId).child("UserName").setValue(preferences.getString("userName", "GuestUser"));
         myRef.child(userId).child("Prices").setValue(preferences.getString("prices", "5,5,5,5,5"));
         myRef.child(userId).child("Quantities").setValue(preferences.getString("quantities", "0,0,0,0,0"));
-
+        myRef.child(userId).child("BestScore").setValue(preferences.getInt("bestScore", 0));
     }
 
     //use the local data to create a profile object which is returned
@@ -74,7 +75,8 @@ public class Services {
         String userName = preferences.getString("userName", "GuestUser");
         String prices = preferences.getString("prices", "5,5,5,5,5");
         String quantities = preferences.getString("quantities", "0,0,0,0,0");
-        Profile profile = new Profile(levelNumber, coins, userName, null, prices, quantities);
+        int bestScore = preferences.getInt("bestScore", 0);
+        Profile profile = new Profile(levelNumber, coins, userName, null, prices, quantities, bestScore);
         return profile;
     }
 

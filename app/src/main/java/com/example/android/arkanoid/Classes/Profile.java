@@ -24,12 +24,14 @@ public class Profile implements Serializable {
     private String userId;
     private String prices;
     private String quantities;
+    private int bestScore;
 
-    public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities) {
+    public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities, int bestScore) {
         this.userName = userName;
         this.levelNumber = levelNumber;
         this.coins = coins;
         this.userId = userId;
+        this.bestScore = bestScore;
         //SharedPreferences cannot store arrays, so numerical data for owned power-ups are stored in String arrays
         this.prices = prices;
         this.quantities = quantities;
@@ -61,6 +63,10 @@ public class Profile implements Serializable {
 
     public String getQuantities() {
         return quantities;
+    }
+
+    public int getBestScore() {
+        return bestScore;
     }
 
     //put the price for each power-up in an int array
@@ -116,7 +122,7 @@ public class Profile implements Serializable {
         editor.putString("prices", prices);
         quantities = putValuesIntoString(getQuantitiesArray(array));
         editor.putString("quantities", quantities);
-        Log.i("update", prices + " " + quantities);
+        editor.putInt("bestScore", bestScore);
         editor.commit();
     }
 
@@ -143,5 +149,9 @@ public class Profile implements Serializable {
             }
         }
         return string;
+    }
+
+    public void setBestScore(int bestScore) {
+        this.bestScore = bestScore;
     }
 }

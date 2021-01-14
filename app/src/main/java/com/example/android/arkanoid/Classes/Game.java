@@ -216,6 +216,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 }
             }
             ball.moveBall();
+            if (score > profile.getBestScore())
+                profile.setBestScore(score);
         }
     }
 
@@ -263,7 +265,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // sets the game to start
     private void resetLevel() {
         profile.updateProfile();
-
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();
