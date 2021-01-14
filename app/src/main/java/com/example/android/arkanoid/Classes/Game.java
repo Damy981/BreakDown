@@ -189,7 +189,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     if (explosiveBall) {
                         explosionSound.start();
                         removeBricksExplosiveBall(b);
-                        // explosiveBall = false;
+                        removeBrick(i);
+                        explosiveBall = false;
                     }
                     else if (!b.isHardBrick() && !b.isSwitch()){
                         if (b.isNitro()) {
@@ -200,7 +201,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                         if (!b.isNitro())
                             hitSound.start();
                         removeBrick(i);
-                        dropCoin();
                     }
                     else if (b.isHardBrick()) {
                         hitSound.start();
@@ -298,6 +298,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private void removeBrick(int i) {
         brickList.remove(i);
         score = score + 80;
+        dropCoin();
     }
 
     private void removeNitro() {
@@ -318,13 +319,30 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     private void removeBricksExplosiveBall (Brick b) {
+        int i;
         float x = b.getX();
         float y = b.getY();
+        float xBrickLeft = x - Level.BRICK_HORIZONTAL_DISTANCE;
+        float xBrickRight = x + Level.BRICK_HORIZONTAL_DISTANCE;
+        float yBrickUp = y - Level.BRICK_VERTICAL_DISTANCE;
+        float yBrickDown = y + Level.BRICK_VERTICAL_DISTANCE;
 
+        if((i = checkIfBrickExist(xBrickLeft, y)) != -1)
+            removeBrick(i);
+        if((i = checkIfBrickExist(xBrickRight, y)) != -1)
+            removeBrick(i);
+        if((i = checkIfBrickExist(x, yBrickUp)) != -1)
+            removeBrick(i);
+        if((i = checkIfBrickExist(x, yBrickDown)) != -1)
+            removeBrick(i);
+    }
+
+    private int checkIfBrickExist(float x, float y) {
         for (int i = 0; i < brickList.size(); i++) {
-            Brick b1 = brickList.get(i);
-            if(b1.getX() == x + Level.BRICK_HORIZONTAL_DISTANCE)
-                removeBrick(i);
+            Brick b = brickList.get(i);
+            if (b.getX() == x && b.getY() == y)
+                return i;
         }
+        return -1;
     }
 }

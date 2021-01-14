@@ -53,8 +53,8 @@ public class Level {
                         b.createSwitch();
                         b.setHardFalse();
                     }
-                    brickList.add(b);
                 }
+                brickList.add(b);
             }
         }
     }
