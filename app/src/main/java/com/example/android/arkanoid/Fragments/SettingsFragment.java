@@ -14,7 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ToggleButton;
 
-import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
 
@@ -24,11 +23,10 @@ import com.example.android.arkanoid.R;
 
 public class SettingsFragment extends Fragment {
 
-    private Profile profile;
     private ToggleButton tbAccelerometer;
-    SharedPreferences.Editor editor;
-    SharedPreferences preferences;
-    private boolean tbAccelStatus;
+    private ToggleButton tbMusic;
+    private SharedPreferences.Editor editor;
+    private SharedPreferences preferences;
     private ImageView ivBackSettings;
 
     @Override
@@ -43,23 +41,13 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        profile = (Profile) getArguments().getSerializable("profile");
-        tbAccelerometer = getView().findViewById(R.id.swAccelerometer);
+        tbAccelerometer = getView().findViewById(R.id.tbAccelerometer);
+        tbMusic = getView().findViewById(R.id.tbMusic);
         ivBackSettings = getActivity().findViewById(R.id.ivBackSettings);
-        getSettingsPreferences();
-        tbAccelerometer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (tbAccelerometer.isChecked()) {
 
-                    profile.setAccelerometer(true);
-                }
-                else {
-                    profile.setAccelerometer(false);
-                }
-                setSettingsPreferences();
-            }
-        });
+        setButtons();
+        setTbAccelerometerListener();
+        setTbMusicListener();
 
         ivBackSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,15 +56,47 @@ public class SettingsFragment extends Fragment {
             }
         });
     }
-    private void getSettingsPreferences() {
+
+    private void setButtons() {
         preferences = getActivity().getSharedPreferences(Services.SHARED_PREF_DIR,Context.MODE_PRIVATE);
-        tbAccelStatus = preferences.getBoolean("tbAccelStatus", false);
-        tbAccelerometer.setChecked(tbAccelStatus);
+        tbAccelerometer.setChecked(preferences.getBoolean("tbAccelStatus", false));
+        tbMusic.setChecked(preferences.getBoolean("tbMusicStatus", true));
     }
 
-    private void setSettingsPreferences() {
-        editor = preferences.edit();
-        editor.putBoolean("tbAccelStatus", tbAccelerometer.isChecked()); // value to store
-        editor.commit();
+    private void setTbAccelerometerListener() {
+        tbAccelerometer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tbAccelerometer.isChecked()) {
+
+                    editor = preferences.edit();
+                    editor.putBoolean("tbAccelStatus", true); // value to store
+                    editor.commit();
+                }
+                else {
+                    editor = preferences.edit();
+                    editor.putBoolean("tbAccelStatus", false); // value to store
+                    editor.commit();
+                }
+            }
+        });
+    }
+
+    private void setTbMusicListener() {
+        tbMusic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (tbMusic.isChecked()) {
+                    editor = preferences.edit();
+                    editor.putBoolean("tbMusicStatus", true); // value to store
+                    editor.commit();
+                }
+                else {
+                    editor = preferences.edit();
+                    editor.putBoolean("tbMusicStatus", false); // value to store
+                    editor.commit();
+                }
+            }
+        });
     }
 }

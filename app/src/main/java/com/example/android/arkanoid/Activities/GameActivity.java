@@ -2,6 +2,7 @@ package com.example.android.arkanoid.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -10,6 +11,7 @@ import android.view.View;
 import com.example.android.arkanoid.Classes.Game;
 import com.example.android.arkanoid.Classes.GameLayoutView;
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Classes.UpdateThread;
 import com.example.android.arkanoid.R;
 
@@ -22,16 +24,27 @@ public class GameActivity extends AppCompatActivity {
     private Profile profile;
     private float ballXSpeed;
     private float ballYSpeed;
+    private MediaPlayer music;
+    private Services services;
+    private boolean musicOn;
+    private boolean accelerometerOn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profile = (Profile) getIntent().getSerializableExtra("profile");
-
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
+        musicOn = services.getMusicSetting();
+        accelerometerOn = services.getAccelerometerSetting();
         // create a new game
         game = new Game(this, 3, 0, profile);
         gameLayout = new GameLayoutView(this, game);
         setContentView(gameLayout);
+
+        music = MediaPlayer.create(getApplicationContext(), R.raw.game_background_theme);
+        music.setLooping(true);
+        if (musicOn)
+            music.start();
 
         createHandler();
         myThread = new UpdateThread(updateHandler);
@@ -52,18 +65,19 @@ public class GameActivity extends AppCompatActivity {
 
     protected void onPause() {
         super.onPause();
-        if (profile.isUsedAccelerometer())
+        if (accelerometerOn)
             gameLayout.game.stopListener();
     }
 
     protected void onResume() {
         super.onResume();
-        if (profile.isUsedAccelerometer())
+        if (accelerometerOn)
             gameLayout.game.startListener();
     }
 
     @Override
     public void onBackPressed() {
+        music.pause();
         ballXSpeed = gameLayout.game.ball.getXSpeed();
         ballYSpeed = gameLayout.game.ball.getYSpeed();
         gameLayout.game.ball.setXSpeed(0);
@@ -72,12 +86,15 @@ public class GameActivity extends AppCompatActivity {
     }
 
     public void resumeGame(View view) {
+        if (musicOn)
+            music.start();
         gameLayout.game.ball.setXSpeed(ballXSpeed);
         gameLayout.game.ball.setYSpeed(ballYSpeed);
         setContentView(gameLayout);
     }
 
     public void returnToMenu(View view) {
+        music.stop();
         gameLayout.game.stopGame();
         finish();
     }

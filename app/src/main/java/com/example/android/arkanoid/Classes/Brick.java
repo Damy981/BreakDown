@@ -129,4 +129,5 @@ public class Brick extends View {
         switchBrick = true;
     }
 
+
 }

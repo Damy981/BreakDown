@@ -7,7 +7,6 @@ import android.util.Log;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -75,7 +74,7 @@ public class Services {
         String userName = preferences.getString("userName", "GuestUser");
         String prices = preferences.getString("prices", "5,5,5,5,5");
         String quantities = preferences.getString("quantities", "0,0,0,0,0");
-        Profile profile = new Profile(levelNumber, coins, userName, preferences.getBoolean("tbAccelStatus", false), null, prices, quantities);
+        Profile profile = new Profile(levelNumber, coins, userName, null, prices, quantities);
         return profile;
     }
 
@@ -114,5 +113,15 @@ public class Services {
         questsList.add(new Quest("Win 50 games in multiplayer mode", 0, 50, 250, false));
         questsList.add(new Quest("Create a level", 0, 1, 30, false));
         questsList.add(new Quest("Register your account", 0, 1, 30, false));
+    }
+
+    public boolean getMusicSetting() {
+        boolean tbMusic = preferences.getBoolean("tbMusicStatus", true);
+        return tbMusic;
+    }
+
+    public boolean getAccelerometerSetting() {
+        boolean tbAccelerometer = preferences.getBoolean("tbAccelStatus", false);
+        return tbAccelerometer;
     }
 }

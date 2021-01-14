@@ -19,18 +19,16 @@ public class Profile implements Serializable {
     private int levelNumber;
     private int coins;
     private String userName;
-    private boolean useAccelerometer;
     private ArrayList<PowerUp> powerUps = new ArrayList<>();
     private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball", "Item 5 "};
     private String userId;
     private String prices;
     private String quantities;
 
-    public Profile(int levelNumber, int coins, String userName, boolean b, String userId, String prices, String quantities) {
+    public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities) {
         this.userName = userName;
         this.levelNumber = levelNumber;
         this.coins = coins;
-        useAccelerometer = b;
         this.userId = userId;
         //SharedPreferences cannot store arrays, so numerical data for owned power-ups are stored in String arrays
         this.prices = prices;
@@ -83,14 +81,6 @@ public class Profile implements Serializable {
 
     public String getUserId () {
         return  userId;
-    }
-
-    public void setAccelerometer(boolean b) {
-        useAccelerometer = b;
-    }
-
-    public boolean isUsedAccelerometer() {
-        return useAccelerometer;
     }
 
     public void increaseLevel() {

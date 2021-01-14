@@ -3,6 +3,7 @@ package com.example.android.arkanoid.Classes;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
@@ -18,6 +19,7 @@ public class GameLayoutView extends RelativeLayout {
     private ImageView ivExplosiveBall;
     private RelativeLayout.LayoutParams params1;
     private RelativeLayout.LayoutParams params2;
+    private MediaPlayer freezeSound;
 
     public GameLayoutView(Context context, Game game) {
         super(context);
@@ -26,6 +28,8 @@ public class GameLayoutView extends RelativeLayout {
 
         Bitmap freezeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.freeze);
         Bitmap explosiveBallBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.explosion);
+
+        freezeSound = MediaPlayer.create(context, R.raw.freeze);
 
         ivFreeze = new ImageView(context);
         ivFreeze.setImageBitmap(freezeBitmap);
@@ -68,6 +72,7 @@ public class GameLayoutView extends RelativeLayout {
             public void onClick(View view) {
                 int quantity = game.profile.getPowerUps().get(PowerUp.FREEZE).getQuantity();
                 if (quantity > 0) {
+                    freezeSound.start();
                     float[] ballSpeed;
                     float xSpeed = game.ball.getXSpeed();
                     float ySpeed = game.ball.getYSpeed();
@@ -87,6 +92,7 @@ public class GameLayoutView extends RelativeLayout {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+                freezeSound.stop();
                 game.ball.setXSpeed(x);
                 game.ball.setYSpeed(y);
             }

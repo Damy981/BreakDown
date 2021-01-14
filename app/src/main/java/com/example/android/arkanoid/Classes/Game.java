@@ -11,6 +11,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.media.MediaPlayer;
 import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
@@ -58,6 +59,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private double dropRate;
     private int paddleLength;
 
+    private MediaPlayer hitSound;
+    private MediaPlayer explosionSound;
+    private MediaPlayer hurtSound;
+
     public Game(Context context, int lives, int score, Profile profile) {
         super(context);
         paint = new Paint();
@@ -71,6 +76,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
         explosiveBall = false;
+
+        hitSound = MediaPlayer.create(context, R.raw.hit);
+        explosionSound = MediaPlayer.create(context, R.raw.explosion);
+        hurtSound = MediaPlayer.create(context, R.raw.hurt);
 
         //start a gameOver to find out if the game is standing and if the player has lost
         start = false;
@@ -158,6 +167,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             start = false;
             invalidate();
         } else {
+            hurtSound.start();
             lives--;
             ball.setX(size.x / 2);
             ball.setY(size.y - 480);
@@ -177,24 +187,28 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 Brick b = brickList.get(i);
                 if (ball.touchBrick(b.getX(), b.getY())) {
                     if (explosiveBall) {
-                        removeBrick(i);
-                        dropCoin();
-                        removeBrick(i + 1);
-                        dropCoin();
+                        explosionSound.start();
+                        removeBricksExplosiveBall(b);
                         // explosiveBall = false;
                     }
                     else if (!b.isHardBrick() && !b.isSwitch()){
                         if (b.isNitro()) {
-                            lives -= 1;
+                            explosionSound.start();
+                            lives --;
+                            hurtSound.start();
                         }
+                        if (!b.isNitro())
+                            hitSound.start();
                         removeBrick(i);
                         dropCoin();
                     }
                     else if (b.isHardBrick()) {
+                        hitSound.start();
                         b.setHardFalse();
                         b.changeHardBrickColor();
                     }
                     else if (b.isSwitch()) {
+                        hitSound.start();
                         removeNitro();
                         b.setSwitchBrickOff();
                         removeBrick(i);
@@ -287,10 +301,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     }
 
     private void removeNitro() {
-        for (int c = 0; c < brickList.size(); c++) {
-            Brick b1 = brickList.get(c);
-            if (b1.isNitro()) {
-                removeBrick(c);
+        for (int i = 0; i < brickList.size(); i++) {
+            Brick b = brickList.get(i);
+            if (b.isNitro()) {
+                explosionSound.start();
+                removeBrick(i);
             }
         }
     }
@@ -299,6 +314,17 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         if (Math.random() < dropRate) {
             Log.i("cacca", "soldiiii");
             profile.setCoins(profile.getCoins() + 1);
+        }
+    }
+
+    private void removeBricksExplosiveBall (Brick b) {
+        float x = b.getX();
+        float y = b.getY();
+
+        for (int i = 0; i < brickList.size(); i++) {
+            Brick b1 = brickList.get(i);
+            if(b1.getX() == x + Level.BRICK_HORIZONTAL_DISTANCE)
+                removeBrick(i);
         }
     }
 }

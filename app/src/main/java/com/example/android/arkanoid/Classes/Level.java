@@ -9,8 +9,8 @@ import java.util.Random;
 
 public class Level {
 
-    private final int BRICK_HORIZONTAL_DISTANCE = 123;
-    private final int BRICK_VERTICAL_DISTANCE = 93;
+    static public final int BRICK_HORIZONTAL_DISTANCE = 123;
+    static public final int BRICK_VERTICAL_DISTANCE = 93;
     private final int ROW_START = 3;
     private final int COLUMN_START = 1;
     private final int COLUMN_NUMBER = 7;
