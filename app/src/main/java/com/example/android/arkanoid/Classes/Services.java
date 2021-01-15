@@ -66,6 +66,11 @@ public class Services {
         myRef.child(userId).child("Prices").setValue(preferences.getString("prices", "5,5,5,5,5"));
         myRef.child(userId).child("Quantities").setValue(preferences.getString("quantities", "0,0,0,0,0"));
         myRef.child(userId).child("BestScore").setValue(preferences.getInt("bestScore", 0));
+
+        if(userId != null) {
+            DatabaseReference myRef2 = database.getReference("Ranking");
+            myRef2.child(preferences.getString("userName", "GuestUser")).setValue(preferences.getInt("bestScore", 0));
+        }
     }
 
     //use the local data to create a profile object which is returned

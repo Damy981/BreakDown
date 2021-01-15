@@ -1,6 +1,7 @@
 package com.example.android.arkanoid.Classes.Adapters;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,18 +10,24 @@ import android.widget.TextView;
 
 import com.example.android.arkanoid.R;
 
+import java.util.ArrayList;
+
 public class RankItemAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
     private TextView tvRankUsername, tvRankBestScore;
+    private ArrayList<String> rankingUsername;
+    private ArrayList<String> rankingBestScore;
 
-    public RankItemAdapter(Context context) {
+    public RankItemAdapter(Context context, ArrayList<String> rankingUsername, ArrayList<String> rankingBestScore) {
+        this.rankingUsername = rankingUsername;
+        this.rankingBestScore = rankingBestScore;
         inflater = (LayoutInflater.from(context));
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return rankingUsername.size();
     }
 
     @Override
@@ -38,6 +45,11 @@ public class RankItemAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.item_rankitem, null);
         tvRankUsername = convertView.findViewById(R.id.tvRankUsername);
         tvRankBestScore = convertView.findViewById(R.id.tvRankBestScore);
+
+        tvRankUsername.setText(rankingUsername.get(position));
+        tvRankBestScore.setText(rankingBestScore.get(position));
+
         return convertView;
     }
+
 }
