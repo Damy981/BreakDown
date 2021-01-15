@@ -14,11 +14,18 @@ public class PowerUp implements Serializable {
     private String name;
     private int price;
     private int quantity;
+    private int image;
+
 
     public PowerUp(String name, int price, int quantity) {
+        this.image = image;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
+    }
+
+    public int getImage() {
+        return image;
     }
 
     public String getName() {
@@ -30,6 +37,10 @@ public class PowerUp implements Serializable {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
     }
 
     public void setPrice(int price) {

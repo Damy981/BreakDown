@@ -12,6 +12,7 @@
         android:id="@+id/imageShop"
         android:layout_width="50dp"
         android:layout_height="50dp"
+        android:layout_marginStart="55dp"
         android:adjustViewBounds="true"
         android:background="@drawable/coins_image"
         android:contentDescription="@string/todo"
@@ -52,8 +53,10 @@
 
     <ListView
         android:id="@+id/lvShopItem"
-        android:layout_width="583dp"
-        android:layout_height="228dp"
+        android:layout_width="480dp"
+        android:layout_height="222dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"

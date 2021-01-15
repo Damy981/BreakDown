@@ -42,4 +42,8 @@
     <string name="singleplayer">SinglePlayer</string>
     <string name="multiplayer">Multiplayer</string>
     <string name="select_game_mode">Select game mode:</string>
+    <string name="music">Music</string>
+    <string name="item">item</string>
+    <string name="quantity">quantity</string>
+    <string name="buy_for_5">Buy for 5!</string>
 </resources>

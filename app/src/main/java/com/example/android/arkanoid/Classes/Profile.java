@@ -6,6 +6,7 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.android.arkanoid.Activities.MainActivity;
+import com.example.android.arkanoid.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;

@@ -42,10 +42,10 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.519"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_profile"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="0.662" />
 
     <TextView
         android:id="@+id/tvCoins"
@@ -55,26 +55,26 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.055"
+        app:layout_constraintHorizontal_bias="0.082"
         app:layout_constraintStart_toEndOf="@+id/coins"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.436" />
 
     <ImageView
         android:id="@+id/imageView_profile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
         android:contentDescription="@string/immagine_profilo"
         android:maxWidth="90dp"
         android:maxHeight="90dp"
+        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfile"
-        app:layout_constraintVertical_bias="0.015"
-        android:scaleType="centerInside"
-        android:adjustViewBounds="true"/>
+        app:layout_constraintVertical_bias="0.015" />
 
     <TextView
         android:id="@+id/coins"
@@ -84,16 +84,17 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.246"
+        app:layout_constraintHorizontal_bias="0.252"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.363" />
+        app:layout_constraintVertical_bias="0.435" />
 
     <ImageView
         android:id="@+id/CoinsProfile"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
+        android:contentDescription="@string/todo"
         android:maxWidth="50dp"
         android:maxHeight="50dp"
         android:scaleType="centerInside"
@@ -103,8 +104,7 @@
         app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.352"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintVertical_bias="0.425" />
 
     <View
         android:id="@+id/viewSeparatorProfile"
@@ -118,12 +118,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.31" />
+        app:layout_constraintVertical_bias="0.377" />
 
     <ListView
         android:id="@+id/lvOwnedItems"
-        android:layout_width="407dp"
-        android:layout_height="380dp"
+        android:layout_width="wrap_content"
+        android:layout_height="325dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -159,10 +159,10 @@
         android:src="@drawable/pencil_icon"
         app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
+        app:layout_constraintHorizontal_bias="0.228"
         app:layout_constraintStart_toEndOf="@+id/etUsername"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.955" />
+        app:layout_constraintVertical_bias="0.804" />
 
     <ImageView
         android:id="@+id/ivBackProfile"
@@ -187,11 +187,23 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.169"
+        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.146" />
+        app:layout_constraintVertical_bias="0.352" />
+
+    <TextView
+        android:id="@+id/tvBestScoreProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Best Score:"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/tvBestScore"
+        app:layout_constraintEnd_toStartOf="@+id/tvBestScore"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

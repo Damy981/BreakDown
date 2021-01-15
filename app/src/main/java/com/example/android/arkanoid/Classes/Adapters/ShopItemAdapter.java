@@ -8,9 +8,13 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.example.android.arkanoid.Activities.MainActivity;
 import com.example.android.arkanoid.Classes.PowerUp;
@@ -18,6 +22,8 @@ import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
+
+import static android.view.View.VISIBLE;
 
 public class ShopItemAdapter extends BaseAdapter {
     private Context context;
@@ -27,6 +33,7 @@ public class ShopItemAdapter extends BaseAdapter {
     private ListView lv;
     private ArrayList<PowerUp> powerUps;
     private boolean buyButtonEnabled;
+    private int[] images = {R.drawable.coins_image, R.drawable.coins_image, R.drawable.freeze, R.drawable.explosion, R.drawable.coins_image};
 
 
     public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv, boolean buyButtonEnabled) {
@@ -59,14 +66,26 @@ public class ShopItemAdapter extends BaseAdapter {
         view = inflater.inflate(R.layout.item_shopitem, null);
         TextView shopItemName = view.findViewById(R.id.tvItemName);
         final TextView shopItemQuantity = view.findViewById(R.id.tvQuantity);
-        final Button buyItem = view.findViewById(R.id.btnBuy);
+        final ImageView buyItem = view.findViewById(R.id.btnBuy);
+        final TextView tvBuyShop = view.findViewById(R.id.textView_buy_shop);
+        CardView cvShopItem = view.findViewById(R.id.cvShop);
+        ImageView image = view.findViewById(R.id.ivShopImagePowerUp);
+        image.setImageResource(images[i]);
+
+        cvShopItem.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ConstraintLayout clBuyShopItem = view.findViewById(R.id.ClBuyShopItem);
+                clBuyShopItem.setVisibility(VISIBLE);
+            }
+        });
 
         if(!buyButtonEnabled){
             buyItem.setVisibility(View.GONE);   //the list view is used in profile too, but we don't need buy button there
         }
 
         shopItemName.setText(powerUps.get(i).getName());
-        buyItem.setText("Buy for " + powerUps.get(i).getPrice());
+        tvBuyShop.setText("Buy for " + powerUps.get(i).getPrice() + "!");
 
         setQuantityText(i, shopItemQuantity);
 
@@ -97,7 +116,7 @@ public class ShopItemAdapter extends BaseAdapter {
                         });
                     }
                 }
-                buyItem.setText("Buy for " + powerUps.get(e).getPrice());
+                tvBuyShop.setText("Buy for " + powerUps.get(e).getPrice() + "!");
             }
         });
         if (!buyItem.isEnabled()) {
