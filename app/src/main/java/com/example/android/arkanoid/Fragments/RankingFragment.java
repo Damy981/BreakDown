@@ -10,11 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.ListView;
 
+import com.example.android.arkanoid.Classes.Adapters.RankItemAdapter;
 import com.example.android.arkanoid.R;
 
 public class RankingFragment extends Fragment {
     ImageView btnBackRanking;
+    ListView lvRankItem;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -35,5 +38,11 @@ public class RankingFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+
+        lvRankItem = getActivity().findViewById(R.id.lvRankItem);
+
+        RankItemAdapter adapter = new RankItemAdapter(getContext());
+        lvRankItem.setAdapter(adapter);
     }
+
 }

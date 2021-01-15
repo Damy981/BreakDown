@@ -8,16 +8,17 @@
     android:background="@drawable/background_menu">
 
     <TextView
-        android:id="@+id/textView4"
-        android:layout_width="147dp"
-        android:layout_height="71dp"
+        android:id="@+id/tvRanking"
+        android:layout_width="142dp"
+        android:layout_height="49dp"
         android:text="@string/ranking"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.556"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516" />
+        app:layout_constraintVertical_bias="0.051" />
 
     <ImageView
         android:id="@+id/ivBackRanking"
@@ -36,4 +37,13 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.003"
         android:contentDescription="@string/todo" />
+
+    <ListView
+        android:id="@+id/lvRankItem"
+        android:layout_width="394dp"
+        android:layout_height="591dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
 </androidx.constraintlayout.widget.ConstraintLayout>

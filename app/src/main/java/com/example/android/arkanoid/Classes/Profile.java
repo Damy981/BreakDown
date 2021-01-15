@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class Profile implements Serializable {
 
-    static final int STATS_NUMBER = 2;
+    static public final int STATS_NUMBER = 2;
     private int levelNumber;
     private int coins;
     private String userName;

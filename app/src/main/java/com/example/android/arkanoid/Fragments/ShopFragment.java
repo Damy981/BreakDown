@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,7 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.arkanoid.Classes.Profile;
-import com.example.android.arkanoid.Classes.ShopItemAdapter;
+import com.example.android.arkanoid.Classes.Adapters.ShopItemAdapter;
 import com.example.android.arkanoid.R;
 
 

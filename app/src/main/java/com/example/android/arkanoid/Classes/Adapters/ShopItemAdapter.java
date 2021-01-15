@@ -1,4 +1,4 @@
-package com.example.android.arkanoid.Classes;
+package com.example.android.arkanoid.Classes.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.android.arkanoid.Activities.MainActivity;
+import com.example.android.arkanoid.Classes.PowerUp;
+import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
@@ -117,7 +119,7 @@ public class ShopItemAdapter extends BaseAdapter {
         profile.setCoins(profile.getCoins() - powerUps.get(e).getPrice());
         profile.setQuantities(powerUps.get(e).getQuantity() + 1, e);
         tvShopCoins.setText(String.valueOf(profile.getCoins()));
-        if (e < profile.STATS_NUMBER){
+        if (e < Profile.STATS_NUMBER){
             profile.setPrices(powerUps.get(e).getPrice() + 5, e);
         }
         profile.updateProfile();

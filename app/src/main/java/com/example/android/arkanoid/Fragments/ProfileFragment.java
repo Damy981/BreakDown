@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ import com.example.android.arkanoid.Activities.LoginActivity;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.ProfileImageGenerator;
 import com.example.android.arkanoid.Classes.Services;
-import com.example.android.arkanoid.Classes.ShopItemAdapter;
+import com.example.android.arkanoid.Classes.Adapters.ShopItemAdapter;
 import com.example.android.arkanoid.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;

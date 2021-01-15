@@ -6,22 +6,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.arkanoid.Classes.Quest;
-import com.example.android.arkanoid.Classes.QuestAdapter;
+import com.example.android.arkanoid.Classes.Adapters.QuestItemAdapter;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
@@ -72,7 +69,7 @@ public class QuestFragment extends Fragment {
 
         lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
 
-        QuestAdapter adapter = new QuestAdapter(getContext(), questsList);
+        QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList);
         lvQuestItem.setAdapter(adapter);
 
     }

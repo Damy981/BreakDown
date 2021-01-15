@@ -1,4 +1,4 @@
-package com.example.android.arkanoid.Classes;
+package com.example.android.arkanoid.Classes.Adapters;
 
 import android.content.Context;
 import android.util.Log;
@@ -8,20 +8,19 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
 
-public class QuestAdapter extends BaseAdapter {
-    Context context;
+public class QuestItemAdapter extends BaseAdapter {
     private LayoutInflater inflater;
-    TextView questText, done, total, reward;
-    private ArrayList<Quest> questsList = new ArrayList();
+    private TextView questText, done, total, reward;
+    private ArrayList<Quest> questsList;
 
 
-    public QuestAdapter(Context context, ArrayList<Quest> questsList) {
+    public QuestItemAdapter(Context context, ArrayList<Quest> questsList) {
         this.questsList = questsList;
-        this.context = context;
         inflater = (LayoutInflater.from(context));
     }
 
