@@ -42,7 +42,7 @@ public class MenuActivity extends AppCompatActivity {
     private Profile profile;
     private FragmentManager fm;
     private FragmentTransaction tx;
-    private Fragment fragment;
+    static public Fragment fragment;
     private ConstraintLayout menu;
     private Bundle bundle;
     private SharedPreferences preferences;

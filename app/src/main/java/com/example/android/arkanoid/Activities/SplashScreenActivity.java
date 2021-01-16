@@ -80,6 +80,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void getRankingFromDatabase() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
+        database.setPersistenceEnabled(true);
         DatabaseReference myRef = database.getReference();
         myRef.addValueEventListener(new ValueEventListener() {
             @Override

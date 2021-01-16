@@ -6,6 +6,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +16,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.android.arkanoid.Activities.GameActivity;
+import com.example.android.arkanoid.Activities.MenuActivity;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
@@ -53,7 +56,14 @@ public class GameModeMenuFragment extends Fragment {
         btnMultiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                MenuActivity.fragment = new MultiplayerMenuFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("profile", profile);
+                MenuActivity.fragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_place, MenuActivity.fragment);
+                fragmentTransaction.commit();
             }
         });
 
