@@ -46,4 +46,6 @@
     <string name="item">item</string>
     <string name="quantity">quantity</string>
     <string name="buy_for_5">Buy for 5!</string>
+    <string name="textview">TextView</string>
+    <string name="splash">/</string>
 </resources>

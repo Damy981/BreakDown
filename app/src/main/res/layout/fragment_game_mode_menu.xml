@@ -37,8 +37,8 @@
 
     <TextView
         android:id="@+id/tvGameMode"
-        android:layout_width="294dp"
-        android:layout_height="58dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:text="@string/select_game_mode"
         android:textColor="#FFFFFF"
         android:textSize="34sp"
