@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -177,7 +176,7 @@ public class LoginActivity extends AppCompatActivity {
     //create and initialize a local profile for the guest user and show a dialogbox with relative informations
     public void guestLogin(View view) {
         services.setSharedPreferences("GuestUser",0,1, null, "5,5,5,5,5", "10,0,0,0,0", 0);
-        services.createQuestsFiles(getApplicationContext());
+        services.createQuestsFile(getApplicationContext());
         showGuestAlert();
     }
 

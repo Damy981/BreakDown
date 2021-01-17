@@ -100,7 +100,7 @@ public class Services {
     }
 
     //create the file with the user quests
-    public void createQuestsFiles(Context context) {
+    public void createQuestsFile(Context context) {
         populateQuestList();
         try {
             FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+questsFileName);
@@ -180,6 +180,23 @@ public class Services {
 
     public String getQuestsFileName() {
         return questsFileName;
+    }
+
+    public void updateQuestsFile(Context context, ArrayList<Quest> questsList) {
+        try {
+            FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+questsFileName);
+            try {
+                ObjectOutputStream a = new ObjectOutputStream(questFile);
+                for(int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
+                    a.writeObject(questsList.get(i));
+                }
+                a.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

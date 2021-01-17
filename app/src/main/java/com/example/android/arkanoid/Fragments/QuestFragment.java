@@ -23,7 +23,6 @@ import com.example.android.arkanoid.R;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
@@ -33,7 +32,7 @@ public class QuestFragment extends Fragment {
     private ImageView btnBackQuest;
     private FileInputStream questFile;
     private Services services;
-    private ArrayList questsList = new ArrayList();
+    private ArrayList<Quest> questsList = new ArrayList();
     private Profile profile;
 
 
@@ -58,13 +57,22 @@ public class QuestFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
+        
+        getQuestListFromFile();
 
-        //retrieve quests information from file
+        lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
+
+        QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList);
+        lvQuestItem.setAdapter(adapter);
+    }
+
+    //retrieve quests information from file
+    private void getQuestListFromFile() {
         try {
             questFile = new FileInputStream(getActivity().getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
             ObjectInputStream q = new ObjectInputStream(questFile);
             for(int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
-                questsList.add(q.readObject());
+                questsList.add((Quest) q.readObject());
             }
             q.close();
         } catch (FileNotFoundException e) {
@@ -74,12 +82,14 @@ public class QuestFragment extends Fragment {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
+    }
 
-        lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
-
-        QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList);
-        lvQuestItem.setAdapter(adapter);
-
+    private void resetDailyQuest() {
+        getQuestListFromFile();
+        for (int i = 0; i < Quest.DAILY_QUEST_NUMBER; i++) {
+            questsList.get(i).setProgress(0);
+        }
+        services.updateQuestsFile(getContext(), questsList);
     }
 }
 

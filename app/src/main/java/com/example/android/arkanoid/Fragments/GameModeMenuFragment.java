@@ -22,10 +22,10 @@ import com.example.android.arkanoid.R;
 
 public class GameModeMenuFragment extends Fragment {
 
-    Button btnSinglePlayer;
-    Button btnMultiPlayer;
-    ImageView btnBack;
-    Profile profile;
+    private Button btnSinglePlayer;
+    private Button btnMultiPlayer;
+    private ImageView btnBack;
+    private Profile profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +21,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
-import java.util.ArrayList;
 
 /*Activity that manages the registration of a new user or an existing guest,
   the guest does not lose local progress because they will be loaded into the new profile
@@ -93,7 +91,7 @@ public class RegistrationActivity extends AppCompatActivity {
                                 services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
                                 File file = new File(getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
 
-                                services.createQuestsFiles(getApplicationContext());
+                                services.createQuestsFile(getApplicationContext());
                             }
                             //if user was a guest update only username and user id
                             else {

@@ -17,6 +17,7 @@ public class Quest implements Serializable {
     public static final int QUEST_CREATE_LEVEL = 5;
     public static final int QUEST_REGISTER_PROFILE = 6;
     public static final int QUEST_TOTAL_NUMBER = 7;
+    public static final int DAILY_QUEST_NUMBER = 3;
 
     public Quest(String questText, int progress, int target, int reward, boolean isDaily) {
         this.questText = questText;
