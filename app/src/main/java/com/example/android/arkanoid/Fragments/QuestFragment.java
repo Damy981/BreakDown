@@ -1,6 +1,8 @@
 package com.example.android.arkanoid.Fragments;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,6 +16,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.arkanoid.Classes.DateChangeReceiver;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.Adapters.QuestItemAdapter;
@@ -25,6 +28,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class QuestFragment extends Fragment {
 
@@ -47,6 +51,11 @@ public class QuestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        IntentFilter intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
+        Objects.requireNonNull(getContext()).registerReceiver(new DateChangeReceiver(), intentFilter);
+
         profile = (Profile) getArguments().getSerializable("profile");
         services = new Services(getActivity().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE), profile.getUserId());
         btnBackQuest = getView().findViewById(R.id.ivBackQuest);
@@ -57,7 +66,7 @@ public class QuestFragment extends Fragment {
                 getActivity().onBackPressed();
             }
         });
-        
+
         getQuestListFromFile();
 
         lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
@@ -86,10 +95,10 @@ public class QuestFragment extends Fragment {
 
     private void resetDailyQuest() {
         getQuestListFromFile();
-        for (int i = 0; i < Quest.DAILY_QUEST_NUMBER; i++) {
-            questsList.get(i).setProgress(0);
+        for (int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++) {
+            if (questsList.get(i).isDaily())
+                questsList.get(i).setProgress(0);
         }
         services.updateQuestsFile(getContext(), questsList);
     }
 }
-

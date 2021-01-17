@@ -7,7 +7,7 @@ public class Quest implements Serializable {
     private int progress;
     private int target;
     private int reward;
-    private boolean isDaily;
+    private final boolean isDaily;
     public static final long serialVersionUID = 19924200649L;
     public static final int QUEST_DESTROY_BRICKS_100 = 0;
     public static final int QUEST_WIN_5 = 1;
@@ -17,7 +17,6 @@ public class Quest implements Serializable {
     public static final int QUEST_CREATE_LEVEL = 5;
     public static final int QUEST_REGISTER_PROFILE = 6;
     public static final int QUEST_TOTAL_NUMBER = 7;
-    public static final int DAILY_QUEST_NUMBER = 3;
 
     public Quest(String questText, int progress, int target, int reward, boolean isDaily) {
         this.questText = questText;
