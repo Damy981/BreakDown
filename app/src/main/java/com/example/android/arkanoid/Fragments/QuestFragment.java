@@ -1,17 +1,20 @@
 package com.example.android.arkanoid.Fragments;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.Adapters.QuestItemAdapter;
 import com.example.android.arkanoid.Classes.Services;
@@ -26,11 +29,12 @@ import java.util.ArrayList;
 
 public class QuestFragment extends Fragment {
 
-    ListView lvQuestItem;
-    ImageView btnBackQuest;
-    FileInputStream questFile;
-    Services services = new Services();
+    private ListView lvQuestItem;
+    private ImageView btnBackQuest;
+    private FileInputStream questFile;
+    private Services services;
     private ArrayList questsList = new ArrayList();
+    private Profile profile;
 
 
     @Override
@@ -44,7 +48,8 @@ public class QuestFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        profile = (Profile) getArguments().getSerializable("profile");
+        services = new Services(getActivity().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE), profile.getUserId());
         btnBackQuest = getView().findViewById(R.id.ivBackQuest);
 
         btnBackQuest.setOnClickListener(new View.OnClickListener() {
@@ -56,9 +61,12 @@ public class QuestFragment extends Fragment {
 
         //retrieve quests information from file
         try {
-            questFile = getActivity().openFileInput(services.questsFileName);
-            ObjectInput q = new ObjectInputStream(questFile);
-            questsList = (ArrayList<Quest>) q.readObject();
+            questFile = new FileInputStream(getActivity().getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
+            ObjectInputStream q = new ObjectInputStream(questFile);
+            for(int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
+                questsList.add(q.readObject());
+            }
+            q.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

@@ -18,6 +18,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -35,6 +37,7 @@ public class RegistrationActivity extends AppCompatActivity {
     private EditText etName;
     private FirebaseAuth mAuth;
     private Services services;
+    private StorageReference questsRef;
 
 
     @Override
@@ -43,8 +46,9 @@ public class RegistrationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_registration);
 
         mAuth = FirebaseAuth.getInstance();
+        questsRef = FirebaseStorage.getInstance().getReference();
         extractStrings();
-        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), null);
     }
 
     private void extractStrings() {
@@ -86,11 +90,15 @@ public class RegistrationActivity extends AppCompatActivity {
                             //if user was not a guest but a new player, create new local profile
                             if (!username.equals("GuestUser")) {
                                 services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0", 0);
+                                services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
+                                File file = new File(getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
+
                                 services.createQuestsFiles(getApplicationContext());
                             }
                             //if user was a guest update only username and user id
                             else {
                                 services.setNameAndUserId(name, user.getUid());
+                                services.uploadQuestsFile(questsRef, getApplicationContext());
                             }
                             //upload profile data in the database, send confirm email and move to login activity
                             services.updateDatabase();

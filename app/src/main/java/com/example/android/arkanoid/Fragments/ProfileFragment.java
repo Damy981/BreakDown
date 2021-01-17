@@ -137,7 +137,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
 
     @Override
     public void afterTextChanged(Editable s) {
-        Services services = new Services(getContext().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE));
+        Services services = new Services(getContext().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE), user.getUid());
         services.setNameAndUserId(etUsername.getText().toString(), user.getUid());
     }
 }

@@ -27,6 +27,8 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 
@@ -46,7 +48,9 @@ public class LoginActivity extends AppCompatActivity {
     private Button guestButton;
     private Services services;
     private FirebaseUser user;
-
+    private FirebaseStorage storage;
+    private StorageReference storageRef;
+    private StorageReference questRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,8 +58,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+        storage = FirebaseStorage.getInstance();
         findViewById(R.id.progressBar).setVisibility(View.GONE);
-        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), null);
         extractUI();
     }
     private void extractUI() {
@@ -94,15 +99,14 @@ public class LoginActivity extends AppCompatActivity {
                             if (user.isEmailVerified()) {
                                 findViewById(R.id.btnLogin).setVisibility(View.INVISIBLE);
                                 retrieveProfileDataOnline();
+                                services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
+                                storageRef = storage.getReferenceFromUrl("gs://progetto-mobile-9d876.appspot.com/file/"+ services.getQuestsFileName());
 
                                 //check if the file with the user quests already exist, else download it from online database
-                                File file = new File(getApplicationContext().getFilesDir() + "/" + services.questsFileName);
-                                if(file.exists()) {
-                                    Log.i("fileDir", "esiste");
-                                }else {
-                                    //TODO scarica il file
+                                File file = new File(getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
+                                if(!file.exists()) {
+                                    services.downloadQuestsFile(storageRef, getApplicationContext());
                                 }
-
                                 loadingScreen();
                             }
                             //if the logged user did not verify the email, show an error

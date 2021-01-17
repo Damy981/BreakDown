@@ -29,6 +29,8 @@ import com.example.android.arkanoid.Fragments.SettingsFragment;
 import com.example.android.arkanoid.Fragments.ShopFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 /*Activity that manages the menu and show the various fragment. Builds the profile
   object from the local data and send that to the fragments. If internet is available
@@ -48,13 +50,15 @@ public class MenuActivity extends AppCompatActivity {
     private SharedPreferences preferences;
     private Services services;
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
+    private StorageReference mStorageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
         preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
-        services = new Services(preferences);
+        services = new Services(preferences, null);
+        mStorageRef = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
         //if user is a guest, hide the logout button
@@ -64,6 +68,7 @@ public class MenuActivity extends AppCompatActivity {
         fm = getSupportFragmentManager();
         //Builds the profile object from the local data
         retrieveProfileDataOffline();
+        services = new Services(preferences, profile.getUserId());
         bundle = new Bundle();
 
     }
@@ -81,7 +86,8 @@ public class MenuActivity extends AppCompatActivity {
     public void logout(View view) {
         if (isNetworkAvailable()) {
             services.updateDatabase();
-            mAuth.signOut();
+            if(services.uploadQuestsFile(mStorageRef, this))
+                mAuth.signOut();
             user = null;
             preferences.edit().clear().commit();
             Intent intent = new Intent(this, LoginActivity.class);
@@ -194,4 +200,6 @@ public class MenuActivity extends AppCompatActivity {
             menu = findViewById(R.id.menu);
         }
     }
+
+    //todo crea listener che carica il file ad ogni modifica
 }

@@ -1,5 +1,6 @@
 package com.example.android.arkanoid.Classes.Adapters;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +45,7 @@ public class ShopItemAdapter extends BaseAdapter {
         this.tvShopCoins = tvShopCoins;
         this.lv = lv;
         this.buyButtonEnabled = buyButtonEnabled;
+        Log.i("quantità", String.valueOf(profile.getCoins()));
     }
 
     @Override
@@ -76,23 +78,17 @@ public class ShopItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View view) {
                 ConstraintLayout clBuyShopItem = view.findViewById(R.id.ClBuyShopItem);
-                clBuyShopItem.setVisibility(VISIBLE);
+                if(clBuyShopItem.getVisibility() == View.GONE){
+                    clBuyShopItem.setVisibility(VISIBLE);
+                }else{
+                    clBuyShopItem.setVisibility(View.GONE);
+                }
             }
         });
 
-        if(!buyButtonEnabled){
-            buyItem.setVisibility(View.GONE);   //the list view is used in profile too, but we don't need buy button there
-        }
-
         shopItemName.setText(powerUps.get(i).getName());
         tvBuyShop.setText("Buy for " + powerUps.get(i).getPrice() + "!");
-
         setQuantityText(i, shopItemQuantity);
-
-        if (profile.getCoins() < powerUps.get(i).getPrice()){
-            buyItem.setEnabled(false);
-        }
-
 
         final int e = i;
         buyItem.setOnClickListener(new View.OnClickListener() {
@@ -100,35 +96,15 @@ public class ShopItemAdapter extends BaseAdapter {
             /*when button buy is clicked, call the buyItem function; then check if the user can afford
             to buy other items and if he/she can't, the buy button is disabled */
             public void onClick(View view) {
-                buyItem(e);
-                setQuantityText(e, shopItemQuantity);
-                for(int i = 0; i < powerUps.size(); i++){
-                    Button buyItem = lv.getChildAt(i).findViewById(R.id.btnBuy);
-                    if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) < powerUps.get(i).getPrice()) {
-                        buyItem.setEnabled(false);
-                        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                            @Override
-                            /*when buy button is disabled the entire row is clickable; when the user clicks, a message is displayed
-                            * this is called when buy button is set disabled after a purchase*/
-                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                                noCoinsMessage();
-                            }
-                        });
-                    }
-                }
-                tvBuyShop.setText("Buy for " + powerUps.get(e).getPrice() + "!");
-            }
-        });
-        if (!buyItem.isEnabled()) {
-            view.setOnClickListener(new View.OnClickListener() {
-                @Override
-                /*when buy button is disabled the entire row is clickable; when the user clicks, a message is displayed.
-                * this is called when buy button is already disabled when the user open the shop*/
-                public void onClick(View view) {
+                if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) >= powerUps.get(e).getPrice()) {
+                    buyItem(e);
+                    setQuantityText(e, shopItemQuantity);
+                    tvBuyShop.setText("Buy for " + powerUps.get(e).getPrice() + "!");
+                }else{
                     noCoinsMessage();
                 }
-            });
-        }
+            }
+        });
         return view;
     }
 
@@ -142,12 +118,16 @@ public class ShopItemAdapter extends BaseAdapter {
             profile.setPrices(powerUps.get(e).getPrice() + 5, e);
         }
         profile.updateProfile();
-        Log.i("quantità", profile.getQuantities());
     }
 
     //contain the message displayed when the user does not have enough coins to buy a power up
     private void noCoinsMessage() {
-        Toast.makeText(context, "Not enough coins", Toast.LENGTH_LONG).show();
+        new AlertDialog.Builder(context)
+                .setTitle("Error")
+                .setMessage("Not enough coins")
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 
     private void setQuantityText(int i, TextView shopItemQuantity) {

@@ -2,11 +2,20 @@ package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -22,22 +31,18 @@ public class Services {
     private SharedPreferences preferences;
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
     private ArrayList<Quest> questsList = new ArrayList();
-    public String questsFileName = "quest.txt";
-    public static int QUEST_DESTROY_BRICKS_100 = 0;
-    public static int QUEST_WIN_5 = 1;
-    public static int QUEST_WIN_3_WITH_ALL_LIVES = 2;
-    public static int QUEST_DESTROY_BRICKS_10000 = 3;
-    public static int QUEST_WIN_50_MULTIPLAYER = 4;
-    public static int QUEST_CREATE_LEVEL = 5;
-    public static int QUEST_REGISTER_PROFILE = 6;
+    private String questsFileName;
+    private String userId;
 
 
     public Services() {
 
     }
 
-    public Services(SharedPreferences preferences) {
+    public Services(SharedPreferences preferences, String userId) {
         this.preferences = preferences;
+        questsFileName = "quest_" + userId + ".bin";
+        this.userId = userId;
     }
 
     //set local data with parameters sent
@@ -81,7 +86,8 @@ public class Services {
         String prices = preferences.getString("prices", "5,5,5,5,5");
         String quantities = preferences.getString("quantities", "0,0,0,0,0");
         int bestScore = preferences.getInt("bestScore", 0);
-        Profile profile = new Profile(levelNumber, coins, userName, null, prices, quantities, bestScore);
+        String userId = preferences.getString("userId", null);
+        Profile profile = new Profile(levelNumber, coins, userName, userId, prices, quantities, bestScore);
         return profile;
     }
 
@@ -97,12 +103,13 @@ public class Services {
     public void createQuestsFiles(Context context) {
         populateQuestList();
         try {
-            FileOutputStream questFile = context.openFileOutput(questsFileName, context.MODE_PRIVATE);
-            Log.i("fileDir", String.valueOf(context.getFilesDir()));
+            FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+questsFileName);
             try {
                 ObjectOutputStream a = new ObjectOutputStream(questFile);
-                a.writeObject(questsList);
-                questFile.close();
+                for(int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
+                    a.writeObject(questsList.get(i));
+                }
+                a.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -131,4 +138,48 @@ public class Services {
         boolean tbAccelerometer = preferences.getBoolean("tbAccelStatus", false);
         return tbAccelerometer;
     }
+
+    public boolean uploadQuestsFile(StorageReference storageRef, Context context) {
+        final boolean[] r = new boolean[1];
+        Uri file = Uri.fromFile(new File(context.getFilesDir()+ "/" +questsFileName));
+        StorageReference questsRef = storageRef.child("file/"+ questsFileName);
+        questsRef.putFile(file)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        r[0] = true;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        r[0] = false;
+                    }
+                });
+        return r[0];
+    }
+
+    public void downloadQuestsFile(StorageReference questsRef, Context context) {
+        File localQuestsFile = null;
+        localQuestsFile = new File(context.getFilesDir(), questsFileName);
+        Log.i("Path temp", localQuestsFile.getAbsolutePath());
+        questsRef.getFile(localQuestsFile)
+        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                Log.i("Download", "completato");
+                //controlla se il file è vuoto
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Log.i("Download", "Non completato");
+            }
+        });
+    }
+
+    public String getQuestsFileName() {
+        return questsFileName;
+    }
+
 }

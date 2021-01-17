@@ -6,6 +6,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 
 import com.example.android.arkanoid.Classes.Game;
@@ -33,7 +34,7 @@ public class GameActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profile = (Profile) getIntent().getSerializableExtra("profile");
-        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE));
+        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), profile.getUserId());
         musicOn = services.getMusicSetting();
         accelerometerOn = services.getAccelerometerSetting();
         // create a new game
