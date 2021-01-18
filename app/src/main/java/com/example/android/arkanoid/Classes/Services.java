@@ -16,9 +16,11 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
@@ -197,6 +199,27 @@ public class Services {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+
+    //retrieve quests information from file
+    public ArrayList<Quest> getQuestListFromFile(Context context) {
+        ArrayList<Quest> questsList = new ArrayList<>();
+        FileInputStream questFile;
+        try {
+            questFile = new FileInputStream(context.getFilesDir() + "/" + getQuestsFileName());
+            ObjectInputStream q = new ObjectInputStream(questFile);
+            for(int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
+                questsList.add((Quest) q.readObject());
+            }
+            q.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return questsList;
     }
 
 }

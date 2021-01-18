@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
@@ -18,7 +19,9 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.android.arkanoid.Classes.DateChangeReceiver;
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Fragments.GameModeMenuFragment;
 import com.example.android.arkanoid.Fragments.ProfileFragment;
@@ -31,6 +34,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.Objects;
 
 /*Activity that manages the menu and show the various fragment. Builds the profile
   object from the local data and send that to the fragments. If internet is available
@@ -51,11 +57,17 @@ public class MenuActivity extends AppCompatActivity {
     private Services services;
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     private StorageReference mStorageRef;
+    static private boolean dayChanged;
+    private IntentFilter intentFilter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
+
+        intentFilter = new IntentFilter();
+        intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
+
         preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
         services = new Services(preferences, null);
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -70,7 +82,12 @@ public class MenuActivity extends AppCompatActivity {
         retrieveProfileDataOffline();
         services = new Services(preferences, profile.getUserId());
         bundle = new Bundle();
+    }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(), intentFilter);
     }
 
     //show the menu again if it was hidden by the fragment
@@ -148,6 +165,9 @@ public class MenuActivity extends AppCompatActivity {
                         profile = services.buildProfile();
                         if (isNetworkAvailable() && user != null)
                             services.updateDatabase();
+
+                        if(dayChanged)
+                            resetDailyQuest();
                     }
                 };
         if (preferences != null) {
@@ -201,5 +221,17 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
+    private void resetDailyQuest() {
+        ArrayList<Quest> questsList = services.getQuestListFromFile(getApplicationContext());
+        for (int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++) {
+            if (questsList.get(i).isDaily())
+                questsList.get(i).setProgress(0);
+        }
+        services.updateQuestsFile(getApplicationContext(), questsList);
+    }
+
+    static public void setDayChanged(boolean b) {
+        dayChanged = b;
+    }
     //todo crea listener che carica il file ad ogni modifica
 }
