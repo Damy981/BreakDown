@@ -34,17 +34,10 @@ public class Services {
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
     private ArrayList<Quest> questsList = new ArrayList();
     private String questsFileName;
-    private String userId;
-
-
-    public Services() {
-
-    }
 
     public Services(SharedPreferences preferences, String userId) {
         this.preferences = preferences;
         questsFileName = "quest_" + userId + ".bin";
-        this.userId = userId;
     }
 
     //set local data with parameters sent

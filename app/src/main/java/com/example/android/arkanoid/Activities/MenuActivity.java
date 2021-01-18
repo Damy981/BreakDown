@@ -60,6 +60,7 @@ public class MenuActivity extends AppCompatActivity {
     private StorageReference mStorageRef;
     static private boolean dayChanged;
     private IntentFilter intentFilter;
+    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,10 +75,16 @@ public class MenuActivity extends AppCompatActivity {
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
-        services = new Services(preferences, user.getUid());
-        //if user is a guest, hide the logout button
-        if (user == null)
+
+        if (user == null) {
             findViewById(R.id.btnLogout).setVisibility(View.GONE);
+            userId = null;
+        }
+        else
+            userId = user.getUid();
+
+        services = new Services(preferences, userId);
+        //if user is a guest, hide the logout button
         menu = findViewById(R.id.menu);
         fm = getSupportFragmentManager();
         //Builds the profile object from the local data

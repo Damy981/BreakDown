@@ -68,7 +68,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private MediaPlayer explosionSound;
     private MediaPlayer hurtSound;
     private Services services;
-    private ArrayList<Quest> quests = new ArrayList<>();
+    private ArrayList<Quest> quests;
 
     public Game(Context context, int lives, int score, Profile profile, Services services) {
         super(context);
@@ -84,6 +84,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
         explosiveBall = false;
+        quests = profile.getQuestsList();
 
         hitSound = MediaPlayer.create(context, R.raw.hit);
         explosionSound = MediaPlayer.create(context, R.raw.explosion);
@@ -110,7 +111,6 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         brickList = levelMap.getBrickList();
         this.setOnTouchListener(this);
         ball.increaseSpeed(level);
-        openQuestFile();
     }
 
     //set background
@@ -364,22 +364,5 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 return i;
         }
         return -1;
-    }
-
-    private void openQuestFile() {
-        try {
-            FileInputStream questFile = context.openFileInput(services.getQuestsFileName());
-            ObjectInputStream q = new ObjectInputStream(questFile);
-            for( int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
-                quests.add((Quest) q.readObject());
-            }
-            q.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
     }
 }

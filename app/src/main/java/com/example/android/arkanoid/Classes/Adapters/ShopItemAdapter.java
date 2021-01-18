@@ -45,7 +45,6 @@ public class ShopItemAdapter extends BaseAdapter {
         this.tvShopCoins = tvShopCoins;
         this.lv = lv;
         this.buyButtonEnabled = buyButtonEnabled;
-        Log.i("quantità", String.valueOf(profile.getCoins()));
     }
 
     @Override

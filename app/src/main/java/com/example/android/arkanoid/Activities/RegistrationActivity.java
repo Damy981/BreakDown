@@ -86,19 +86,20 @@ public class RegistrationActivity extends AppCompatActivity {
                             //get userName from local data to check if user was already playing as a guest
                             String username = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE).getString("userName", "null");
                             //if user was not a guest but a new player, create new local profile
+                            services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
                             if (!username.equals("GuestUser")) {
                                 services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0", 0);
-                                services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
-                                File file = new File(getApplicationContext().getFilesDir() + "/" + services.getQuestsFileName());
-
                                 services.createQuestsFile(getApplicationContext());
                             }
                             //if user was a guest update only username and user id
                             else {
                                 services.setNameAndUserId(name, user.getUid());
-                                services.uploadQuestsFile(questsRef, getApplicationContext());
+                                File fileOld = new File (getApplicationContext().getFilesDir() + "/quest_null.bin");
+                                File fileNew = new File(getApplicationContext().getFilesDir() + "/quest_" + user.getUid() + ".bin");
+                                fileOld.renameTo(fileNew);
                             }
                             //upload profile data in the database, send confirm email and move to login activity
+                            services.uploadQuestsFile(questsRef, getApplicationContext());
                             services.updateDatabase();
                             user.sendEmailVerification();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);

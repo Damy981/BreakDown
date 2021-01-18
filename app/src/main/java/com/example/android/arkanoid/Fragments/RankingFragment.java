@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.android.arkanoid.Activities.SplashScreenActivity;
 import com.example.android.arkanoid.Classes.Adapters.RankItemAdapter;
@@ -57,8 +56,8 @@ public class RankingFragment extends Fragment {
 
         lvRankItem = getActivity().findViewById(R.id.lvRankItem);
 
-        rankingUsername = new ArrayList<String>();
-        rankingBestScore = new ArrayList<String>();
+        rankingUsername = new ArrayList<>();
+        rankingBestScore = new ArrayList<>();
 
         rankingMap = SplashScreenActivity.rankingMap;
 
