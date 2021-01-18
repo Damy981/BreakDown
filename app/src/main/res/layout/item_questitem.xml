@@ -5,7 +5,7 @@
     android:id="@+id/clQuestItem"
     android:orientation="vertical"
     android:paddingTop="10dp"
-    android:paddingBottom="1dp"
+    android:paddingBottom="10dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -85,7 +85,7 @@
                 android:id="@+id/tvReward"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/textview"
+                android:text="@string/coins"
                 android:textSize="22sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -112,17 +112,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
+                android:contentDescription="@string/todo"
                 android:maxWidth="40dp"
                 android:maxHeight="40dp"
                 android:scaleType="centerInside"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintHorizontal_bias="0.583"
                 app:layout_constraintStart_toEndOf="@+id/tvReward"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.857"
-                app:srcCompat="@drawable/coins_image"
-                android:contentDescription="@string/todo" />
+                app:layout_constraintVertical_bias="0.828"
+                app:srcCompat="@drawable/coins_image" />
 
             <Button
                 android:id="@+id/btnGetReward"

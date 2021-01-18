@@ -34,7 +34,7 @@ public class ShopItemAdapter extends BaseAdapter {
     private ListView lv;
     private ArrayList<PowerUp> powerUps;
     private boolean buyButtonEnabled;
-    private int[] images = {R.drawable.coins_image, R.drawable.coins_image, R.drawable.freeze, R.drawable.explosion, R.drawable.coins_image};
+    private int[] images = {R.drawable.coin_drop, R.drawable.coins_image, R.drawable.freeze, R.drawable.explosion};
 
 
     public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv, boolean buyButtonEnabled) {

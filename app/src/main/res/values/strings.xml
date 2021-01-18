@@ -49,4 +49,12 @@
     <string name="textview">TextView</string>
     <string name="splash">/</string>
     <string name="hashtag">#</string>
+    <string name="username">Username</string>
+    <string name="best_score">Best Score:</string>
+    <string name="stats_and_power_ups"><![CDATA[Stats & power ups:]]></string>
+    <string name="leaderboard">Leaderboard</string>
+    <string name="rank">Rank</string>
+    <string name="player">Player</string>
+    <string name="score">Score</string>
+    <string name="points">Points</string>
 </resources>

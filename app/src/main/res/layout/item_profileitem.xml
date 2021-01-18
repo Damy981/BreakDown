@@ -7,7 +7,7 @@
     android:paddingLeft="8dp"
     android:paddingTop="5dp"
     android:paddingRight="8dp"
-    android:paddingBottom="5dp">
+    android:paddingBottom="10dp">
 
     <ImageView
         android:id="@+id/ivShopImagePowerUp"
@@ -18,9 +18,10 @@
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.052"
+        app:layout_constraintHorizontal_bias="0.048"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.041" />
 
     <TextView
         android:id="@+id/tvItemName"
@@ -28,13 +29,13 @@
         android:layout_height="wrap_content"
         android:hint="@string/item"
         android:textColor="#FFFFFF"
-        android:textSize="22sp"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintHorizontal_bias="0.193"
         app:layout_constraintStart_toEndOf="@+id/ivShopImagePowerUp"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.179" />
+        app:layout_constraintVertical_bias="0.098" />
 
     <TextView
         android:id="@+id/tvQuantity"
@@ -45,7 +46,7 @@
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.202"
         app:layout_constraintStart_toEndOf="@+id/ivShopImagePowerUp"
         app:layout_constraintTop_toBottomOf="@+id/tvItemName"
         app:layout_constraintVertical_bias="1.0" />

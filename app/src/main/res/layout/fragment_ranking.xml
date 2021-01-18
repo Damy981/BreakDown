@@ -11,7 +11,7 @@
         android:id="@+id/tvRanking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Leaderboard"
+        android:text="@string/leaderboard"
         android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -40,21 +40,21 @@
 
     <ListView
         android:id="@+id/lvRankItem"
-        android:layout_width="416dp"
+        android:layout_width="0dp"
         android:layout_height="544dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRanking"
-        app:layout_constraintVertical_bias="0.844" />
+        app:layout_constraintVertical_bias="0.947" />
 
     <TextView
         android:id="@+id/tvRank"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:text="Rank"
+        android:text="@string/rank"
         android:textColor="@color/blue_marine"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvRankItem"
@@ -69,7 +69,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="42dp"
-        android:text="Player"
+        android:text="@string/player"
         android:textColor="@color/blue_marine"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvRankItem"
@@ -83,7 +83,7 @@
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Score"
+        android:text="@string/score"
         android:textSize="30sp"
         android:textColor="@color/blue_marine"
         app:layout_constraintBottom_toTopOf="@+id/lvRankItem"

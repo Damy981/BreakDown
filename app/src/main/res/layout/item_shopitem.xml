@@ -8,7 +8,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingTop="10dp"
-    android:paddingBottom="1dp">
+    android:paddingBottom="10dp">
 
 
     <androidx.cardview.widget.CardView
@@ -30,17 +30,19 @@
             android:layout_height="156dp"
             android:visibility="visible">
 
+
             <ImageView
                 android:id="@+id/ivShopImagePowerUp"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                android:layout_width="144dp"
+                android:layout_height="118dp"
                 android:contentDescription="@string/todo"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.54"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
 
             <TextView
                 android:id="@+id/tvItemName"
