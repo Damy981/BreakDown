@@ -15,6 +15,7 @@ import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -67,12 +68,13 @@ public class MenuActivity extends AppCompatActivity {
 
         intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
+        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(), intentFilter);
 
         preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
-        services = new Services(preferences, null);
         mStorageRef = FirebaseStorage.getInstance().getReference();
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
+        services = new Services(preferences, user.getUid());
         //if user is a guest, hide the logout button
         if (user == null)
             findViewById(R.id.btnLogout).setVisibility(View.GONE);
@@ -82,12 +84,6 @@ public class MenuActivity extends AppCompatActivity {
         retrieveProfileDataOffline();
         services = new Services(preferences, profile.getUserId());
         bundle = new Bundle();
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(), intentFilter);
     }
 
     //show the menu again if it was hidden by the fragment
@@ -103,12 +99,8 @@ public class MenuActivity extends AppCompatActivity {
     public void logout(View view) {
         if (isNetworkAvailable()) {
             services.updateDatabase();
-            if(services.uploadQuestsFile(mStorageRef, this))
-                mAuth.signOut();
-            user = null;
-            preferences.edit().clear().commit();
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
+            services.uploadQuestsFile(mStorageRef, this);
+            logoutLoadingScreen();
         } else
             Toast.makeText(MainActivity.context, "Internet connection not available, check your connection and try again", Toast.LENGTH_LONG).show();
     }
@@ -156,13 +148,15 @@ public class MenuActivity extends AppCompatActivity {
         if (isNetworkAvailable() && user != null) {
             services.updateDatabase();
         }
-        profile = services.buildProfile();
+        profile = services.buildProfile(getApplicationContext());
+        if(dayChanged)
+            resetDailyQuest();
         prefListener =
                 new SharedPreferences.OnSharedPreferenceChangeListener() {
 
                     @Override
                     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
-                        profile = services.buildProfile();
+                        profile = services.buildProfile(getApplicationContext());
                         if (isNetworkAvailable() && user != null)
                             services.updateDatabase();
 
@@ -233,5 +227,19 @@ public class MenuActivity extends AppCompatActivity {
     static public void setDayChanged(boolean b) {
         dayChanged = b;
     }
-    //todo crea listener che carica il file ad ogni modifica
+
+    private void logoutLoadingScreen() {
+        findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                mAuth.signOut();
+                user = null;
+                preferences.unregisterOnSharedPreferenceChangeListener(prefListener);
+                preferences.edit().clear().commit();
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+                startActivity(intent);
+            }
+        }, 1700);
+    }
 }

@@ -21,18 +21,20 @@ public class Profile implements Serializable {
     private int coins;
     private String userName;
     private ArrayList<PowerUp> powerUps = new ArrayList<>();
-    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball", "Item 5 "};
+    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball"};
     private String userId;
     private String prices;
     private String quantities;
     private int bestScore;
+    private ArrayList<Quest> questsList;
 
-    public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities, int bestScore) {
+    public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities, int bestScore, ArrayList<Quest> questsList) {
         this.userName = userName;
         this.levelNumber = levelNumber;
         this.coins = coins;
         this.userId = userId;
         this.bestScore = bestScore;
+        this.questsList = questsList;
         //SharedPreferences cannot store arrays, so numerical data for owned power-ups are stored in String arrays
         this.prices = prices;
         this.quantities = quantities;
@@ -88,6 +90,10 @@ public class Profile implements Serializable {
 
     public String getUserId () {
         return  userId;
+    }
+
+    public ArrayList<Quest> getQuestsList() {
+        return questsList;
     }
 
     public void increaseLevel() {
@@ -154,5 +160,10 @@ public class Profile implements Serializable {
 
     public void setBestScore(int bestScore) {
         this.bestScore = bestScore;
+    }
+
+    public void giveQuestReward(int i) {
+        int reward = questsList.get(i).getReward();
+        coins += reward;
     }
 }

@@ -81,7 +81,7 @@ public class Services {
     }
 
     //use the local data to create a profile object which is returned
-    public Profile buildProfile() {
+    public Profile buildProfile(Context context) {
         int coins = preferences.getInt("coins", 0);
         int levelNumber = preferences.getInt("levelNumber", 1);
         String userName = preferences.getString("userName", "GuestUser");
@@ -89,8 +89,8 @@ public class Services {
         String quantities = preferences.getString("quantities", "0,0,0,0,0");
         int bestScore = preferences.getInt("bestScore", 0);
         String userId = preferences.getString("userId", null);
-        Profile profile = new Profile(levelNumber, coins, userName, userId, prices, quantities, bestScore);
-        return profile;
+        questsList = getQuestListFromFile(context);
+        return new Profile(levelNumber, coins, userName, userId, prices, quantities, bestScore, questsList);
     }
 
     //set only username and userId in the local data, used when guest want to register
@@ -128,7 +128,7 @@ public class Services {
         questsList.add(new Quest("Destroy 10,000 bricks", 0, 10000, 250, false));
         questsList.add(new Quest("Win 50 games in multiplayer mode", 0, 50, 250, false));
         questsList.add(new Quest("Create a level", 0, 1, 30, false));
-        questsList.add(new Quest("Register your account", 0, 1, 30, false));
+        questsList.add(new Quest("Defuse 50 nitros", 0, 50, 250, false));
     }
 
     public boolean getMusicSetting() {
@@ -141,24 +141,10 @@ public class Services {
         return tbAccelerometer;
     }
 
-    public boolean uploadQuestsFile(StorageReference storageRef, Context context) {
-        final boolean[] r = new boolean[1];
+    public void uploadQuestsFile(StorageReference storageRef, Context context) {
         Uri file = Uri.fromFile(new File(context.getFilesDir()+ "/" +questsFileName));
         StorageReference questsRef = storageRef.child("file/"+ questsFileName);
-        questsRef.putFile(file)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        r[0] = true;
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        r[0] = false;
-                    }
-                });
-        return r[0];
+        questsRef.putFile(file);
     }
 
     public void downloadQuestsFile(StorageReference questsRef, Context context) {
@@ -170,7 +156,6 @@ public class Services {
             @Override
             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
                 Log.i("Download", "completato");
-                //controlla se il file è vuoto
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -221,5 +206,4 @@ public class Services {
         }
         return questsList;
     }
-
 }

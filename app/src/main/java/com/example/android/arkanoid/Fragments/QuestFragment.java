@@ -57,7 +57,7 @@ public class QuestFragment extends Fragment {
 
         lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
 
-        QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList);
+        QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList, profile);
         lvQuestItem.setAdapter(adapter);
     }
 }

@@ -18,9 +18,14 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 
+import com.example.android.arkanoid.Activities.GameActivity;
 import com.example.android.arkanoid.R;
 
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
@@ -62,8 +67,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private MediaPlayer hitSound;
     private MediaPlayer explosionSound;
     private MediaPlayer hurtSound;
+    private Services services;
+    private ArrayList<Quest> quests = new ArrayList<>();
 
-    public Game(Context context, int lives, int score, Profile profile) {
+    public Game(Context context, int lives, int score, Profile profile, Services services) {
         super(context);
         paint = new Paint();
 
@@ -72,6 +79,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.lives = lives;
         this.score = score;
         this.profile = profile;
+        this.services = services;
         level = this.profile.getLevelNumber();
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
@@ -102,6 +110,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         brickList = levelMap.getBrickList();
         this.setOnTouchListener(this);
         ball.increaseSpeed(level);
+        openQuestFile();
     }
 
     //set background
@@ -275,6 +284,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // find out if the player won or not
     private void win() {
         if (brickList.isEmpty()) {
+            quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
+            if(lives == GameActivity.LIVES){
+                quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
+            }
+            services.updateQuestsFile(context, quests);
             ++level;
             profile.increaseLevel();
             resetLevel();
@@ -300,6 +314,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         brickList.remove(i);
         score = score + 80;
         dropCoin();
+        quests.get(Quest.QUEST_DESTROY_BRICKS_100).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_100).getProgress() + 1);
+        quests.get(Quest.QUEST_DESTROY_BRICKS_10000).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_10000).getProgress() + 1);
+        services.updateQuestsFile(context, quests);
     }
 
     private void removeNitro() {
@@ -308,6 +325,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             if (b.isNitro()) {
                 explosionSound.start();
                 removeBrick(i);
+                quests.get(Quest.QUEST_DEFUSE_NITROS).setProgress(quests.get(Quest.QUEST_DEFUSE_NITROS).getProgress() + 1);
+                services.updateQuestsFile(context, quests);
             }
         }
     }
@@ -345,5 +364,22 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 return i;
         }
         return -1;
+    }
+
+    private void openQuestFile() {
+        try {
+            FileInputStream questFile = context.openFileInput(services.getQuestsFileName());
+            ObjectInputStream q = new ObjectInputStream(questFile);
+            for( int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++){
+                quests.add((Quest) q.readObject());
+            }
+            q.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }

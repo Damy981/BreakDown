@@ -29,6 +29,7 @@ public class GameActivity extends AppCompatActivity {
     private Services services;
     private boolean musicOn;
     private boolean accelerometerOn;
+    public static final int LIVES = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +39,7 @@ public class GameActivity extends AppCompatActivity {
         musicOn = services.getMusicSetting();
         accelerometerOn = services.getAccelerometerSetting();
         // create a new game
-        game = new Game(this, 3, 0, profile);
+        game = new Game(this, LIVES, 0, profile, services);
         gameLayout = new GameLayoutView(this, game);
         setContentView(gameLayout);
 
