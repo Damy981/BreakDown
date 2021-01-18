@@ -21,6 +21,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.android.arkanoid.Activities.LoginActivity;
+import com.example.android.arkanoid.Classes.Adapters.ProfileItemAdapter;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.ProfileImageGenerator;
 import com.example.android.arkanoid.Classes.Services;
@@ -80,8 +81,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         tvCoins.setText(String.valueOf(profile.getCoins()));
         tvBestScore.setText(String.valueOf(profile.getBestScore()));
 
-        ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), profile, tvCoins, lvOwnedItems, false);
+        ProfileItemAdapter adapter;
+        adapter = new ProfileItemAdapter(this.getActivity(),profile.getPowerUps());
         lvOwnedItems.setAdapter(adapter);
 
         generateProfileImage();

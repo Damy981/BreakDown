@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class RankItemAdapter extends BaseAdapter {
 
     private LayoutInflater inflater;
-    private TextView tvRankUsername, tvRankBestScore;
+    private TextView tvRankUsername, tvRankBestScore, tvNumberRanking;
     private ArrayList<String> rankingUsername;
     private ArrayList<String> rankingBestScore;
 
@@ -45,9 +45,11 @@ public class RankItemAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.item_rankitem, null);
         tvRankUsername = convertView.findViewById(R.id.tvRankUsername);
         tvRankBestScore = convertView.findViewById(R.id.tvRankBestScore);
+        tvNumberRanking = convertView.findViewById(R.id.tvNumberRanking);
 
         tvRankUsername.setText(rankingUsername.get(position));
         tvRankBestScore.setText(rankingBestScore.get(position));
+        tvNumberRanking.setText("#" + toString().valueOf(position+1));
 
         return convertView;
     }

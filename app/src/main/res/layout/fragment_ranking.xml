@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.RankingFragment"
-    android:background="@drawable/background_menu">
+    android:background="@drawable/background_menu"
+    tools:context=".Fragments.RankingFragment">
 
     <TextView
         android:id="@+id/tvRanking"
-        android:layout_width="142dp"
-        android:layout_height="49dp"
-        android:text="@string/ranking"
-        android:textSize="34sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Leaderboard"
+        android:textSize="36sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.556"
+        app:layout_constraintHorizontal_bias="0.552"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.051" />
+        app:layout_constraintVertical_bias="0.036" />
 
     <ImageView
         android:id="@+id/ivBackRanking"
@@ -26,6 +26,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="@drawable/effect_button_image"
+        android:contentDescription="@string/todo"
         android:maxWidth="65dp"
         android:maxHeight="60dp"
         android:scaleType="centerInside"
@@ -35,15 +36,60 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.003"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintVertical_bias="0.003" />
 
     <ListView
         android:id="@+id/lvRankItem"
-        android:layout_width="394dp"
-        android:layout_height="591dp"
+        android:layout_width="416dp"
+        android:layout_height="544dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRanking" />
+        app:layout_constraintTop_toBottomOf="@+id/tvRanking"
+        app:layout_constraintVertical_bias="0.844" />
+
+    <TextView
+        android:id="@+id/tvRank"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:text="Rank"
+        android:textColor="@color/blue_marine"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/lvRankItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/tvPlayer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="42dp"
+        android:text="Player"
+        android:textColor="@color/blue_marine"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/lvRankItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.41"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:textSize="30sp"
+        android:textColor="@color/blue_marine"
+        app:layout_constraintBottom_toTopOf="@+id/lvRankItem"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintStart_toEndOf="@+id/tvPlayer"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>
