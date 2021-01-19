@@ -6,7 +6,6 @@ import android.preference.PreferenceManager;
 import android.util.Log;
 
 import com.example.android.arkanoid.Activities.MainActivity;
-import com.example.android.arkanoid.R;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -163,7 +162,12 @@ public class Profile implements Serializable {
     }
 
     public void giveQuestReward(int i) {
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
         int reward = questsList.get(i).getReward();
         coins += reward;
+        questsList.get(i).setRewardRedeemed(true);
+        updateProfile();
+        Services services = new Services(preferences, userId);
+        services.updateQuestsFile(MainActivity.context, questsList);
     }
 }

@@ -277,6 +277,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         ball.setX(size.x / 2);
         ball.setY(size.y - 480);
         ball.generateSpeed();
+        ball.increaseSpeed(level);
         levelMap = new Level(context, level);
         brickList = levelMap.getBrickList();
     }

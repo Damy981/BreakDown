@@ -58,14 +58,17 @@ public class QuestItemAdapter extends BaseAdapter {
         done.setText(String.valueOf(questsList.get(position).getProgress()));
         total.setText(String.valueOf(questsList.get(position).getTarget()));
         reward.setText(String.valueOf(questsList.get(position).getReward()));
+
         if(profile.getQuestsList().get(position).isCompleted()) {
             btnGetReward.setVisibility(View.VISIBLE);
             if(!profile.getQuestsList().get(position).isRewardRedeemed()){
                 btnGetReward.setText("Redeem");
+                final View finalConvertView = convertView;
                 btnGetReward.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         profile.giveQuestReward(position);
+                        Button btnGetReward = finalConvertView.findViewById(R.id.btnGetReward);
                         btnGetReward.setText("Redeemed");
                         btnGetReward.setEnabled(false);
                     }

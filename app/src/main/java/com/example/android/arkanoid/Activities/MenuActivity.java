@@ -58,7 +58,6 @@ public class MenuActivity extends AppCompatActivity {
     private Services services;
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     private StorageReference mStorageRef;
-    static private boolean dayChanged;
     private IntentFilter intentFilter;
     private String userId;
 
@@ -69,7 +68,6 @@ public class MenuActivity extends AppCompatActivity {
 
         intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
-        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(), intentFilter);
 
         preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -90,6 +88,7 @@ public class MenuActivity extends AppCompatActivity {
         //Builds the profile object from the local data
         retrieveProfileDataOffline();
         services = new Services(preferences, profile.getUserId());
+        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(services, getApplicationContext()), intentFilter);
         bundle = new Bundle();
     }
 
@@ -156,8 +155,7 @@ public class MenuActivity extends AppCompatActivity {
             services.updateDatabase();
         }
         profile = services.buildProfile(getApplicationContext());
-        if(dayChanged)
-            resetDailyQuest();
+
         prefListener =
                 new SharedPreferences.OnSharedPreferenceChangeListener() {
 
@@ -166,9 +164,6 @@ public class MenuActivity extends AppCompatActivity {
                         profile = services.buildProfile(getApplicationContext());
                         if (isNetworkAvailable() && user != null)
                             services.updateDatabase();
-
-                        if(dayChanged)
-                            resetDailyQuest();
                     }
                 };
         if (preferences != null) {
@@ -185,6 +180,9 @@ public class MenuActivity extends AppCompatActivity {
             tx = fm.beginTransaction();
             tx.remove(fragment).commit();
             menu.setVisibility(View.VISIBLE);
+            profile = services.buildProfile(getApplicationContext());
+            if (isNetworkAvailable())
+                services.uploadQuestsFile(mStorageRef, getApplicationContext());
         }
     }
 
@@ -220,19 +218,6 @@ public class MenuActivity extends AppCompatActivity {
             setContentView(R.layout.activity_menu_land);
             menu = findViewById(R.id.menu);
         }
-    }
-
-    private void resetDailyQuest() {
-        ArrayList<Quest> questsList = services.getQuestListFromFile(getApplicationContext());
-        for (int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++) {
-            if (questsList.get(i).isDaily())
-                questsList.get(i).setProgress(0);
-        }
-        services.updateQuestsFile(getApplicationContext(), questsList);
-    }
-
-    static public void setDayChanged(boolean b) {
-        dayChanged = b;
     }
 
     private void logoutLoadingScreen() {

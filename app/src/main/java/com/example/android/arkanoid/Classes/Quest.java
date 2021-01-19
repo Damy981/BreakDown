@@ -42,6 +42,10 @@ public class Quest implements Serializable {
         }
     }
 
+    public void setCompleted(boolean b) {
+        isCompleted = b;
+    }
+
     public String getQuestText() {
         return questText;
     }
@@ -72,5 +76,9 @@ public class Quest implements Serializable {
 
     public void setRewardRedeemed(boolean rewardRedeemed) {
         isRewardRedeemed = rewardRedeemed;
+    }
+
+    public void resetProgress() {
+        progress = 0;
     }
 }

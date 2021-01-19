@@ -44,7 +44,7 @@ public class Level {
             for (int j = COLUMN_START; j < COLUMN_START + COLUMN_NUMBER; j++) {
                 Brick b = new Brick(context, j * BRICK_HORIZONTAL_DISTANCE, i * BRICK_VERTICAL_DISTANCE, level);
 
-                if (level >= 5) {
+                if (level >= 15) {
                     if (i == iNitro && j == jNitro) {
                         b.createNitro();
                         b.setHardFalse();

@@ -41,7 +41,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         SharedPreferences preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
         // Check if user is signed in with an active account (not-null) and update the string with the right class name.
         if(user != null) {
-            Log.i("cacca", user.getUid());
             if (user.isEmailVerified())
                 activityToStart = "com.example.android.arkanoid.Activities.MenuActivity";
             else
@@ -49,7 +48,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         }
 
         else {
-            Log.i("cacca", "2");
             if (preferences.getString("userName", null) != null)
                 activityToStart = "com.example.android.arkanoid.Activities.MenuActivity";
             else
