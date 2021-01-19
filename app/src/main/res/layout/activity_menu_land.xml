@@ -104,20 +104,20 @@
             android:id="@+id/btnLevelEditor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:maxWidth="78dp"
             android:maxHeight="74dp"
             android:onClick="btnLevelEditorClick"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.621"
+            app:layout_constraintHorizontal_bias="0.617"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.896"
-            app:srcCompat="@drawable/level_editor_image"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            app:layout_constraintVertical_bias="0.902"
+            app:srcCompat="@drawable/level_editor_image" />
 
         <ImageView
             android:id="@+id/btnQuest"
@@ -161,20 +161,20 @@
             android:id="@+id/btnRanking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:maxWidth="78dp"
             android:maxHeight="74dp"
             android:onClick="btnRankingClick"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.078"
+            app:layout_constraintHorizontal_bias="0.077"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.91"
-            app:srcCompat="@drawable/ranking_image"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            app:layout_constraintVertical_bias="0.902"
+            app:srcCompat="@drawable/ranking_image" />
 
         <TextView
             android:id="@+id/Ranking"
@@ -223,10 +223,10 @@
             android:textSize="18sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.92"
+            app:layout_constraintHorizontal_bias="0.921"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.976" />
+            app:layout_constraintVertical_bias="0.984" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

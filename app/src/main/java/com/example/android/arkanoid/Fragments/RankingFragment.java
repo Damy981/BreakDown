@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.example.android.arkanoid.Activities.SplashScreenActivity;
 import com.example.android.arkanoid.Classes.Adapters.RankItemAdapter;
@@ -36,7 +37,7 @@ public class RankingFragment extends Fragment {
     private HashMap<String,String> rankingMap;
     private ArrayList<String> rankingUsername;
     private ArrayList<String> rankingBestScore;
-    private Button btnShare;
+    private ImageView btnShare;
     private Profile profile;
 
     @Override

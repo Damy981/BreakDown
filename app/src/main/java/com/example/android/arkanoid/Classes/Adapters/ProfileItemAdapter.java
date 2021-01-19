@@ -26,7 +26,7 @@ public class ProfileItemAdapter extends BaseAdapter {
     private Context context;
     private LayoutInflater inflater;
     private ArrayList<PowerUp> powerUps;
-    private int[] images = {R.drawable.coin_drop, R.drawable.coins_image, R.drawable.freeze, R.drawable.explosion};
+    private int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
 
 
     public ProfileItemAdapter(Context context, ArrayList<PowerUp> powerUps ) {
