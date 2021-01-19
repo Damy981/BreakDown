@@ -1,6 +1,7 @@
 package com.example.android.arkanoid.Fragments;
 
 import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,11 +12,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
 import com.example.android.arkanoid.Activities.SplashScreenActivity;
 import com.example.android.arkanoid.Classes.Adapters.RankItemAdapter;
+import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
@@ -33,6 +36,8 @@ public class RankingFragment extends Fragment {
     private HashMap<String,String> rankingMap;
     private ArrayList<String> rankingUsername;
     private ArrayList<String> rankingBestScore;
+    private Button btnShare;
+    private Profile profile;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,11 +51,21 @@ public class RankingFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        profile = (Profile) getArguments().getSerializable("profile");
+
         btnBackRanking = getActivity().findViewById(R.id.ivBackRanking);
         btnBackRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().onBackPressed();
+            }
+        });
+
+        btnShare = getActivity().findViewById(R.id.btnShare);
+        btnShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                shareLeaderBoard();
             }
         });
 
@@ -113,5 +128,25 @@ public class RankingFragment extends Fragment {
             }
         }
         return sortedMap;
+    }
+
+    private void shareLeaderBoard() {
+        Iterator iterator = rankingMap.entrySet().iterator();
+        int i = 0;
+        String score = "0";
+        while (iterator.hasNext()) {
+            i++;
+            Map.Entry entry = (Map.Entry) iterator.next();
+            if (entry.getKey().equals(profile.getUserName())) {
+                score = entry.getValue().toString();
+                break;
+            }
+        }
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi! " + profile.getUserName() + " is in position " + String.valueOf(i) + " with a score of " + score + " on Arkanoid, come play with us!");
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
     }
 }

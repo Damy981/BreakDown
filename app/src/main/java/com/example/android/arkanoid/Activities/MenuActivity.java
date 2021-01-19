@@ -156,8 +156,7 @@ public class MenuActivity extends AppCompatActivity {
         }
         profile = services.buildProfile(getApplicationContext());
 
-        prefListener =
-                new SharedPreferences.OnSharedPreferenceChangeListener() {
+        prefListener = new SharedPreferences.OnSharedPreferenceChangeListener() {
 
                     @Override
                     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
