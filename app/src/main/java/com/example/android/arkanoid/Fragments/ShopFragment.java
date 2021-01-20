@@ -45,7 +45,7 @@ public class ShopFragment extends Fragment {
 
         lv = getActivity().findViewById(R.id.lvShopItem);
         ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv, true);
+        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv);
         lv.setAdapter(adapter);
 
         ivBackShop.setOnClickListener(new View.OnClickListener() {

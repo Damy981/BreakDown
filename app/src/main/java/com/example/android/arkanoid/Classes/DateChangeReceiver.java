@@ -20,6 +20,7 @@ public class DateChangeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         resetDailyQuest(services, context);
     }
+
     private void resetDailyQuest(Services services, Context context) {
         ArrayList<Quest> questsList = services.getQuestListFromFile(context);
         for (int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++) {

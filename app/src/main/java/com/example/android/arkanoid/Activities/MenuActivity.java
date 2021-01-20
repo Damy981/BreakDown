@@ -22,7 +22,6 @@ import android.widget.Toast;
 
 import com.example.android.arkanoid.Classes.DateChangeReceiver;
 import com.example.android.arkanoid.Classes.Profile;
-import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Fragments.GameModeMenuFragment;
 import com.example.android.arkanoid.Fragments.ProfileFragment;
@@ -129,6 +128,7 @@ public class MenuActivity extends AppCompatActivity {
 
     public void btnLevelEditorClick(View view) {
         Intent intentLevelEditor = new Intent(this, LevelEditorActivity.class);
+        intentLevelEditor.putExtra("profile", profile);
         startActivity(intentLevelEditor);
     }
 

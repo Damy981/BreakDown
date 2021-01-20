@@ -1,6 +1,10 @@
 package com.example.android.arkanoid.Fragments;
 
+import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -56,14 +60,23 @@ public class GameModeMenuFragment extends Fragment {
         btnMultiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                MenuActivity.fragment = new MultiplayerMenuFragment();
-                FragmentManager fragmentManager = getFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("profile", profile);
-                MenuActivity.fragment.setArguments(bundle);
-                fragmentTransaction.replace(R.id.fragment_place, MenuActivity.fragment);
-                fragmentTransaction.commit();
+                if (isNetworkAvailable()) {
+                    MenuActivity.fragment = new MultiplayerMenuFragment();
+                    FragmentManager fragmentManager = getFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("profile", profile);
+                    MenuActivity.fragment.setArguments(bundle);
+                    fragmentTransaction.replace(R.id.fragment_place, MenuActivity.fragment);
+                    fragmentTransaction.commit();
+                }
+                else
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("No internet connection")
+                            .setMessage("Internet connection required to play multiplayer")
+                            .setPositiveButton(android.R.string.ok, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
             }
         });
 
@@ -74,6 +87,12 @@ public class GameModeMenuFragment extends Fragment {
             }
         });
 
+    }
 
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }

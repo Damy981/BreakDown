@@ -82,7 +82,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.services = services;
         level = this.profile.getLevelNumber();
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
-        paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() + START_PADDLE_LENGTH;
+        paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() * 2 + START_PADDLE_LENGTH;
         explosiveBall = false;
         quests = profile.getQuestsList();
 
@@ -151,6 +151,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
         //in case of lose draw "Game over!"
         if (gameOver) {
+            profile.updateProfile();
             paint.setTextSize(100);
             canvas.drawText("Game over!", size.x / 4, size.y / 2, paint);
         }
@@ -292,6 +293,13 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             services.updateQuestsFile(context, quests);
             ++level;
             profile.increaseLevel();
+            if (level <= 5)
+                profile.setCoins(profile.getCoins() + 50);
+            if (level > 5 && level <= 15)
+                profile.setCoins(profile.getCoins() + 100);
+            if (level > 15)
+                profile.setCoins(profile.getCoins() + 150);
+            profile.updateProfile();
             resetLevel();
             ball.increaseSpeed(level);
             start = false;
@@ -334,8 +342,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     private void dropCoin() {
         if (Math.random() < dropRate) {
-            Log.i("cacca", "soldiiii");
-            profile.setCoins(profile.getCoins() + 1);
+            profile.setCoins(profile.getCoins() + 5);
         }
     }
 

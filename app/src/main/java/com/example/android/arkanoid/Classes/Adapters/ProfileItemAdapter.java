@@ -1,6 +1,5 @@
 package com.example.android.arkanoid.Classes.Adapters;
 
-import android.app.AlertDialog;
 import android.content.Context;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,19 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.TextView;
 
-import androidx.cardview.widget.CardView;
-import androidx.constraintlayout.widget.ConstraintLayout;
-
 import com.example.android.arkanoid.Classes.PowerUp;
-import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
-
-import static android.view.View.VISIBLE;
 
 public class ProfileItemAdapter extends BaseAdapter {
     private Context context;
@@ -58,9 +50,22 @@ public class ProfileItemAdapter extends BaseAdapter {
         ImageView image = view.findViewById(R.id.ivShopImagePowerUp);
         image.setImageResource(images[i]);
         shopItemName.setText(powerUps.get(i).getName());
-        shopItemQuantity.setText("Quantity:" + String.valueOf(powerUps.get(i).getQuantity()));
+        setQuantityText(i, shopItemQuantity);
+
 
         return view;
+    }
+
+    private void setQuantityText(int i, TextView shopItemQuantity) {
+        if(i == PowerUp.COINS_DROP_RATE) {
+            shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");
+        }
+        else if(i == PowerUp.PADDLE_LENGTH) {
+            shopItemQuantity.setText("+" + powerUps.get(i).getQuantity());
+        }
+        else {
+            shopItemQuantity.setText("Quantity:" + String.valueOf(powerUps.get(i).getQuantity()));
+        }
     }
 
 }
