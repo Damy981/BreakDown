@@ -21,18 +21,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnForgotPass"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="sendResetPasswordMail"
-        android:text="@string/confirm"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.501"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.766" />
+
 
 
 
@@ -203,5 +192,17 @@
 
     </LinearLayout>
 
+    <Button
+        android:id="@+id/btnForgotPass"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shadow_button"
+        android:onClick="sendResetPasswordMail"
+        android:text="@string/confirm"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="120dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
