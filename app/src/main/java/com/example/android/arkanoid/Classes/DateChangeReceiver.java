@@ -10,11 +10,12 @@ import java.util.ArrayList;
 public class DateChangeReceiver extends BroadcastReceiver {
 
     private Services services;
-    private Context context;
 
-    public DateChangeReceiver(Services services, Context context) {
+    public DateChangeReceiver() {
+    }
+
+    public DateChangeReceiver(Services services) {
         this.services = services;
-        this.context = context;
     }
     @Override
     public void onReceive(Context context, Intent intent) {

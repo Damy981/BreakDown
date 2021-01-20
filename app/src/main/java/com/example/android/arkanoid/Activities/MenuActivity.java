@@ -87,7 +87,7 @@ public class MenuActivity extends AppCompatActivity {
         //Builds the profile object from the local data
         retrieveProfileDataOffline();
         services = new Services(preferences, profile.getUserId());
-        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(services, getApplicationContext()), intentFilter);
+        Objects.requireNonNull(getApplicationContext()).registerReceiver(new DateChangeReceiver(services), intentFilter);
         bundle = new Bundle();
     }
 
