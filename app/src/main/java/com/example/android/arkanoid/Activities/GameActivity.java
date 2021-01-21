@@ -11,6 +11,7 @@ import android.view.View;
 
 import com.example.android.arkanoid.Classes.Game;
 import com.example.android.arkanoid.Classes.GameLayoutView;
+import com.example.android.arkanoid.Classes.OnlineMatch;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Classes.UpdateThread;
@@ -30,16 +31,19 @@ public class GameActivity extends AppCompatActivity {
     private boolean musicOn;
     private boolean accelerometerOn;
     public static final int LIVES = 3;
+    private OnlineMatch match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         profile = (Profile) getIntent().getSerializableExtra("profile");
+        match = null;
+        match = (OnlineMatch) getIntent().getSerializableExtra("match");
         services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), profile.getUserId());
         musicOn = services.getMusicSetting();
         accelerometerOn = services.getAccelerometerSetting();
         // create a new game
-        game = new Game(this, LIVES, 0, profile, services);
+        game = new Game(this, LIVES, 0, profile, services, match);
         gameLayout = new GameLayoutView(this, game);
         setContentView(gameLayout);
 

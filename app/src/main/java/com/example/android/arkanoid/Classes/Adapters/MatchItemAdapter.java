@@ -2,6 +2,7 @@ package com.example.android.arkanoid.Classes.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -9,8 +10,11 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.android.arkanoid.Activities.GameActivity;
+import com.example.android.arkanoid.Classes.OnlineMatch;
 import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
+
+import java.util.ArrayList;
 
 public class MatchItemAdapter extends BaseAdapter {
 
@@ -19,15 +23,19 @@ public class MatchItemAdapter extends BaseAdapter {
     private TextView tvPlayer1;
     private TextView tvPlayer2;
     private Context context;
+    private ArrayList<OnlineMatch> matchList;
+    private LayoutInflater inflater;
 
-    public MatchItemAdapter (Context context, Profile profile) {
+    public MatchItemAdapter (Context context, Profile profile, ArrayList<OnlineMatch> matchList){
         this.profile = profile;
         this.context = context;
+        this.matchList = matchList;
+        inflater = (LayoutInflater.from(context));
     }
 
     @Override
     public int getCount() {
-        return 0;
+        return matchList.size();
     }
 
     @Override
@@ -42,29 +50,31 @@ public class MatchItemAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        convertView = inflater.inflate(R.layout.item_match, null);
         btnPlayMatch = convertView.findViewById(R.id.btnPlayMatch);
         tvPlayer1 = convertView.findViewById(R.id.tvPlayer1);
         tvPlayer2 = convertView.findViewById(R.id.tvPlayer2);
 
-        tvPlayer1.setText(profile.getUserName());
+        tvPlayer1.setText(matchList.get(position).getPlayer1());
+        tvPlayer2.setText(matchList.get(position).getPlayer2());
 
-        setPlayMatchListener();
+        setPlayMatchListener(matchList.get(position));
         return convertView;
     }
 
-    public void setPlayMatchListener() {
+    public void setPlayMatchListener(final OnlineMatch match) {
         btnPlayMatch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startGame();
+                startGame(match);
             }
         });
     }
 
-    private void startGame() {
+    private void startGame(OnlineMatch match) {
         Intent intentGame = new Intent(context, GameActivity.class);
         intentGame.putExtra("profile", profile);
+        intentGame.putExtra("match", match);
         context.startActivity(intentGame);
     }
 }

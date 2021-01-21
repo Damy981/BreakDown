@@ -13,7 +13,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,14 +29,18 @@ import java.util.ArrayList;
 public class Services {
 
     private SharedPreferences.Editor editor;
-    private SharedPreferences preferences;
+    private final SharedPreferences preferences;
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
     private ArrayList<Quest> questsList = new ArrayList();
-    private String questsFileName;
+    private final String questsFileName;
+    private final FirebaseDatabase database;
+    private final DatabaseReference myRef;
 
     public Services(SharedPreferences preferences, String userId) {
         this.preferences = preferences;
         questsFileName = "quest_" + userId + ".bin";
+        database = FirebaseDatabase.getInstance();
+        myRef = database.getReference("Profiles");
     }
 
     //set local data with parameters sent
@@ -56,8 +59,6 @@ public class Services {
 
     //upload the local data in the database using the userId as a key
     public void updateDatabase() {
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Profiles");
         String userId = preferences.getString("userId", null);
 
         myRef.child(userId).child("LevelNumber").setValue(preferences.getInt("levelNumber", 1));
@@ -125,13 +126,11 @@ public class Services {
     }
 
     public boolean getMusicSetting() {
-        boolean tbMusic = preferences.getBoolean("tbMusicStatus", true);
-        return tbMusic;
+        return preferences.getBoolean("tbMusicStatus", true);
     }
 
     public boolean getAccelerometerSetting() {
-        boolean tbAccelerometer = preferences.getBoolean("tbAccelStatus", false);
-        return tbAccelerometer;
+        return preferences.getBoolean("tbAccelStatus", false);
     }
 
     public void uploadQuestsFile(StorageReference storageRef, Context context) {
@@ -190,11 +189,7 @@ public class Services {
                 questsList.add((Quest) q.readObject());
             }
             q.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
+        } catch (ClassNotFoundException | IOException e) {
             e.printStackTrace();
         }
         return questsList;

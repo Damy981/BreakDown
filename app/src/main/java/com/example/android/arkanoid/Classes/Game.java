@@ -21,11 +21,6 @@ import android.view.WindowManager;
 import com.example.android.arkanoid.Activities.GameActivity;
 import com.example.android.arkanoid.R;
 
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
@@ -69,8 +64,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private MediaPlayer hurtSound;
     private Services services;
     private ArrayList<Quest> quests;
+    private OnlineMatch match;
 
-    public Game(Context context, int lives, int score, Profile profile, Services services) {
+    public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match) {
         super(context);
         paint = new Paint();
 
@@ -80,6 +76,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.score = score;
         this.profile = profile;
         this.services = services;
+        this.match = match;
         level = this.profile.getLevelNumber();
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() * 2 + START_PADDLE_LENGTH;
@@ -173,12 +170,21 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // checks the status of the game. whether my lives or whether the game is over
     private void checkLives() {
         if (lives == 1) {
+            score -= 350;
             gameOver = true;
             start = false;
+            if (match != null) {
+                int i = match.getCounter();
+                match.setScore(score, i);
+                match.increaseCounter();
+                match.updateMatch();
+            }
             invalidate();
-        } else {
+        }
+        else {
             hurtSound.start();
             lives--;
+            score -= 350;
             ball.setX(size.x / 2);
             ball.setY(size.y - 480);
             ball.generateSpeed();
@@ -321,7 +327,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     private void removeBrick(int i) {
         brickList.remove(i);
-        score = score + 80;
+        score += 80;
         dropCoin();
         quests.get(Quest.QUEST_DESTROY_BRICKS_100).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_100).getProgress() + 1);
         quests.get(Quest.QUEST_DESTROY_BRICKS_10000).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_10000).getProgress() + 1);
@@ -333,6 +339,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             Brick b = brickList.get(i);
             if (b.isNitro()) {
                 explosionSound.start();
+                score += 300;
                 removeBrick(i);
                 quests.get(Quest.QUEST_DEFUSE_NITROS).setProgress(quests.get(Quest.QUEST_DEFUSE_NITROS).getProgress() + 1);
                 services.updateQuestsFile(context, quests);
