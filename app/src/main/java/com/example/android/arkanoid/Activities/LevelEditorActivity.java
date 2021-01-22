@@ -10,7 +10,6 @@ import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.R;
 
 public class LevelEditorActivity extends AppCompatActivity {
-    private ImageView btnBackLevelEditor;
     private Profile profile;
 
     @Override
@@ -18,7 +17,8 @@ public class LevelEditorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_level_editor);
         profile = (Profile) getIntent().getSerializableExtra("profile");
-        btnBackLevelEditor = findViewById(R.id.ivBackLevelEditor);
+
+        ImageView btnBackLevelEditor = findViewById(R.id.ivBackLevelEditor);
         btnBackLevelEditor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

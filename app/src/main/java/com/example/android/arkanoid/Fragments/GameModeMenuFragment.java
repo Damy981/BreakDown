@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -60,7 +61,7 @@ public class GameModeMenuFragment extends Fragment {
         btnMultiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isNetworkAvailable()) {
+                if (isNetworkAvailable() && profile.getUserId() != null) {
                     MenuActivity.fragment = new MultiplayerMenuFragment();
                     FragmentManager fragmentManager = getFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -70,10 +71,17 @@ public class GameModeMenuFragment extends Fragment {
                     fragmentTransaction.replace(R.id.fragment_place, MenuActivity.fragment);
                     fragmentTransaction.commit();
                 }
-                else
+                else if (!isNetworkAvailable())
                     new AlertDialog.Builder(getContext())
                             .setTitle("No internet connection")
                             .setMessage("Internet connection required to play multiplayer")
+                            .setPositiveButton(android.R.string.ok, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                else if (profile.getUserId() == null)
+                    new AlertDialog.Builder(getContext())
+                            .setTitle("User not registered")
+                            .setMessage("Registered account required to play multiplayer")
                             .setPositiveButton(android.R.string.ok, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Point;
 import android.graphics.RectF;
@@ -141,6 +142,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         }
 
         // draw text
+        paint.setColor(Color.WHITE);
         paint.setTextSize(50);
         canvas.drawText("Level: " + level, 100, 100, paint);
         canvas.drawText("Lives: " + lives, 400, 100, paint);

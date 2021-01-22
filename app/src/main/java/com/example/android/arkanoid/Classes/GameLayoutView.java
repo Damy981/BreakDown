@@ -40,9 +40,9 @@ public class GameLayoutView extends RelativeLayout {
         params1 = new LayoutParams(180,180);
         params2 = new LayoutParams(180,180);
 
-        params1.leftMargin = 10;
+        params1.leftMargin = 50;
         params1.topMargin = 1800;
-        params2.leftMargin = 220;
+        params2.leftMargin = 350;
         params2.topMargin = 1800;
 
         setExplosiveBallOnClick();

@@ -172,7 +172,7 @@ public class MultiplayerMenuFragment extends Fragment {
                 myRef.child("Status").setValue(OnlineMatch.IN_PROGRESS);
                 DatabaseReference myRef2 = database.getReference("Profiles").child(userIdOpponent).child("OnlineMatches").child(id);
                 myRef2.child("Opponent").setValue(profile.getUserName());
-                myRef.child("Status").setValue(OnlineMatch.IN_PROGRESS);
+                myRef2.child("Status").setValue(OnlineMatch.IN_PROGRESS);
                 ProgressBar progressBar = getView().findViewById(R.id.progressBarMulti);
                 progressBar.setVisibility(View.GONE);
                 Button btnSearchOpponent  = getView().findViewById(R.id.btnSearchOpponent);
