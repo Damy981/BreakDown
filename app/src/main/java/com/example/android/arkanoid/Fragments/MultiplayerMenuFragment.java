@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,6 +33,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Random;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class MultiplayerMenuFragment extends Fragment {
@@ -199,6 +201,7 @@ public class MultiplayerMenuFragment extends Fragment {
                 String opponent = "";
                 long score[] = new long[3];
                 String status = "";
+                long matchCounter = 0;
 
                 HashMap<String,String> matchesMap= (HashMap<String,String>) dataSnapshot.child("OnlineMatches").getValue();
                 if(matchesMap != null) {
@@ -217,20 +220,27 @@ public class MultiplayerMenuFragment extends Fragment {
                             else if (entry2.getKey().equals("Status")) {
                                 status = (String) entry2.getValue();
                             }
+                            else if (entry2.getKey().equals("Counter")) {
+                                matchCounter = (long) entry2.getValue();
+                            }
                             else if (entry2.getKey().equals("Scores")) {
                                 HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
-                                Iterator i3 = hm2.entrySet().iterator();
+                                TreeMap<String, String> tm = new TreeMap<>(hm2);
+
+                                Iterator i3 = tm.entrySet().iterator();
+                                int counter = 0;
                                 while (i3.hasNext()) {
-                                    int counter = 0;
                                     Map.Entry entry3 = (Map.Entry) i3.next();
                                     score[counter] = (long) entry3.getValue();
+                                    ++counter;
                                 }
                             }
                         }
                         OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
                         match.setStatus(status);
+                        match.setCounter((int) matchCounter);
                         for (int j = 0; j < score.length; j++) {
-                            match.setScore(score[j], j);
+                            match.setPlayer1Score(score[j], j);
                         }
                         matchList.add(match);
                     }
@@ -254,5 +264,20 @@ public class MultiplayerMenuFragment extends Fragment {
                 btnSearchOpponent.setVisibility(View.VISIBLE);
             }
         }, 1700);
+    }
+
+    private void getOpponentScores() {
+        DatabaseReference myRef = database.getReference().child("Profiles").child(userIdOpponent);
+
+        myRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }

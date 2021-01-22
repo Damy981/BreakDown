@@ -1,5 +1,7 @@
 package com.example.android.arkanoid.Classes;
 
+import android.util.Log;
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -10,9 +12,11 @@ public class OnlineMatch implements Serializable {
     static public final String WIN = "Win";
     static public final String LOSE = "Lose";
     static public final String IN_PROGRESS = "In Progress";
+    static public final long GAME_NOT_PLAYED = -9999;
     private String player1;
     private String player2;
-    private long score[] = new long[3];
+    private long player1Score[] = new long[3];
+    private long player2Score[] = new long[3];
     private String id;
     private int counter;
     private String userId;
@@ -23,14 +27,21 @@ public class OnlineMatch implements Serializable {
         this.player2 = player2;
         this.id = id;
         this.userId = userId;
-        score[0] = 0;
-        score[1] = 0;
-        score[2] = 0;
+        player1Score[0] = 0;
+        player1Score[1] = 0;
+        player1Score[2] = 0;
+        player2Score[0] = GAME_NOT_PLAYED;
+        player2Score[1] = GAME_NOT_PLAYED;
+        player2Score[2] = GAME_NOT_PLAYED;
         counter = 0;
     }
 
-    public long[] getScore() {
-        return score;
+    public long[] getPlayer1Score() {
+        return player1Score;
+    }
+
+    public long[] getPlayer2Score() {
+        return player2Score;
     }
 
     public String getPlayer2() {
@@ -45,8 +56,12 @@ public class OnlineMatch implements Serializable {
         return id;
     }
 
-    public void setScore(long score, int i) {
-        this.score[i] = score;
+    public void setPlayer1Score(long score, int i) {
+        this.player1Score[i] = score;
+    }
+
+    public void setPlayer2Score(long score, int i) {
+        this.player2Score[i] = score;
     }
 
     public void increaseCounter() {
@@ -60,8 +75,9 @@ public class OnlineMatch implements Serializable {
     public void updateMatch() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches").child(id);
-        myRef.child("Scores").child("Score " + counter).setValue(score[counter - 1]);
+        myRef.child("Scores").child("Score " + counter).setValue(player1Score[counter - 1]);
         myRef.child("Status").setValue(status);
+        myRef.child("Counter").setValue(counter);
     }
 
     public void setStatus(String str) {
@@ -70,5 +86,9 @@ public class OnlineMatch implements Serializable {
 
     public String getStatus() {
         return status;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
     }
 }

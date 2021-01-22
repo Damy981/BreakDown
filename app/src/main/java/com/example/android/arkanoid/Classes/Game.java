@@ -176,7 +176,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             start = false;
             if (match != null) {
                 int i = match.getCounter();
-                match.setScore(score, i);
+                match.setPlayer1Score(score, i);
                 match.increaseCounter();
                 match.updateMatch();
             }
@@ -293,6 +293,12 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // find out if the player won or not
     private void win() {
         if (brickList.isEmpty()) {
+            if (match != null) {
+                int i = match.getCounter();
+                match.setPlayer1Score(score, i);
+                match.increaseCounter();
+                match.updateMatch();
+            }
             quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
             if(lives == GameActivity.LIVES){
                 quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
