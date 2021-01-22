@@ -63,14 +63,19 @@ public class MultiplayerMenuFragment extends Fragment {
         userId = profile.getUserId();
         lvMatchItem = getView().findViewById(R.id.lvMatch);
         btnSearchOpponent = getView().findViewById(R.id.btnSearchOpponent);
-        matchList = new ArrayList<>();
 
+        setSearchOpponentListener();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
         ProgressBar progressBar = getView().findViewById(R.id.progressBarMulti);
         progressBar.setVisibility(View.VISIBLE);
         Button btnSearchOpponent  = getView().findViewById(R.id.btnSearchOpponent);
         btnSearchOpponent.setVisibility(View.GONE);
-
-        setSearchOpponentListener();
+        matchList = new ArrayList<>();
         getAllMatch();
         setAdapter();
     }
