@@ -5,7 +5,7 @@
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_menu"
+    android:background="@drawable/background"
     android:visibility="visible"
     tools:context=".Activities.MenuActivity">
 
@@ -57,46 +57,41 @@
             app:layout_constraintTop_toTopOf="parent"
             android:visibility="gone" />
 
-        <Button
+        <ImageView
             android:id="@+id/BtnPlay"
-            android:layout_width="258dp"
-            android:layout_height="92dp"
-            android:background="@drawable/effect_button"
-            android:drawableEnd="@drawable/play_icon"
+            android:layout_width="220dp"
+            android:layout_height="100dp"
+            android:background="@drawable/btn_play"
+            android:contentDescription="@string/todo"
             android:elevation="1dp"
             android:onClick="startGameMenu"
             android:paddingStart="28dp"
             android:paddingEnd="28dp"
-            android:text="@string/play"
-            android:textColor="@android:color/white"
-            android:textSize="40sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.359"
+            app:layout_constraintVertical_bias="0.438"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnShop"
-            android:layout_width="189dp"
-            android:layout_height="55dp"
-            android:background="@drawable/effect_button"
-            android:drawableEnd="@drawable/shop_icon"
+            android:layout_width="160dp"
+            android:layout_height="65dp"
+            android:background="@drawable/btn_shop"
+            android:contentDescription="@string/todo"
             android:elevation="1dp"
-            android:ellipsize="middle"
             android:onClick="btnShopClick"
             android:paddingStart="20dp"
             android:paddingEnd="23dp"
             android:scrollbarSize="4dp"
-            android:text="@string/shop"
-            android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.486" />
+            app:layout_constraintVertical_bias="0.571" />
 
         <ImageView
             android:id="@+id/btnSettings"
@@ -249,7 +244,21 @@
             app:layout_constraintHorizontal_bias="0.881"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSettings"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.0"
+            android:font="@font/londrina"/>
+
+        <ImageView
+            android:id="@+id/logoMenu"
+            android:layout_width="240dp"
+            android:layout_height="210dp"
+            android:background="@drawable/logo"
+            android:contentDescription="@string/todo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.132" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

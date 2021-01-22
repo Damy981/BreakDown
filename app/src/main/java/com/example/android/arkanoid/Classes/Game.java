@@ -13,7 +13,6 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
-import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -113,7 +112,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     //set background
     private void setBackground(Context context) {
-        background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background));
+        background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_game));
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         display = wm.getDefaultDisplay();
         size = new Point();

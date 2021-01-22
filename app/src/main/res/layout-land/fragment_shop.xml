@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:scrollbarSize="34dp"
     tools:context=".Fragments.ShopFragment"
-    android:background="@drawable/background_menu">
+    android:background="@drawable/background">
 
     <ImageView
         android:id="@+id/imageShop"

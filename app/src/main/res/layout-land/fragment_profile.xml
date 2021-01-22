@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background_menu"
+    android:background="@drawable/background"
     tools:context=".Fragments.ProfileFragment">
 
     <Button
@@ -25,7 +25,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/profilo"
-        android:textSize="30sp"
+        android:textColor="#FFFFFF"
+        android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.499"
@@ -37,12 +38,14 @@
         android:id="@+id/etUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp"
+        android:autofillHints=""
         android:inputType="textCapWords"
-        android:text="TextView"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile"
+        android:text="@string/username"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toBottomOf="@+id/viewSeparatorProfile"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.509"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView_profile"
         app:layout_constraintVertical_bias="0.0" />
@@ -51,14 +54,15 @@
         android:id="@+id/tvCoins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textSize="28sp"
+        android:text="@string/points"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.015"
         app:layout_constraintStart_toEndOf="@+id/coins"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.628" />
 
     <ImageView
         android:id="@+id/imageView_profile"
@@ -66,28 +70,29 @@
         android:layout_height="60dp"
         android:adjustViewBounds="true"
         android:contentDescription="@string/immagine_profilo"
-        android:maxWidth="90dp"
-        android:maxHeight="90dp"
+        android:maxWidth="60dp"
+        android:maxHeight="60dp"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.499"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvProfile"
-        app:layout_constraintVertical_bias="0.015" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/coins"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/coinss"
-        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.206"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/CoinsProfile"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.498" />
+        app:layout_constraintVertical_bias="0.628" />
 
     <ImageView
         android:id="@+id/CoinsProfile"
@@ -100,57 +105,50 @@
         android:scaleType="centerInside"
         android:src="@drawable/coins_image"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/coins"
-        app:layout_constraintHorizontal_bias="0.851"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.043"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501" />
+        app:layout_constraintVertical_bias="0.62" />
 
     <View
         android:id="@+id/viewSeparatorProfile"
-        android:layout_width="0dp"
+        android:layout_width="wrap_content"
         android:layout_height="2dp"
-        android:layout_marginStart="45dp"
-        android:layout_marginEnd="45dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="13dp"
+        android:layout_marginEnd="24dp"
         android:background="#B3E5FC"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.425" />
+        app:layout_constraintVertical_bias="0.444" />
+
+    <ListView
+        android:id="@+id/lvOwnedItems"
+        android:layout_width="806dp"
+        android:layout_height="93dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvStats"
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvStats"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/statss"
-        android:textSize="28sp"
+        android:text="@string/stats_and_power_ups"
+        android:textColor="#FFFFFF"
+        android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lvOwnedItems"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.121"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CoinsProfile"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <ListView
-        android:id="@+id/lvOwnedItems"
-        android:layout_width="637dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:adjustViewBounds="true"
-        android:maxWidth="730dp"
-        android:maxHeight="100dp"
-        android:scaleType="centerInside"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.056"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0">
-
-    </ListView>
+        app:layout_constraintVertical_bias="0.723" />
 
     <ImageView
         android:id="@+id/ivPencilProfile"
@@ -159,16 +157,16 @@
         android:adjustViewBounds="true"
         android:background="@drawable/effect_button_image"
         android:contentDescription="@string/todo"
-        android:maxWidth="30dp"
-        android:maxHeight="25dp"
+        android:maxWidth="33dp"
+        android:maxHeight="27dp"
         android:scaleType="centerInside"
         android:src="@drawable/pencil_icon"
-        app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/etUsername"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.946" />
+        app:layout_constraintTop_toTopOf="@+id/etUsername"
+        app:layout_constraintVertical_bias="0.04" />
 
     <ImageView
         android:id="@+id/ivBackProfile"
@@ -176,6 +174,7 @@
         android:layout_height="wrap_content"
         android:adjustViewBounds="true"
         android:background="@drawable/effect_button_image"
+        android:contentDescription="@string/todo"
         android:maxWidth="65dp"
         android:maxHeight="60dp"
         android:scaleType="centerInside"
@@ -185,7 +184,34 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="@string/todo" />
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvBestScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/score"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.012"
+        app:layout_constraintStart_toEndOf="@+id/tvBestScoreProfile"
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/tvBestScoreProfile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/best_score"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toBottomOf="@+id/lvOwnedItems"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

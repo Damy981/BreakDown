@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Fragments.GameModeMenuFragment"
-    android:background="@drawable/background_menu">
+    android:background="@drawable/background">
 
     <Button
         android:id="@+id/btnSinglePlayer"
