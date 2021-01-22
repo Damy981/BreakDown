@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +100,7 @@ public class MultiplayerMenuFragment extends Fragment {
         getRandomOpponent();
         getUsernameDelay(id);
         match = new OnlineMatch(id, profile.getUserName(), usernameOpponent, userId);
+        match.setStatus(OnlineMatch.IN_PROGRESS);
 
     }
 
@@ -115,11 +115,9 @@ public class MultiplayerMenuFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                Log.i("cacca", "2");
                 HashMap<String, Object> profiles = (HashMap<String, Object>) dataSnapshot.child("Profiles").getValue();
                 Set<String> set = profiles.keySet();
                 set.remove(userId);
-                Log.i("cacca", set.toString());
 
                 getRandomUserId(set);
             }
@@ -137,7 +135,6 @@ public class MultiplayerMenuFragment extends Fragment {
         for(String str : set) {
             if (i == item) {
                 userIdOpponent = str;
-                Log.i("cacca", "1 " + userIdOpponent);
             }
             i++;
         }
@@ -172,8 +169,10 @@ public class MultiplayerMenuFragment extends Fragment {
             public void run() {
                 DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches").child(id);
                 myRef.child("Opponent").setValue(usernameOpponent);
+                myRef.child("Status").setValue(OnlineMatch.IN_PROGRESS);
                 DatabaseReference myRef2 = database.getReference("Profiles").child(userIdOpponent).child("OnlineMatches").child(id);
                 myRef2.child("Opponent").setValue(profile.getUserName());
+                myRef.child("Status").setValue(OnlineMatch.IN_PROGRESS);
                 ProgressBar progressBar = getView().findViewById(R.id.progressBarMulti);
                 progressBar.setVisibility(View.GONE);
                 Button btnSearchOpponent  = getView().findViewById(R.id.btnSearchOpponent);
@@ -194,37 +193,43 @@ public class MultiplayerMenuFragment extends Fragment {
                 String id;
                 String opponent = "";
                 long score[] = new long[3];
+                String status = "";
 
                 HashMap<String,String> matchesMap= (HashMap<String,String>) dataSnapshot.child("OnlineMatches").getValue();
-                Iterator i = matchesMap.entrySet().iterator();
-                while(i.hasNext()) {
-                    Map.Entry entry = (Map.Entry) i.next();
-                    id = (String) entry.getKey();
+                if(matchesMap != null) {
+                    Iterator i = matchesMap.entrySet().iterator();
+                    while (i.hasNext()) {
+                        Map.Entry entry = (Map.Entry) i.next();
+                        id = (String) entry.getKey();
 
-                    HashMap<String, String> hm = (HashMap<String, String>) entry.getValue();
-                    Iterator i2 = hm.entrySet().iterator();
-                    while(i2.hasNext()) {
-                        Map.Entry entry2 = (Map.Entry) i2.next();
-                        if (entry2.getKey().equals("Opponent")) {
-                            opponent = (String) entry2.getValue();
-                        }
-                        else if (entry2.getKey().equals("Scores")) {
-                            HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
-                            Iterator i3 = hm2.entrySet().iterator();
-                            while (i3.hasNext()) {
-                                int counter = 0;
-                                Map.Entry entry3 = (Map.Entry) i3.next();
-                                score[counter] = (long) entry3.getValue();
+                        HashMap<String, String> hm = (HashMap<String, String>) entry.getValue();
+                        Iterator i2 = hm.entrySet().iterator();
+                        while (i2.hasNext()) {
+                            Map.Entry entry2 = (Map.Entry) i2.next();
+                            if (entry2.getKey().equals("Opponent")) {
+                                opponent = (String) entry2.getValue();
+                            } 
+                            else if (entry2.getKey().equals("Status")) {
+                                status = (String) entry2.getValue();
+                            }
+                            else if (entry2.getKey().equals("Scores")) {
+                                HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
+                                Iterator i3 = hm2.entrySet().iterator();
+                                while (i3.hasNext()) {
+                                    int counter = 0;
+                                    Map.Entry entry3 = (Map.Entry) i3.next();
+                                    score[counter] = (long) entry3.getValue();
+                                }
                             }
                         }
+                        OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
+                        match.setStatus(status);
+                        for (int j = 0; j < score.length; j++) {
+                            match.setScore(score[j], j);
+                        }
+                        matchList.add(match);
                     }
-                    OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
-                    for (int j = 0; j < score.length; j++) {
-                        match.setScore(score[j], j);
-                    }
-                    matchList.add(match);
                 }
-
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

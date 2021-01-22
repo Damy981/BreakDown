@@ -22,6 +22,7 @@ public class MatchItemAdapter extends BaseAdapter {
     private Button btnPlayMatch;
     private TextView tvPlayer1;
     private TextView tvPlayer2;
+    private TextView tvStatus;
     private Context context;
     private ArrayList<OnlineMatch> matchList;
     private LayoutInflater inflater;
@@ -54,9 +55,11 @@ public class MatchItemAdapter extends BaseAdapter {
         btnPlayMatch = convertView.findViewById(R.id.btnPlayMatch);
         tvPlayer1 = convertView.findViewById(R.id.tvPlayer1);
         tvPlayer2 = convertView.findViewById(R.id.tvPlayer2);
+        tvStatus = convertView.findViewById(R.id.tvMatchStatus);
 
         tvPlayer1.setText(matchList.get(position).getPlayer1());
         tvPlayer2.setText(matchList.get(position).getPlayer2());
+        tvStatus.setText(matchList.get(position).getStatus());
 
         setPlayMatchListener(matchList.get(position));
         return convertView;

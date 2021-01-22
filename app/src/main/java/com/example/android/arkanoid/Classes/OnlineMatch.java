@@ -7,12 +7,16 @@ import java.io.Serializable;
 
 public class OnlineMatch implements Serializable {
 
+    static public final String WIN = "Win";
+    static public final String LOSE = "Lose";
+    static public final String IN_PROGRESS = "In Progress";
     private String player1;
     private String player2;
     private long score[] = new long[3];
     private String id;
     private int counter;
     private String userId;
+    private String status;
 
     public OnlineMatch(String id, String player1, String player2, String userId) {
         this.player1 = player1;
@@ -57,5 +61,14 @@ public class OnlineMatch implements Serializable {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches").child(id);
         myRef.child("Scores").child("Score " + counter).setValue(score[counter - 1]);
+        myRef.child("Status").setValue(status);
+    }
+
+    public void setStatus(String str) {
+        this.status = str;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }
