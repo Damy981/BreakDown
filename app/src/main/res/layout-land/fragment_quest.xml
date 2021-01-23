@@ -23,8 +23,8 @@
 
     <ListView
         android:id="@+id/lvQuestItem"
-        android:layout_width="0dp"
-        android:layout_height="600dp"
+        android:layout_width="746dp"
+        android:layout_height="232dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.454"
@@ -63,15 +63,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.047"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvQuest"
         app:layout_constraintVertical_bias="0.868" />
 
     <View
         android:id="@+id/vSeparatorQuest"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         android:background="@color/gold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

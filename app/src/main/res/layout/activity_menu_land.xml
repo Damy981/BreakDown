@@ -16,14 +16,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toTopOf="parent">
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/menu"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="@+id/fragment_place"
+        app:layout_constraintEnd_toEndOf="@+id/fragment_place"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="0dp">
+        app:layout_constraintTop_toTopOf="@+id/fragment_place">
 
         <ImageView
             android:id="@+id/btnLogout"
@@ -32,8 +35,8 @@
             android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
-            android:maxWidth="76dp"
-            android:maxHeight="64dp"
+            android:maxWidth="85dp"
+            android:maxHeight="80dp"
             android:onClick="logout"
             android:scaleType="centerInside"
             android:src="@drawable/logout_icon"
@@ -44,67 +47,57 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnPlay"
-            android:layout_width="244dp"
-            android:layout_height="82dp"
-            android:background="@drawable/effect_button"
-            android:drawableEnd="@drawable/play_icon"
+            android:layout_width="118dp"
+            android:layout_height="67dp"
+            android:background="@drawable/btn_play"
             android:onClick="startGameMenu"
             android:paddingStart="27dp"
             android:paddingEnd="27dp"
-            android:text="@string/play"
-            android:fontFamily="@font/londrina_solid"
-            android:textColor="@android:color/white"
-            android:textSize="45sp"
             android:textAlignment="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.474"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.209"
+            app:layout_constraintTop_toBottomOf="@+id/ivLogoLand"
+            app:layout_constraintVertical_bias="0.062"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <Button
+        <ImageView
             android:id="@+id/btnShop"
-            android:layout_width="189dp"
-            android:layout_height="55dp"
-            android:background="@drawable/effect_button"
-            android:drawableEnd="@drawable/shop_icon"
-            android:ellipsize="middle"
+            android:layout_width="82dp"
+            android:layout_height="54dp"
+            android:background="@drawable/btn_shop"
             android:onClick="btnShopClick"
             android:paddingStart="20dp"
-            android:fontFamily="@font/londrina_solid"
             android:paddingEnd="23dp"
             android:scrollbarSize="4dp"
-            android:text="@string/shop"
-            android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.477"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnPlay"
-            app:layout_constraintVertical_bias="0.089" />
+            app:layout_constraintVertical_bias="0.034" />
 
         <ImageView
             android:id="@+id/btnSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:maxWidth="78dp"
             android:maxHeight="74dp"
             android:onClick="btnSettingsClick"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.918"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.902"
-            app:srcCompat="@drawable/setting_image"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            app:srcCompat="@drawable/setting_image" />
 
         <ImageView
             android:id="@+id/btnLevelEditor"
@@ -129,39 +122,39 @@
             android:id="@+id/btnQuest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:maxWidth="78dp"
             android:maxHeight="74dp"
             android:onClick="btnQuestClick"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.337"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.902"
-            app:srcCompat="@drawable/quest_image"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            app:srcCompat="@drawable/quest_image" />
 
         <ImageView
             android:id="@+id/btnProfile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:maxWidth="85dp"
             android:maxHeight="80dp"
             android:onClick="btnProfileClick"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.003"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/user_image"
-            android:scaleType="centerInside"
-            android:adjustViewBounds="true"/>
+            app:srcCompat="@drawable/user_image" />
 
         <ImageView
             android:id="@+id/btnRanking"
@@ -186,13 +179,14 @@
             android:id="@+id/Ranking"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/londrina_solid"
             android:text="@string/ranking"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
-            android:fontFamily="@font/londrina_solid"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.984" />
 
@@ -200,9 +194,10 @@
             android:id="@+id/Quest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/londrina_solid"
             android:text="@string/quest"
             android:textSize="20sp"
-            android:fontFamily="@font/londrina_solid"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.35"
@@ -214,9 +209,10 @@
             android:id="@+id/LevelEditor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/londrina_solid"
             android:text="@string/level_editor"
             android:textSize="20sp"
-            android:fontFamily="@font/londrina_solid"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.623"
@@ -228,15 +224,32 @@
             android:id="@+id/Settings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/londrina_solid"
             android:text="@string/settings"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:fontFamily="@font/londrina_solid"
             app:layout_constraintHorizontal_bias="0.921"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.984" />
+
+        <ImageView
+            android:id="@+id/ivLogoLand"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:maxWidth="180dp"
+            android:maxHeight="130dp"
+            android:scaleType="centerInside"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.494"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

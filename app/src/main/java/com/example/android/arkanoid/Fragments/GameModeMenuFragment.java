@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +46,7 @@ public class GameModeMenuFragment extends Fragment {
 
         btnSinglePlayer = getView().findViewById(R.id.btnSinglePlayer);
         btnMultiPlayer = getView().findViewById(R.id.btnMultiPlayer);
-        btnBack = getView().findViewById(R.id.btnBackModeMenu);
+        btnBack = getView().findViewById(R.id.ivBackMultiplayer);
 
         btnSinglePlayer.setOnClickListener(new View.OnClickListener() {
             @Override

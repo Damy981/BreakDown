@@ -310,7 +310,7 @@ public class MultiplayerMenuFragment extends Fragment {
                     Iterator i2 = hm2.entrySet().iterator();
                     while (i2.hasNext()) {
                         Map.Entry entry2 = (Map.Entry) i2.next();
-                        if (entry2.getKey().equals("UserName") && opponent.equals(entry2.getValue())) 
+                        if (entry2.getKey().equals("UserName") && opponent.equals(entry2.getValue()))
                             str = (String) entry2.getValue();
                         if (entry2.getKey().equals("OnlineMatches") && str.equals(opponent)) {
                             HashMap<String, String> hm3 = (HashMap<String, String>) entry2.getValue();

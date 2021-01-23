@@ -28,35 +28,40 @@
 
     <TextView
         android:id="@+id/tvShop"
-        android:layout_width="124dp"
-        android:layout_height="65dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/londrina_solid"
         android:text="@string/shop"
-        android:textSize="50sp"
+        android:textColor="@color/grey"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.522"
+        app:layout_constraintHorizontal_bias="0.525"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.004" />
+        app:layout_constraintVertical_bias="0.049" />
 
     <TextView
         android:id="@+id/tvShopCoins"
-        android:layout_width="100dp"
-        android:layout_height="39dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/londrina_solid"
+        android:text="@string/quantity"
+        android:textColor="@color/white"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.38"
+        app:layout_constraintHorizontal_bias="0.372"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.866" />
+        app:layout_constraintVertical_bias="0.865" />
 
     <ListView
         android:id="@+id/lvShopItem"
-        android:layout_width="480dp"
-        android:layout_height="222dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_width="0dp"
+        android:layout_height="183dp"
+        android:layout_marginStart="100dp"
+        android:layout_marginEnd="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.466"
@@ -70,6 +75,8 @@
         android:layout_height="wrap_content"
         android:text="@string/coinss"
         android:textSize="30sp"
+        android:fontFamily="@font/londrina_solid"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.242"
@@ -94,5 +101,16 @@
         android:scaleType="centerInside"
         android:adjustViewBounds="true"
         android:contentDescription="@string/todo" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="0dp"
+        android:layout_height="2dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:background="@color/gold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvShop" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

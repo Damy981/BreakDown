@@ -20,6 +20,7 @@
         android:clickable="true"
         android:focusable="true"
         app:cardCornerRadius="15dp"
+        app:cardBackgroundColor="#dadada"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="parent">
@@ -52,12 +53,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:alpha="0.90"
-                android:background="#FFFFFF"
+                android:background="@color/gold"
                 android:hint="@string/item"
                 android:padding="8dp"
+                android:fontFamily="@font/londrina_solid"
                 android:textAlignment="center"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 tools:layout_editor_absoluteX="0dp" />
 
@@ -77,11 +80,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:alpha="0.90"
-                    android:background="#FFFFFF"
+                    android:background="@color/gold"
+                    android:fontFamily="@font/londrina_solid"
                     android:hint="@string/item"
                     android:padding="22dp"
                     android:textAlignment="textStart"
-                    android:textColor="#000000"
+                    android:textColor="@color/grey"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     tools:layout_editor_absoluteX="170dp" />
@@ -91,8 +95,9 @@
                     android:id="@+id/tvMax"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="MAX"
-                    android:textColor="#3C3C36"
+                    android:fontFamily="@font/londrina_solid"
+                    android:text="@string/max"
+                    android:textColor="@color/grey"
                     android:textColorHighlight="@color/black_overlay"
                     android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -109,8 +114,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="24dp"
                     android:layout_marginBottom="8dp"
+                    android:fontFamily="@font/londrina_solid"
                     android:text="@string/quantity"
-                    android:textColor="#3C3C36"
+                    android:textColor="@color/white"
                     android:textSize="20sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
@@ -144,7 +150,8 @@
                         android:layout_gravity="center"
                         android:layout_marginEnd="4dp"
                         android:alpha="0.90"
-                        android:textColor="#3C3C36"
+                        android:fontFamily="@font/londrina_solid"
+                        android:textColor="@color/white"
                         android:textSize="18sp" />
                 </LinearLayout>
 

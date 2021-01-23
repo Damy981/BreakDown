@@ -17,7 +17,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,17 +36,17 @@
             android:background="@drawable/effect_button_image"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
-            android:maxWidth="70dp"
-            android:maxHeight="65dp"
+            android:maxWidth="85dp"
+            android:maxHeight="80dp"
             android:onClick="logout"
             android:scaleType="centerInside"
             android:src="@drawable/logout_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.976"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.01" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <ProgressBar
             android:id="@+id/progressBar"
@@ -55,6 +54,7 @@
             android:layout_height="100dp"
             android:layout_marginTop="400dp"
             android:elevation="20dp"
+            android:textColor="@color/white"
             android:indeterminate="true"
             app:layout_constraintBottom_toTopOf="@+id/textView7"
             app:layout_constraintEnd_toEndOf="parent"
@@ -64,26 +64,27 @@
 
         <ImageView
             android:id="@+id/BtnPlay"
-            android:layout_width="220dp"
-            android:layout_height="100dp"
+            android:layout_width="195dp"
+            android:layout_height="93dp"
+            android:adjustViewBounds="true"
             android:background="@drawable/btn_play"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
             android:onClick="startGameMenu"
             android:paddingStart="28dp"
             android:paddingEnd="28dp"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.438"
+            app:layout_constraintVertical_bias="0.463"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <ImageView
             android:id="@+id/btnShop"
-            android:layout_width="160dp"
-            android:layout_height="65dp"
+            android:layout_width="150dp"
+            android:layout_height="68dp"
             android:background="@drawable/btn_shop"
             android:contentDescription="@string/todo"
             android:elevation="1dp"
@@ -93,10 +94,10 @@
             android:scrollbarSize="4dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.571" />
+            app:layout_constraintTop_toBottomOf="@+id/BtnPlay"
+            app:layout_constraintVertical_bias="0.043" />
 
         <ImageView
             android:id="@+id/btnSettings"
@@ -178,6 +179,7 @@
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/user_image" />
 
+
         <ImageView
             android:id="@+id/btnRanking"
             android:layout_width="wrap_content"
@@ -192,29 +194,27 @@
             android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.145"
+            app:layout_constraintHorizontal_bias="0.147"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.761"
+            app:layout_constraintVertical_bias="0.76"
             app:srcCompat="@drawable/ranking_image" />
-
 
         <TextView
             android:id="@+id/Ranking"
-            android:layout_width="70dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="167dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/londrina_solid"
             android:text="@string/ranking"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btnQuest"
             app:layout_constraintEnd_toStartOf="@+id/LevelEditor"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.255"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnRanking"
-            app:layout_constraintVertical_bias="0.083" />
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:id="@+id/Quest"
@@ -222,6 +222,7 @@
             android:layout_height="wrap_content"
             android:text="@string/quest"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/Settings"
             app:layout_constraintHorizontal_bias="0.25"
@@ -238,6 +239,7 @@
             android:text="@string/level_editor"
             android:textAlignment="center"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/btnSettings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.918"
@@ -251,6 +253,7 @@
             android:layout_height="wrap_content"
             android:text="@string/settings"
             android:textSize="20sp"
+            android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.881"
@@ -258,20 +261,23 @@
             app:layout_constraintTop_toBottomOf="@+id/btnSettings"
             android:fontFamily="@font/londrina_solid"
             app:layout_constraintVertical_bias="0.0"/>
-         <!--   android:font="@font/londrina" -->
 
         <ImageView
             android:id="@+id/logoMenu"
-            android:layout_width="240dp"
-            android:layout_height="210dp"
-            android:background="@drawable/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
             android:contentDescription="@string/todo"
+            android:maxWidth="300dp"
+            android:maxHeight="240dp"
+            android:scaleType="centerInside"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.132" />
+            app:layout_constraintVertical_bias="0.137"
+            app:srcCompat="@drawable/logo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
