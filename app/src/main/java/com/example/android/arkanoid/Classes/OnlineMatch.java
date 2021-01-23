@@ -91,4 +91,27 @@ public class OnlineMatch implements Serializable {
     public void setCounter(int counter) {
         this.counter = counter;
     }
+
+    public void setWinOrLose() {
+        Log.i("cacca", String.valueOf(player2Score[2]));
+
+        if (counter == 3 && player2Score[2] != -9999) {
+
+            int player1winCounter = 0;
+            int player2winCounter = 0;
+
+            for (int i = 0; i < 3; i++) {
+                if (player1Score[i] >= player2Score[i])
+                    player1winCounter++;
+                else
+                    player2winCounter++;
+            }
+            if (player1winCounter > player2winCounter)
+                setStatus(WIN);
+            else
+                setStatus(LOSE);
+
+            updateMatch();
+        }
+    }
 }

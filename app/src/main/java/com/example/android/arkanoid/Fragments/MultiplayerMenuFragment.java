@@ -199,14 +199,15 @@ public class MultiplayerMenuFragment extends Fragment {
                 // whenever data at this location is updated.
                 String id;
                 String opponent = "";
-                long score[] = new long[3];
                 String status = "";
-                long matchCounter = 0;
 
                 HashMap<String,String> matchesMap= (HashMap<String,String>) dataSnapshot.child("OnlineMatches").getValue();
                 if(matchesMap != null) {
                     Iterator i = matchesMap.entrySet().iterator();
                     while (i.hasNext()) {
+                        long[] score = new long[3];
+                        long matchCounter = 0;
+
                         Map.Entry entry = (Map.Entry) i.next();
                         id = (String) entry.getKey();
 
@@ -239,6 +240,7 @@ public class MultiplayerMenuFragment extends Fragment {
                         OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
                         match.setStatus(status);
                         match.setCounter((int) matchCounter);
+                        getOpponentScores(id, opponent, match);
                         for (int j = 0; j < score.length; j++) {
                             match.setPlayer1Score(score[j], j);
                         }
@@ -266,14 +268,56 @@ public class MultiplayerMenuFragment extends Fragment {
         }, 1700);
     }
 
-    private void getOpponentScores() {
-        DatabaseReference myRef = database.getReference().child("Profiles").child(userIdOpponent);
+    private void getOpponentScores(final String id, final String opponent, final OnlineMatch match) {
+        DatabaseReference myRef = database.getReference().child("Profiles");
 
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
+                String str = "";
+                long[] scores = new long[3];
+
+                HashMap<String, String> hm = (HashMap<String, String>) dataSnapshot.getValue();
+                Iterator i = hm.entrySet().iterator();
+                while (i.hasNext()) {
+                    Map.Entry entry = (Map.Entry) i.next();
+                    HashMap<String, String> hm2 = (HashMap<String, String>) entry.getValue();
+                    Iterator i2 = hm2.entrySet().iterator();
+                    while (i2.hasNext()) {
+                        Map.Entry entry2 = (Map.Entry) i2.next();
+                        if (entry2.getKey().equals("UserName") && opponent.equals(entry2.getValue())) 
+                            str = (String) entry2.getValue();
+                        if (entry2.getKey().equals("OnlineMatches") && str.equals(opponent)) {
+                            HashMap<String, String> hm3 = (HashMap<String, String>) entry2.getValue();
+                            Iterator i3 = hm3.entrySet().iterator();
+                            while (i3.hasNext()) {
+                                Map.Entry entry3 = (Map.Entry) i3.next();
+                                if (entry3.getKey().equals(id)) {
+                                    HashMap<String, String> hm4 = (HashMap<String, String>) entry3.getValue();
+                                    Iterator i4 = hm4.entrySet().iterator();
+                                    while (i4.hasNext()) {
+                                        Map.Entry entry4 = (Map.Entry) i4.next();
+                                        if (entry4.getKey().equals("Scores")) {
+                                            HashMap<String, String> hm5 = (HashMap<String, String>) entry4.getValue();
+                                            TreeMap<String, String> tm = new TreeMap<>(hm5);
+                                            Iterator i5 = tm.entrySet().iterator();
+                                            int counter = 0;
+                                            while (i5.hasNext()) {
+                                                Map.Entry entry5 = (Map.Entry) i5.next();
+                                                scores[counter] = (long) entry5.getValue();
+                                                match.setPlayer2Score(scores[counter], counter);
+                                                match.setWinOrLose();
+                                                counter++;
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {

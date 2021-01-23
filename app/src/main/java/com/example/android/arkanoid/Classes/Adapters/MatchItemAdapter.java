@@ -70,7 +70,9 @@ public class MatchItemAdapter extends BaseAdapter {
         if(counter == 3){
             btnPlayMatch.setEnabled(false);
         }
+
         setPlayMatchListener(matchList.get(position), counter);
+
         final View convertView1 = convertView;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +87,7 @@ public class MatchItemAdapter extends BaseAdapter {
                 TextView tvFirstMatchScoreP2 = popupView.findViewById(R.id.tvFirstMatchScoreP2);
                 TextView tvSecondMatchScoreP2 = popupView.findViewById(R.id.tvSecondMatchScoreP2);
                 TextView tvThirdMatchScoreP2 = popupView.findViewById(R.id.tvThirdMatchScoreP2);
+                TextView tvWinner = popupView.findViewById(R.id.tvWinner);
                 ImageButton btnClose = popupView.findViewById(R.id.btnClose);
                 long[] player1Score = matchList.get(position).getPlayer1Score();
                 long[] player2Score = matchList.get(position).getPlayer2Score();
@@ -93,6 +96,13 @@ public class MatchItemAdapter extends BaseAdapter {
 
                 tvPopupPlayer1.setText(matchList.get(position).getPlayer1());
                 tvPopupPlayer2.setText(matchList.get(position).getPlayer2());
+
+                if (matchList.get(position).getStatus().equals("Win"))
+                    tvWinner.setText("WINNER: " + matchList.get(position).getPlayer1());
+                else if (matchList.get(position).getStatus().equals("Lose"))
+                    tvWinner.setText("WINNER: " + matchList.get(position).getPlayer2());
+                else
+                    tvWinner.setText("IN PROGRESS");
 
                 for(int i = 0; i <= counter; i++) {
                     if(i == 1) {

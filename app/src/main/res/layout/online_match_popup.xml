@@ -10,7 +10,7 @@
         android:id="@+id/tvMatchSummary"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
+        android:text="Match Summary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
@@ -99,7 +99,7 @@
     </LinearLayout>
 
     <TextView
-        android:id="@+id/tvWhoWon"
+        android:id="@+id/tvWinner"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
