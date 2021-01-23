@@ -194,4 +194,12 @@ public class Services {
         }
         return questsList;
     }
+
+    public void initializeOnlineMatches() {
+        String userId = preferences.getString("userId", null);
+
+        myRef.child(userId).child("OnlineMatches").child("TotalPlayed").setValue(0);
+        myRef.child(userId).child("OnlineMatches").child("TotalWin").setValue(0);
+        myRef.child(userId).child("OnlineMatches").child("TotalLose").setValue(0);
+    }
 }

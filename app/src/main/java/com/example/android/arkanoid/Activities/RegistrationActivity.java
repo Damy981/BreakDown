@@ -101,6 +101,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             //upload profile data in the database, send confirm email and move to login activity
                             services.uploadQuestsFile(questsRef, getApplicationContext());
                             services.updateDatabase();
+                            services.initializeOnlineMatches();
                             user.sendEmailVerification();
                             Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                             startActivity(intent);

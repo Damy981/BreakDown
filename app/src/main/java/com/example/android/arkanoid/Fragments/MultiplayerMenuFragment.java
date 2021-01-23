@@ -8,13 +8,13 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.android.arkanoid.Activities.GameActivity;
 import com.example.android.arkanoid.Classes.Adapters.MatchItemAdapter;
@@ -40,6 +40,9 @@ public class MultiplayerMenuFragment extends Fragment {
 
     private Profile profile;
     private Button btnSearchOpponent;
+    private TextView tvTotalPlayed;
+    private TextView tvTotalWin;
+    private TextView tvTotalLose;
     private ListView lvMatchItem;
     private FirebaseDatabase database;
     private String userId;
@@ -47,6 +50,10 @@ public class MultiplayerMenuFragment extends Fragment {
     private String usernameOpponent;
     private OnlineMatch match;
     private ArrayList<OnlineMatch> matchList;
+    private long totalWin;
+    private long totalLose;
+    private long totalPlayed;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +72,9 @@ public class MultiplayerMenuFragment extends Fragment {
         userId = profile.getUserId();
         lvMatchItem = getView().findViewById(R.id.lvMatch);
         btnSearchOpponent = getView().findViewById(R.id.btnSearchOpponent);
+        tvTotalPlayed = getView().findViewById(R.id.tvTotalPlayed);
+        tvTotalWin = getView().findViewById(R.id.tvTotalWin);
+        tvTotalLose = getView().findViewById(R.id.tvTotalLose);
 
         setSearchOpponentListener();
 
@@ -78,8 +88,9 @@ public class MultiplayerMenuFragment extends Fragment {
         Button btnSearchOpponent  = getView().findViewById(R.id.btnSearchOpponent);
         btnSearchOpponent.setVisibility(View.GONE);
         matchList = new ArrayList<>();
+
         getAllMatch();
-        setAdapter();
+        setAdapterAndTextView();
     }
 
     private void setSearchOpponentListener() {
@@ -177,9 +188,11 @@ public class MultiplayerMenuFragment extends Fragment {
                 DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches").child(id);
                 myRef.child("Opponent").setValue(usernameOpponent);
                 myRef.child("Status").setValue(OnlineMatch.IN_PROGRESS);
+                myRef.child("IsCounted").setValue("False");
                 DatabaseReference myRef2 = database.getReference("Profiles").child(userIdOpponent).child("OnlineMatches").child(id);
                 myRef2.child("Opponent").setValue(profile.getUserName());
                 myRef2.child("Status").setValue(OnlineMatch.IN_PROGRESS);
+                myRef2.child("IsCounted").setValue("False");
                 ProgressBar progressBar = getView().findViewById(R.id.progressBarMulti);
                 progressBar.setVisibility(View.GONE);
                 Button btnSearchOpponent  = getView().findViewById(R.id.btnSearchOpponent);
@@ -209,42 +222,48 @@ public class MultiplayerMenuFragment extends Fragment {
                         long matchCounter = 0;
 
                         Map.Entry entry = (Map.Entry) i.next();
-                        id = (String) entry.getKey();
 
-                        HashMap<String, String> hm = (HashMap<String, String>) entry.getValue();
-                        Iterator i2 = hm.entrySet().iterator();
-                        while (i2.hasNext()) {
-                            Map.Entry entry2 = (Map.Entry) i2.next();
-                            if (entry2.getKey().equals("Opponent")) {
-                                opponent = (String) entry2.getValue();
-                            } 
-                            else if (entry2.getKey().equals("Status")) {
-                                status = (String) entry2.getValue();
-                            }
-                            else if (entry2.getKey().equals("Counter")) {
-                                matchCounter = (long) entry2.getValue();
-                            }
-                            else if (entry2.getKey().equals("Scores")) {
-                                HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
-                                TreeMap<String, String> tm = new TreeMap<>(hm2);
+                        if (entry.getKey().equals("TotalWin"))
+                            totalWin = (long) entry.getValue();
+                        else if (entry.getKey().equals("TotalLose"))
+                            totalLose = (long) entry.getValue();
+                        else if (entry.getKey().equals("TotalPlayed"))
+                            totalPlayed = (long) entry.getValue();
+                        else {
+                            id = (String) entry.getKey();
 
-                                Iterator i3 = tm.entrySet().iterator();
-                                int counter = 0;
-                                while (i3.hasNext()) {
-                                    Map.Entry entry3 = (Map.Entry) i3.next();
-                                    score[counter] = (long) entry3.getValue();
-                                    ++counter;
+                            HashMap<String, String> hm = (HashMap<String, String>) entry.getValue();
+                            Iterator i2 = hm.entrySet().iterator();
+                            while (i2.hasNext()) {
+                                Map.Entry entry2 = (Map.Entry) i2.next();
+                                if (entry2.getKey().equals("Opponent")) {
+                                    opponent = (String) entry2.getValue();
+                                } else if (entry2.getKey().equals("Status")) {
+                                    status = (String) entry2.getValue();
+                                } else if (entry2.getKey().equals("Counter")) {
+                                    matchCounter = (long) entry2.getValue();
+                                } else if (entry2.getKey().equals("Scores")) {
+                                    HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
+                                    TreeMap<String, String> tm = new TreeMap<>(hm2);
+
+                                    Iterator i3 = tm.entrySet().iterator();
+                                    int counter = 0;
+                                    while (i3.hasNext()) {
+                                        Map.Entry entry3 = (Map.Entry) i3.next();
+                                        score[counter] = (long) entry3.getValue();
+                                        ++counter;
+                                    }
                                 }
                             }
+                            OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
+                            match.setStatus(status);
+                            match.setCounter((int) matchCounter);
+                            getOpponentScores(id, opponent, match);
+                            for (int j = 0; j < score.length; j++) {
+                                match.setPlayer1Score(score[j], j);
+                            }
+                            matchList.add(match);
                         }
-                        OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
-                        match.setStatus(status);
-                        match.setCounter((int) matchCounter);
-                        getOpponentScores(id, opponent, match);
-                        for (int j = 0; j < score.length; j++) {
-                            match.setPlayer1Score(score[j], j);
-                        }
-                        matchList.add(match);
                     }
                 }
             }
@@ -253,10 +272,14 @@ public class MultiplayerMenuFragment extends Fragment {
             }
         });
     }
-    private void setAdapter() {
+    private void setAdapterAndTextView() {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
+                tvTotalPlayed.setText("Total Played: " + totalPlayed);
+                tvTotalWin.setText("Total Win: " + totalWin);
+                tvTotalLose.setText("Total Lose: " + totalLose);
+
                 MatchItemAdapter adapter;
                 adapter = new MatchItemAdapter(getContext(), profile, matchList);
                 lvMatchItem.setAdapter(adapter);

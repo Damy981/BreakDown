@@ -2,8 +2,13 @@ package com.example.android.arkanoid.Classes;
 
 import android.util.Log;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 
@@ -93,8 +98,6 @@ public class OnlineMatch implements Serializable {
     }
 
     public void setWinOrLose() {
-        Log.i("cacca", String.valueOf(player2Score[2]));
-
         if (counter == 3 && player2Score[2] != -9999) {
 
             int player1winCounter = 0;
@@ -106,12 +109,46 @@ public class OnlineMatch implements Serializable {
                 else
                     player2winCounter++;
             }
-            if (player1winCounter > player2winCounter)
+            if (player1winCounter > player2winCounter) {
                 setStatus(WIN);
-            else
+                updateWinLoseCounter(WIN);
+            }
+            else {
                 setStatus(LOSE);
-
+                updateWinLoseCounter(LOSE);
+            }
             updateMatch();
         }
+    }
+
+    private void updateWinLoseCounter(final String str) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        final DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches");
+
+        myRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                String isCounted = (String) dataSnapshot.child(id).child("IsCounted").getValue();
+                if(isCounted.equals("False")) {
+                    long total = (long) dataSnapshot.child("TotalPlayed").getValue();
+                    long totalWin = (long) dataSnapshot.child("TotalWin").getValue();
+                    long totalLose = (long) dataSnapshot.child("TotalLose").getValue();
+
+                    myRef.child("TotalPlayed").setValue(++total);
+
+                    if (str.equals(WIN))
+                        myRef.child("TotalWin").setValue(++totalWin);
+                    else if (str.equals(LOSE))
+                        myRef.child("TotalLose").setValue(++totalLose);
+
+                    myRef.child(id).child("IsCounted").setValue("True");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 }
