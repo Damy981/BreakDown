@@ -23,14 +23,16 @@
         app:layout_constraintHorizontal_bias="0.781"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.758" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <TextView
         android:id="@+id/tvShop"
         android:layout_width="124dp"
         android:layout_height="65dp"
         android:text="@string/shop"
-        android:textSize="50sp"
+        android:fontFamily="@font/londrina_solid"
+        android:textAlignment="center"
+        android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.522"
@@ -43,13 +45,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/points"
+        android:fontFamily="@font/londrina_solid"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.05"
         app:layout_constraintStart_toEndOf="@+id/Coins"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ListView
         android:id="@+id/lvShopItem"
@@ -67,13 +70,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/coins"
+        android:fontFamily="@font/londrina_solid"
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/lvShopItem"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.25"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.784" />
+        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/ivBackShop"

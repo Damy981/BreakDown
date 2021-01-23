@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#BFAE95"
+    android:background="@drawable/background"
     tools:context=".Activities.LoginActivity">
 
 
@@ -82,9 +82,10 @@
                 android:layout_marginTop="20dp"
                 android:background="#F8F5F5"
                 android:text="Login"
+                android:fontFamily="@font/londrina_solid"
                 android:textAlignment="center"
                 android:textColor="#290202"
-                android:textSize="25sp" />
+                android:textSize="40sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMail"
@@ -93,7 +94,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/email_icon"
+                android:drawableRight="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
                 android:inputType="textEmailAddress"
                 android:textColor="#01030E"
@@ -108,7 +109,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableLeft="@drawable/password_icon"
+                android:drawableRight="@drawable/password_icon"
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
@@ -139,7 +140,7 @@
                 android:layout_marginTop="10dp"
                 android:onClick="forgotPassword"
                 android:text="@string/forgot_password"
-                android:textColor="#3F51B5"
+                android:textColor="#CF9132"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 

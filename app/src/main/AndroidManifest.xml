@@ -33,6 +33,9 @@
             <action android:name="android.intent.action.DATE_CHANGED" />
         </intent-filter>
     </receiver>
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

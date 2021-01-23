@@ -53,9 +53,10 @@
             android:layout_marginTop="20dp"
             android:background="#F8F5F5"
             android:text="Registration"
+            android:fontFamily="@font/londrina_solid"
             android:textAlignment="center"
             android:textColor="#290202"
-            android:textSize="25sp" />
+            android:textSize="40sp" />
 
 
         <com.google.android.material.textfield.TextInputEditText
@@ -65,7 +66,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/email_icon"
+            android:drawableRight="@drawable/email_icon"
             android:hint="@string/enter_email_address"
             android:inputType="textEmailAddress"
             android:textColor="#01030E"
@@ -84,7 +85,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/username_icon"
+            android:drawableRight="@drawable/username_icon"
             android:ems="10"
             android:hint="@string/enter_username"
             android:inputType="textPersonName"
@@ -104,7 +105,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/password_icon"
+            android:drawableRight="@drawable/password_icon"
             android:ems="10"
             android:hint="@string/enter_password"
             android:inputType="textPassword"
@@ -123,7 +124,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="10dp"
-            android:drawableLeft="@drawable/password_icon"
+            android:drawableRight="@drawable/password_icon"
             android:ems="10"
             android:hint="@string/confirm_password"
             android:inputType="textPassword"
@@ -151,7 +152,8 @@
         android:elevation="1dp"
         android:onClick="register"
         android:text="@string/register"
-        android:textSize="20sp"
+        android:fontFamily="@font/londrina_solid"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -170,5 +172,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.001"
         app:srcCompat="@drawable/effect_button_image" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
