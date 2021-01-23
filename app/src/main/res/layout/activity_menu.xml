@@ -12,22 +12,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/fragment_place"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/Ranking"
-            android:layout_width="70dp"
-            android:layout_height="24dp"
-            android:fontFamily="@font/londrina_solid"
-            android:text="@string/ranking"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.131"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.814" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -210,6 +200,23 @@
 
 
         <TextView
+            android:id="@+id/Ranking"
+            android:layout_width="70dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="167dp"
+            android:fontFamily="@font/londrina_solid"
+            android:text="@string/ranking"
+            android:textAlignment="center"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/btnQuest"
+            app:layout_constraintEnd_toStartOf="@+id/LevelEditor"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnRanking"
+            app:layout_constraintVertical_bias="0.083" />
+
+        <TextView
             android:id="@+id/Quest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -227,15 +234,15 @@
             android:id="@+id/LevelEditor"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:fontFamily="@font/londrina_solid"
             android:text="@string/level_editor"
-            android:textSize="20sp"
             android:textAlignment="center"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/btnSettings"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.918"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnLevelEditor"
-            android:fontFamily="@font/londrina_solid"
             app:layout_constraintVertical_bias="0.0" />
 
         <TextView
