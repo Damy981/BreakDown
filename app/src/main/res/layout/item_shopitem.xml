@@ -52,9 +52,8 @@
                 android:id="@+id/tvItemName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:alpha="0.90"
                 android:background="@color/gold"
-                android:hint="@string/item"
+                android:text="@string/power_up"
                 android:padding="8dp"
                 android:fontFamily="@font/londrina_solid"
                 android:textAlignment="center"
@@ -79,10 +78,9 @@
                     android:id="@+id/textView_shop_onclick"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:alpha="0.90"
+                    android:alpha="0.8"
                     android:background="@color/gold"
                     android:fontFamily="@font/londrina_solid"
-                    android:hint="@string/item"
                     android:padding="22dp"
                     android:textAlignment="textStart"
                     android:textColor="@color/grey"
@@ -116,8 +114,8 @@
                     android:layout_marginBottom="8dp"
                     android:fontFamily="@font/londrina_solid"
                     android:text="@string/quantity"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
+                    android:textColor="#dadada"
+                    android:textSize="24sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
 
@@ -151,7 +149,7 @@
                         android:layout_marginEnd="4dp"
                         android:alpha="0.90"
                         android:fontFamily="@font/londrina_solid"
-                        android:textColor="@color/white"
+                        android:textColor="#dadada"
                         android:textSize="18sp" />
                 </LinearLayout>
 

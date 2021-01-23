@@ -60,5 +60,18 @@
     <string name="redeem">Redeem</string>
     <string name="share_with_your_friends">Share with your friends</string>
     <string name="max">MAX</string>
+    <string name="player_1">PLAYER 1</string>
+    <string name="vs">vs</string>
+    <string name="player_2">PLAYER 2</string>
+    <string name="status_match">STATUS MATCH</string>
+    <string name="round_1">Round 1</string>
+    <string name="round_2">Round 2</string>
+    <string name="round_3">Round 3</string>
+    <string name="match_summary">Match Summary</string>
+    <string name="first_match">FIRST MATCH</string>
+    <string name="second_match">SECOND MATCH</string>
+    <string name="third_match">THIRD MATCH</string>
+    <string name="winner">Winner</string>
+    <string name="power_up">Power up</string>
 
 </resources>

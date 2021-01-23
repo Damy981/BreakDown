@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -53,6 +54,7 @@ public class MultiplayerMenuFragment extends Fragment {
     private long totalWin;
     private long totalLose;
     private long totalPlayed;
+    private ImageView btnBackMultiplayer;
 
 
     @Override
@@ -75,6 +77,14 @@ public class MultiplayerMenuFragment extends Fragment {
         tvTotalPlayed = getView().findViewById(R.id.tvTotalPlayed);
         tvTotalWin = getView().findViewById(R.id.tvTotalWin);
         tvTotalLose = getView().findViewById(R.id.tvTotalLose);
+
+        btnBackMultiplayer = getView().findViewById(R.id.ivBackMultiplayer);
+        btnBackMultiplayer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().onBackPressed();
+            }
+        });
 
         setSearchOpponentListener();
 
