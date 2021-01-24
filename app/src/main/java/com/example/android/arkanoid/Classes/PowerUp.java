@@ -11,7 +11,7 @@ public class PowerUp implements Serializable {
     public static final int EXPLOSIVE_BALL = 3;
     public static final int ITEM5 = 4;
     //-----------------------------------------
-    private String name;
+    private final String name;
     private int price;
     private int quantity;
     private int image;

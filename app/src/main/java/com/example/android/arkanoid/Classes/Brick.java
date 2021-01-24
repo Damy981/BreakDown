@@ -12,8 +12,7 @@ public class Brick extends View {
     private Bitmap brick;
     private float x;
     private float y;
-    private int SKIN_NUMBER = 10;
-    private int level;
+    private final int level;
     private boolean hardBrick;
     private boolean nitroBrick;
     private boolean switchBrick;
@@ -31,6 +30,7 @@ public class Brick extends View {
 
     //assigns a random image to the brick
     private void createSkins() {
+        int SKIN_NUMBER = 10;
         int a = (int) (Math.random() * SKIN_NUMBER);
         switch (a) {
             case 0:

@@ -13,6 +13,8 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.android.arkanoid.Activities.GameActivity;
 import com.example.android.arkanoid.Classes.OnlineMatch;
 import com.example.android.arkanoid.Classes.Profile;
@@ -22,14 +24,11 @@ import java.util.ArrayList;
 
 public class MatchItemAdapter extends BaseAdapter {
 
-    private Profile profile;
+    private final Profile profile;
     private Button btnPlayMatch;
-    private TextView tvPlayer1;
-    private TextView tvPlayer2;
-    private TextView tvStatus;
-    private Context context;
-    private ArrayList<OnlineMatch> matchList;
-    private LayoutInflater inflater;
+    private final Context context;
+    private final ArrayList<OnlineMatch> matchList;
+    private final LayoutInflater inflater;
 
     public MatchItemAdapter (Context context, Profile profile, ArrayList<OnlineMatch> matchList){
         this.profile = profile;
@@ -57,9 +56,9 @@ public class MatchItemAdapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.item_match, null);
         btnPlayMatch = convertView.findViewById(R.id.btnPlayMatch);
-        tvPlayer1 = convertView.findViewById(R.id.tvPlayer1);
-        tvPlayer2 = convertView.findViewById(R.id.tvPlayer2);
-        tvStatus = convertView.findViewById(R.id.tvMatchStatus);
+        TextView tvPlayer1 = convertView.findViewById(R.id.tvPlayer1);
+        TextView tvPlayer2 = convertView.findViewById(R.id.tvPlayer2);
+        TextView tvStatus = convertView.findViewById(R.id.tvMatchStatus);
 
         tvPlayer1.setText(matchList.get(position).getPlayer1());
         tvPlayer2.setText(matchList.get(position).getPlayer2());
@@ -167,7 +166,7 @@ public class MatchItemAdapter extends BaseAdapter {
         context.startActivity(intentGame);
     }
 
-    private void setCheckBoxes(View view, int i) {
+    private void setCheckBoxes(@NonNull View view, int i) {
         CheckBox cbRound1Player1 = view.findViewById(R.id.cbRound1Player1);
         CheckBox cbRound2Player1 = view.findViewById(R.id.cbRound2Player1);
         CheckBox cbRound3Player1 = view.findViewById(R.id.cbRound3Player1);
@@ -222,10 +221,12 @@ public class MatchItemAdapter extends BaseAdapter {
         if (player1Score[2] > player2Score[2] && match3Finished) {
             cbRound3Player1.setChecked(true);
             cbRound3Player2.setChecked(false);
+            btnPlayMatch.setVisibility(View.INVISIBLE);
         }
         else if (match3Finished){
             cbRound3Player1.setChecked(false);
             cbRound3Player2.setChecked(true);
+            btnPlayMatch.setVisibility(View.INVISIBLE);
         }
     }
 }

@@ -18,14 +18,14 @@ public class Profile implements Serializable {
     static public final int STATS_NUMBER = 2;
     private int levelNumber;
     private int coins;
-    private String userName;
-    private ArrayList<PowerUp> powerUps = new ArrayList<>();
-    private String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball"};
-    private String userId;
+    private final String userName;
+    private final ArrayList<PowerUp> powerUps = new ArrayList<>();
+    private final String[] items = {"Coins drop rate", "Paddle length", "Freeze", "Explosive Ball"};
+    private final String userId;
     private String prices;
     private String quantities;
     private int bestScore;
-    private ArrayList<Quest> questsList;
+    private final ArrayList<Quest> questsList;
 
     public Profile(int levelNumber, int coins, String userName, String userId, String prices, String quantities, int bestScore, ArrayList<Quest> questsList) {
         this.userName = userName;

@@ -27,8 +27,6 @@ import java.util.HashMap;
 public class SplashScreenActivity extends AppCompatActivity {
 
     private String activityToStart;
-    private FirebaseAuth mAuth;
-    private FirebaseUser user;
     static public HashMap<String,String> rankingMap;
     // Called when the activity is first created
     @Override
@@ -36,8 +34,8 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(icicle);
         setContentView(R.layout.activity_splash_screen);
 
-        mAuth = FirebaseAuth.getInstance();
-        user = mAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = mAuth.getCurrentUser();
         SharedPreferences preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
         // Check if user is signed in with an active account (not-null) and update the string with the right class name.
         if(user != null) {

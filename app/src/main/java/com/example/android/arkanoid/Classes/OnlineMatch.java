@@ -19,13 +19,13 @@ public class OnlineMatch implements Serializable {
     static public final String LOSE = "Lose";
     static public final String IN_PROGRESS = "In Progress";
     static public final long GAME_NOT_PLAYED = -9999;
-    private String player1;
-    private String player2;
-    private long player1Score[] = new long[3];
-    private long player2Score[] = new long[3];
-    private String id;
+    private final String player1;
+    private final String player2;
+    private final long[] player1Score = new long[3];
+    private final long[] player2Score = new long[3];
+    private final String id;
     private int counter;
-    private String userId;
+    private final String userId;
     private String status;
     private long totalPlayed;
     private long totalWin;
@@ -132,7 +132,7 @@ public class OnlineMatch implements Serializable {
 
         myRef.addValueEventListener(new ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 isCounted = (String) dataSnapshot.child(id).child("IsCounted").getValue();
                 totalPlayed = (long) dataSnapshot.child("TotalPlayed").getValue();
                 totalWin = (long) dataSnapshot.child("TotalWin").getValue();

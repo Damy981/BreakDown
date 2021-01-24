@@ -57,15 +57,13 @@ public class MenuActivity extends AppCompatActivity {
     private Services services;
     private SharedPreferences.OnSharedPreferenceChangeListener prefListener;
     private StorageReference mStorageRef;
-    private IntentFilter intentFilter;
-    private String userId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
 
-        intentFilter = new IntentFilter();
+        IntentFilter intentFilter = new IntentFilter();
         intentFilter.addAction(Intent.ACTION_DATE_CHANGED);
 
         preferences = getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE);
@@ -73,6 +71,7 @@ public class MenuActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
+        String userId;
         if (user == null) {
             findViewById(R.id.btnLogout).setVisibility(View.GONE);
             userId = null;

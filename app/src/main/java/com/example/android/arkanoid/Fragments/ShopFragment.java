@@ -20,12 +20,6 @@ import com.example.android.arkanoid.R;
 
 public class ShopFragment extends Fragment {
 
-    private TextView tvShopCoins;
-    private ListView lv;
-    private int coins;
-    private Profile profile;
-    private ImageView ivBackShop;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -37,15 +31,16 @@ public class ShopFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        profile = (Profile) getArguments().getSerializable("profile");
-        coins = profile.getCoins();
-        tvShopCoins = getView().findViewById(R.id.tvShopCoins);
+        Profile profile = (Profile) getArguments().getSerializable("profile");
+        int coins = profile.getCoins();
+        TextView tvShopCoins = getView().findViewById(R.id.tvShopCoins);
         tvShopCoins.setText(String.valueOf(coins));
-        ivBackShop = getActivity().findViewById(R.id.ivBackShop);
+        ImageView ivBackShop = getActivity().findViewById(R.id.ivBackShop);
 
-        lv = getActivity().findViewById(R.id.lvShopItem);
+        ListView lv = getActivity().findViewById(R.id.lvShopItem);
+
         ShopItemAdapter adapter;
-        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins, lv);
+        adapter = new ShopItemAdapter(this.getActivity(), profile, tvShopCoins);
         lv.setAdapter(adapter);
 
         ivBackShop.setOnClickListener(new View.OnClickListener() {

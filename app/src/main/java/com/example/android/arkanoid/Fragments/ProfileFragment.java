@@ -37,20 +37,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
     private Button guestRegisterButton;
     private FirebaseUser user;
     private EditText etUsername;
-    private TextView tvCoins;
-    private TextView tvBestScore;
-    private FirebaseAuth mAuth;
     private ImageView profileImage;
-    private ListView lvOwnedItems;
     private ImageView ivEditName;
     private Profile profile;
-    private ImageView ivBackProfile;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        mAuth = FirebaseAuth.getInstance();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
         user = mAuth.getCurrentUser();
 
         guestRegisterButton = getView().findViewById(R.id.btnGuestRegister);
@@ -59,14 +54,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         etUsername = getView().findViewById(R.id.etUsername);
         etUsername.setKeyListener(null);
 
-        tvBestScore = getView().findViewById(R.id.tvBestScore);
-        tvCoins = getView().findViewById(R.id.tvCoins);
-        lvOwnedItems = getView().findViewById(R.id.lvOwnedItems);
+        TextView tvBestScore = getView().findViewById(R.id.tvBestScore);
+        TextView tvCoins = getView().findViewById(R.id.tvCoins);
+        ListView lvOwnedItems = getView().findViewById(R.id.lvOwnedItems);
 
         ivEditName = getView().findViewById(R.id.ivPencilProfile);
         ivEditName.setOnClickListener(this);
 
-        ivBackProfile = getView().findViewById(R.id.ivBackProfile);
+        ImageView ivBackProfile = getView().findViewById(R.id.ivBackProfile);
         ivBackProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

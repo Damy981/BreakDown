@@ -24,22 +24,19 @@ import java.util.ArrayList;
 import static android.view.View.VISIBLE;
 
 public class ShopItemAdapter extends BaseAdapter {
-    private Context context;
-    private LayoutInflater inflater;
-    private Profile profile;
-    private TextView tvShopCoins;
-    private ListView lv;
-    private ArrayList<PowerUp> powerUps;
-    private int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
-    private ImageView ivBuyItem;
+    private final Context context;
+    private final LayoutInflater inflater;
+    private final Profile profile;
+    private final TextView tvShopCoins;
+    private final ArrayList<PowerUp> powerUps;
+    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
 
-    public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins, ListView lv) {
+    public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins) {
         this.context = context;
         inflater = (LayoutInflater.from(context));
         this.profile = profile;
         powerUps = profile.getPowerUps();
         this.tvShopCoins = tvShopCoins;
-        this.lv = lv;
     }
 
     @Override
@@ -62,7 +59,7 @@ public class ShopItemAdapter extends BaseAdapter {
         convertView = inflater.inflate(R.layout.item_shopitem, null);
         TextView shopItemName = convertView.findViewById(R.id.tvItemName);
         final TextView shopItemQuantity = convertView.findViewById(R.id.tvQuantity);
-        ivBuyItem = convertView.findViewById(R.id.btnBuy);
+        ImageView ivBuyItem = convertView.findViewById(R.id.btnBuy);
         final TextView tvBuyShop = convertView.findViewById(R.id.textView_buy_shop);
         CardView cvShopItem = convertView.findViewById(R.id.cvShop);
         ImageView image = convertView.findViewById(R.id.ivShopImagePowerUp);

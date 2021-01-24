@@ -15,14 +15,12 @@ import com.example.android.arkanoid.R;
 import java.util.ArrayList;
 
 public class ProfileItemAdapter extends BaseAdapter {
-    private Context context;
-    private LayoutInflater inflater;
-    private ArrayList<PowerUp> powerUps;
-    private int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
+    private final LayoutInflater inflater;
+    private final ArrayList<PowerUp> powerUps;
+    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
 
 
     public ProfileItemAdapter(Context context, ArrayList<PowerUp> powerUps ) {
-        this.context = context;
         inflater = (LayoutInflater.from(context));
         this.powerUps = powerUps;
     }

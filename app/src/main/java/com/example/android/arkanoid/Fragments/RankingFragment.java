@@ -30,12 +30,7 @@ import java.util.Map;
 
 public class RankingFragment extends Fragment {
 
-    private ImageView btnBackRanking;
-    private ListView lvRankItem;
     private HashMap<String,String> rankingMap;
-    private ArrayList<String> rankingUsername;
-    private ArrayList<String> rankingBestScore;
-    private ImageView btnShare;
     private Profile profile;
 
     @Override
@@ -52,7 +47,7 @@ public class RankingFragment extends Fragment {
 
         profile = (Profile) getArguments().getSerializable("profile");
 
-        btnBackRanking = getActivity().findViewById(R.id.ivBackRanking);
+        ImageView btnBackRanking = getActivity().findViewById(R.id.ivBackRanking);
         btnBackRanking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,7 +55,7 @@ public class RankingFragment extends Fragment {
             }
         });
 
-        btnShare = getActivity().findViewById(R.id.btnShare);
+        ImageView btnShare = getActivity().findViewById(R.id.btnShare);
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,10 +63,10 @@ public class RankingFragment extends Fragment {
             }
         });
 
-        lvRankItem = getActivity().findViewById(R.id.lvRankItem);
+        ListView lvRankItem = getActivity().findViewById(R.id.lvRankItem);
 
-        rankingUsername = new ArrayList<>();
-        rankingBestScore = new ArrayList<>();
+        ArrayList<String> rankingUsername = new ArrayList<>();
+        ArrayList<String> rankingBestScore = new ArrayList<>();
 
         rankingMap = SplashScreenActivity.rankingMap;
 

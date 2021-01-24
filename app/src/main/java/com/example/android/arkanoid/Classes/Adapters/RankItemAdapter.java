@@ -14,10 +14,9 @@ import java.util.ArrayList;
 
 public class RankItemAdapter extends BaseAdapter {
 
-    private LayoutInflater inflater;
-    private TextView tvRankUsername, tvRankBestScore, tvNumberRanking;
-    private ArrayList<String> rankingUsername;
-    private ArrayList<String> rankingBestScore;
+    private final LayoutInflater inflater;
+    private final ArrayList<String> rankingUsername;
+    private final ArrayList<String> rankingBestScore;
 
     public RankItemAdapter(Context context, ArrayList<String> rankingUsername, ArrayList<String> rankingBestScore) {
         this.rankingUsername = rankingUsername;
@@ -43,9 +42,9 @@ public class RankItemAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.item_rankitem, null);
-        tvRankUsername = convertView.findViewById(R.id.tvRankUsername);
-        tvRankBestScore = convertView.findViewById(R.id.tvRankBestScore);
-        tvNumberRanking = convertView.findViewById(R.id.tvNumberRanking);
+        TextView tvRankUsername = convertView.findViewById(R.id.tvRankUsername);
+        TextView tvRankBestScore = convertView.findViewById(R.id.tvRankBestScore);
+        TextView tvNumberRanking = convertView.findViewById(R.id.tvNumberRanking);
 
         tvRankUsername.setText(rankingUsername.get(position));
         tvRankBestScore.setText(rankingBestScore.get(position));

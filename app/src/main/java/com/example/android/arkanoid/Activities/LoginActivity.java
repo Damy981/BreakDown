@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity {
     private FirebaseUser user;
     private FirebaseStorage storage;
     private StorageReference storageRef;
-    private StorageReference questRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

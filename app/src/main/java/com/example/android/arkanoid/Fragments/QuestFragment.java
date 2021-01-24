@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,12 +23,6 @@ import java.util.ArrayList;
 
 public class QuestFragment extends Fragment {
 
-    private ListView lvQuestItem;
-    private ImageView btnBackQuest;
-    private Services services;
-    private ArrayList<Quest> questsList = new ArrayList();
-    private Profile profile;
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -42,9 +35,9 @@ public class QuestFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        profile = (Profile) getArguments().getSerializable("profile");
-        services = new Services(getActivity().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE), profile.getUserId());
-        btnBackQuest = getView().findViewById(R.id.ivBackQuest);
+        Profile profile = (Profile) getArguments().getSerializable("profile");
+        Services services = new Services(getActivity().getSharedPreferences(Services.SHARED_PREF_DIR, Context.MODE_PRIVATE), profile.getUserId());
+        ImageView btnBackQuest = getView().findViewById(R.id.ivBackQuest);
 
         btnBackQuest.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,9 +46,9 @@ public class QuestFragment extends Fragment {
             }
         });
 
-        questsList = services.getQuestListFromFile(getContext());
+        ArrayList<Quest> questsList = services.getQuestListFromFile(getContext());
 
-        lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
+        ListView lvQuestItem = getActivity().findViewById(R.id.lvQuestItem);
 
         QuestItemAdapter adapter = new QuestItemAdapter(getContext(), questsList, profile);
         lvQuestItem.setAdapter(adapter);

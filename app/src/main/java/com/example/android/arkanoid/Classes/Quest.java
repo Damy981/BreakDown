@@ -3,10 +3,10 @@ package com.example.android.arkanoid.Classes;
 import java.io.Serializable;
 
 public class Quest implements Serializable {
-    private String questText;
+    private final String questText;
     private int progress;
-    private int target;
-    private int reward;
+    private final int target;
+    private final int reward;
     private final boolean isDaily;
     private boolean isCompleted;
     private boolean isRewardRedeemed;

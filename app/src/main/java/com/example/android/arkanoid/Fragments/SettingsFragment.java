@@ -27,7 +27,6 @@ public class SettingsFragment extends Fragment {
     private ToggleButton tbMusic;
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
-    private ImageView ivBackSettings;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -43,7 +42,7 @@ public class SettingsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         tbAccelerometer = getView().findViewById(R.id.tbAccelerometer);
         tbMusic = getView().findViewById(R.id.tbMusic);
-        ivBackSettings = getActivity().findViewById(R.id.ivBackSettings);
+        ImageView ivBackSettings = getActivity().findViewById(R.id.ivBackSettings);
 
         setButtons();
         setTbAccelerometerListener();

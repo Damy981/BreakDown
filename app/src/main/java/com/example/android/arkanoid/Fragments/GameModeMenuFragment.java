@@ -26,9 +26,6 @@ import com.example.android.arkanoid.R;
 
 public class GameModeMenuFragment extends Fragment {
 
-    private Button btnSinglePlayer;
-    private Button btnMultiPlayer;
-    private ImageView btnBack;
     private Profile profile;
 
     @Override
@@ -44,9 +41,9 @@ public class GameModeMenuFragment extends Fragment {
 
         profile = (Profile) getArguments().getSerializable("profile");
 
-        btnSinglePlayer = getView().findViewById(R.id.btnSinglePlayer);
-        btnMultiPlayer = getView().findViewById(R.id.btnMultiPlayer);
-        btnBack = getView().findViewById(R.id.ivBackMultiplayer);
+        Button btnSinglePlayer = getView().findViewById(R.id.btnSinglePlayer);
+        Button btnMultiPlayer = getView().findViewById(R.id.btnMultiPlayer);
+        ImageView btnBack = getView().findViewById(R.id.ivBackMultiplayer);
 
         btnSinglePlayer.setOnClickListener(new View.OnClickListener() {
             @Override

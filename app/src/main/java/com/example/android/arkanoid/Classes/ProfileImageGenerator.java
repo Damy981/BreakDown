@@ -19,7 +19,7 @@ import androidx.annotation.NonNull;
 public class ProfileImageGenerator
 {
     // Context used to perform the functionality of this object
-    private Context context;
+    private final Context context;
     // Drawable loaded (o generated)
     private Drawable resource;
 

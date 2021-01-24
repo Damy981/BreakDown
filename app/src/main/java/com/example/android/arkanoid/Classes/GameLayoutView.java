@@ -5,7 +5,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaPlayer;
 import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -15,11 +14,9 @@ import com.example.android.arkanoid.R;
 public class GameLayoutView extends RelativeLayout {
 
     public Game game;
-    private ImageView ivFreeze;
-    private ImageView ivExplosiveBall;
-    private RelativeLayout.LayoutParams params1;
-    private RelativeLayout.LayoutParams params2;
-    private MediaPlayer freezeSound;
+    private final ImageView ivFreeze;
+    private final ImageView ivExplosiveBall;
+    private final MediaPlayer freezeSound;
 
     public GameLayoutView(Context context, Game game) {
         super(context);
@@ -37,8 +34,8 @@ public class GameLayoutView extends RelativeLayout {
         ivExplosiveBall = new ImageView(context);
         ivExplosiveBall.setImageBitmap(explosiveBallBitmap);
 
-        params1 = new LayoutParams(180,180);
-        params2 = new LayoutParams(180,180);
+        LayoutParams params1 = new LayoutParams(180, 180);
+        LayoutParams params2 = new LayoutParams(180, 180);
 
         params1.leftMargin = 50;
         params1.topMargin = 1800;

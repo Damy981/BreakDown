@@ -15,14 +15,14 @@ public class Level {
     private final int COLUMN_START = 1;
     private final int COLUMN_NUMBER = 7;
 
-    private ArrayList<Brick> brickList = new ArrayList<>();
-    private int level;
+    private final ArrayList<Brick> brickList = new ArrayList<>();
+    private final int level;
     private int rowNumber;
     private int iNitro;
     private int jNitro;
     private int iSwitch;
     private int jSwitch;
-    private Random random;
+    private final Random random;
 
     public Level(Context context, int level) {
 

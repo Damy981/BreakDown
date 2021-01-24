@@ -54,7 +54,6 @@ public class MultiplayerMenuFragment extends Fragment {
     private long totalWin;
     private long totalLose;
     private long totalPlayed;
-    private ImageView btnBackMultiplayer;
 
 
     @Override
@@ -78,7 +77,7 @@ public class MultiplayerMenuFragment extends Fragment {
         tvTotalWin = getView().findViewById(R.id.tvTotalWin);
         tvTotalLose = getView().findViewById(R.id.tvTotalLose);
 
-        btnBackMultiplayer = getView().findViewById(R.id.ivBackMultiplayer);
+        ImageView btnBackMultiplayer = getView().findViewById(R.id.ivBackMultiplayer);
         btnBackMultiplayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

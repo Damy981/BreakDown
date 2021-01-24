@@ -16,11 +16,9 @@ import com.example.android.arkanoid.R;
 import java.util.ArrayList;
 
 public class QuestItemAdapter extends BaseAdapter {
-    private LayoutInflater inflater;
-    private TextView questText, done, total, reward;
-    private Button btnGetReward;
-    private ArrayList<Quest> questsList;
-    private Profile profile;
+    private final LayoutInflater inflater;
+    private final ArrayList<Quest> questsList;
+    private final Profile profile;
 
 
     public QuestItemAdapter(Context context, ArrayList<Quest> questsList, Profile profile) {
@@ -47,11 +45,11 @@ public class QuestItemAdapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         convertView = inflater.inflate(R.layout.item_questitem, null);
-        questText = convertView.findViewById(R.id.tvQuestText);
-        done = convertView.findViewById(R.id.tvDone);
-        total = convertView.findViewById(R.id.tvTotal);
-        reward = convertView.findViewById(R.id.tvReward);
-        btnGetReward = convertView.findViewById(R.id.btnGetReward);
+        TextView questText = convertView.findViewById(R.id.tvQuestText);
+        TextView done = convertView.findViewById(R.id.tvDone);
+        TextView total = convertView.findViewById(R.id.tvTotal);
+        TextView reward = convertView.findViewById(R.id.tvReward);
+        Button btnGetReward = convertView.findViewById(R.id.btnGetReward);
 
         btnGetReward.setVisibility(View.GONE);
         questText.setText(questsList.get(position).getQuestText());
