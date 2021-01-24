@@ -209,16 +209,33 @@
 
             <TextView
                 android:id="@+id/tvMatchId"
-                android:layout_width="35dp"
-                android:layout_height="14dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MatchId"
                 android:textColor="@color/grey"
-                android:textSize="12sp"
+                android:textSize="20sp"
+                android:fontFamily="@font/londrina_solid"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.875"
+                app:layout_constraintHorizontal_bias="0.945"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.279" />
+                app:layout_constraintTop_toBottomOf="@+id/tvMatchStatus"
+                app:layout_constraintVertical_bias="0.086" />
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="ID:"
+                android:textColor="@color/grey"
+                android:textSize="20sp"
+                android:fontFamily="@font/londrina_solid"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/tvMatchId"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvMatchId"
+                app:layout_constraintVertical_bias="0.0" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
