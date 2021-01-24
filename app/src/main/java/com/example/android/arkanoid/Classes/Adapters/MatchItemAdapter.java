@@ -59,10 +59,12 @@ public class MatchItemAdapter extends BaseAdapter {
         TextView tvPlayer1 = convertView.findViewById(R.id.tvPlayer1);
         TextView tvPlayer2 = convertView.findViewById(R.id.tvPlayer2);
         TextView tvStatus = convertView.findViewById(R.id.tvMatchStatus);
+        TextView tvMatchId = convertView.findViewById(R.id.tvMatchId);
 
         tvPlayer1.setText(matchList.get(position).getPlayer1());
         tvPlayer2.setText(matchList.get(position).getPlayer2());
         tvStatus.setText(matchList.get(position).getStatus());
+        tvMatchId.setText(matchList.get(position).getId());
 
         final int counter = matchList.get(position).getCounter();
 

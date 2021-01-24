@@ -5,6 +5,7 @@ import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.android.arkanoid.Activities.MainActivity;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -12,6 +13,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class OnlineMatch implements Serializable {
 
@@ -31,8 +33,10 @@ public class OnlineMatch implements Serializable {
     private long totalWin;
     private long totalLose;
     private String isCounted;
+    private Profile profile;
 
-    public OnlineMatch(String id, String player1, String player2, String userId) {
+    public OnlineMatch(String id, String player1, String player2, String userId, Profile profile) {
+        this.profile = profile;
         this.player1 = player1;
         this.player2 = player2;
         this.id = id;
@@ -117,6 +121,7 @@ public class OnlineMatch implements Serializable {
             if (player1winCounter > player2winCounter) {
                 setStatus(WIN);
                 getAndSetWinLoseCounter(WIN);
+                updateMatchQuest();
             }
             else {
                 setStatus(LOSE);
@@ -166,5 +171,12 @@ public class OnlineMatch implements Serializable {
                 updateWinLoseCounter(str, myRef);
             }
         }, 1500);
+    }
+
+    private void updateMatchQuest() {
+        ArrayList<Quest> quests = profile.getQuestsList();
+        quests.get(Quest.QUEST_WIN_50_MULTIPLAYER).setProgress(quests.get(Quest.QUEST_WIN_50_MULTIPLAYER).getProgress() + 1);
+        Services services = new Services();
+        services.updateQuestsFile(MainActivity.context, quests);
     }
 }

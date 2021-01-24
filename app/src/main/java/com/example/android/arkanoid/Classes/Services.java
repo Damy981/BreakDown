@@ -29,12 +29,16 @@ import java.util.ArrayList;
 public class Services {
 
     private SharedPreferences.Editor editor;
-    private final SharedPreferences preferences;
+    private SharedPreferences preferences;
     public static final String SHARED_PREF_DIR = "com.example.android.arkanoid_preferences";
     private ArrayList<Quest> questsList = new ArrayList();
-    private final String questsFileName;
-    private final FirebaseDatabase database;
-    private final DatabaseReference myRef;
+    private String questsFileName;
+    private FirebaseDatabase database;
+    private DatabaseReference myRef;
+
+    public Services() {
+
+    }
 
     public Services(SharedPreferences preferences, String userId) {
         this.preferences = preferences;

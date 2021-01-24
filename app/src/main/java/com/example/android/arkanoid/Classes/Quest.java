@@ -11,11 +11,11 @@ public class Quest implements Serializable {
     private boolean isCompleted;
     private boolean isRewardRedeemed;
     public static final long serialVersionUID = 19924200649L;
-    public static final int QUEST_DESTROY_BRICKS_100 = 0; //fatto
+    public static final int QUEST_DESTROY_BRICKS_100 = 0;
     public static final int QUEST_WIN_5 = 1;  //fatto
-    public static final int QUEST_WIN_3_WITH_ALL_LIVES = 2;  //fatto
-    public static final int QUEST_DESTROY_BRICKS_10000 = 3; //fatto
-    public static final int QUEST_WIN_50_MULTIPLAYER = 4;  //non ora
+    public static final int QUEST_WIN_3_WITH_ALL_LIVES = 2;
+    public static final int QUEST_DESTROY_BRICKS_10000 = 3;
+    public static final int QUEST_WIN_50_MULTIPLAYER = 4;
     public static final int QUEST_CREATE_LEVEL = 5;  //non ora
     public static final int QUEST_DEFUSE_NITROS = 6;
     public static final int QUEST_TOTAL_NUMBER = 7;

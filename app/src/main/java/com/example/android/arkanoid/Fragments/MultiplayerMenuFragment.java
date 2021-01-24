@@ -127,9 +127,8 @@ public class MultiplayerMenuFragment extends Fragment {
         String id = generateRandomMatchId();
         getRandomOpponent();
         getUsernameDelay(id);
-        match = new OnlineMatch(id, profile.getUserName(), usernameOpponent, userId);
+        match = new OnlineMatch(id, profile.getUserName(), usernameOpponent, userId, profile);
         match.setStatus(OnlineMatch.IN_PROGRESS);
-
     }
 
     private String generateRandomMatchId() {
@@ -265,7 +264,7 @@ public class MultiplayerMenuFragment extends Fragment {
                                     }
                                 }
                             }
-                            OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId);
+                            OnlineMatch match = new OnlineMatch(id, profile.getUserName(), opponent, userId, profile);
                             match.setStatus(status);
                             match.setCounter((int) matchCounter);
                             getOpponentScores(id, opponent, match);

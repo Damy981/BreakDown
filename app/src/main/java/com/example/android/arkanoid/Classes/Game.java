@@ -25,26 +25,19 @@ import java.util.ArrayList;
 
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
-    private final int BRICK_WIDTH = 123;
-    private final int BRICK_HEIGHT = 66;
-    private final int START_PADDLE_LENGTH = 200;
-
     private Bitmap background;
     final  Bitmap ballBitmap;
     private Bitmap scaledBackground;
     private final Bitmap paddleBitmap;
 
-    private Display display;
     private Point size;
     final private Paint paint;
 
     public Ball ball;
     private ArrayList<Brick> brickList;
-    private Paddle paddle;
+    private final Paddle paddle;
     private Level levelMap;
     public boolean explosiveBall;
-
-    private RectF r;
 
     final private SensorManager sManager;
     final private Sensor accelerometer;
@@ -56,15 +49,15 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private boolean gameOver;
     final private Context context;
     public Profile profile;
-    private double dropRate;
-    private int paddleLength;
+    private final double dropRate;
+    private final int paddleLength;
 
-    private MediaPlayer hitSound;
-    private MediaPlayer explosionSound;
-    private MediaPlayer hurtSound;
-    private Services services;
-    private ArrayList<Quest> quests;
-    private OnlineMatch match;
+    private final MediaPlayer hitSound;
+    private final MediaPlayer explosionSound;
+    private final MediaPlayer hurtSound;
+    private final Services services;
+    private final ArrayList<Quest> quests;
+    private final OnlineMatch match;
     private boolean matchCompleted = false;
 
     public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match) {
@@ -85,6 +78,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             level = this.profile.getLevelNumber();
         }
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
+        int START_PADDLE_LENGTH = 200;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() * 2 + START_PADDLE_LENGTH;
         explosiveBall = false;
         quests = profile.getQuestsList();
@@ -120,7 +114,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private void setBackground(Context context) {
         background = Bitmap.createBitmap(BitmapFactory.decodeResource(this.getResources(), R.drawable.background_game));
         WindowManager wm = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
-        display = wm.getDefaultDisplay();
+        Display display = wm.getDefaultDisplay();
         size = new Point();
         display.getSize(size);
     }
@@ -136,12 +130,14 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         canvas.drawBitmap(ballBitmap, ball.getX(), ball.getY(), paint);
 
         // draw paddle
-        r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + paddleLength, paddle.getY() + 65);
+        RectF r = new RectF(paddle.getX(), paddle.getY(), paddle.getX() + paddleLength, paddle.getY() + 65);
         canvas.drawBitmap(paddleBitmap, null, r, paint);
 
         // draw bricks
         for (int i = 0; i < brickList.size(); i++) {
             Brick b = brickList.get(i);
+            int BRICK_WIDTH = 123;
+            int BRICK_HEIGHT = 66;
             r = new RectF(b.getX(), b.getY(), b.getX() + BRICK_WIDTH, b.getY() + BRICK_HEIGHT);
             canvas.drawBitmap(b.getBrick(), null, r, paint);
         }

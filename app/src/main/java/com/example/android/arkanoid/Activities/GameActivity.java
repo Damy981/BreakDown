@@ -23,25 +23,21 @@ public class GameActivity extends AppCompatActivity {
 
     private GameLayoutView gameLayout;
     private Game game;
-    private UpdateThread myThread;
     private Handler updateHandler;
-    private Profile profile;
     private float ballXSpeed;
     private float ballYSpeed;
     private MediaPlayer music;
-    private Services services;
     private boolean musicOn;
     private boolean accelerometerOn;
     public static final int LIVES = 3;
-    private OnlineMatch match;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        profile = (Profile) getIntent().getSerializableExtra("profile");
-        match = null;
+        Profile profile = (Profile) getIntent().getSerializableExtra("profile");
+        OnlineMatch match;
         match = (OnlineMatch) getIntent().getSerializableExtra("match");
-        services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), profile.getUserId());
+        Services services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), profile.getUserId());
         musicOn = services.getMusicSetting();
         accelerometerOn = services.getAccelerometerSetting();
         // create a new game
@@ -55,7 +51,7 @@ public class GameActivity extends AppCompatActivity {
             music.start();
 
         createHandler();
-        myThread = new UpdateThread(updateHandler);
+        UpdateThread myThread = new UpdateThread(updateHandler);
         myThread.start();
     }
 
