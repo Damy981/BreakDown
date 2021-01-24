@@ -65,6 +65,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private Services services;
     private ArrayList<Quest> quests;
     private OnlineMatch match;
+    private boolean matchCompleted = false;
 
     public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match) {
         super(context);
@@ -77,7 +78,12 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.profile = profile;
         this.services = services;
         this.match = match;
-        level = this.profile.getLevelNumber();
+        if(match != null) {
+            level = 1;
+        }
+        else {
+            level = this.profile.getLevelNumber();
+        }
         dropRate = profile.getPowerUps().get(PowerUp.COINS_DROP_RATE).getQuantity() / 100.0;
         paddleLength = profile.getPowerUps().get(PowerUp.PADDLE_LENGTH).getQuantity() * 2 + START_PADDLE_LENGTH;
         explosiveBall = false;
@@ -179,6 +185,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 match.setPlayer1Score(score, i);
                 match.increaseCounter();
                 match.updateMatch();
+                if(match.getCounter() == 3){
+                    matchCompleted = true;
+                }else {
+
+                }
             }
             invalidate();
         }
@@ -298,24 +309,31 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 match.setPlayer1Score(score, i);
                 match.increaseCounter();
                 match.updateMatch();
+                if(match.getCounter() == 3){
+                    matchCompleted = true;
+                }else {
+                    resetLevel();
+                }
             }
-            quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
-            if(lives == GameActivity.LIVES){
-                quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
+            else {
+                quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
+                if(lives == GameActivity.LIVES){
+                    quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
+                }
+                services.updateQuestsFile(context, quests);
+                ++level;
+                profile.increaseLevel();
+                if (level <= 5)
+                    profile.setCoins(profile.getCoins() + 50);
+                if (level > 5 && level <= 15)
+                    profile.setCoins(profile.getCoins() + 100);
+                if (level > 15)
+                    profile.setCoins(profile.getCoins() + 150);
+                profile.updateProfile();
+                resetLevel();
+                ball.increaseSpeed(level);
+                start = false;
             }
-            services.updateQuestsFile(context, quests);
-            ++level;
-            profile.increaseLevel();
-            if (level <= 5)
-                profile.setCoins(profile.getCoins() + 50);
-            if (level > 5 && level <= 15)
-                profile.setCoins(profile.getCoins() + 100);
-            if (level > 15)
-                profile.setCoins(profile.getCoins() + 150);
-            profile.updateProfile();
-            resetLevel();
-            ball.increaseSpeed(level);
-            start = false;
         }
     }
 
@@ -386,5 +404,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 return i;
         }
         return -1;
+    }
+
+    public boolean isMatchCompleted() {
+        return matchCompleted;
     }
 }

@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -308,12 +309,11 @@ public class MultiplayerMenuFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                String str = "";
-                long[] scores = new long[3];
-
                 HashMap<String, String> hm = (HashMap<String, String>) dataSnapshot.getValue();
                 Iterator i = hm.entrySet().iterator();
                 while (i.hasNext()) {
+                    String str = "";
+                    long[] scores = new long[3];
                     Map.Entry entry = (Map.Entry) i.next();
                     HashMap<String, String> hm2 = (HashMap<String, String>) entry.getValue();
                     Iterator i2 = hm2.entrySet().iterator();

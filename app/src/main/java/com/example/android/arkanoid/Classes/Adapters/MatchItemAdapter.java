@@ -67,14 +67,13 @@ public class MatchItemAdapter extends BaseAdapter {
         final int counter = matchList.get(position).getCounter();
 
         if(counter == 3){
-            btnPlayMatch.setEnabled(false);
+            btnPlayMatch.setVisibility(View.INVISIBLE);
         }
 
         setCheckBoxes(convertView, position);
 
         setPlayMatchListener(matchList.get(position), counter);
 
-        final View convertView1 = convertView;
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -221,12 +220,10 @@ public class MatchItemAdapter extends BaseAdapter {
         if (player1Score[2] > player2Score[2] && match3Finished) {
             cbRound3Player1.setChecked(true);
             cbRound3Player2.setChecked(false);
-            btnPlayMatch.setVisibility(View.INVISIBLE);
         }
         else if (match3Finished){
             cbRound3Player1.setChecked(false);
             cbRound3Player2.setChecked(true);
-            btnPlayMatch.setVisibility(View.INVISIBLE);
         }
     }
 }

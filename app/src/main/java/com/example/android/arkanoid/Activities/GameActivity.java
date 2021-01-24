@@ -6,8 +6,9 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.android.arkanoid.Classes.Game;
 import com.example.android.arkanoid.Classes.GameLayoutView;
@@ -16,6 +17,7 @@ import com.example.android.arkanoid.Classes.Profile;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Classes.UpdateThread;
 import com.example.android.arkanoid.R;
+
 
 public class GameActivity extends AppCompatActivity {
 
@@ -63,7 +65,15 @@ public class GameActivity extends AppCompatActivity {
         updateHandler = new Handler() {
             public void handleMessage(Message msg) {
                 gameLayout.game.invalidate();
-                gameLayout.game.update();
+                if (!game.isMatchCompleted()){
+                    gameLayout.game.update();
+                }
+                else {
+                    View view = GameActivity.this.getLayoutInflater().inflate(R.layout.activity_game, null);
+                    addContentView(view, new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+                    Button btnResume = view.findViewById(R.id.btnResume);
+                    btnResume.setEnabled(false);
+                }
                 super.handleMessage(msg);
             }
         };
