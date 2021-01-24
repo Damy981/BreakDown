@@ -72,7 +72,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         this.services = services;
         this.match = match;
         if(match != null) {
-            level = 1;
+            level = 15;
         }
         else {
             level = this.profile.getLevelNumber();

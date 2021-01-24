@@ -174,9 +174,9 @@ public class OnlineMatch implements Serializable {
     }
 
     private void updateMatchQuest() {
-        ArrayList<Quest> quests = profile.getQuestsList();
-        quests.get(Quest.QUEST_WIN_50_MULTIPLAYER).setProgress(quests.get(Quest.QUEST_WIN_50_MULTIPLAYER).getProgress() + 1);
+        int progress = profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).getProgress();
+        profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).setProgress(++progress);
         Services services = new Services();
-        services.updateQuestsFile(MainActivity.context, quests);
+        services.updateQuestsFile(MainActivity.context, profile.getQuestsList());
     }
 }

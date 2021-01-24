@@ -13,7 +13,8 @@
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".Activities.GameActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.LevelEditorActivity"/>
+        <activity android:name=".Activities.LevelEditorActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".Activities.LoginActivity"/>
         <activity android:name=".Activities.MenuActivity"
             android:configChanges="screenSize|orientation"/>
