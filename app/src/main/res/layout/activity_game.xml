@@ -48,10 +48,10 @@
         android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.435"
+        app:layout_constraintHorizontal_bias="0.436"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnResume"
-        app:layout_constraintVertical_bias="0.085" />
+        app:layout_constraintVertical_bias="0.09" />
 
     <View
         android:id="@+id/vSeparatorPause"
@@ -64,4 +64,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvPause" />
+
+    <TextView
+        android:id="@+id/tvEndMatchMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="You finished your rounds. \nWait your opponent to see match result."
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.712" />
 </androidx.constraintlayout.widget.ConstraintLayout>

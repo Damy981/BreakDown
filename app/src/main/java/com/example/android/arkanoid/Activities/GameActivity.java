@@ -9,6 +9,7 @@ import android.os.Message;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.android.arkanoid.Classes.Game;
 import com.example.android.arkanoid.Classes.GameLayoutView;
@@ -68,6 +69,8 @@ public class GameActivity extends AppCompatActivity {
                     View view = GameActivity.this.getLayoutInflater().inflate(R.layout.activity_game, null);
                     addContentView(view, new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     Button btnResume = view.findViewById(R.id.btnResume);
+                    TextView tvEndMatchMessage = view.findViewById(R.id.tvEndMatchMessage);
+                    tvEndMatchMessage.setVisibility(View.VISIBLE);
                     btnResume.setEnabled(false);
                 }
                 super.handleMessage(msg);
