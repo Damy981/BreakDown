@@ -11,20 +11,22 @@
         android:id="@+id/tvSettings"
         android:layout_width="200dp"
         android:layout_height="50dp"
-        android:textAlignment="center"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/settings"
-        android:textSize="34sp"
+        android:textAlignment="center"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.118" />
+        app:layout_constraintVertical_bias="0.117" />
 
     <ToggleButton
         android:id="@+id/tbAccelerometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="45dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.308"
@@ -34,15 +36,16 @@
 
     <TextView
         android:id="@+id/tvAccelerometer"
-        android:layout_width="wrap_content"
+        android:layout_width="160dp"
         android:layout_height="wrap_content"
-        android:text="@string/accelerometer"
-        android:fontFamily="@font/londrina_solid"
-        android:textSize="28sp"
         android:layout_marginTop="10dp"
+        android:layout_marginStart="0dp"
+        android:fontFamily="@font/londrina_solid"
+        android:text="@string/accelerometer"
+        android:textSize="28sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.201"
+        app:layout_constraintHorizontal_bias="0.200"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.242" />
@@ -61,6 +64,8 @@
         android:id="@+id/tbMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/tvMusic"
@@ -69,13 +74,14 @@
 
     <TextView
         android:id="@+id/tvMusic"
-        android:layout_width="121dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="20dp"
         android:fontFamily="@font/londrina_solid"
         android:text="Music"
-        android:textSize="30sp"
         android:textAlignment="center"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.19"
@@ -85,10 +91,10 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="149dp"
-        android:layout_height="47dp"
-        android:layout_marginStart="71dp"
-        android:layout_marginTop="41dp"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="55dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="216dp"
         android:layout_marginBottom="374dp"
         android:fontFamily="@font/londrina_solid"
@@ -117,5 +123,35 @@
         android:src="@drawable/back_icon"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.10" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.90" />
+
+    <Button
+        android:id="@+id/credits"
+        android:layout_width="181dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="172dp"
+        android:layout_marginTop="147dp"
+        android:layout_marginEnd="58dp"
+        android:layout_marginBottom="164dp"
+        android:fontFamily="@font/londrina_solid"
+        android:text="Credits"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

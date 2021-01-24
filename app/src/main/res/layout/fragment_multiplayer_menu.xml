@@ -25,7 +25,6 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/multiplayer"
-        android:textColor="@color/gold"
         android:textSize="50sp"
         app:layout_constraintBottom_toTopOf="@+id/lvMatch"
         app:layout_constraintEnd_toEndOf="parent"

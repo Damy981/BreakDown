@@ -32,7 +32,6 @@
         android:fontFamily="@font/londrina_solid"
         android:text="@string/shop"
         android:textAlignment="center"
-        android:textColor="@color/grey"
         android:textSize="60sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

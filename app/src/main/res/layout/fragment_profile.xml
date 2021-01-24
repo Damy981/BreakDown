@@ -26,7 +26,6 @@
         android:layout_height="wrap_content"
         android:text="@string/profilo"
         android:fontFamily="@font/londrina_solid"
-        android:textColor="@color/grey"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
