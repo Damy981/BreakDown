@@ -2,13 +2,13 @@ package com.example.android.arkanoid.Classes.Adapters;
 
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.TextView;
@@ -71,6 +71,8 @@ public class MatchItemAdapter extends BaseAdapter {
             btnPlayMatch.setEnabled(false);
         }
 
+        setCheckBoxes(convertView, position);
+
         setPlayMatchListener(matchList.get(position), counter);
 
         final View convertView1 = convertView;
@@ -78,7 +80,7 @@ public class MatchItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 final View popupView = LayoutInflater.from(context).inflate(R.layout.online_match_popup, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.MATCH_PARENT);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1300, true);
                 TextView tvPopupPlayer1 = popupView.findViewById(R.id.tvPopupPlayer1);
                 TextView tvPopupPlayer2 = popupView.findViewById(R.id.tvPopupPlayer2);
                 TextView tvFirstMatchScoreP1 = popupView.findViewById(R.id.tvFirstMatchScoreP1);
@@ -91,8 +93,6 @@ public class MatchItemAdapter extends BaseAdapter {
                 ImageButton btnClose = popupView.findViewById(R.id.btnClose);
                 long[] player1Score = matchList.get(position).getPlayer1Score();
                 long[] player2Score = matchList.get(position).getPlayer2Score();
-
-
 
                 tvPopupPlayer1.setText(matchList.get(position).getPlayer1());
                 tvPopupPlayer2.setText(matchList.get(position).getPlayer2());
@@ -133,8 +133,10 @@ public class MatchItemAdapter extends BaseAdapter {
                         }
                     }
                 }
+                popupWindow.setElevation(50);
+                popupWindow.setOutsideTouchable(false);
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
 
-                popupWindow.showAsDropDown(convertView1);
 
                 btnClose.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -163,5 +165,67 @@ public class MatchItemAdapter extends BaseAdapter {
         intentGame.putExtra("profile", profile);
         intentGame.putExtra("match", match);
         context.startActivity(intentGame);
+    }
+
+    private void setCheckBoxes(View view, int i) {
+        CheckBox cbRound1Player1 = view.findViewById(R.id.cbRound1Player1);
+        CheckBox cbRound2Player1 = view.findViewById(R.id.cbRound2Player1);
+        CheckBox cbRound3Player1 = view.findViewById(R.id.cbRound3Player1);
+        CheckBox cbRound1Player2 = view.findViewById(R.id.cbRound1Player2);
+        CheckBox cbRound2Player2 = view.findViewById(R.id.cbRound2Player2);
+        CheckBox cbRound3Player2 = view.findViewById(R.id.cbRound3Player2);
+
+        OnlineMatch match = matchList.get(i);
+        long[] player1Score = match.getPlayer1Score();
+        long[] player2Score = match.getPlayer2Score();
+
+        int counter = match.getCounter();
+
+        boolean match1Finished = false;
+        boolean match2Finished = false;
+        boolean match3Finished = false;
+
+        if(counter > 0 && player2Score[0] != OnlineMatch.GAME_NOT_PLAYED) {
+            match1Finished = true;
+            cbRound1Player1.setVisibility(View.VISIBLE);
+            cbRound1Player2.setVisibility(View.VISIBLE);
+        }
+
+        if(counter > 1 && player2Score[1] != OnlineMatch.GAME_NOT_PLAYED) {
+            match2Finished = true;
+            cbRound2Player1.setVisibility(View.VISIBLE);
+            cbRound2Player2.setVisibility(View.VISIBLE);
+        }
+
+        if(counter > 2 && player2Score[2] != OnlineMatch.GAME_NOT_PLAYED) {
+            match3Finished = true;
+            cbRound3Player1.setVisibility(View.VISIBLE);
+            cbRound3Player2.setVisibility(View.VISIBLE);
+        }
+
+        if (player1Score[0] > player2Score[0] && match1Finished) {
+            cbRound1Player1.setChecked(true);
+            cbRound1Player2.setChecked(false);
+        }
+        else if (match1Finished){
+            cbRound1Player1.setChecked(false);
+            cbRound1Player2.setChecked(true);
+        }
+        if (player1Score[1] > player2Score[1] && match2Finished) {
+            cbRound2Player1.setChecked(true);
+            cbRound2Player2.setChecked(false);
+        }
+        else if (match2Finished){
+            cbRound2Player1.setChecked(false);
+            cbRound2Player2.setChecked(true);
+        }
+        if (player1Score[2] > player2Score[2] && match3Finished) {
+            cbRound3Player1.setChecked(true);
+            cbRound3Player2.setChecked(false);
+        }
+        else if (match3Finished){
+            cbRound3Player1.setChecked(false);
+            cbRound3Player2.setChecked(true);
+        }
     }
 }
