@@ -43,6 +43,7 @@ public class GameModeMenuFragment extends Fragment {
 
         Button btnSinglePlayer = getView().findViewById(R.id.btnSinglePlayer);
         Button btnMultiPlayer = getView().findViewById(R.id.btnMultiPlayer);
+        Button btnCustomLevel = getView().findViewById(R.id.btnCustomLevel);
         ImageView btnBack = getView().findViewById(R.id.ivBackMultiplayer);
 
         btnSinglePlayer.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +82,20 @@ public class GameModeMenuFragment extends Fragment {
                             .setPositiveButton(android.R.string.ok, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
+            }
+        });
+
+        btnCustomLevel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MenuActivity.fragment = new CustomLevelsMenuFragment();
+                FragmentManager fragmentManager = getFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("profile", profile);
+                MenuActivity.fragment.setArguments(bundle);
+                fragmentTransaction.replace(R.id.fragment_place, MenuActivity.fragment);
+                fragmentTransaction.commit();
             }
         });
 

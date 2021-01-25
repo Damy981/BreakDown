@@ -5,11 +5,11 @@ import androidx.gridlayout.widget.GridLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -18,9 +18,10 @@ import com.example.android.arkanoid.Classes.Adapters.BrickItemAdapter;
 import com.example.android.arkanoid.Classes.Brick;
 import com.example.android.arkanoid.Classes.Level;
 import com.example.android.arkanoid.Classes.Profile;
-import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.R;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -97,13 +98,21 @@ public class LevelEditorActivity extends AppCompatActivity {
     }
 
     public void saveAndShareLevel(View view) {
-        if (etLevelName.getText() != null || !etLevelName.getText().toString().equals("")) {
+        if (etLevelName.getText() != null && !etLevelName.getText().toString().equals("")) {
             level = new Level(brickList, profile.getUserName(), etLevelName.getText().toString());
             createLevelFile(getApplicationContext());
+            onBackPressed();
         }
+        else
+            new AlertDialog.Builder(getApplicationContext())
+                    .setTitle("Name empty")
+                    .setMessage("Please insert a name for your level")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
     }
 
-    public void createLevelFile(Context context) {
+    private void createLevelFile(Context context) {
         try {
             FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+ profile.getUserId() + "_" + level.getLevelName());
             try {
@@ -117,4 +126,10 @@ public class LevelEditorActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+  /*  private void uploadLevelFile() {
+        Uri file = Uri.fromFile(new File(getApplicationContext().getFilesDir()+ "/" +questsFileName));
+        StorageReference questsRef = storageRef.child("file/"+ questsFileName);
+        questsRef.putFile(file);
+    } */
 }

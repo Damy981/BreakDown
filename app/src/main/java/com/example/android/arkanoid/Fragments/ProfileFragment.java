@@ -77,7 +77,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
         tvBestScore.setText(String.valueOf(profile.getBestScore()));
 
         ProfileItemAdapter adapter;
-        adapter = new ProfileItemAdapter(this.getActivity(),profile.getPowerUps());
+        adapter = new ProfileItemAdapter(getContext(), profile.getPowerUps());
         lvOwnedItems.setAdapter(adapter);
 
         generateProfileImage();
