@@ -17,7 +17,7 @@ public class Brick extends View {
     private boolean nitroBrick;
     private boolean switchBrick;
 
-    public Brick(Context context, float x, float y, int level) {
+    public Brick(Context context, float x, float y, int level, boolean isFromEditor) {
         super(context);
         this.x = x;
         this.y = y;
@@ -25,7 +25,8 @@ public class Brick extends View {
         hardBrick = false;
         nitroBrick = false;
         switchBrick = false;
-        createSkins();
+        if (!isFromEditor)
+            createSkins();
     }
 
     //assigns a random image to the brick
@@ -98,8 +99,8 @@ public class Brick extends View {
         return hardBrick;
     }
 
-    public void setHardFalse() {
-        hardBrick = false;
+    public void setHard(boolean b) {
+        hardBrick = b;
     }
 
     public void changeHardBrickColor() {
@@ -129,5 +130,8 @@ public class Brick extends View {
         switchBrick = true;
     }
 
+    public void setSkin(int id) {
+        brick = BitmapFactory.decodeResource(getResources(), id);
+    }
 
 }

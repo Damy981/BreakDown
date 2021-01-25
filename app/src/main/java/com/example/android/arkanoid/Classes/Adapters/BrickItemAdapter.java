@@ -10,17 +10,25 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.android.arkanoid.Activities.LevelEditorActivity;
+import com.example.android.arkanoid.Classes.Level;
 import com.example.android.arkanoid.R;
 
 public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.ViewHolder> {
 
     private final LayoutInflater inflater;
     private final int[] bricks;
+    private int counter;
+    int i;
+    int j;
 
     public BrickItemAdapter(Context context, int[] bricks) {
 
         inflater = (LayoutInflater.from(context));
         this.bricks = bricks;
+        counter = 0;
+        i = Level.ROW_START;
+        j = Level.COLUMN_START;
     }
 
     @NonNull
@@ -32,14 +40,23 @@ public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         holder.brick.setImageResource(bricks[position]);
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.i("cacca", "ciao");
+                if (counter < 42) {
+                    ++counter;
+                    if(counter % 7 == 0) {
+                        i++;
+                        j = Level.COLUMN_START;
+                    }
+                    else
+                        j++;
+                    LevelEditorActivity.setBrick(bricks[position], i, j);
+                }
             }
         });
     }
