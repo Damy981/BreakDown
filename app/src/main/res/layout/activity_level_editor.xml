@@ -18,7 +18,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.096" />
+        app:layout_constraintVertical_bias="0.036" />
 
     <ImageView
         android:id="@+id/ivBackLevelEditor"
@@ -78,27 +78,30 @@
 
     <Button
         android:id="@+id/btnSaveLevel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="104dp"
+        android:layout_height="48dp"
+        android:background="@drawable/effect_button"
+        android:fontFamily="@font/londrina_solid"
         android:onClick="saveAndShareLevel"
         android:text="Save and share"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/glEditor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintHorizontal_bias="0.905"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.191" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLevel"
+        app:layout_constraintVertical_bias="0.333" />
 
     <EditText
         android:id="@+id/etLevelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="160dp"
         android:hint="Insert level name..."
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="22sp"
+        android:fontFamily="@font/londrina_solid"
+        app:layout_constraintBottom_toTopOf="@+id/glEditor"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
+        app:layout_constraintHorizontal_bias="0.103"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.24" />
+        app:layout_constraintTop_toBottomOf="@+id/tvLevel"
+        app:layout_constraintVertical_bias="0.32" />
 </androidx.constraintlayout.widget.ConstraintLayout>

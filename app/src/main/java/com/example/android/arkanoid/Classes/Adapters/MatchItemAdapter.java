@@ -80,7 +80,7 @@ public class MatchItemAdapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 final View popupView = LayoutInflater.from(context).inflate(R.layout.online_match_popup, null);
-                final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1300, true);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1400, true);
                 TextView tvPopupPlayer1 = popupView.findViewById(R.id.tvPopupPlayer1);
                 TextView tvPopupPlayer2 = popupView.findViewById(R.id.tvPopupPlayer2);
                 TextView tvFirstMatchScoreP1 = popupView.findViewById(R.id.tvFirstMatchScoreP1);

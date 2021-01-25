@@ -73,5 +73,6 @@
     <string name="third_match">THIRD MATCH</string>
     <string name="winner">Winner</string>
     <string name="power_up">Power up</string>
+    <string name="custom_level">CUSTOM LEVEL</string>
 
 </resources>
