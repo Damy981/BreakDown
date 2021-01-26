@@ -8,6 +8,36 @@
     tools:context=".Fragments.SettingsFragment">
 
 
+    <View
+        android:id="@+id/viewSeparatorProfile4"
+        android:layout_width="363dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="492dp"
+        android:background="#CF9132"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+
+    <View
+        android:id="@+id/viewSeparatorProfile3"
+        android:layout_width="363dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="328dp"
+        android:background="#CF9132"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+
+    <View
+        android:id="@+id/viewSeparatorProfile2"
+        android:layout_width="363dp"
+        android:layout_height="2dp"
+        android:layout_marginTop="164dp"
+        android:background="#CF9132"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+
     <TextView
         android:id="@+id/tvSettings"
         android:layout_width="200dp"
@@ -27,10 +57,15 @@
         android:id="@+id/tbAccelerometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/londrina_solid"
+        android:textSize="20dp"
+        android:background="@drawable/effect_button"
+        app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/tvAccelerometer"
@@ -39,12 +74,12 @@
         android:fontFamily="@font/londrina_solid"
         android:text="@string/accelerometer"
         android:textSize="28sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.189"
+        app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile2"
+        app:layout_constraintEnd_toStartOf="@+id/tbAccelerometer"
+        app:layout_constraintHorizontal_bias="0.364"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSettings"
-        app:layout_constraintVertical_bias="0.097" />
+        app:layout_constraintVertical_bias="0.458" />
 
     <View
         android:id="@+id/viewSeparatorProfile"
@@ -59,25 +94,33 @@
         android:id="@+id/tbMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="48dp"
+        android:layout_marginStart="166dp"
+        android:layout_marginTop="124dp"
+        android:layout_marginEnd="52dp"
+        android:fontFamily="@font/londrina_solid"
+        android:textSize="20dp"
+        android:background="@drawable/effect_button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/tvMusic"
         app:layout_constraintTop_toBottomOf="@+id/tbAccelerometer" />
 
     <TextView
         android:id="@+id/tvMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/londrina_solid"
         android:text="Music"
         android:textAlignment="center"
         android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/viewSeparatorProfile3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.135"
+        app:layout_constraintHorizontal_bias="0.123"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAccelerometer"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile2"
+        app:layout_constraintVertical_bias="0.629" />
 
     <TextView
         android:id="@+id/textView"
@@ -89,10 +132,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.16"
+        app:layout_constraintHorizontal_bias="0.14"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMusic"
-        app:layout_constraintVertical_bias="0.05" />
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile3"
+        app:layout_constraintVertical_bias="0.233" />
 
     <ImageView
         android:id="@+id/ivBackSettings"
@@ -128,17 +171,17 @@
 
     <Button
         android:id="@+id/credits"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="133dp"
+        android:layout_height="45dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:text="Credits"
         android:textSize="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.151"
+        app:layout_constraintHorizontal_bias="0.753"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        app:layout_constraintVertical_bias="0.901" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

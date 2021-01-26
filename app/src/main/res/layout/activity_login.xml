@@ -89,7 +89,9 @@
                 android:hint="@string/enter_email_address"
                 android:inputType="textEmailAddress"
                 android:textColor="#01030E"
-                android:textColorHint="#656060">
+                android:textColorHighlight="@color/gold"
+                android:textColorHint="#656060"
+                android:textColorLink="@color/gold">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -104,7 +106,9 @@
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
-                android:textColorHint="#656060">
+                android:textColorHighlight="#FFFFFF"
+                android:textColorHint="#656060"
+                android:textColorLink="@color/gold">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -118,6 +122,10 @@
                 android:layout_marginBottom="0dp"
                 android:elevation="20dp"
                 android:indeterminate="true"
+
+                android:indeterminateTint="@color/gold"
+                android:progressTint="#FFFFFF"
+                android:secondaryProgressTint="#FFFFFF"
                 app:layout_constraintBottom_toTopOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
