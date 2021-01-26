@@ -11,13 +11,18 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.android.arkanoid.Classes.Brick;
 import com.example.android.arkanoid.Classes.Game;
 import com.example.android.arkanoid.Classes.GameLayoutView;
+import com.example.android.arkanoid.Classes.Level;
 import com.example.android.arkanoid.Classes.OnlineMatch;
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.SerializableBrick;
 import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.Classes.UpdateThread;
 import com.example.android.arkanoid.R;
+
+import java.util.ArrayList;
 
 
 public class GameActivity extends AppCompatActivity {
@@ -31,18 +36,30 @@ public class GameActivity extends AppCompatActivity {
     private boolean musicOn;
     private boolean accelerometerOn;
     public static final int LIVES = 3;
+    private ArrayList<SerializableBrick> serializableBrickList;
+    private Level level;
+    private String levelName;
+    private String levelCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Profile profile = (Profile) getIntent().getSerializableExtra("profile");
         OnlineMatch match;
         match = (OnlineMatch) getIntent().getSerializableExtra("match");
+        serializableBrickList = (ArrayList<SerializableBrick>) getIntent().getSerializableExtra("level");
+        levelName = (String) getIntent().getSerializableExtra("levelName");
+        levelCreator = (String) getIntent().getSerializableExtra("levelCreator");
+
+        if (levelName != null)
+            buildLevelFromList();
+
         Services services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), profile.getUserId());
         musicOn = services.getMusicSetting();
         accelerometerOn = services.getAccelerometerSetting();
         // create a new game
-        game = new Game(this, LIVES, 0, profile, services, match);
+        game = new Game(this, LIVES, 0, profile, services, match, level);
         gameLayout = new GameLayoutView(this, game);
         setContentView(gameLayout);
 
@@ -62,15 +79,17 @@ public class GameActivity extends AppCompatActivity {
         updateHandler = new Handler() {
             public void handleMessage(Message msg) {
                 gameLayout.game.invalidate();
-                if (!game.isMatchCompleted()){
+                if (!game.isMatchCompleted() && !game.isEditorLevelFinished()){
                     gameLayout.game.update();
                 }
                 else {
                     View view = GameActivity.this.getLayoutInflater().inflate(R.layout.activity_game, null);
                     addContentView(view, new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     Button btnResume = view.findViewById(R.id.btnResume);
-                    TextView tvEndMatchMessage = view.findViewById(R.id.tvEndMatchMessage);
-                    tvEndMatchMessage.setVisibility(View.VISIBLE);
+                    if(game.isMatchCompleted()) {
+                        TextView tvEndMatchMessage = view.findViewById(R.id.tvEndMatchMessage);
+                        tvEndMatchMessage.setVisibility(View.VISIBLE);
+                    }
                     btnResume.setEnabled(false);
                 }
                 super.handleMessage(msg);
@@ -112,5 +131,14 @@ public class GameActivity extends AppCompatActivity {
         music.stop();
         gameLayout.game.stopGame();
         finish();
+    }
+
+    private void buildLevelFromList() {
+        ArrayList<Brick> brickList = new ArrayList<>();
+        for(int i = 0; i < serializableBrickList.size(); i++) {
+            SerializableBrick b = serializableBrickList.get(i);
+            brickList.add(new Brick(getApplicationContext(), b.getX(), b.getY(), b.getBitmap()));
+        }
+        level = new Level(brickList, levelCreator, levelName);
     }
 }

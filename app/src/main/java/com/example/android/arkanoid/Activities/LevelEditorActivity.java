@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -15,10 +18,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.example.android.arkanoid.Classes.Adapters.BrickItemAdapter;
-import com.example.android.arkanoid.Classes.Brick;
+import com.example.android.arkanoid.Classes.BitmapDataObject;
 import com.example.android.arkanoid.Classes.Level;
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.SerializableBrick;
 import com.example.android.arkanoid.R;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
@@ -31,9 +36,9 @@ import java.util.ArrayList;
 public class LevelEditorActivity extends AppCompatActivity {
     private Profile profile;
     static private GridLayout glEditor;
-    static private final ArrayList<Brick> brickList = new ArrayList<>();
-    private Level level;
+    static private final ArrayList<SerializableBrick> serializableBrickList = new ArrayList<>();
     private EditText etLevelName;
+    private String levelFileName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,44 +85,50 @@ public class LevelEditorActivity extends AppCompatActivity {
     }
 
     static public void addBrickToList(int id, int i, int j) {
-        int level = 10;
-
         if (!(id == R.drawable.brick_empty)) {
-            Brick b = new Brick(MainActivity.context, j * Level.BRICK_HORIZONTAL_DISTANCE, i * Level.BRICK_VERTICAL_DISTANCE, level, true);
-            b.setSkin(id);
 
-            if (id == R.drawable.brick_black)
-                b.setHard(true);
-            if (id == R.drawable.brick_nitro)
-                b.createNitro();
-            if (id == R.drawable.brick_switch_on)
-                b.createSwitch();
+            BitmapDataObject bitmap = new BitmapDataObject();
+            bitmap.setCurrentImage(BitmapFactory.decodeResource(MainActivity.context.getResources(), id));
 
-            brickList.add(b);
+            SerializableBrick b = new SerializableBrick( j * Level.BRICK_HORIZONTAL_DISTANCE, i * Level.BRICK_VERTICAL_DISTANCE, bitmap);
+
+            serializableBrickList.add(b);
         }
     }
 
     public void saveAndShareLevel(View view) {
         if (etLevelName.getText() != null && !etLevelName.getText().toString().equals("")) {
-            level = new Level(brickList, profile.getUserName(), etLevelName.getText().toString());
             createLevelFile(getApplicationContext());
+            if (isNetworkAvailable())
+                uploadLevelFile();
+
             onBackPressed();
         }
-        else
-            new AlertDialog.Builder(getApplicationContext())
+        else {
+            new AlertDialog.Builder(this)
                     .setTitle("Name empty")
                     .setMessage("Please insert a name for your level")
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
+        }
     }
 
     private void createLevelFile(Context context) {
+
+        File directory = new File(context.getFilesDir(), "CustomLevels");
+        directory.mkdir();
+
+        String levelName = etLevelName.getText().toString();
+        levelFileName = profile.getUserId() + "_" + levelName + ".bin";
         try {
-            FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+ profile.getUserId() + "_" + level.getLevelName());
+            FileOutputStream levelFile = new FileOutputStream(context.getFilesDir() + "/CustomLevels/"+ levelFileName);
             try {
-                ObjectOutputStream a = new ObjectOutputStream(questFile);
-                a.writeObject(level);
+                ObjectOutputStream a = new ObjectOutputStream(levelFile);
+                a.writeObject(serializableBrickList);
+                a.writeObject(levelName);
+                a.writeObject(profile.getUserName());
+
                 a.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -127,9 +138,17 @@ public class LevelEditorActivity extends AppCompatActivity {
         }
     }
 
-  /*  private void uploadLevelFile() {
-        Uri file = Uri.fromFile(new File(getApplicationContext().getFilesDir()+ "/" +questsFileName));
-        StorageReference questsRef = storageRef.child("file/"+ questsFileName);
-        questsRef.putFile(file);
-    } */
+    private void uploadLevelFile() {
+        Uri file = Uri.fromFile(new File(getApplicationContext().getFilesDir()+ "/CustomLevels/" + levelFileName));
+        StorageReference mStorageRef = FirebaseStorage.getInstance().getReference().child("file/CustomLevels/" + levelFileName);
+        mStorageRef.putFile(file);
+    }
+
+    //return true if internet connection is available else return false
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
+    }
 }

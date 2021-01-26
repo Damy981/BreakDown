@@ -1,15 +1,11 @@
 package com.example.android.arkanoid.Classes;
 
 import android.content.Context;
-import android.util.Log;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Level implements Serializable {
-
-    public static final long serialVersionUID = 19924200648L;
+public class Level{
 
     static public final int BRICK_HORIZONTAL_DISTANCE = 123;
     static public final int BRICK_VERTICAL_DISTANCE = 93;
@@ -25,7 +21,7 @@ public class Level implements Serializable {
     private int iSwitch;
     private int jSwitch;
     private Random random;
-    private String username;
+    private String creator;
     private String levelName;
 
     public Level(Context context, int level) {
@@ -38,7 +34,7 @@ public class Level implements Serializable {
     public Level(ArrayList<Brick> brickList, String username, String levelName) {
         this.brickList = brickList;
         level = 10;
-        this.username = username;
+        this.creator = username;
         this.levelName = levelName;
     }
 
@@ -57,10 +53,12 @@ public class Level implements Serializable {
 
                 if (level >= 15) {
                     if (i == iNitro && j == jNitro) {
+                        b.setNitroSkin();
                         b.createNitro();
                         b.setHard(false);
                     }
                     if (i == iSwitch && j == jSwitch) {
+                        b.setSwitchSkin();
                         b.createSwitch();
                         b.setHard(false);
                     }
@@ -85,5 +83,9 @@ public class Level implements Serializable {
 
     public String getLevelName() {
         return levelName;
+    }
+
+    public String getCreator() {
+        return creator;
     }
 }

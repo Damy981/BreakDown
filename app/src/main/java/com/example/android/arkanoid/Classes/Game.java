@@ -13,6 +13,7 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.media.MediaPlayer;
+import android.util.Log;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
@@ -59,8 +60,11 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private final ArrayList<Quest> quests;
     private final OnlineMatch match;
     private boolean matchCompleted = false;
+    private boolean isEditorLevel = false;
+    private boolean editorLevelFinished = false;
 
-    public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match) {
+
+    public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match, Level levelMap) {
         super(context);
         paint = new Paint();
 
@@ -104,8 +108,15 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         //creates a new ball, paddle, and list of bricks
         ball = new Ball(size.x / 2, size.y - 510);
         paddle = new Paddle(size.x / 2, size.y - 450);
-        levelMap = new Level(context, level);
-        brickList = levelMap.getBrickList();
+
+        if (levelMap == null) {
+            this.levelMap = new Level(context, level);
+        }
+        else {
+            this.levelMap = levelMap;
+            isEditorLevel = true;
+        }
+        brickList = this.levelMap.getBrickList();
         this.setOnTouchListener(this);
         ball.increaseSpeed(level);
     }
@@ -183,10 +194,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 match.updateMatch();
                 if(match.getCounter() == 3){
                     matchCompleted = true;
-                }else {
-
                 }
             }
+            if (isEditorLevel)
+                editorLevelFinished = true;
             invalidate();
         }
         else {
@@ -300,6 +311,8 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // find out if the player won or not
     private void win() {
         if (brickList.isEmpty()) {
+            if (isEditorLevel)
+                editorLevelFinished = true;
             if (match != null) {
                 int i = match.getCounter();
                 match.setPlayer1Score(score, i);
@@ -311,7 +324,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     resetLevel();
                 }
             }
-            else {
+            else if (!isEditorLevel) {
                 quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
                 if(lives == GameActivity.LIVES){
                     quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
@@ -404,5 +417,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
 
     public boolean isMatchCompleted() {
         return matchCompleted;
+    }
+
+    public boolean isEditorLevelFinished() {
+        return editorLevelFinished;
     }
 }

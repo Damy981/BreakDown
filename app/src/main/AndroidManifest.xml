@@ -14,6 +14,7 @@
         <activity android:name=".Activities.GameActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activities.LevelEditorActivity"
+            android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
         <activity android:name=".Activities.LoginActivity"/>
         <activity android:name=".Activities.MenuActivity"
