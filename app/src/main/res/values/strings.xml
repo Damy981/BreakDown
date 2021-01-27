@@ -74,5 +74,7 @@
     <string name="winner">Winner</string>
     <string name="power_up">Power up</string>
     <string name="custom_level">CUSTOM LEVEL</string>
+    <string name="you_finished_your_rounds_nwait_your_opponent_to_see_match_result">You finished your rounds. \nWait your opponent to see match result.</string>
+    <string name="search_opponent">SEARCH OPPONENT</string>
 
 </resources>

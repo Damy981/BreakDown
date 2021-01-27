@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class ProfileItemAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final ArrayList<PowerUp> powerUps;
-    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
+    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze_two, R.drawable.explosion_two};
 
 
     public ProfileItemAdapter(Context context, ArrayList<PowerUp> powerUps ) {

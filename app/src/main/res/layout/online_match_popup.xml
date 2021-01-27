@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#dadada">
+    android:background="@drawable/popup_round">
 
     <TextView
         android:id="@+id/tvMatchSummary"
@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/player_1"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/first_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -62,7 +62,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/second_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -79,7 +79,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/third_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -97,7 +97,7 @@
         android:layout_marginStart="123dp"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/player_2"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="28sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -115,7 +115,7 @@
         android:layout_marginEnd="36dp"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/first_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -131,14 +131,14 @@
         android:layout_marginEnd="36dp"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/second_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvFirstMatchScoreP2"
         app:layout_constraintVertical_bias="0.038"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/tvThirdMatchScoreP2"
@@ -147,14 +147,14 @@
         android:layout_marginEnd="36dp"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/third_match"
-        android:textColor="@color/grey"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSecondMatchScoreP2"
         app:layout_constraintVertical_bias="0.045"
-        tools:visibility="visible" />
+        tools:visibility="gone" />
 
     <TextView
         android:id="@+id/tvWinner"
@@ -181,10 +181,10 @@
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.961"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.016"
         app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,6 +47,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="150dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="200dp"
+            android:elevation="20dp"
+            android:indeterminate="true"
+            android:indeterminateTint="@color/gold"
+            android:progressTint="#FFFFFF"
+            android:secondaryProgressTint="#FFFFFF"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <ImageView
             android:id="@+id/btnPlay"
             android:layout_width="118dp"
@@ -62,7 +77,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ivLogoLand"
             app:layout_constraintVertical_bias="0.062"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            android:contentDescription="@string/todo" />
 
         <ImageView
             android:id="@+id/btnShop"
@@ -78,7 +94,8 @@
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnPlay"
-            app:layout_constraintVertical_bias="0.034" />
+            app:layout_constraintVertical_bias="0.034"
+            android:contentDescription="@string/todo" />
 
         <ImageView
             android:id="@+id/btnSettings"
@@ -249,7 +266,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/logo"
+            android:contentDescription="@string/todo" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

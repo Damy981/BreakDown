@@ -29,7 +29,7 @@ public class ShopItemAdapter extends BaseAdapter {
     private final Profile profile;
     private final TextView tvShopCoins;
     private final ArrayList<PowerUp> powerUps;
-    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze, R.drawable.explosion};
+    private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze_two, R.drawable.explosion_two};
 
     public ShopItemAdapter(Context context, Profile profile, TextView tvShopCoins) {
         this.context = context;

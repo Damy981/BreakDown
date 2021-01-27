@@ -18,24 +18,23 @@
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.534"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.534" />
+        app:layout_constraintTop_toBottomOf="@+id/tvGameMode"
+        app:layout_constraintVertical_bias="0.124" />
 
     <Button
         android:id="@+id/btnMultiPlayer"
         android:layout_width="205dp"
         android:layout_height="75dp"
-        android:layout_marginTop="40dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/multiplayer"
         android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.533"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnSinglePlayer" />
+        app:layout_constraintTop_toBottomOf="@+id/btnSinglePlayer"
+        app:layout_constraintVertical_bias="0.152" />
 
     <TextView
         android:id="@+id/tvGameMode"
@@ -43,13 +42,27 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/select_game_mode"
-        android:textSize="40sp"
+        android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.212" />
+        app:layout_constraintVertical_bias="0.046" />
+
+    <Button
+        android:id="@+id/btnCustomLevel"
+        android:layout_width="205dp"
+        android:layout_height="75dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/effect_button"
+        android:fontFamily="@font/londrina_solid"
+        android:text="@string/custom_level"
+        android:textSize="26sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnMultiPlayer"
+        app:layout_constraintVertical_bias="0.42" />
 
     <ImageView
         android:id="@+id/ivBackMultiplayer"

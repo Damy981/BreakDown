@@ -39,7 +39,7 @@
         android:layout_height="56dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
-        android:text="SEARCH OPPONENT"
+        android:text="@string/search_opponent"
         android:textColor="@color/grey"
         android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="parent"

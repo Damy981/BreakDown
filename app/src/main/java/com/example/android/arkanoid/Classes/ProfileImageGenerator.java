@@ -79,7 +79,7 @@ class ProfileImageLetter extends ShapeDrawable
         Paint paint = new Paint();
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.FILL);
-        paint.setTextSize(350);
+        paint.setTextSize(390);
         paint.setTextAlign(Paint.Align.CENTER);
 
         canvas.drawText( "" + letter , ((float) getBounds().width()/2),

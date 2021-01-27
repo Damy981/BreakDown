@@ -12,6 +12,7 @@
         android:layout_width="205dp"
         android:layout_height="62dp"
         android:background="@drawable/effect_button"
+        android:fontFamily="@font/londrina_solid"
         android:text="@string/register_your_guest_account"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +117,7 @@
 
     <View
         android:id="@+id/viewSeparatorProfile"
-        android:layout_width="363dp"
+        android:layout_width="0dp"
         android:layout_height="2dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="13dp"
