@@ -88,6 +88,8 @@
                 android:drawableRight="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
                 android:inputType="textEmailAddress"
+                android:backgroundTint="@color/gold"
+                android:textCursorDrawable="@color/gold"
                 android:textColor="#01030E"
                 android:textColorHighlight="@color/gold"
                 android:textColorHint="#656060"
@@ -103,6 +105,8 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
                 android:drawableRight="@drawable/password_icon"
+                android:backgroundTint="@color/gold"
+                android:textCursorDrawable="@color/gold"
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
@@ -122,7 +126,6 @@
                 android:layout_marginBottom="0dp"
                 android:elevation="20dp"
                 android:indeterminate="true"
-
                 android:indeterminateTint="@color/gold"
                 android:progressTint="#FFFFFF"
                 android:secondaryProgressTint="#FFFFFF"
@@ -140,7 +143,7 @@
                 android:fontFamily="@font/londrina_solid"
                 android:onClick="forgotPassword"
                 android:text="@string/forgot_password"
-                android:textColor="#CF9132"
+                android:textColor="@color/gold"
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
@@ -165,7 +168,7 @@
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="413dp"
-        android:layout_height="130dp"
+        android:layout_height="140dp"
         android:layout_marginTop="3dp"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"

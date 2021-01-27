@@ -63,13 +63,13 @@
 
     <androidx.gridlayout.widget.GridLayout
         android:id="@+id/glEditor"
-        android:layout_width="392dp"
+        android:layout_width="match_parent"
         android:layout_height="499dp"
         android:layout_marginTop="29dp"
         android:layout_marginBottom="28dp"
         app:layout_constraintBottom_toTopOf="@+id/rvBricks"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.473"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvLevel"
         app:layout_constraintVertical_bias="1.0">

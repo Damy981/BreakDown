@@ -18,6 +18,7 @@
         android:onClick="openRegisterActivity"
         android:text="@string/not_registered_yet_register_now"
         android:textColor="@color/gold"
+        android:fontFamily="@font/londrina_solid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -98,6 +99,8 @@
                 android:layout_marginRight="10dp"
                 android:drawableRight="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
+                android:backgroundTint="@color/gold"
+                android:textCursorDrawable="@color/gold"
                 android:inputType="textEmailAddress"
                 android:textColor="#01030E"
                 android:textColorHint="#656060">
@@ -113,6 +116,8 @@
                 android:layout_marginRight="10dp"
                 android:drawableRight="@drawable/password_icon"
                 android:hint="@string/enter_password"
+                android:backgroundTint="@color/gold"
+                android:textCursorDrawable="@color/gold"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
                 android:textColorHint="#656060">
@@ -129,6 +134,7 @@
                 android:layout_marginBottom="0dp"
                 android:elevation="20dp"
                 android:indeterminate="true"
+                android:indeterminateTint="@color/gold"
                 app:layout_constraintBottom_toTopOf="@+id/textView7"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,7 +148,8 @@
                 android:layout_marginTop="10dp"
                 android:onClick="forgotPassword"
                 android:text="@string/forgot_password"
-                android:textColor="#CF9132"
+                android:textColor="@color/gold"
+                android:fontFamily="@font/londrina_solid"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
@@ -184,6 +191,7 @@
             android:elevation="1dp"
             android:onClick="login"
             android:text="@string/login"
+            android:fontFamily="@font/londrina_solid"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -198,6 +206,7 @@
             android:elevation="1dp"
             android:onClick="guestLogin"
             android:text="@string/enter_as_guest"
+            android:fontFamily="@font/londrina_solid"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
             app:layout_constraintStart_toStartOf="parent"
