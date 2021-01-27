@@ -48,14 +48,26 @@ public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.View
             @Override
             public void onClick(View v) {
                 if (counter < 42) {
-                    ++counter;
                     if(counter % 7 == 0) {
                         i++;
                         j = Level.COLUMN_START;
                     }
-                    else
-                        j++;
-                    LevelEditorActivity.setBrick(bricks[position], i, j);
+                    else{
+                            j++;
+                    }
+                    counter++;
+                    if(position == LevelEditorActivity.BRICK_BLACK){
+                        LevelEditorActivity.setBrick(bricks[position], i, j, true, false, false);
+                    }
+                    else if(position == LevelEditorActivity.BRICK_NITRO){
+                        LevelEditorActivity.setBrick(bricks[position], i, j, false, true, false);
+                    }
+                    else if(position == LevelEditorActivity.BRICK_SWITCH_ON){
+                        LevelEditorActivity.setBrick(bricks[position], i, j, false, false, true);
+                    }
+                    else{
+                        LevelEditorActivity.setBrick(bricks[position], i, j, false, false, false);
+                    }
                 }
             }
         });

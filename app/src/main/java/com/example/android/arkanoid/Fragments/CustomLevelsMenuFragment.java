@@ -111,7 +111,7 @@ public class CustomLevelsMenuFragment extends Fragment {
         ArrayList<Brick> brickList = new ArrayList<>();
         for(int i = 0; i < serializableBrickList.size(); i++) {
             SerializableBrick b = serializableBrickList.get(i);
-            brickList.add(new Brick(getContext(), b.getX(), b.getY(), b.getBitmap()));
+            brickList.add(new Brick(getContext(), b.getX(), b.getY(), b.getBitmap(), b.isHardBrick(), b.isNitroBrick(), b.isSwitchBrick()));
         }
         Level level = new Level(brickList, username, levelName);
         levels.add(level);

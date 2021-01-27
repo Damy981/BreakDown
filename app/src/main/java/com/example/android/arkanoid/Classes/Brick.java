@@ -29,32 +29,14 @@ public class Brick extends View {
             createSkins();
     }
 
-    public Brick(Context context, float x, float y, Bitmap bitmap) {
+    public Brick(Context context, float x, float y, Bitmap bitmap, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
         super(context);
         this.x = x;
         this.y = y;
         brick = bitmap;
-
-        if(brick == BitmapFactory.decodeResource(getResources(), R.drawable.brick_nitro)) {
-            hardBrick = false;
-            nitroBrick = true;
-            switchBrick = false;
-        }
-        else if(brick == BitmapFactory.decodeResource(getResources(), R.drawable.brick_black)) {
-            hardBrick = true;
-            nitroBrick = false;
-            switchBrick = false;
-        }
-        else if(brick == BitmapFactory.decodeResource(getResources(), R.drawable.brick_switch_on)) {
-            hardBrick = false;
-            nitroBrick = false;
-            switchBrick = true;
-        }
-        else{
-            hardBrick = false;
-            nitroBrick = false;
-            switchBrick = false;
-        }
+        this.hardBrick = hardBrick;
+        this.nitroBrick = nitroBrick;
+        this.switchBrick = switchBrick;
     }
 
     //assigns a random image to the brick

@@ -12,6 +12,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -36,9 +37,14 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 public class LevelEditorActivity extends AppCompatActivity {
+
+    public static final int BRICK_BLACK = 11;
+    public static final int BRICK_NITRO = 12;
+    public static final int BRICK_SWITCH_ON = 13;
+
     private Profile profile;
     static private GridLayout glEditor;
-    static private final ArrayList<SerializableBrick> serializableBrickList = new ArrayList<>();
+    static private ArrayList<SerializableBrick> serializableBrickList;
     private EditText etLevelName;
     private String levelFileName;
 
@@ -49,6 +55,7 @@ public class LevelEditorActivity extends AppCompatActivity {
         profile = (Profile) getIntent().getSerializableExtra("profile");
         etLevelName = findViewById(R.id.etLevelName);
 
+        serializableBrickList = new ArrayList<>();
         glEditor = findViewById(R.id.glEditor);
         glEditor.setRowCount(6);
         glEditor.setColumnCount(7);
@@ -73,7 +80,7 @@ public class LevelEditorActivity extends AppCompatActivity {
 
     }
 
-    static public void setBrick(int id, int i, int j) {
+    static public void setBrick(int id, int i, int j, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
         ImageView brick = new ImageView(MainActivity.context);
         brick.setImageResource(id);
 
@@ -83,16 +90,16 @@ public class LevelEditorActivity extends AppCompatActivity {
         ll.addView(brick);
 
         glEditor.addView(ll);
-        addBrickToList(id, i, j);
+        addBrickToList(id, i, j, hardBrick, nitroBrick, switchBrick);
     }
 
-    static public void addBrickToList(int id, int i, int j) {
+    static public void addBrickToList(int id, int i, int j, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
         if (!(id == R.drawable.brick_empty)) {
 
             BitmapDataObject bitmap = new BitmapDataObject();
             bitmap.setCurrentImage(BitmapFactory.decodeResource(MainActivity.context.getResources(), id));
 
-            SerializableBrick b = new SerializableBrick( j * Level.BRICK_HORIZONTAL_DISTANCE, i * Level.BRICK_VERTICAL_DISTANCE, bitmap);
+            SerializableBrick b = new SerializableBrick( j * Level.BRICK_HORIZONTAL_DISTANCE, i * Level.BRICK_VERTICAL_DISTANCE, bitmap, hardBrick, nitroBrick, switchBrick);
 
             serializableBrickList.add(b);
         }
