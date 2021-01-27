@@ -1,15 +1,19 @@
 package com.example.android.arkanoid.Classes;
 
+import android.util.Log;
+
 public class Ball {
 
     protected float xSpeed;
     protected float ySpeed;
     private float x;
     private float y;
+    private int paddleLength;
 
-    public Ball(float x, float y) {
+    public Ball(float x, float y, int paddleLength) {
         this.x = x;
         this.y = y;
+        this.paddleLength = paddleLength - 200;
         generateSpeed();
     }
 
@@ -68,12 +72,29 @@ public class Ball {
     private boolean isCloseToPaddle(float ax, float ay, float bx, float by) {
         bx += 12;
         by += 11;
-        if ((Math.sqrt(Math.pow((ax + 50) - bx, 2) + Math.pow(ay - by, 2))) < 80) {
+        if ((Math.sqrt(Math.pow((ax + 50) - bx, 2) + Math.pow(ay - by, 2))) < 76) {
+            Log.i("cacca", "1");
             return true;
-        } else if ((Math.sqrt(Math.pow((ax + 100) - bx, 2) + Math.pow(ay - by, 2))) < 60) {
+        } else if ((Math.sqrt(Math.pow((ax + 100) - bx, 2) + Math.pow(ay - by, 2))) < 76) {
+            Log.i("cacca", "2");
             return true;
-        } else if ((Math.sqrt(Math.pow((ax + 150) - bx, 2) + Math.pow(ay - by, 2))) < 60) {
+        } else if ((Math.sqrt(Math.pow((ax + 150) - bx, 2) + Math.pow(ay - by, 2))) < 76) {
+            Log.i("cacca", "3");
             return true;
+        }else if (paddleLength != 0 && paddleLength <= 50) {
+            if ((Math.sqrt(Math.pow((ax + 150 + paddleLength) - bx, 2) + Math.pow(ay - by, 2))) < paddleLength + 16) {
+                Log.i("cacca", "4");
+                return true;
+            }
+        }else if (paddleLength != 0 && paddleLength > 50) {
+            if ((Math.sqrt(Math.pow((ax + 150 + (paddleLength/2)) - bx, 2) + Math.pow(ay - by, 2))) < paddleLength + 16) {
+                Log.i("cacca", "4");
+                return true;
+            }
+            if ((Math.sqrt(Math.pow((ax + 150 + (paddleLength)) - bx, 2) + Math.pow(ay - by, 2))) < (paddleLength/ 2) + 20) {
+                Log.i("cacca", "5");
+                return true;
+            }
         }
         return false;
     }

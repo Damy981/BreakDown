@@ -106,7 +106,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         paddleBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.paddle);
 
         //creates a new ball, paddle, and list of bricks
-        ball = new Ball(size.x / 2, size.y - 510);
+        ball = new Ball(size.x / 2, size.y - 510, paddleLength);
         paddle = new Paddle(size.x / 2, size.y - 450);
 
         if (levelMap == null) {
@@ -244,9 +244,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     }
                     else if (b.isSwitch()) {
                         hitSound.start();
-                        removeNitro();
                         b.setSwitchBrickOff();
                         removeBrick(i);
+                        removeNitro();
                     }
                 }
             }
