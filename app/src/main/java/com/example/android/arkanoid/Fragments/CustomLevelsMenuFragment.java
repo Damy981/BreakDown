@@ -7,12 +7,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.android.arkanoid.Classes.Adapters.LevelItemAdapter;
 import com.example.android.arkanoid.Classes.Brick;
@@ -63,15 +65,7 @@ public class CustomLevelsMenuFragment extends Fragment {
         });
 
         downloadLevels(getContext());
-        try {
-            getLevelsFromFiles(Objects.requireNonNull(getContext()));
-        } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-
-        ListView lvCustomLevels = getView().findViewById(R.id.lvCustomLevels);
-        LevelItemAdapter adapter = new LevelItemAdapter(getContext(), levels, list, profile);
-        lvCustomLevels.setAdapter(adapter);
+        getLevelFromFilesAndSetAdapter();
     }
 
     private void downloadLevels(final Context context) {
@@ -86,7 +80,7 @@ public class CustomLevelsMenuFragment extends Fragment {
                             String fileName = ref.toString();
                             fileName = fileName.substring((fileName.lastIndexOf("/") + 1));
                             File localLevelFile;
-                            localLevelFile = new File(context.getFilesDir(), fileName);
+                            localLevelFile = new File(context.getFilesDir() + "/CustomLevels/", fileName);
                             ref.getFile(localLevelFile);
                         }
                     }
@@ -121,5 +115,24 @@ public class CustomLevelsMenuFragment extends Fragment {
         }
         Level level = new Level(brickList, username, levelName);
         levels.add(level);
+    }
+
+    private void getLevelFromFilesAndSetAdapter() {
+        new Handler().postDelayed(new Runnable(){
+            @Override
+            public void run() {
+                try {
+                    getLevelsFromFiles(Objects.requireNonNull(getContext()));
+                } catch (IOException | ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                ListView lvCustomLevels = getView().findViewById(R.id.lvCustomLevels);
+                LevelItemAdapter adapter = new LevelItemAdapter(getContext(), levels, list, profile);
+                lvCustomLevels.setAdapter(adapter);
+
+                ProgressBar progressBar = getView().findViewById(R.id.pbCustomLevels);
+                progressBar.setVisibility(View.GONE);
+            }
+        }, 2500);
     }
 }

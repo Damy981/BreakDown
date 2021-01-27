@@ -1,7 +1,6 @@
 package com.example.android.arkanoid.Classes;
 
 import android.os.Handler;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -13,7 +12,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 
 public class OnlineMatch implements Serializable {
 
@@ -176,7 +174,7 @@ public class OnlineMatch implements Serializable {
     private void updateMatchQuest() {
         int progress = profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).getProgress();
         profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).setProgress(++progress);
-        Services services = new Services();
+        Services services = new Services(profile.getUserId());
         services.updateQuestsFile(MainActivity.context, profile.getQuestsList());
     }
 }

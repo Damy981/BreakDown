@@ -21,7 +21,9 @@ import com.example.android.arkanoid.Classes.Adapters.BrickItemAdapter;
 import com.example.android.arkanoid.Classes.BitmapDataObject;
 import com.example.android.arkanoid.Classes.Level;
 import com.example.android.arkanoid.Classes.Profile;
+import com.example.android.arkanoid.Classes.Quest;
 import com.example.android.arkanoid.Classes.SerializableBrick;
+import com.example.android.arkanoid.Classes.Services;
 import com.example.android.arkanoid.R;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -71,7 +73,7 @@ public class LevelEditorActivity extends AppCompatActivity {
 
     }
 
-   static public void setBrick(int id, int i, int j) {
+    static public void setBrick(int id, int i, int j) {
         ImageView brick = new ImageView(MainActivity.context);
         brick.setImageResource(id);
 
@@ -99,9 +101,14 @@ public class LevelEditorActivity extends AppCompatActivity {
     public void saveAndShareLevel(View view) {
         if (etLevelName.getText() != null && !etLevelName.getText().toString().equals("")) {
             createLevelFile(getApplicationContext());
+
+            Services services = new Services(profile.getUserId());
+            Quest createLevelQuest = profile.getQuestsList().get(Quest.QUEST_CREATE_LEVEL);
+            profile.getQuestsList().get(Quest.QUEST_CREATE_LEVEL).setProgress(createLevelQuest.getProgress() + 1);
+            services.updateQuestsFile(getApplicationContext(), profile.getQuestsList());
+
             if (isNetworkAvailable())
                 uploadLevelFile();
-
             onBackPressed();
         }
         else {

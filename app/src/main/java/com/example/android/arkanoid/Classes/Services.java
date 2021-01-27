@@ -36,8 +36,8 @@ public class Services {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
 
-    public Services() {
-
+    public Services(String userId) {
+        questsFileName = "quest_" + userId + ".bin";
     }
 
     public Services(SharedPreferences preferences, String userId) {
