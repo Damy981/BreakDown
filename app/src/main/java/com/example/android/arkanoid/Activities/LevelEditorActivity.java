@@ -78,6 +78,15 @@ public class LevelEditorActivity extends AppCompatActivity {
             }
         });
 
+        if (!isNetworkAvailable() || profile.getUserId() == null) {
+            new AlertDialog.Builder(this)
+                    .setTitle("No internet connection or Guest User")
+                    .setMessage("You can't upload your level if you are guest or if you don't have an active internet connection.")
+                    .setPositiveButton(android.R.string.ok, null)
+                    .setIcon(android.R.drawable.ic_dialog_alert)
+                    .show();
+        }
+
     }
 
     static public void setBrick(int id, int i, int j, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
@@ -114,7 +123,7 @@ public class LevelEditorActivity extends AppCompatActivity {
             profile.getQuestsList().get(Quest.QUEST_CREATE_LEVEL).setProgress(createLevelQuest.getProgress() + 1);
             services.updateQuestsFile(getApplicationContext(), profile.getQuestsList());
 
-            if (isNetworkAvailable())
+            if (isNetworkAvailable() && profile.getUserId() != null)
                 uploadLevelFile();
             onBackPressed();
         }
@@ -129,9 +138,6 @@ public class LevelEditorActivity extends AppCompatActivity {
     }
 
     private void createLevelFile(Context context) {
-
-        File directory = new File(context.getFilesDir(), "CustomLevels");
-        directory.mkdir();
 
         String levelName = etLevelName.getText().toString();
         levelFileName = profile.getUserId() + "_" + levelName + ".bin";

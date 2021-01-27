@@ -1,6 +1,8 @@
 package com.example.android.arkanoid.Fragments;
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -64,7 +66,8 @@ public class CustomLevelsMenuFragment extends Fragment {
             }
         });
 
-        downloadLevels(getContext());
+        if(isNetworkAvailable())
+            downloadLevels(getContext());
         getLevelFromFilesAndSetAdapter();
     }
 
@@ -134,5 +137,12 @@ public class CustomLevelsMenuFragment extends Fragment {
                 progressBar.setVisibility(View.GONE);
             }
         }, 2500);
+    }
+
+    private boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null;
     }
 }
