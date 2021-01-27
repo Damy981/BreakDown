@@ -109,7 +109,7 @@ public class MenuActivity extends AppCompatActivity {
             services.uploadQuestsFile(mStorageRef, this);
             logoutLoadingScreen();
         } else
-            Toast.makeText(MainActivity.context, "Internet connection not available, check your connection and try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(MainActivity.context, R.string.noConnection, Toast.LENGTH_LONG).show();
     }
 
     public void btnProfileClick(View view) {

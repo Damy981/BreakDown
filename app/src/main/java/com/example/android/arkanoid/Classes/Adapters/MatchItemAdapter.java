@@ -98,18 +98,18 @@ public class MatchItemAdapter extends BaseAdapter {
                 tvPopupPlayer2.setText(matchList.get(position).getPlayer2());
 
                 if (matchList.get(position).getStatus().equals("Win"))
-                    tvWinner.setText("WINNER: " + matchList.get(position).getPlayer1());
+                    tvWinner.setText(context.getString(R.string.winnerMatchItem) + matchList.get(position).getPlayer1());
                 else if (matchList.get(position).getStatus().equals("Lose"))
-                    tvWinner.setText("WINNER: " + matchList.get(position).getPlayer2());
+                    tvWinner.setText(context.getString(R.string.winnerMatchItem) + matchList.get(position).getPlayer2());
                 else
-                    tvWinner.setText("IN PROGRESS");
+                    tvWinner.setText(context.getString(R.string.inProgress));
 
                 for(int i = 0; i <= counter; i++) {
                     if(i == 1) {
                         tvFirstMatchScoreP1.setVisibility(View.VISIBLE);
                         tvFirstMatchScoreP2.setVisibility(View.VISIBLE);
                         tvFirstMatchScoreP1.setText(String.valueOf(player1Score[0]));
-                        tvFirstMatchScoreP2.setText("Waiting opponent");
+                        tvFirstMatchScoreP2.setText(R.string.waitOpp);
                         if(player2Score[0] != OnlineMatch.GAME_NOT_PLAYED) {
                             tvFirstMatchScoreP2.setText(String.valueOf(player2Score[0]));
                         }
@@ -118,7 +118,7 @@ public class MatchItemAdapter extends BaseAdapter {
                         tvSecondMatchScoreP1.setVisibility(View.VISIBLE);
                         tvSecondMatchScoreP2.setVisibility(View.VISIBLE);
                         tvSecondMatchScoreP1.setText(String.valueOf(player1Score[1]));
-                        tvSecondMatchScoreP2.setText("Waiting opponent");
+                        tvSecondMatchScoreP2.setText(R.string.waitOpp);
                         if(player2Score[1] != OnlineMatch.GAME_NOT_PLAYED) {
                             tvSecondMatchScoreP2.setText(String.valueOf(player2Score[1]));
                         }
@@ -127,7 +127,7 @@ public class MatchItemAdapter extends BaseAdapter {
                         tvThirdMatchScoreP1.setVisibility(View.VISIBLE);
                         tvThirdMatchScoreP2.setVisibility(View.VISIBLE);
                         tvThirdMatchScoreP1.setText(String.valueOf(player1Score[2]));
-                        tvThirdMatchScoreP2.setText("Waiting opponent");
+                        tvThirdMatchScoreP2.setText(R.string.waitOpp);
                         if(player2Score[2] != OnlineMatch.GAME_NOT_PLAYED) {
                             tvThirdMatchScoreP2.setText(String.valueOf(player2Score[2]));
                         }

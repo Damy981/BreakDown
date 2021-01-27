@@ -81,7 +81,7 @@ public class ShopItemAdapter extends BaseAdapter {
         });
 
         shopItemName.setText(powerUps.get(i).getName());
-        tvBuyShop.setText("Buy for " + powerUps.get(i).getPrice() + "!");
+        tvBuyShop.setText(context.getString(R.string.buyFor) + powerUps.get(i).getPrice() + "!");
         setQuantityText(i, shopItemQuantity);
 
 
@@ -94,7 +94,7 @@ public class ShopItemAdapter extends BaseAdapter {
                     buyItem(e);
                     checkMaxStats(e, finalConvertView);
                     setQuantityText(e, shopItemQuantity);
-                    tvBuyShop.setText("Buy for " + powerUps.get(e).getPrice() + "!");
+                    tvBuyShop.setText(context.getString(R.string.buyFor) + powerUps.get(e).getPrice() + "!");
                 }else{
                     noCoinsMessage();
                 }
@@ -118,8 +118,8 @@ public class ShopItemAdapter extends BaseAdapter {
     //contain the message displayed when the user does not have enough coins to buy a power up
     private void noCoinsMessage() {
         new AlertDialog.Builder(context)
-                .setTitle("Error")
-                .setMessage("Not enough coins")
+                .setTitle(R.string.error)
+                .setMessage(R.string.notEnoughCoins)
                 .setPositiveButton(android.R.string.ok, null)
                 .setIcon(android.R.drawable.ic_dialog_alert)
                 .show();
@@ -133,7 +133,7 @@ public class ShopItemAdapter extends BaseAdapter {
             shopItemQuantity.setText("+" + powerUps.get(i).getQuantity());
         }
         else {
-            shopItemQuantity.setText("Owned: " + powerUps.get(i).getQuantity());
+            shopItemQuantity.setText(context.getString(R.string.owned) + powerUps.get(i).getQuantity());
         }
     }
     private void checkMaxStats(int i, View view) {

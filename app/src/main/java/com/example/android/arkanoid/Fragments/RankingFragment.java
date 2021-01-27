@@ -85,8 +85,8 @@ public class RankingFragment extends Fragment {
         }
         else
             new AlertDialog.Builder(getContext())
-                    .setTitle("No internet connection")
-                    .setMessage("Please connect to internet and restart your application to see the ranking")
+                    .setTitle(R.string.noInternetConnection)
+                    .setMessage(R.string.connectionErrorRank)
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
@@ -139,7 +139,7 @@ public class RankingFragment extends Fragment {
 
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "Hi! " + profile.getUserName() + " is in position " + String.valueOf(i) + " with a score of " + score + " on Arkanoid, come play with us!");
+        sendIntent.putExtra(Intent.EXTRA_TEXT, getString(R.string.hi) + profile.getUserName() + getString(R.string.position) + i + getString(R.string.withScore) + score + getString(R.string.playWithUs));
         sendIntent.setType("text/plain");
         startActivity(sendIntent);
     }

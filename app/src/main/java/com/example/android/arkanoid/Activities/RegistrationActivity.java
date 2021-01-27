@@ -63,10 +63,10 @@ public class RegistrationActivity extends AppCompatActivity {
 
         //validate input
         if(!validateMail(email)){
-            showDialogBox("Email address not valid", "Error", android.R.drawable.ic_dialog_alert);
+            showDialogBox(getString(R.string.invalidMail), getString(R.string.error), android.R.drawable.ic_dialog_alert);
         }
         else if(!validatePassword(password)){
-            showDialogBox("Password not valid, password must have at least 6 characters", "Error", android.R.drawable.ic_dialog_alert);
+            showDialogBox(getString(R.string.passNotValid), getString(R.string.error), android.R.drawable.ic_dialog_alert);
         }else {
             if (mAuth.getCurrentUser() == null)
                 createFirebaseUser(email, password, name);
@@ -80,7 +80,7 @@ public class RegistrationActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, get current user and show confirm messaege
-                            Toast.makeText(RegistrationActivity.this, "Registration success, please confirm your email and login.",
+                            Toast.makeText(RegistrationActivity.this, R.string.registrationSucc,
                                     Toast.LENGTH_LONG).show();
                             FirebaseUser user = mAuth.getCurrentUser();
                             //get userName from local data to check if user was already playing as a guest
@@ -107,7 +107,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             startActivity(intent);
                         } else {
                             // If sign in fails, display a message to the user.
-                            showDialogBox("Registration failed, check your connection and try again", "Error", android.R.drawable.ic_dialog_alert);
+                            showDialogBox(getString(R.string.registrationFail), getString(R.string.error), android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });

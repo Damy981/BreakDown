@@ -285,9 +285,9 @@ public class MultiplayerMenuFragment extends Fragment {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                tvTotalPlayed.setText("Total Played: " + totalPlayed);
-                tvTotalWin.setText("Total Win: " + totalWin);
-                tvTotalLose.setText("Total Lose: " + totalLose);
+                tvTotalPlayed.setText(getString(R.string.totalplay) + totalPlayed);
+                tvTotalWin.setText(getString(R.string.totalwin) + totalWin);
+                tvTotalLose.setText(getString(R.string.totalLose) + totalLose);
 
                 MatchItemAdapter adapter;
                 adapter = new MatchItemAdapter(getContext(), profile, matchList);

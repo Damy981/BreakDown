@@ -18,11 +18,12 @@ public class ProfileItemAdapter extends BaseAdapter {
     private final LayoutInflater inflater;
     private final ArrayList<PowerUp> powerUps;
     private final int[] images = {R.drawable.coin_drop, R.drawable.paddle_length, R.drawable.freeze_two, R.drawable.explosion_two};
-
+    private Context context;
 
     public ProfileItemAdapter(Context context, ArrayList<PowerUp> powerUps ) {
         inflater = (LayoutInflater.from(context));
         this.powerUps = powerUps;
+        this.context = context;
     }
 
     @Override
@@ -62,7 +63,7 @@ public class ProfileItemAdapter extends BaseAdapter {
             shopItemQuantity.setText("+" + powerUps.get(i).getQuantity());
         }
         else {
-            shopItemQuantity.setText("Quantity:" + String.valueOf(powerUps.get(i).getQuantity()));
+            shopItemQuantity.setText(context.getString(R.string.quantity_2) + " " + String.valueOf(powerUps.get(i).getQuantity()));
         }
     }
 

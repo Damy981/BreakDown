@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity {
         if (email.contains("@") && password.length() >= 6)
             loginFirebaseUser(email, password);
         else
-            showDialogBox("Please insert email address and password", "Error", android.R.drawable.ic_dialog_alert);
+            showDialogBox(getString(R.string.loginError), getString(R.string.error), android.R.drawable.ic_dialog_alert);
     }
 
 
@@ -109,11 +109,11 @@ public class LoginActivity extends AppCompatActivity {
                             }
                             //if the logged user did not verify the email, show an error
                             else {
-                                showDialogBox("Your email address is not verified. Verify and try again.", "Info", android.R.drawable.ic_dialog_info);
+                                showDialogBox(getString(R.string.mailNotVerified), getString(R.string.info), android.R.drawable.ic_dialog_info);
                             }
                         } else {
                             // If sign in fails, display a message to the user.
-                            Toast.makeText(LoginActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginActivity.this, R.string.authFailed,
                                     Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -149,10 +149,10 @@ public class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.context, "Mail sent.", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.context, R.string.mailSent, Toast.LENGTH_LONG).show();
                             changeVisibility();
                         } else {
-                            showDialogBox("This email address is not registered", "Error", android.R.drawable.ic_dialog_alert);
+                            showDialogBox(getString(R.string.mailError), getString(R.string.error), android.R.drawable.ic_dialog_alert);
                         }
                     }
                 });
@@ -190,8 +190,8 @@ public class LoginActivity extends AppCompatActivity {
     //show informations for guest user and when ok is clicked move to menu
     private void showGuestAlert () {
         AlertDialog.Builder alert = new AlertDialog.Builder(this)
-                .setTitle("Info")
-                .setMessage("Logged as a guest, if you don't complete you registration from your profile you will lose all your progress if you uninstall this app")
+                .setTitle(R.string.info)
+                .setMessage(R.string.guestAlert)
                 .setIcon(android.R.drawable.ic_dialog_info)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {

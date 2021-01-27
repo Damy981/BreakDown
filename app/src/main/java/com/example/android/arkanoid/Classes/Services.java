@@ -5,13 +5,9 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.util.Log;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.android.arkanoid.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
@@ -101,7 +97,7 @@ public class Services {
 
     //create the file with the user quests
     public void createQuestsFile(Context context) {
-        populateQuestList();
+        populateQuestList(context);
         try {
             FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+questsFileName);
             try {
@@ -119,14 +115,14 @@ public class Services {
     }
 
     //add the quests text to the arraylist which will be write on file with createQuestsFiles
-    private void populateQuestList() {
-        questsList.add(new Quest("Destroy 100 bricks", 0, 100, 20, true));
-        questsList.add(new Quest("Win 5 games", 0, 5, 20, true));
-        questsList.add(new Quest("Win 3 games without losing lives", 0, 3, 20, true));
-        questsList.add(new Quest("Destroy 10,000 bricks", 0, 10000, 250, false));
-        questsList.add(new Quest("Win 50 games in multiplayer mode", 0, 50, 250, false));
-        questsList.add(new Quest("Create a level", 0, 1, 30, false));
-        questsList.add(new Quest("Defuse 50 nitros", 0, 50, 250, false));
+    private void populateQuestList(Context context) {
+        questsList.add(new Quest(context.getString(R.string.quest1), 0, 100, 20, true));
+        questsList.add(new Quest(context.getString(R.string.quest2), 0, 5, 20, true));
+        questsList.add(new Quest(context.getString(R.string.quest3), 0, 3, 20, true));
+        questsList.add(new Quest(context.getString(R.string.quest4), 0, 10000, 250, false));
+        questsList.add(new Quest(context.getString(R.string.quest5), 0, 50, 250, false));
+        questsList.add(new Quest(context.getString(R.string.quest6), 0, 1, 30, false));
+        questsList.add(new Quest(context.getString(R.string.quest7), 0, 50, 250, false));
     }
 
     public boolean getMusicSetting() {
@@ -147,18 +143,7 @@ public class Services {
         File localQuestsFile = null;
         localQuestsFile = new File(context.getFilesDir(), questsFileName);
         Log.i("Path temp", localQuestsFile.getAbsolutePath());
-        questsRef.getFile(localQuestsFile)
-        .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-            @Override
-            public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                Log.i("Download", "completato");
-            }
-        }).addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception exception) {
-                Log.i("Download", "Non completato");
-            }
-        });
+        questsRef.getFile(localQuestsFile);
     }
 
     public String getQuestsFileName() {

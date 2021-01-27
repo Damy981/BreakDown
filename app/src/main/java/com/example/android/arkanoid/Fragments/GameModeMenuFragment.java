@@ -70,15 +70,15 @@ public class GameModeMenuFragment extends Fragment {
                 }
                 else if (!isNetworkAvailable())
                     new AlertDialog.Builder(getContext())
-                            .setTitle("No internet connection")
-                            .setMessage("Internet connection required to play multiplayer")
+                            .setTitle(R.string.noInternetConnection)
+                            .setMessage(R.string.connectErrorMulti)
                             .setPositiveButton(android.R.string.ok, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();
                 else if (profile.getUserId() == null)
                     new AlertDialog.Builder(getContext())
-                            .setTitle("User not registered")
-                            .setMessage("Registered account required to play multiplayer")
+                            .setTitle(R.string.notRegistered)
+                            .setMessage(R.string.registerErrorMulti)
                             .setPositiveButton(android.R.string.ok, null)
                             .setIcon(android.R.drawable.ic_dialog_alert)
                             .show();

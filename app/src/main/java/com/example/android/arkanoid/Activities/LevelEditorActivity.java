@@ -80,8 +80,8 @@ public class LevelEditorActivity extends AppCompatActivity {
 
         if (!isNetworkAvailable() || profile.getUserId() == null) {
             new AlertDialog.Builder(this)
-                    .setTitle("No internet connection or Guest User")
-                    .setMessage("You can't upload your level if you are guest or if you don't have an active internet connection.")
+                    .setTitle(R.string.noInternetOrGuest)
+                    .setMessage(R.string.editorError)
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
@@ -129,8 +129,8 @@ public class LevelEditorActivity extends AppCompatActivity {
         }
         else {
             new AlertDialog.Builder(this)
-                    .setTitle("Name empty")
-                    .setMessage("Please insert a name for your level")
+                    .setTitle(R.string.levelNameEmpty)
+                    .setMessage(R.string.levelNameError)
                     .setPositiveButton(android.R.string.ok, null)
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();

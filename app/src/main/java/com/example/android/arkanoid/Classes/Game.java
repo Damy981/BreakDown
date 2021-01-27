@@ -156,15 +156,15 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         // draw text
         paint.setColor(Color.WHITE);
         paint.setTextSize(50);
-        canvas.drawText("Level: " + level, 100, 100, paint);
-        canvas.drawText("Lives: " + lives, 400, 100, paint);
-        canvas.drawText("Score: " + score, 700, 100, paint);
+        canvas.drawText(getContext().getString(R.string.level) + level, 100, 100, paint);
+        canvas.drawText(getContext().getString(R.string.lives) + lives, 400, 100, paint);
+        canvas.drawText(getContext().getString(R.string.scoreGame) + score, 700, 100, paint);
 
         //in case of lose draw "Game over!"
         if (gameOver) {
             profile.updateProfile();
             paint.setTextSize(100);
-            canvas.drawText("Game over!", size.x / 4, size.y / 2, paint);
+            canvas.drawText(getContext().getString(R.string.gameOver), size.x / 4, size.y / 2, paint);
         }
     }
 
