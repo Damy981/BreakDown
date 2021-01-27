@@ -18,7 +18,7 @@
         android:fontFamily="@font/londrina_solid"
         android:onClick="openRegisterActivity"
         android:text="@string/not_registered_yet_register_now"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textColor="#CF9132"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -67,16 +67,16 @@
 
 
             <TextView
-                android:id="@+id/textView7"
+                android:id="@+id/tvLogin"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
                 android:background="#F8F5F5"
                 android:fontFamily="@font/londrina_solid"
-                android:text="Login"
+                android:text="@string/login"
                 android:textAlignment="center"
                 android:textColor="#290202"
-                android:textSize="40sp"/>
+                android:textSize="40sp" />
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/etMail"
@@ -85,11 +85,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableRight="@drawable/email_icon"
+                android:drawableEnd="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
+                android:textCursorDrawable="@drawable/cursor_rounded"
                 android:inputType="textEmailAddress"
                 android:backgroundTint="@color/gold"
-                android:textCursorDrawable="@color/gold"
                 android:textColor="#01030E"
                 android:textColorHighlight="@color/gold"
                 android:textColorHint="#656060"
@@ -104,12 +104,12 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableRight="@drawable/password_icon"
+                android:drawableEnd="@drawable/password_icon"
                 android:backgroundTint="@color/gold"
-                android:textCursorDrawable="@color/gold"
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
+                android:textCursorDrawable="@drawable/cursor_rounded"
                 android:textColorHighlight="#FFFFFF"
                 android:textColorHint="#656060"
                 android:textColorLink="@color/gold">
@@ -122,14 +122,13 @@
                 android:layout_width="150dp"
                 android:layout_height="100dp"
                 android:layout_marginStart="100dp"
-                android:layout_marginLeft="0dp"
                 android:layout_marginBottom="0dp"
                 android:elevation="20dp"
                 android:indeterminate="true"
                 android:indeterminateTint="@color/gold"
                 android:progressTint="#FFFFFF"
                 android:secondaryProgressTint="#FFFFFF"
-                app:layout_constraintBottom_toTopOf="@+id/textView7"
+                app:layout_constraintBottom_toTopOf="@+id/tvLogin"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -163,7 +162,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_image" />
+        app:srcCompat="@drawable/user_image"
+        android:contentDescription="@string/todo" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -179,10 +179,10 @@
             android:id="@+id/btnLogin"
             android:layout_width="290dp"
             android:layout_height="60dp"
-            android:layout_marginLeft="60dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="15dp"
             android:layout_marginBottom="152dp"
-            android:background="@drawable/shadow_button"
+            android:background="@drawable/effect_button"
             android:fontFamily="@font/londrina_solid"
             android:elevation="1dp"
             android:onClick="login"
@@ -195,10 +195,10 @@
             android:id="@+id/guestButton"
             android:layout_width="200dp"
             android:layout_height="51dp"
-            android:layout_marginLeft="-240dp"
+            android:layout_marginStart="-240dp"
             android:layout_marginTop="75dp"
             android:layout_marginBottom="28dp"
-            android:background="@drawable/shadow_button"
+            android:background="@drawable/effect_button"
             android:elevation="1dp"
             android:onClick="guestLogin"
             android:text="@string/enter_as_guest"
@@ -216,14 +216,14 @@
         android:id="@+id/btnForgotPass"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="120dp"
         android:background="@drawable/shadow_button"
+        android:fontFamily="@font/londrina_solid"
         android:onClick="sendResetPasswordMail"
         android:text="@string/confirm"
-        android:fontFamily="@font/londrina_solid"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="120dp"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

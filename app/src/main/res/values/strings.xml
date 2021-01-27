@@ -124,5 +124,8 @@
     <string name="quest7">Defuse 50 nitros</string>
     <string name="you_finished_your_rounds_nwait_your_opponent_to_see_match_result">You finished your rounds. \nWait your opponent to see match result.</string>
     <string name="search_opponent">SEARCH OPPONENT</string>
+    <string name="language">Language</string>
+    <string name="credits">Credits</string>
+    <string name="registration">Registration</string>
 
 </resources>
