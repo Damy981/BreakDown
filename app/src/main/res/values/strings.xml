@@ -110,4 +110,16 @@
     <string name="language">Language</string>
     <string name="credits">Credits</string>
     <string name="registration">Registration</string>
+    <string name="level_name">Level name</string>
+    <string name="creator">Creator</string>
+    <string name="save_and_share">Save and share</string>
+    <string name="insert_level_name">Insert level name</string>
+
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>Spanish</item>
+        <item>German</item>
+    </string-array>
 </resources>

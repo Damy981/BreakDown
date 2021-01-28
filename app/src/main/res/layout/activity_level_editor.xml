@@ -16,9 +16,10 @@
         android:textSize="50sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.598"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.036" />
+        app:layout_constraintVertical_bias="0.021" />
 
     <ImageView
         android:id="@+id/ivBackLevelEditor"
@@ -83,7 +84,7 @@
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:onClick="saveAndShareLevel"
-        android:text="Save and share"
+        android:text="@string/save_and_share"
         app:layout_constraintBottom_toTopOf="@+id/glEditor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.905"
@@ -95,9 +96,14 @@
         android:id="@+id/etLevelName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:hint="Insert level name..."
-        android:textSize="22sp"
+        android:autofillHints=""
+        android:backgroundTint="@color/gold"
         android:fontFamily="@font/londrina_solid"
+        android:hint="@string/insert_level_name"
+        android:textColor="@color/white"
+        android:textColorHint="@color/white"
+        android:textCursorDrawable="@drawable/cursor_rounded"
+        android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/glEditor"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.103"

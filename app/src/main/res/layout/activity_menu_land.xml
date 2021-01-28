@@ -204,8 +204,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.055"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.984" />
+            app:layout_constraintTop_toBottomOf="@+id/btnRanking"
+            app:layout_constraintVertical_bias="0.755" />
 
         <TextView
             android:id="@+id/Quest"
@@ -213,14 +213,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/londrina_solid"
             android:text="@string/quest"
-            android:textSize="20sp"
             android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.35"
+            app:layout_constraintHorizontal_bias="0.319"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.984" />
+            app:layout_constraintTop_toBottomOf="@+id/btnQuest"
+            app:layout_constraintVertical_bias="0.755" />
 
         <TextView
             android:id="@+id/LevelEditor"
@@ -228,14 +228,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/londrina_solid"
             android:text="@string/level_editor"
-            android:textSize="20sp"
             android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.623"
+            app:layout_constraintHorizontal_bias="0.624"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.984" />
+            app:layout_constraintTop_toBottomOf="@+id/btnLevelEditor"
+            app:layout_constraintVertical_bias="0.755" />
 
         <TextView
             android:id="@+id/Settings"
@@ -243,14 +243,14 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/londrina_solid"
             android:text="@string/settings"
-            android:textSize="20sp"
             android:textColor="@color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.921"
+            app:layout_constraintHorizontal_bias="0.916"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.984" />
+            app:layout_constraintTop_toBottomOf="@+id/btnSettings"
+            app:layout_constraintVertical_bias="0.755" />
 
         <ImageView
             android:id="@+id/ivLogoLand"

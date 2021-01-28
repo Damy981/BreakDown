@@ -19,7 +19,7 @@
     <string name="return_to_menu">Torna al menu</string>
     <string name="settings">IMPOSTAZIONI</string>
     <string name="coins">Monete:</string>
-    <string name="accelerometer">Accellerometro</string>
+    <string name="accelerometer">Accelerometro</string>
     <string name="singleplayer">Giocatore Singolo</string>
     <string name="multiplayer">MULTIGIOCATORE</string>
     <string name="select_game_mode">SELEZIONA MODALITA\' DI GIOCO:</string>
@@ -28,7 +28,7 @@
     <string name="buy_for">Compra per</string>
     <string name="username">Nome Utente</string>
     <string name="best_score">Miglior Punteggio:</string>
-    <string name="stats_and_power_ups"><![CDATA[STATISTICHE & POTENZIAMENTI:]]></string>
+    <string name="stats_and_power_ups"><![CDATA[Statistiche & Potenziamenti:]]></string>
     <string name="leaderboard">CLASSIFICA</string>
     <string name="rank">Posizione</string>
     <string name="player">Giocatore</string>
@@ -99,4 +99,8 @@
     <string name="language">Lingua</string>
     <string name="credits">Crediti</string>
     <string name="registration">Registrazione</string>
+    <string name="save_and_share">Salva e condividi</string>
+    <string name="creator">Creatore</string>
+    <string name="insert_level_name">Inserire nome livello</string>
+    <string name="level_name">Nome livello</string>
 </resources>

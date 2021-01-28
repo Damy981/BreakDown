@@ -8,68 +8,34 @@
     tools:context=".Fragments.SettingsFragment">
 
 
-    <View
-        android:id="@+id/viewSeparatorProfile4"
-        android:layout_width="363dp"
-        android:layout_height="2dp"
-        android:layout_marginTop="492dp"
-        android:background="#CF9132"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
-
-    <View
-        android:id="@+id/viewSeparatorProfile3"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="50dp"
-        android:background="#CF9132"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvMusic" />
-
-    <View
-        android:id="@+id/viewSeparatorProfile2"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="50dp"
-        android:background="#CF9132"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvAccelerometer" />
-
     <TextView
         android:id="@+id/tvSettings"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/settings"
         android:textAlignment="center"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.499"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.046" />
+        app:layout_constraintVertical_bias="0.062" />
 
     <ToggleButton
         android:id="@+id/tbAccelerometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="208dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile"
+        app:layout_constraintVertical_bias="0.091" />
 
     <TextView
         android:id="@+id/tvAccelerometer"
@@ -77,20 +43,21 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/accelerometer"
-        android:textSize="28sp"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tbAccelerometer"
-        app:layout_constraintHorizontal_bias="0.382"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings"
-        app:layout_constraintVertical_bias="0.054" />
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile"
+        app:layout_constraintVertical_bias="0.134" />
 
     <View
         android:id="@+id/viewSeparatorProfile"
         android:layout_width="0dp"
         android:layout_height="2dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="24dp"
         android:background="#CF9132"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -101,13 +68,16 @@
         android:id="@+id/tbMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:layout_marginEnd="208dp"
+        android:layout_marginTop="52dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile2" />
+        app:layout_constraintHorizontal_bias="0.606"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.484" />
 
     <TextView
         android:id="@+id/tvMusic"
@@ -119,35 +89,10 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.182"
+        app:layout_constraintHorizontal_bias="0.285"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile2"
-        app:layout_constraintVertical_bias="0.065" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/londrina_solid"
-        android:text="@string/language"
-        android:textAlignment="center"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/spinnerLanguage"
-        app:layout_constraintHorizontal_bias="0.34"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile3"
-        app:layout_constraintVertical_bias="0.137" />
-
-    <Spinner
-        android:id="@+id/spinnerLanguage"
-        android:layout_width="96dp"
-        android:layout_height="44dp"
-        android:layout_marginEnd="200dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile3"
-        app:layout_constraintVertical_bias="0.147" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.578" />
 
     <ImageView
         android:id="@+id/ivBackSettings"
@@ -167,20 +112,6 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.0" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.10" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.90" />
-
     <Button
         android:id="@+id/credits"
         android:layout_width="133dp"
@@ -191,9 +122,35 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.758"
+        app:layout_constraintHorizontal_bias="0.431"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.954" />
+
+    <ImageView
+        android:id="@+id/ivMusic"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/music_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvMusic"
+        app:layout_constraintHorizontal_bias="0.855"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.585" />
+
+    <ImageView
+        android:id="@+id/ivAccelerometer"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:background="@drawable/accelerometer_icon"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tvAccelerometer"
+        app:layout_constraintHorizontal_bias="0.849"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.315" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
