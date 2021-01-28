@@ -73,7 +73,6 @@
     <string name="scoreGame">"Punteggio: "</string>
     <string name="gameOver">Sconfitta!</string>
     <string name="quest1">Distruggi 100 mattoni</string>
-    <string name="noInternetConnection">Nessuna connessione a internet</string>
     <string name="connectErrorMulti">Connessione a internet necessaria per il multigiocatore</string>
     <string name="notRegistered">Utente non registrato</string>
     <string name="registerErrorMulti">Registrazione necessaria per il multiplayer</string>
@@ -95,7 +94,7 @@
     <string name="quest6">Crea un livello</string>
     <string name="quest7">Disinnesca 50 nitro</string>
     <string name="search_opponent">TROVA UN AVVERSARIO</string>
-    <string name="roundsFinished">Hai terminato i tuoi turni. \nAttendi il tuo avversario per vedere i risultati.</string>
+    <string name="roundsFinished">Hai terminato i tuoi turni.  Attendi il tuo avversario per vedere i risultati.</string>
     <string name="language">Lingua</string>
     <string name="credits">Crediti</string>
     <string name="registration">Registrazione</string>
@@ -107,4 +106,5 @@
     <string name="icons_by_flaticon_com">Icone da Flaticon.com</string>
     <string name="specialThanks">Un ringraziamento speciale a: Emanuele Dianaro</string>
     <string name="imageEditing">Per Editing di immagini e risorse</string>
+    <string name="noInternetConnection">Nessuna connessione a internet</string>
 </resources>

@@ -156,7 +156,7 @@
         android:layout_width="280dp"
         android:layout_height="77dp"
         android:layout_marginBottom="120dp"
-        android:background="@drawable/shadow_button"
+        android:background="@drawable/effect_button"
         android:elevation="1dp"
         android:onClick="register"
         android:text="@string/register"
