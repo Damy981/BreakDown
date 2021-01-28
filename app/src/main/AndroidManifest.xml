@@ -16,12 +16,14 @@
         <activity android:name=".Activities.LevelEditorActivity"
             android:windowSoftInputMode="adjustPan"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.LoginActivity"/>
+        <activity android:name=".Activities.LoginActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activities.MenuActivity"
             android:configChanges="screenSize|orientation"/>
         <activity android:name=".Activities.SplashScreenActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".Activities.RegistrationActivity"/>
+        <activity android:name=".Activities.RegistrationActivity"
+            android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".Activities.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>
