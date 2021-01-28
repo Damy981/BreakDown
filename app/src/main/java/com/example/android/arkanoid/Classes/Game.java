@@ -316,13 +316,18 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     // find out if the player won or not
     private void win() {
         if (brickList.isEmpty()) {
-            if (isEditorLevel)
+            if (isEditorLevel) {
+                profile.setCoins(profile.getCoins() + 100);
+                profile.updateProfile();
                 editorLevelFinished = true;
+            }
             if (match != null) {
                 int i = match.getCounter();
                 match.setPlayer1Score(score, i);
                 match.increaseCounter();
                 match.updateMatch();
+                profile.setCoins(profile.getCoins() + 100);
+                profile.updateProfile();
                 if(match.getCounter() == 3){
                     matchCompleted = true;
                 }else {
