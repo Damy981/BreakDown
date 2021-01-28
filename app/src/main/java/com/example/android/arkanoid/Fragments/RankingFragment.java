@@ -70,6 +70,7 @@ public class RankingFragment extends Fragment {
 
         rankingMap = SplashScreenActivity.rankingMap;
 
+        //get all key-values entries from hashmap and build the ranking
         if(rankingMap != null) {
             rankingMap = sortHashMapByValues(rankingMap);
 
@@ -92,6 +93,7 @@ public class RankingFragment extends Fragment {
                     .show();
     }
 
+    //sort hashmap of ranking on decreasing values
     private LinkedHashMap<String, String> sortHashMapByValues(
             HashMap<String, String> passedMap) {
         List<String> mapKeys = new ArrayList<>(passedMap.keySet());
@@ -124,6 +126,7 @@ public class RankingFragment extends Fragment {
         return sortedMap;
     }
 
+    //get che bestscore of logged user and share it with intent action send
     private void shareLeaderBoard() {
         Iterator iterator = rankingMap.entrySet().iterator();
         int i = 0;

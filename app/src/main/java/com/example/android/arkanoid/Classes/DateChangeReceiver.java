@@ -3,16 +3,14 @@ package com.example.android.arkanoid.Classes;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 
 import java.util.ArrayList;
 
+//class that resets the daily missions every day
+
 public class DateChangeReceiver extends BroadcastReceiver {
 
-    private Services services;
-
-    public DateChangeReceiver() {
-    }
+    private final Services services;
 
     public DateChangeReceiver(Services services) {
         this.services = services;
@@ -26,7 +24,6 @@ public class DateChangeReceiver extends BroadcastReceiver {
         ArrayList<Quest> questsList = services.getQuestListFromFile(context);
         for (int i = 0; i < Quest.QUEST_TOTAL_NUMBER; i++) {
             if (questsList.get(i).isDaily()) {
-                Log.i("cacca", "Daily");
                 questsList.get(i).resetProgress();
                 questsList.get(i).setCompleted(false);
                 questsList.get(i).setRewardRedeemed(false);

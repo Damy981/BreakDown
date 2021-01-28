@@ -68,6 +68,7 @@ public class MatchItemAdapter extends BaseAdapter {
 
         final int counter = matchList.get(position).getCounter();
 
+        //disable play button if user have already played 3 matches
         if(counter == 3){
             btnPlayMatch.setVisibility(View.INVISIBLE);
         }
@@ -76,6 +77,7 @@ public class MatchItemAdapter extends BaseAdapter {
 
         setPlayMatchListener(matchList.get(position), counter);
 
+        //set a popupWindows when user click on a match to see match summary
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -167,6 +169,7 @@ public class MatchItemAdapter extends BaseAdapter {
         context.startActivity(intentGame);
     }
 
+    //set checkboxes based on the comparison of scores
     private void setCheckBoxes(@NonNull View view, int i) {
         CheckBox cbRound1Player1 = view.findViewById(R.id.cbRound1Player1);
         CheckBox cbRound2Player1 = view.findViewById(R.id.cbRound2Player1);

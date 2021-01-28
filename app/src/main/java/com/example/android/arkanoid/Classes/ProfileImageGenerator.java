@@ -48,10 +48,6 @@ public class ProfileImageGenerator
         return context;
     }
 
-    public Drawable getResource()
-    {
-        return resource;
-    }
 }
 
 // Drawable generated from a given string

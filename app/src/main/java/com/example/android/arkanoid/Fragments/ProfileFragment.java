@@ -95,10 +95,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener, T
 
     @Override
     public void onClick(View view) {
+        //button for register guest user
         if (view == guestRegisterButton) {
             Intent intent = new Intent(getActivity(), LoginActivity.class);
             startActivity(intent);
         }
+        //button to change username, set keylistener for get the new wrote username
         if (view == ivEditName) {
             etUsername.setKeyListener(new EditText(getContext()).getKeyListener());
             etUsername.addTextChangedListener(this);

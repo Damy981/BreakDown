@@ -121,7 +121,7 @@ public class MultiplayerMenuFragment extends Fragment {
         intentGame.putExtra("match", match);
         startActivity(intentGame);
     }
-
+    //create new match with random opponent and set match in progress
     public void createNewMatch() {
         String id = generateRandomMatchId();
         getRandomOpponent();
@@ -134,6 +134,7 @@ public class MultiplayerMenuFragment extends Fragment {
         return String.valueOf(ThreadLocalRandom.current().nextLong(1, 99999));
     }
 
+    //get a set of all users id from database (excluding logged userid)
     private void getRandomOpponent() {
         DatabaseReference myRef = database.getReference();
         myRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -153,6 +154,7 @@ public class MultiplayerMenuFragment extends Fragment {
         });
     }
 
+    //get a random userid from user id set
     private void getRandomUserId(Set<String> set) {
         int size = set.size();
         int item = new Random().nextInt(size);
@@ -165,6 +167,8 @@ public class MultiplayerMenuFragment extends Fragment {
             i++;
         }
     }
+
+    //get username corresponding to given userid
     private void getUsernameFromUserId(String userId) {
         DatabaseReference myRef = database.getReference().child("Profiles").child(userId);
 
@@ -180,6 +184,7 @@ public class MultiplayerMenuFragment extends Fragment {
             }
         });
     }
+
     private void getUsernameDelay(final String id) {
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -189,6 +194,8 @@ public class MultiplayerMenuFragment extends Fragment {
             }
         }, 1700);
     }
+
+    //upload match on the database and start the game
     private void uploadMatch(final String id) {
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -210,6 +217,7 @@ public class MultiplayerMenuFragment extends Fragment {
         }, 1700);
     }
 
+    //get all matches data from database and add them in the match arraylist
     private void getAllMatch() {
         DatabaseReference myRef = database.getReference().child("Profiles").child(userId);
 
@@ -222,43 +230,43 @@ public class MultiplayerMenuFragment extends Fragment {
                 String opponent = "";
                 String status = "";
 
-                HashMap<String,String> matchesMap= (HashMap<String,String>) dataSnapshot.child("OnlineMatches").getValue();
-                if(matchesMap != null) {
-                    Iterator i = matchesMap.entrySet().iterator();
+                HashMap<String,String> userMatchesInformationMap= (HashMap<String,String>) dataSnapshot.child("OnlineMatches").getValue();
+                if(userMatchesInformationMap != null) {
+                    Iterator i = userMatchesInformationMap.entrySet().iterator();
                     while (i.hasNext()) {
                         long[] score = new long[3];
                         long matchCounter = 0;
 
-                        Map.Entry entry = (Map.Entry) i.next();
+                        Map.Entry userMatchesInformationEntry = (Map.Entry) i.next();
 
-                        if (entry.getKey().equals("TotalWin"))
-                            totalWin = (long) entry.getValue();
-                        else if (entry.getKey().equals("TotalLose"))
-                            totalLose = (long) entry.getValue();
-                        else if (entry.getKey().equals("TotalPlayed"))
-                            totalPlayed = (long) entry.getValue();
+                        if (userMatchesInformationEntry.getKey().equals("TotalWin"))
+                            totalWin = (long) userMatchesInformationEntry.getValue();
+                        else if (userMatchesInformationEntry.getKey().equals("TotalLose"))
+                            totalLose = (long) userMatchesInformationEntry.getValue();
+                        else if (userMatchesInformationEntry.getKey().equals("TotalPlayed"))
+                            totalPlayed = (long) userMatchesInformationEntry.getValue();
                         else {
-                            id = (String) entry.getKey();
+                            id = (String) userMatchesInformationEntry.getKey();
 
-                            HashMap<String, String> hm = (HashMap<String, String>) entry.getValue();
-                            Iterator i2 = hm.entrySet().iterator();
+                            HashMap<String, String> matchesMap = (HashMap<String, String>) userMatchesInformationEntry.getValue();
+                            Iterator i2 = matchesMap.entrySet().iterator();
                             while (i2.hasNext()) {
-                                Map.Entry entry2 = (Map.Entry) i2.next();
-                                if (entry2.getKey().equals("Opponent")) {
-                                    opponent = (String) entry2.getValue();
-                                } else if (entry2.getKey().equals("Status")) {
-                                    status = (String) entry2.getValue();
-                                } else if (entry2.getKey().equals("Counter")) {
-                                    matchCounter = (long) entry2.getValue();
-                                } else if (entry2.getKey().equals("Scores")) {
-                                    HashMap<String, String> hm2 = (HashMap<String, String>) entry2.getValue();
-                                    TreeMap<String, String> tm = new TreeMap<>(hm2);
+                                Map.Entry matchEntry = (Map.Entry) i2.next();
+                                if (matchEntry.getKey().equals("Opponent")) {
+                                    opponent = (String) matchEntry.getValue();
+                                } else if (matchEntry.getKey().equals("Status")) {
+                                    status = (String) matchEntry.getValue();
+                                } else if (matchEntry.getKey().equals("Counter")) {
+                                    matchCounter = (long) matchEntry.getValue();
+                                } else if (matchEntry.getKey().equals("Scores")) {
+                                    HashMap<String, String> scoresMap = (HashMap<String, String>) matchEntry.getValue();
+                                    TreeMap<String, String> sortedScoresMap = new TreeMap<>(scoresMap);
 
-                                    Iterator i3 = tm.entrySet().iterator();
+                                    Iterator i3 = sortedScoresMap.entrySet().iterator();
                                     int counter = 0;
                                     while (i3.hasNext()) {
-                                        Map.Entry entry3 = (Map.Entry) i3.next();
-                                        score[counter] = (long) entry3.getValue();
+                                        Map.Entry scoreEntry = (Map.Entry) i3.next();
+                                        score[counter] = (long) scoreEntry.getValue();
                                         ++counter;
                                     }
                                 }
@@ -307,36 +315,36 @@ public class MultiplayerMenuFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
-                HashMap<String, String> hm = (HashMap<String, String>) dataSnapshot.getValue();
-                Iterator i = hm.entrySet().iterator();
+                HashMap<String, String> profilesMap = (HashMap<String, String>) dataSnapshot.getValue();
+                Iterator i = profilesMap.entrySet().iterator();
                 while (i.hasNext()) {
                     String str = "";
                     long[] scores = new long[3];
-                    Map.Entry entry = (Map.Entry) i.next();
-                    HashMap<String, String> hm2 = (HashMap<String, String>) entry.getValue();
-                    Iterator i2 = hm2.entrySet().iterator();
+                    Map.Entry profileEntry = (Map.Entry) i.next();
+                    HashMap<String, String> profileDataMap = (HashMap<String, String>) profileEntry.getValue();
+                    Iterator i2 = profileDataMap.entrySet().iterator();
                     while (i2.hasNext()) {
-                        Map.Entry entry2 = (Map.Entry) i2.next();
-                        if (entry2.getKey().equals("UserName") && opponent.equals(entry2.getValue()))
-                            str = (String) entry2.getValue();
-                        if (entry2.getKey().equals("OnlineMatches") && str.equals(opponent)) {
-                            HashMap<String, String> hm3 = (HashMap<String, String>) entry2.getValue();
-                            Iterator i3 = hm3.entrySet().iterator();
+                        Map.Entry profileDataEntry = (Map.Entry) i2.next();
+                        if (profileDataEntry.getKey().equals("UserName") && opponent.equals(profileDataEntry.getValue()))
+                            str = (String) profileDataEntry.getValue();
+                        if (profileDataEntry.getKey().equals("OnlineMatches") && str.equals(opponent)) {
+                            HashMap<String, String> onlineMatchInformation = (HashMap<String, String>) profileDataEntry.getValue();
+                            Iterator i3 = onlineMatchInformation.entrySet().iterator();
                             while (i3.hasNext()) {
-                                Map.Entry entry3 = (Map.Entry) i3.next();
-                                if (entry3.getKey().equals(id)) {
-                                    HashMap<String, String> hm4 = (HashMap<String, String>) entry3.getValue();
-                                    Iterator i4 = hm4.entrySet().iterator();
+                                Map.Entry onlineMatchInformationEntry = (Map.Entry) i3.next();
+                                if (onlineMatchInformationEntry.getKey().equals(id)) {
+                                    HashMap<String, String> matchMap = (HashMap<String, String>) onlineMatchInformationEntry.getValue();
+                                    Iterator i4 = matchMap.entrySet().iterator();
                                     while (i4.hasNext()) {
-                                        Map.Entry entry4 = (Map.Entry) i4.next();
-                                        if (entry4.getKey().equals("Scores")) {
-                                            HashMap<String, String> hm5 = (HashMap<String, String>) entry4.getValue();
-                                            TreeMap<String, String> tm = new TreeMap<>(hm5);
-                                            Iterator i5 = tm.entrySet().iterator();
+                                        Map.Entry matchEntry = (Map.Entry) i4.next();
+                                        if (matchEntry.getKey().equals("Scores")) {
+                                            HashMap<String, String> scoresMap = (HashMap<String, String>) matchEntry.getValue();
+                                            TreeMap<String, String> sortedScoresMap = new TreeMap<>(scoresMap);
+                                            Iterator i5 = sortedScoresMap.entrySet().iterator();
                                             int counter = 0;
                                             while (i5.hasNext()) {
-                                                Map.Entry entry5 = (Map.Entry) i5.next();
-                                                scores[counter] = (long) entry5.getValue();
+                                                Map.Entry scoreEntry = (Map.Entry) i5.next();
+                                                scores[counter] = (long) scoreEntry.getValue();
                                                 match.setPlayer2Score(scores[counter], counter);
                                                 match.setWinOrLose();
                                                 counter++;

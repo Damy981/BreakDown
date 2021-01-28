@@ -71,6 +71,7 @@ public class CustomLevelsMenuFragment extends Fragment {
         getLevelFromFilesAndSetAdapter();
     }
 
+    //download all level files on local storage
     private void downloadLevels(final Context context) {
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference().child("file/CustomLevels/");
 
@@ -90,8 +91,8 @@ public class CustomLevelsMenuFragment extends Fragment {
                 });
     }
 
+    //get all levels data from files and build them
     private void getLevelsFromFiles(Context context) throws IOException, ClassNotFoundException {
-
         File directory = new File(context.getFilesDir() + "/CustomLevels/");
         File[] files = directory.listFiles();
         String levelName;
@@ -109,6 +110,7 @@ public class CustomLevelsMenuFragment extends Fragment {
         }
     }
 
+    //convert all serializableBricks to normal bricks and build level object to add in arraylist
     private void buildLevel(ArrayList<SerializableBrick> serializableBrickList, String levelName, String username) {
 
         ArrayList<Brick> brickList = new ArrayList<>();

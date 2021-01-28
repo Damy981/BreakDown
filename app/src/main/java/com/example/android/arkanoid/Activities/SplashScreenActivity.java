@@ -51,8 +51,10 @@ public class SplashScreenActivity extends AppCompatActivity {
             else
                 activityToStart = "com.example.android.arkanoid.Activities.LoginActivity";
         }
+
         if (isNetworkAvailable())
             getRankingFromDatabase();
+
         /* Handler to start the Menu-Activity
            and close this Splash-Screen after some seconds.*/
         // Duration of wait

@@ -55,6 +55,7 @@ public class GameModeMenuFragment extends Fragment {
             }
         });
 
+        //if user is logged in with an internet connection open multiplayer menu fragment, else show errors
         btnMultiPlayer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,6 +86,7 @@ public class GameModeMenuFragment extends Fragment {
             }
         });
 
+        //open custom levels menu fragment
         btnCustomLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

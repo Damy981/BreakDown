@@ -110,12 +110,4 @@
     <string name="language">Language</string>
     <string name="credits">Credits</string>
     <string name="registration">Registration</string>
-
-    <string-array name="languages_array">
-        <item>English</item>
-        <item>Italian</item>
-        <item>French</item>
-        <item>Spanish</item>
-        <item>German</item>
-    </string-array>
 </resources>

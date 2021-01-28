@@ -35,7 +35,7 @@ public class SettingsFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_settings, container, false);
     }
 
-    /* on view created get settings from local data and add listeners
+    /* set buttons with settings got from local data and add listeners
        for set on/off in profile and update local data when button is clicked */
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -62,6 +62,7 @@ public class SettingsFragment extends Fragment {
         tbMusic.setChecked(preferences.getBoolean("tbMusicStatus", true));
     }
 
+    //set accelerometer on/off and save
     private void setTbAccelerometerListener() {
         tbAccelerometer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,6 +82,7 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    //set music on/off and save
     private void setTbMusicListener() {
         tbMusic.setOnClickListener(new View.OnClickListener() {
             @Override
