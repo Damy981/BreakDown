@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.os.Handler;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -285,8 +284,8 @@ public class MultiplayerMenuFragment extends Fragment {
         new Handler().postDelayed(new Runnable(){
             @Override
             public void run() {
-                tvTotalPlayed.setText(getString(R.string.totalplay) + totalPlayed);
-                tvTotalWin.setText(getString(R.string.totalwin) + totalWin);
+                tvTotalPlayed.setText(getString(R.string.totalPlay) + totalPlayed);
+                tvTotalWin.setText(getString(R.string.totalWin) + totalWin);
                 tvTotalLose.setText(getString(R.string.totalLose) + totalLose);
 
                 MatchItemAdapter adapter;

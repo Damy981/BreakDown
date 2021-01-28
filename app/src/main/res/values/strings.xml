@@ -1,16 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">BreakDown</string>
-    <string name="title_activity_splash">FullscreenActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-
-    <!--
-    This string is used for square devices and overridden by hello_world in
-    values-round/strings.xml for round devices.
-    -->
-    <string name="hello_world">Hello Square World!</string>
     <string name="enter_username">Enter username...</string>
-    <string name="login">Login</string>
+    <string name="login" translatable="false">Login</string>
     <string name="enter_password">Enter password...</string>
     <string name="register">Register</string>
     <string name="confirm_password">Confirm password...</string>
@@ -20,35 +12,28 @@
     <string name="forgot_password">Forgot Password?</string>
     <string name="not_registered_yet_register_now">Not Registered yet? Register now!</string>
     <string name="register_your_guest_account">Register your guest account</string>
-    <string name="logout">Logout</string>
-    <string name="profile">Profile</string>
-    <string name="gioca">GIOCA</string>
-    <string name="shop">SHOP</string>
-    <string name="profilo">PROFILO</string>
+    <string name="logout" translatable="false">Logout</string>
+    <string name="shop" translatable="false">SHOP</string>
+    <string name="profile">PROFILE</string>
     <string name="play">Play</string>
-    <string name="level_editor">LEVEL EDITOR</string>
-    <string name="ranking">RANKING</string>
-    <string name="quest">QUEST</string>
-    <string name="todo">TODO</string>
-    <string name="immagine_profilo">immagine profilo</string>
+    <string name="level_editor" translatable="false">LEVEL EDITOR</string>
+    <string name="quest">QUESTS</string>
+    <string name="todo" translatable="false">TODO</string>
+    <string name="profileImage" translatable="false">profileImage</string>
     <string name="pause">PAUSE</string>
     <string name="resume">Resume</string>
     <string name="return_to_menu">Return to menu</string>
     <string name="settings">SETTINGS</string>
     <string name="coins">Coins:</string>
-    <string name="coinss">Coins:</string>
     <string name="accelerometer">Accelerometer</string>
-    <string name="statss">Stats:</string>
     <string name="singleplayer">SinglePlayer</string>
     <string name="multiplayer">MULTIPLAYER</string>
     <string name="select_game_mode">SELECT GAME MODE:</string>
     <string name="music">Music</string>
-    <string name="item">item</string>
     <string name="quantity">quantity</string>
-    <string name="buy_for_5">Buy for 5!</string>
-    <string name="textview">TextView</string>
-    <string name="splash">/</string>
-    <string name="hashtag">#</string>
+    <string name="buy_for">Buy for</string>
+    <string name="splash" translatable="false">/</string>
+    <string name="hashtag" translatable="false">#</string>
     <string name="username">Username</string>
     <string name="best_score">Best Score:</string>
     <string name="stats_and_power_ups"><![CDATA[STATS & POWER UPS:]]></string>
@@ -56,12 +41,10 @@
     <string name="rank">Rank</string>
     <string name="player">Player</string>
     <string name="score">Score</string>
-    <string name="points">Points</string>
     <string name="redeem">Redeem</string>
-    <string name="share_with_your_friends">Share with your friends</string>
-    <string name="max">MAX</string>
+    <string name="max" translatable="false">MAX</string>
     <string name="player_1">PLAYER 1</string>
-    <string name="vs">vs</string>
+    <string name="vs" translatable="false">vs</string>
     <string name="player_2">PLAYER 2</string>
     <string name="status_match">STATUS MATCH</string>
     <string name="round_1">Round 1</string>
@@ -77,11 +60,11 @@
     <string name="noInternetOrGuest">No internet connection or Guest User</string>
     <string name="editorError">You can\'t upload your level if you are guest or if you don\'t have an active internet connection.</string>
     <string name="levelNameEmpty">Name empty</string>
-    <string name="levelNameError">Please insert a name for your level</string>
+    <string name="levelNameError">Please insert a name for your level.</string>
     <string name="loginError">Please insert email address and password</string>
     <string name="error">Error</string>
     <string name="mailNotVerified">Your email address is not verified. Verify and try again.</string>
-    <string name="info">Info</string>
+    <string name="info" translatable="false">Info</string>
     <string name="authFailed">Authentication failed.</string>
     <string name="mailError">This email address is not registered</string>
     <string name="mailSent">Mail sent.</string>
@@ -91,38 +74,44 @@
     <string name="passNotValid">Password not valid, password must have at least 6 characters</string>
     <string name="registrationSucc">Registration success, please confirm your email and login.</string>
     <string name="registrationFail">Registration failed, check your connection and try again</string>
-    <string name="winnerMatchItem">\WINNER: \</string>
+    <string name="winnerMatchItem">"WINNER: "</string>
     <string name="inProgress">IN PROGRESS</string>
     <string name="waitOpp">Waiting opponent</string>
-    <string name="quantity_2">Quantity:</string>
+    <string name="quantity_2">"Quantity: "</string>
     <string name="redeemed">Redeemed</string>
-    <string name="level">Level: \</string>
-    <string name="lives">Lives: \</string>
-    <string name="scoreGame">Score: \</string>
+    <string name="level">"Level: "</string>
+    <string name="lives">"Lives: "</string>
+    <string name="scoreGame">"Score: "</string>
     <string name="gameOver">Game over!</string>
     <string name="quest1">Destroy 100 bricks</string>
     <string name="noInternetConnection">No internet connection</string>
     <string name="connectErrorMulti">Internet connection required to play multiplayer</string>
     <string name="notRegistered">User not registered</string>
     <string name="registerErrorMulti">Registered account required to play multiplayer</string>
-    <string name="totalplay">\Total Played: \</string>
-    <string name="totalwin">\Total Win: \</string>
-    <string name="totalLose">\Total Lose: \</string>
+    <string name="totalPlay">"Total Played: "</string>
+    <string name="totalWin">"Total Win: "</string>
+    <string name="totalLose">"Total Lose: "</string>
     <string name="connectionErrorRank">Please connect to internet and restart your application to see the ranking</string>
-    <string name="hi">\Hi! \</string>
-    <string name="position">\ is in position \</string>
-    <string name="withScore">\ with a score of \</string>
-    <string name="playWithUs">\ on BreakDown, come play with us!\</string>
-    <string name="buyFor">\Buy for \</string>
+    <string name="hi">Hi! </string>
+    <string name="position">" is in position "</string>
+    <string name="withScore">" with a score of "</string>
+    <string name="playWithUs">" on BreakDown, come play with us!"</string>
+    <string name="buyFor">"Buy for "</string>
     <string name="notEnoughCoins">Not enough coins</string>
-    <string name="owned">\Owned: \</string>
+    <string name="owned">"Owned: "</string>
     <string name="quest2">Win 5 games</string>
     <string name="quest3">Win 3 games without losing lives</string>
-    <string name="quest4">Destroy 10,000 bricks</string>
+    <string name="quest4">Destroy 10.000 bricks</string>
     <string name="quest5">Win 50 games in multiplayer mode</string>
     <string name="quest6">Create a level</string>
     <string name="quest7">Defuse 50 nitros</string>
-    <string name="you_finished_your_rounds_nwait_your_opponent_to_see_match_result">You finished your rounds. \nWait your opponent to see match result.</string>
-    <string name="search_opponent">SEARCH OPPONENT</string>
-
+    <string name="roundsFinished">You finished your rounds. \nWait your opponent to see match result.</string>
+    <string name="search_opponent">FIND OPPONENT</string>
+    <string-array name="languages_array">
+        <item>English</item>
+        <item>Italian</item>
+        <item>French</item>
+        <item>Spanish</item>
+        <item>German</item>
+    </string-array>
 </resources>

@@ -70,7 +70,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
-        android:text="@string/you_finished_your_rounds_nwait_your_opponent_to_see_match_result"
+        android:text="@string/roundsFinished"
         android:textSize="22sp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"

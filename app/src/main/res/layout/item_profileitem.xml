@@ -29,7 +29,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:fontFamily="@font/londrina_solid"
-        android:hint="@string/item"
         android:textColor="@color/white"
         android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
