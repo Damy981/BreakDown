@@ -8,10 +8,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.ToggleButton;
 
 import com.example.android.arkanoid.Classes.Services;
@@ -25,6 +28,7 @@ public class SettingsFragment extends Fragment {
 
     private ToggleButton tbAccelerometer;
     private ToggleButton tbMusic;
+    private Button btnCredits;
     private SharedPreferences.Editor editor;
     private SharedPreferences preferences;
 
@@ -43,10 +47,12 @@ public class SettingsFragment extends Fragment {
         tbAccelerometer = getView().findViewById(R.id.tbAccelerometer);
         tbMusic = getView().findViewById(R.id.tbMusic);
         ImageView ivBackSettings = getActivity().findViewById(R.id.ivBackSettings);
+        btnCredits = getView().findViewById(R.id.btnCredits);
 
-        setButtons();
+        setToggleButtons();
         setTbAccelerometerListener();
         setTbMusicListener();
+        setBtnCreditsListener();
 
         ivBackSettings.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,7 +62,29 @@ public class SettingsFragment extends Fragment {
         });
     }
 
-    private void setButtons() {
+    private void setBtnCreditsListener() {
+        btnCredits.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View popupView = LayoutInflater.from(getContext()).inflate(R.layout.credits_popup, null);
+                ImageView btnClose = popupView.findViewById(R.id.btnClose);
+
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1400, true);
+                popupWindow.setElevation(50);
+                popupWindow.setOutsideTouchable(false);
+                popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+
+                btnClose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                    }
+                });
+            }
+        });
+    }
+
+    private void setToggleButtons() {
         preferences = getActivity().getSharedPreferences(Services.SHARED_PREF_DIR,Context.MODE_PRIVATE);
         tbAccelerometer.setChecked(preferences.getBoolean("tbAccelStatus", false));
         tbMusic.setChecked(preferences.getBoolean("tbMusicStatus", true));

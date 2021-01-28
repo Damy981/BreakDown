@@ -103,4 +103,8 @@
     <string name="creator">Creatore</string>
     <string name="insert_level_name">Inserire nome livello</string>
     <string name="level_name">Nome livello</string>
+    <string name="created_and_designed_by">Creato e Ideato da:</string>
+    <string name="icons_by_flaticon_com">Icone da Flaticon.com</string>
+    <string name="specialThanks">Un ringraziamento speciale a: Emanuele Dianaro</string>
+    <string name="imageEditing">Per Editing di immagini e risorse</string>
 </resources>
