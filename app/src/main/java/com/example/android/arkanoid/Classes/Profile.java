@@ -10,7 +10,7 @@ import com.example.android.arkanoid.Activities.MainActivity;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-//Fragment that manipulates and update the profile attributes
+//Class that manipulates and update the profile attributes
 
 
 public class Profile implements Serializable {
@@ -161,6 +161,7 @@ public class Profile implements Serializable {
         this.bestScore = bestScore;
     }
 
+    //increase coins by assigning the reward for the completed quest
     public void giveQuestReward(int i) {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.context);
         int reward = questsList.get(i).getReward();

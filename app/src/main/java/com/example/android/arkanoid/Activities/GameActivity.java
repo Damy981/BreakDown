@@ -83,6 +83,8 @@ public class GameActivity extends AppCompatActivity {
                     gameLayout.game.update();
                 }
                 else {
+                    /*if the user is playing an online match or a customized level, at the end of the game the app will return to game menu
+                    * but user won't be able to click on RESUME button*/
                     View view = GameActivity.this.getLayoutInflater().inflate(R.layout.activity_game, null);
                     addContentView(view, new ViewGroup.MarginLayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                     Button btnResume = view.findViewById(R.id.btnResume);
@@ -133,6 +135,7 @@ public class GameActivity extends AppCompatActivity {
         finish();
     }
 
+    //convert the arraylist of SerializableBrick object retrieved from file in an arraylist of Brick object
     private void buildLevelFromList() {
         ArrayList<Brick> brickList = new ArrayList<>();
         for(int i = 0; i < serializableBrickList.size(); i++) {

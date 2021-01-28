@@ -57,6 +57,7 @@ public class QuestItemAdapter extends BaseAdapter {
         total.setText(String.valueOf(questsList.get(position).getTarget()));
         reward.setText(String.valueOf(questsList.get(position).getReward()));
 
+        //if the user complete a quest, a redeem reward button is displayed
         if(profile.getQuestsList().get(position).isCompleted()) {
             btnGetReward.setVisibility(View.VISIBLE);
             if(!profile.getQuestsList().get(position).isRewardRedeemed()){
@@ -65,6 +66,7 @@ public class QuestItemAdapter extends BaseAdapter {
                 btnGetReward.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        //when the user redeem the reward, the button is disabled
                         profile.giveQuestReward(position);
                         Button btnGetReward = finalConvertView.findViewById(R.id.btnGetReward);
                         btnGetReward.setText(R.string.redeemed);

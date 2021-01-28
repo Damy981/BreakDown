@@ -55,6 +55,7 @@ public class ProfileItemAdapter extends BaseAdapter {
         return view;
     }
 
+    //set the quantity text in the textview
     private void setQuantityText(int i, TextView shopItemQuantity) {
         if(i == PowerUp.COINS_DROP_RATE) {
             shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");

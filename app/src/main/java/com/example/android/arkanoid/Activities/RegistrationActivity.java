@@ -55,6 +55,7 @@ public class RegistrationActivity extends AppCompatActivity {
         etConfirmPassword = findViewById(R.id.etConfPass);
         etName = findViewById(R.id.etName);
     }
+
     //get the input, validate it and show relative errors, if input is correct create a new user
     public void register(View view) {
         String name = etName.getText().toString();
@@ -91,14 +92,14 @@ public class RegistrationActivity extends AppCompatActivity {
                                 services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0", 0);
                                 services.createQuestsFile(getApplicationContext());
                             }
-                            //if user was a guest update only username and user id
+                            //if user was a guest update only username and user id and rename quests file
                             else {
                                 services.setNameAndUserId(name, user.getUid());
                                 File fileOld = new File (getApplicationContext().getFilesDir() + "/quest_null.bin");
                                 File fileNew = new File(getApplicationContext().getFilesDir() + "/quest_" + user.getUid() + ".bin");
                                 fileOld.renameTo(fileNew);
                             }
-                            //upload profile data in the database, send confirm email and move to login activity
+                            //upload profile data and quests file on the database, send confirm email and move to login activity
                             services.uploadQuestsFile(questsRef, getApplicationContext());
                             services.updateDatabase();
                             services.initializeOnlineMatches();

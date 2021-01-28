@@ -13,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.io.Serializable;
 
+//this class contains methods to retrieve, manipulate and manage multiplayer matches information
+
 public class OnlineMatch implements Serializable {
 
     static public final String WIN = "Win";
@@ -84,6 +86,7 @@ public class OnlineMatch implements Serializable {
         return counter;
     }
 
+    //update online matches information on database
     public void updateMatch() {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches").child(id);
@@ -104,6 +107,7 @@ public class OnlineMatch implements Serializable {
         this.counter = counter;
     }
 
+    //check match scores to define who won and who lose
     public void setWinOrLose() {
         if (counter == 3 && player2Score[2] != -9999) {
 
@@ -129,6 +133,7 @@ public class OnlineMatch implements Serializable {
         }
     }
 
+    //get information about total matches from database
     private void getAndSetWinLoseCounter(final String str) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         final DatabaseReference myRef = database.getReference("Profiles").child(userId).child("OnlineMatches");
@@ -147,6 +152,8 @@ public class OnlineMatch implements Serializable {
         });
         delay(str, myRef);
     }
+
+    //update database information about total matches
     private void updateWinLoseCounter(String str, DatabaseReference myRef) {
 
         if (isCounted.equals("False")) {
@@ -162,6 +169,7 @@ public class OnlineMatch implements Serializable {
         }
     }
 
+    //set a delay to give firebase the time to update data
     private void delay(final String str, final DatabaseReference myRef) {
         new Handler().postDelayed(new Runnable(){
             @Override
@@ -171,6 +179,7 @@ public class OnlineMatch implements Serializable {
         }, 1500);
     }
 
+    //increase progress for the multiplayer quest
     private void updateMatchQuest() {
         int progress = profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).getProgress();
         profile.getQuestsList().get(Quest.QUEST_WIN_50_MULTIPLAYER).setProgress(++progress);

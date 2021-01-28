@@ -38,6 +38,7 @@ import java.util.ArrayList;
 
 public class LevelEditorActivity extends AppCompatActivity {
 
+    //this constants indicate the position of the "special" bricks in the recyclerView
     public static final int BRICK_BLACK = 11;
     public static final int BRICK_NITRO = 12;
     public static final int BRICK_SWITCH_ON = 13;
@@ -78,6 +79,8 @@ public class LevelEditorActivity extends AppCompatActivity {
             }
         });
 
+        /*the user cannot upload the level if he is a guest user or if there isn't an internet connection,
+          so a warning message is displayed*/
         if (!isNetworkAvailable() || profile.getUserId() == null) {
             new AlertDialog.Builder(this)
                     .setTitle(R.string.noInternetOrGuest)
@@ -89,6 +92,7 @@ public class LevelEditorActivity extends AppCompatActivity {
 
     }
 
+    //display the brick chosen by the user in the right position
     static public void setBrick(int id, int i, int j, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
         ImageView brick = new ImageView(MainActivity.context);
         brick.setImageResource(id);
@@ -102,6 +106,7 @@ public class LevelEditorActivity extends AppCompatActivity {
         addBrickToList(id, i, j, hardBrick, nitroBrick, switchBrick);
     }
 
+    //add the brick chosen by the user to the arraylist of SerializableBrick
     static public void addBrickToList(int id, int i, int j, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
         if (!(id == R.drawable.brick_empty)) {
 
@@ -114,10 +119,12 @@ public class LevelEditorActivity extends AppCompatActivity {
         }
     }
 
+    //save the level if user inserted a valid level name, then upload the file if internet connection is available
     public void saveAndShareLevel(View view) {
         if (etLevelName.getText() != null && !etLevelName.getText().toString().equals("")) {
             createLevelFile(getApplicationContext());
 
+            //set and save quests progress
             Services services = new Services(profile.getUserId());
             Quest createLevelQuest = profile.getQuestsList().get(Quest.QUEST_CREATE_LEVEL);
             profile.getQuestsList().get(Quest.QUEST_CREATE_LEVEL).setProgress(createLevelQuest.getProgress() + 1);
@@ -137,6 +144,7 @@ public class LevelEditorActivity extends AppCompatActivity {
         }
     }
 
+    //create a file with the customized level
     private void createLevelFile(Context context) {
 
         String levelName = etLevelName.getText().toString();
@@ -158,6 +166,7 @@ public class LevelEditorActivity extends AppCompatActivity {
         }
     }
 
+    //upload level file to firebase storage
     private void uploadLevelFile() {
         Uri file = Uri.fromFile(new File(getApplicationContext().getFilesDir()+ "/CustomLevels/" + levelFileName));
         StorageReference mStorageRef = FirebaseStorage.getInstance().getReference().child("file/CustomLevels/" + levelFileName);

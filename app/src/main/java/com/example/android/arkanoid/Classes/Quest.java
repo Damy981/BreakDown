@@ -2,6 +2,8 @@ package com.example.android.arkanoid.Classes;
 
 import java.io.Serializable;
 
+//This class manage and manipulates quest information
+
 public class Quest implements Serializable {
     private final String questText;
     private int progress;
@@ -10,17 +12,20 @@ public class Quest implements Serializable {
     private final boolean isDaily;
     private boolean isCompleted;
     private boolean isRewardRedeemed;
+
     public static final long serialVersionUID = 19924200649L;
+
+    //int constants which symbolize the quests position in the Profile.questsList arraylist
     public static final int QUEST_DESTROY_BRICKS_100 = 0;
-    public static final int QUEST_WIN_5 = 1;  //fatto
+    public static final int QUEST_WIN_5 = 1;
     public static final int QUEST_WIN_3_WITH_ALL_LIVES = 2;
     public static final int QUEST_DESTROY_BRICKS_10000 = 3;
     public static final int QUEST_WIN_50_MULTIPLAYER = 4;
-    public static final int QUEST_CREATE_LEVEL = 5;  //non ora
+    public static final int QUEST_CREATE_LEVEL = 5;
     public static final int QUEST_DEFUSE_NITROS = 6;
+
     public static final int QUEST_TOTAL_NUMBER = 7;
     
-
 
     public Quest(String questText, int progress, int target, int reward, boolean isDaily) {
         this.questText = questText;

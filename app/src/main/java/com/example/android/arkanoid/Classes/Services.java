@@ -114,7 +114,7 @@ public class Services {
         }
     }
 
-    //add the quests text to the arraylist which will be write on file with createQuestsFiles
+    //add the quests objects to the arraylist which will be written on file with createQuestsFile
     private void populateQuestList(Context context) {
         questsList.add(new Quest(context.getString(R.string.quest1), 0, 100, 20, true));
         questsList.add(new Quest(context.getString(R.string.quest2), 0, 5, 20, true));
@@ -133,12 +133,14 @@ public class Services {
         return preferences.getBoolean("tbAccelStatus", false);
     }
 
+    //upload quests file to firebase storage
     public void uploadQuestsFile(StorageReference storageRef, Context context) {
         Uri file = Uri.fromFile(new File(context.getFilesDir()+ "/" +questsFileName));
         StorageReference questsRef = storageRef.child("file/"+ questsFileName);
         questsRef.putFile(file);
     }
 
+    //download quests file from firebase storage
     public void downloadQuestsFile(StorageReference questsRef, Context context) {
         File localQuestsFile = null;
         localQuestsFile = new File(context.getFilesDir(), questsFileName);
@@ -150,6 +152,7 @@ public class Services {
         return questsFileName;
     }
 
+    //locally update the quests file by re-writing the given arraylist
     public void updateQuestsFile(Context context, ArrayList<Quest> questsList) {
         try {
             FileOutputStream questFile = new FileOutputStream(context.getFilesDir() + "/"+questsFileName);
@@ -184,6 +187,7 @@ public class Services {
         return questsList;
     }
 
+    //initialize online matches information on database
     public void initializeOnlineMatches() {
         String userId = preferences.getString("userId", null);
 

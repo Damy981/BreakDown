@@ -4,14 +4,14 @@ import android.graphics.Bitmap;
 
 import java.io.Serializable;
 
+/*This class is used to serialize the level created from LevelEditor.
+* This provides a simplified representation for Brick class(which extends View, that is an non serializable class)*/
+
 public class SerializableBrick implements Serializable {
 
     private final float x;
     private final float y;
     private final BitmapDataObject bitmap;
-
-
-
     private boolean hardBrick;
     private boolean nitroBrick;
     private boolean switchBrick;

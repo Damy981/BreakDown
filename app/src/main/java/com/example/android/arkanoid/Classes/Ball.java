@@ -2,6 +2,8 @@ package com.example.android.arkanoid.Classes;
 
 import android.util.Log;
 
+//Class that contains ball attributes and methods to manage them
+
 public class Ball {
 
     protected float xSpeed;
@@ -61,8 +63,7 @@ public class Ball {
             invertXSpeed();
         } else if (xSpeed < 0 && ySpeed > 0 && wall.equals("left")) {
             invertXSpeed();
-        } //else if (xSpeed > 0 && ySpeed > 0 && wall.equals("down")) {
-       //     invertYSpeed(); }
+        }
          else if (xSpeed > 0 && ySpeed > 0 && wall.equals("right")) {
             invertXSpeed();
         }

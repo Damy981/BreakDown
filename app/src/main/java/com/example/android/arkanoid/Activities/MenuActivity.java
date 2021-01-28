@@ -172,7 +172,7 @@ public class MenuActivity extends AppCompatActivity {
         }
     }
 
-    /*if user was in a fragment destroy it and show menu again, if user is opening
+    /*if user was in a fragment destroy it, rebuild profile and show menu again, if user is opening
       a fragment hide menu  */
     private void changeVisibility() {
         if (menu.getVisibility() == View.VISIBLE)
@@ -213,14 +213,19 @@ public class MenuActivity extends AppCompatActivity {
 
         if (orientation == Configuration.ORIENTATION_PORTRAIT) {
             setContentView(R.layout.activity_menu);
+            if (user == null)
+                findViewById(R.id.btnLogout).setVisibility(View.GONE);
             menu = findViewById(R.id.menu);
         }
         else if (orientation == Configuration.ORIENTATION_LANDSCAPE) {
             setContentView(R.layout.activity_menu_land);
+            if (user == null)
+                findViewById(R.id.btnLogout).setVisibility(View.GONE);
             menu = findViewById(R.id.menu);
         }
     }
 
+    //sign-out the user and remove all data from device
     private void logoutLoadingScreen() {
         findViewById(R.id.progressBar).setVisibility(View.VISIBLE);
         new Handler().postDelayed(new Runnable(){

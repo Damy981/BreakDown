@@ -1,5 +1,7 @@
 package com.example.android.arkanoid.Classes;
 
+//This class contains paddle position information
+
 public class Paddle {
 
     private float x;

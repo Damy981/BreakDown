@@ -7,6 +7,8 @@ import android.view.View;
 
 import com.example.android.arkanoid.R;
 
+//This class manage the creation of a Brick by setting skin and behaviour
+
 public class Brick extends View {
 
     private Bitmap brick;
@@ -30,6 +32,7 @@ public class Brick extends View {
     }
 
     public Brick(Context context, float x, float y, Bitmap bitmap, boolean hardBrick, boolean nitroBrick, boolean switchBrick) {
+        //this constructor is used for the conversion from SerializableBrick object
         super(context);
         this.x = x;
         this.y = y;
@@ -113,6 +116,7 @@ public class Brick extends View {
         hardBrick = b;
     }
 
+    //when a hard brick is hit, its skin change to grey brick
     public void changeHardBrickColor() {
         if (!isHardBrick())
             brick = BitmapFactory.decodeResource(getResources(), R.drawable.brick_grey);

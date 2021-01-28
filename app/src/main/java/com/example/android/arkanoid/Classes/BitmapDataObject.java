@@ -6,6 +6,8 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 
+//This class converts a Bitmap object in bites for serialization
+
 public class BitmapDataObject implements Serializable {
 
     private Bitmap currentImage;

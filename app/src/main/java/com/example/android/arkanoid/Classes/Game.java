@@ -24,6 +24,8 @@ import com.example.android.arkanoid.R;
 
 import java.util.ArrayList;
 
+//Class that contains methods to manage in-game events
+
 public class Game extends View implements SensorEventListener, View.OnTouchListener {
 
     private Bitmap background;
@@ -59,9 +61,9 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
     private final Services services;
     private final ArrayList<Quest> quests;
     private final OnlineMatch match;
-    private boolean matchCompleted = false;
-    private boolean isEditorLevel = false;
-    private boolean editorLevelFinished = false;
+    private boolean matchCompleted = false; //this is used as a flag to check when user play all the 3 games in an online match
+    private boolean isEditorLevel = false; //this is used as a flag to check if the user is playing a customized level
+    private boolean editorLevelFinished = false; //this is used as a flag to make the game stop if the user win or loose a game in a customized level
 
 
     public Game(Context context, int lives, int score, Profile profile, Services services, OnlineMatch match, Level levelMap) {
@@ -187,7 +189,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             score -= 350;
             gameOver = true;
             start = false;
-            if (match != null) {
+            if (match != null) {   //if user is playing an online match
                 int i = match.getCounter();
                 match.setPlayer1Score(score, i);
                 match.increaseCounter();
@@ -230,7 +232,10 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                     else if (!b.isHardBrick() && !b.isSwitch()){
                         if (b.isNitro()) {
                             explosionSound.start();
-                            lives --;
+                            if (lives == 1)
+                                checkLives();
+                            else
+                                --lives;
                             hurtSound.start();
                         }
                         if (!b.isNitro())
@@ -325,11 +330,13 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 }
             }
             else if (!isEditorLevel) {
+                //set and save quests progress
                 quests.get(Quest.QUEST_WIN_5).setProgress(quests.get(Quest.QUEST_WIN_5).getProgress() + 1);
                 if(lives == GameActivity.LIVES){
                     quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).setProgress(quests.get(Quest.QUEST_WIN_3_WITH_ALL_LIVES).getProgress() + 1);
                 }
                 services.updateQuestsFile(context, quests);
+
                 ++level;
                 profile.increaseLevel();
                 if (level <= 5)
@@ -359,15 +366,18 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
         start = false;
     }
 
+    //remove brick from the bricklist (and from game)
     private void removeBrick(int i) {
         brickList.remove(i);
         score += 80;
         dropCoin();
+        //set and save quests progress
         quests.get(Quest.QUEST_DESTROY_BRICKS_100).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_100).getProgress() + 1);
         quests.get(Quest.QUEST_DESTROY_BRICKS_10000).setProgress(quests.get(Quest.QUEST_DESTROY_BRICKS_10000).getProgress() + 1);
         services.updateQuestsFile(context, quests);
     }
 
+    //remove nitro bricks from the bricklist (and from game)
     private void removeNitro() {
         for (int i = 0; i < brickList.size(); i++) {
             Brick b = brickList.get(i);
@@ -375,18 +385,21 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
                 explosionSound.start();
                 score += 300;
                 removeBrick(i);
+                //set and save quests progress
                 quests.get(Quest.QUEST_DEFUSE_NITROS).setProgress(quests.get(Quest.QUEST_DEFUSE_NITROS).getProgress() + 1);
                 services.updateQuestsFile(context, quests);
             }
         }
     }
 
+    //randomly increase the user's coins, according to the value of the stat "drop rate"
     private void dropCoin() {
         if (Math.random() < dropRate) {
             profile.setCoins(profile.getCoins() + 5);
         }
     }
 
+    //remove the bricks around the one which is hit by an explosive ball
     private void removeBricksExplosiveBall (Brick b) {
         int i;
         float x = b.getX();
@@ -406,6 +419,7 @@ public class Game extends View implements SensorEventListener, View.OnTouchListe
             removeBrick(i);
     }
 
+    //if a brick exist, return its position in the bricklist, else return -1
     private int checkIfBrickExist(float x, float y) {
         for (int i = 0; i < brickList.size(); i++) {
             Brick b = brickList.get(i);

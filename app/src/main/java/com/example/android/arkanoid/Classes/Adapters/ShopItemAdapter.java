@@ -87,8 +87,8 @@ public class ShopItemAdapter extends BaseAdapter {
 
         ivBuyItem.setOnClickListener(new View.OnClickListener() {
             @Override
-            /*when button buy is clicked, call the buyItem function; then check if the user can afford
-            to buy other items and if he/she can't, the buy button is disabled */
+            /*when button buy is clicked, check if user can afford the item: if the user can, call the buyItem function,
+             *else show a dialog box with an error message*/
             public void onClick(View view) {
                 if (Integer.parseInt(String.valueOf(tvShopCoins.getText())) >= powerUps.get(e).getPrice()) {
                     buyItem(e);
@@ -115,7 +115,7 @@ public class ShopItemAdapter extends BaseAdapter {
         profile.updateProfile();
     }
 
-    //contain the message displayed when the user does not have enough coins to buy a power up
+    //show a message when the user does not have enough coins to buy a power up
     private void noCoinsMessage() {
         new AlertDialog.Builder(context)
                 .setTitle(R.string.error)
@@ -125,6 +125,7 @@ public class ShopItemAdapter extends BaseAdapter {
                 .show();
     }
 
+    //set the quantity text in the textview
     private void setQuantityText(int i, TextView shopItemQuantity) {
         if(i == PowerUp.COINS_DROP_RATE) {
             shopItemQuantity.setText(powerUps.get(i).getQuantity() + "%");
@@ -136,6 +137,8 @@ public class ShopItemAdapter extends BaseAdapter {
             shopItemQuantity.setText(context.getString(R.string.owned) + powerUps.get(i).getQuantity());
         }
     }
+
+    //check if stats have reached max level
     private void checkMaxStats(int i, View view) {
         if (i == PowerUp.COINS_DROP_RATE && powerUps.get(i).getQuantity() >= 80) {
             LinearLayout imgAndTextShop = view.findViewById(R.id.Img_and_text_shop);

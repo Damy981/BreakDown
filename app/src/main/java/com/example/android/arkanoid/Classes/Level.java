@@ -5,6 +5,8 @@ import android.content.Context;
 import java.util.ArrayList;
 import java.util.Random;
 
+//This class manage the positioning of bricks
+
 public class Level{
 
     static public final int BRICK_HORIZONTAL_DISTANCE = 123;
@@ -38,6 +40,7 @@ public class Level{
         this.levelName = levelName;
     }
 
+    //create an arraylist of bricks by setting the position for each of them
     private void generateBricks(Context context) {
         rowNumber = 4;
         if (level >= 5)
@@ -72,13 +75,14 @@ public class Level{
         return brickList;
     }
 
+    //generate random index for the position of nitro and switch bricks
     private void generateRandomIndex() {
         iNitro =  random.nextInt((ROW_START + rowNumber) - ROW_START) + ROW_START;
         jNitro = random.nextInt((COLUMN_START + COLUMN_NUMBER) - COLUMN_START) + COLUMN_START;
         do {
             iSwitch =  random.nextInt((ROW_START + rowNumber) - ROW_START) + ROW_START;
             jSwitch = random.nextInt((COLUMN_START + COLUMN_NUMBER) - COLUMN_START) + COLUMN_START;
-        } while(iNitro == iSwitch && jNitro == jSwitch);
+        } while(iNitro == iSwitch && jNitro == jSwitch); //nitro position must be different from switch position
     }
 
     public String getLevelName() {

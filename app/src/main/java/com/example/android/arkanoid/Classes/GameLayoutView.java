@@ -11,6 +11,8 @@ import android.widget.RelativeLayout;
 
 import com.example.android.arkanoid.R;
 
+//This class manage the power ups buttons in game
+
 public class GameLayoutView extends RelativeLayout {
 
     public Game game;
@@ -49,6 +51,7 @@ public class GameLayoutView extends RelativeLayout {
         this.addView(ivFreeze, params2);
     }
 
+    //manage the use of the explosive ball power up in a game
     private void setExplosiveBallOnClick() {
         ivExplosiveBall.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,6 +66,7 @@ public class GameLayoutView extends RelativeLayout {
         });
     }
 
+    //manage the use of the freeze power up in a game
     private void setFreezeOnClick() {
         ivFreeze.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +89,7 @@ public class GameLayoutView extends RelativeLayout {
         });
     }
 
+    //restore the speed of the ball after use freeze power up
     private void restoreSpeed(final float x, final float y) {
         new Handler().postDelayed(new Runnable(){
             @Override

@@ -62,6 +62,7 @@ public class LevelItemAdapter extends BaseAdapter {
         bntPlayLevel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //the game will start with the selected level
                 Intent intentGame = new Intent(context, GameActivity.class);
                 intentGame.putExtra("level", serializableBrickLists.get(position));
                 intentGame.putExtra("levelName", level.getLevelName());

@@ -48,6 +48,8 @@ public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.View
             @Override
             public void onClick(View v) {
                 if (counter < 42) {
+                    /*brick are displayed in 7 column: when counter indicates the seventh brick of the row,
+                    * row is increased and column returns to its first position, otherwise column is increased */
                     if(counter % 7 == 0) {
                         i++;
                         j = Level.COLUMN_START;
@@ -56,6 +58,7 @@ public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.View
                             j++;
                     }
                     counter++;
+                    //if the user click on one of the "special" brick, the corresponding boolean which will describe is behaviour is set true
                     if(position == LevelEditorActivity.BRICK_BLACK){
                         LevelEditorActivity.setBrick(bricks[position], i, j, true, false, false);
                     }
@@ -65,6 +68,7 @@ public class BrickItemAdapter extends RecyclerView.Adapter<BrickItemAdapter.View
                     else if(position == LevelEditorActivity.BRICK_SWITCH_ON){
                         LevelEditorActivity.setBrick(bricks[position], i, j, false, false, true);
                     }
+                    //the user chose a "regular" brick
                     else{
                         LevelEditorActivity.setBrick(bricks[position], i, j, false, false, false);
                     }
