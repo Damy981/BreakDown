@@ -73,4 +73,22 @@
     <string name="levelNameEmpty">Nom vide</string>
     <string name="username">Nom d\'utilisateur</string>
     <string name="totalWin">Total remportées:</string>
+    <string name="best_score">Meilleur score ou résultat:</string>
+    <string name="score">Résultat</string>
+    <string name="position">est en position</string>
+    <string name="withScore">avec un score de</string>
+    <string name="owned">Possédé:</string>
+    <string name="confirm_password">Confirmez mot de passe...</string>
+    <string name="notEnoughCoins">Tu n\'as pas assez de jetons</string>
+    <string name="levelNameError">S’il vous plaît, insérez un nom pour votre niveau.</string>
+    <string name="noInternetOrGuest">Aucune connexion Internet ou utilisateur invité</string>
+    <string name="loginError">S\'il vous plaît, insérez e-mail et mot de passe</string>
+    <string name="editorError">Vous ne pouvez pas charger votre niveau en ligne si vous n’êtes pas connecté à Internet ou si vous avez accédé comme invité.</string>
+    <string name="mailNotVerified">Votre adresse e-mail n’est pas vérifiée. Vérifiez-le et réessayez.</string>
+    <string name="status_match">ÉTAT DU MATCH OU JEU</string>
+    <string name="stats_and_power_ups"><![CDATA[Statistiques et amélioration:]]></string>
+    <string name="match_summary">Compte rendu du match</string>
+    <string name="leaderboard">CLASSEMENT</string>
+    <string name="redeemed">Racheté</string>
+    <string name="redeem">Rachète</string>
 </resources>
