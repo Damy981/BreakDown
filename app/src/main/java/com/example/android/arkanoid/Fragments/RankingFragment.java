@@ -56,6 +56,10 @@ public class RankingFragment extends Fragment {
         });
 
         ImageView btnShare = getActivity().findViewById(R.id.btnShare);
+
+        if(profile.getUserId() == null)
+            btnShare.setVisibility(View.INVISIBLE);
+
         btnShare.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
