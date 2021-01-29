@@ -96,7 +96,6 @@
     <string name="search_opponent">TROVA UN AVVERSARIO</string>
     <string name="roundsFinished">Hai terminato i tuoi turni.  Attendi il tuo avversario per vedere i risultati.</string>
     <string name="language">Lingua</string>
-    <string name="credits">Crediti</string>
     <string name="registration">Registrazione</string>
     <string name="save_and_share">Salva e condividi</string>
     <string name="creator">Creatore</string>
@@ -107,4 +106,5 @@
     <string name="specialThanks">Un ringraziamento speciale a: Emanuele Dianaro</string>
     <string name="imageEditing">Per Editing di immagini e risorse</string>
     <string name="noInternetConnection">Nessuna connessione a internet</string>
+    <string name="credits">Ringraziamenti</string>
 </resources>
