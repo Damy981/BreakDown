@@ -83,15 +83,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
+                android:backgroundTint="@color/gold"
                 android:drawableEnd="@drawable/email_icon"
                 android:hint="@string/enter_email_address"
-                android:textCursorDrawable="@drawable/cursor_rounded"
                 android:inputType="textEmailAddress"
-                android:backgroundTint="@color/gold"
                 android:textColor="#01030E"
                 android:textColorHighlight="@color/gold"
                 android:textColorHint="#656060"
-                android:textColorLink="@color/gold">
+                android:textColorLink="@color/gold"
+                android:textCursorDrawable="@drawable/cursor_rounded">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -102,15 +102,15 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="10dp"
-                android:drawableEnd="@drawable/password_icon"
                 android:backgroundTint="@color/gold"
+                android:drawableEnd="@drawable/password_icon"
                 android:hint="@string/enter_password"
                 android:inputType="textPassword"
                 android:textColor="#1E0303"
-                android:textCursorDrawable="@drawable/cursor_rounded"
                 android:textColorHighlight="#FFFFFF"
                 android:textColorHint="#656060"
-                android:textColorLink="@color/gold">
+                android:textColorLink="@color/gold"
+                android:textCursorDrawable="@drawable/cursor_rounded">
 
             </com.google.android.material.textfield.TextInputEditText>
 
@@ -170,7 +170,7 @@
         android:fontFamily="@font/londrina_solid"
         android:onClick="login"
         android:text="@string/login"
-        android:textSize="30sp"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.495"
@@ -197,16 +197,19 @@
 
     <Button
         android:id="@+id/btnForgotPass"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="120dp"
-        android:background="@drawable/shadow_button"
+        android:layout_width="181dp"
+        android:layout_height="71dp"
+        android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:onClick="sendResetPasswordMail"
         android:text="@string/confirm"
+        android:textSize="26sp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.79" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

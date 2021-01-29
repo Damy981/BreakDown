@@ -45,6 +45,8 @@
         android:inputType="textCapWords"
         android:text="@string/username"
         android:textSize="28sp"
+        android:backgroundTint="@color/gold"
+        android:textCursorDrawable="@drawable/cursor_rounded"
         app:layout_constraintBottom_toBottomOf="@+id/viewSeparatorProfile"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.252"

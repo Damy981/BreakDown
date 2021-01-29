@@ -89,7 +89,7 @@ public class RegistrationActivity extends AppCompatActivity {
                             //if user was not a guest but a new player, create new local profile
                             services = new Services(getSharedPreferences(Services.SHARED_PREF_DIR, MODE_PRIVATE), user.getUid());
                             if (!username.equals("GuestUser")) {
-                                services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,5,5,5", "10,0,0,0,0", 0);
+                                services.setSharedPreferences(name, 0, 1, user.getUid(), "5,5,150,150,5", "10,0,0,0,0", 0);
                                 services.createQuestsFile(getApplicationContext());
                             }
                             //if user was a guest update only username and user id and rename quests file

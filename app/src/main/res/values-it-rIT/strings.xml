@@ -104,9 +104,9 @@
     <string name="created_and_designed_by">Creato e Ideato da:</string>
     <string name="icons_by_flaticon_com">Icone da Flaticon.com</string>
     <string name="specialThanks">"Un ringraziamento speciale a: "</string>
-    <string name="imageEditing">Per Editing di immagini e risorse</string>
     <string name="noInternetConnection">Nessuna connessione a internet</string>
     <string name="credits">Riconoscimenti</string>
     <string name="thanks_Emanuele">Emanuele Dianaro per editing di immagini e risorse</string>
     <string name="thanks_Moustapha">Moustapha Danfa per la traduzione in francese</string>
+    <string name="daily">Giornaliera</string>
 </resources>

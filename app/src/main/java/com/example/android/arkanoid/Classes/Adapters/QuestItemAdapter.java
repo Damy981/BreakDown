@@ -21,6 +21,7 @@ public class QuestItemAdapter extends BaseAdapter {
     private final Profile profile;
 
 
+
     public QuestItemAdapter(Context context, ArrayList<Quest> questsList, Profile profile) {
         this.questsList = questsList;
         inflater = (LayoutInflater.from(context));
@@ -56,6 +57,11 @@ public class QuestItemAdapter extends BaseAdapter {
         done.setText(String.valueOf(questsList.get(position).getProgress()));
         total.setText(String.valueOf(questsList.get(position).getTarget()));
         reward.setText(String.valueOf(questsList.get(position).getReward()));
+
+        if(profile.getQuestsList().get(position).isDaily()){
+            TextView tvDaily = convertView.findViewById(R.id.tvDaily);
+            tvDaily.setVisibility(View.VISIBLE);
+        }
 
         //if the user complete a quest, a redeem reward button is displayed
         if(profile.getQuestsList().get(position).isCompleted()) {
