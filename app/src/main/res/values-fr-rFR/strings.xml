@@ -71,4 +71,6 @@
     <string name="enter_username">Insérer nom d\'utilisateur...</string>
     <string name="totalLose">Perte Total:</string>
     <string name="levelNameEmpty">Nom vide</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="totalWin">Total remportées:</string>
 </resources>
