@@ -69,7 +69,7 @@ public class SettingsFragment extends Fragment {
                 View popupView = LayoutInflater.from(getContext()).inflate(R.layout.credits_popup, null);
                 ImageView btnClose = popupView.findViewById(R.id.btnClose);
 
-                final PopupWindow popupWindow = new PopupWindow(popupView, 1000, 1400, true);
+                final PopupWindow popupWindow = new PopupWindow(popupView, 1030, 1540, true);
                 popupWindow.setElevation(50);
                 popupWindow.setOutsideTouchable(false);
                 popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);

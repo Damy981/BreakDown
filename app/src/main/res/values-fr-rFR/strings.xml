@@ -61,7 +61,7 @@
     <string name="second_match">DEUXIÈME MATCH</string>
     <string name="third_match">TROISIÈME MATCH</string>
     <string name="notRegistered">Utilisateur non inscrit</string>
-    <string name="roundsFinished">Vous avez terminé vos tours. Attendez votre adversaire pour voir le résultat du match.</string>
+    <string name="roundsFinished">Vous avez terminé vos tours. \nAttendez votre adversaire pour voir le résultat du match.</string>
     <string name="totalPlay">Jeux Total:</string>
     <string name="search_opponent">TROUVE UN ADVERSAIRE</string>
     <string name="custom_level">NIVEAU PERSONNALISÉ</string>

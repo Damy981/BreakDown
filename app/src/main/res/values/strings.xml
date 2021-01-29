@@ -105,7 +105,7 @@
     <string name="quest5">Win 50 games in multiplayer mode</string>
     <string name="quest6">Create a level</string>
     <string name="quest7">Defuse 50 nitros</string>
-    <string name="roundsFinished">You finished your rounds.  Wait your opponent to see match result.</string>
+    <string name="roundsFinished">You finished your rounds.  \nWait your opponent to see match result.</string>
     <string name="search_opponent">FIND OPPONENT</string>
     <string name="language">Language</string>
     <string name="credits">Credits</string>
@@ -120,6 +120,6 @@
     <string name="damiano_palmisano" translatable="false">Damiano Palmisano</string>
     <string name="cristina_matino" translatable="false">Cristina Matino</string>
     <string name="icons_by_flaticon_com">Icons by Flaticon.com</string>
-    <string name="specialThanks">Special thanks to: Emanuele Dinaro</string>
-    <string name="imageEditing">For Images and Assets editing</string>
+    <string name="specialThanks">Special thanks to: Emanuele Dinaro for Images and Assets editing</string>
+    <string name="special_thanks_Moustapha">Special thanks to: Moustapha Danfa for French translation </string>
 </resources>

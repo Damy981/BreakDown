@@ -114,12 +114,12 @@
 
     <Button
         android:id="@+id/btnCredits"
-        android:layout_width="133dp"
-        android:layout_height="45dp"
+        android:layout_width="187dp"
+        android:layout_height="71dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/credits"
-        android:textSize="30sp"
+        android:textSize="26sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.431"
