@@ -40,113 +40,113 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#FFFFFF"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/tvLogin"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:layout_marginTop="20dp"
-            android:background="#F8F5F5"
-            android:fontFamily="@font/londrina_solid"
-            android:text="@string/registration"
-            android:textAlignment="center"
-            android:textColor="#290202"
-            android:textSize="40sp" />
+            android:layout_height="match_parent"
+            android:background="#FFFFFF"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvLogin"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="20dp"
+                android:background="#F8F5F5"
+                android:fontFamily="@font/londrina_solid"
+                android:text="@string/registration"
+                android:textAlignment="center"
+                android:textColor="#290202"
+                android:textSize="40sp" />
 
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etMail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:drawableEnd="@drawable/email_icon"
-            android:backgroundTint="@color/gold"
-            android:textCursorDrawable="@drawable/cursor_rounded"
-            android:hint="@string/enter_email_address"
-            android:inputType="textEmailAddress"
-            android:textColor="#01030E"
-            android:textColorHint="#656060"
-            app:layout_constraintBottom_toTopOf="@+id/etName"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.659" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etMail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:drawableEnd="@drawable/email_icon"
+                android:backgroundTint="@color/gold"
+                android:textCursorDrawable="@drawable/cursor_rounded"
+                android:hint="@string/enter_email_address"
+                android:inputType="textEmailAddress"
+                android:textColor="#01030E"
+                android:textColorHint="#656060"
+                app:layout_constraintBottom_toTopOf="@+id/etName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.659" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etName"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:drawableEnd="@drawable/username_icon"
-            android:ems="10"
-            android:textCursorDrawable="@drawable/cursor_rounded"
-            android:hint="@string/enter_username"
-            android:backgroundTint="@color/gold"
-            android:inputType="textPersonName"
-            android:textColor="#01030E"
-            android:textColorHint="#656060"
-            app:layout_constraintBottom_toTopOf="@+id/etPass"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.427"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.983" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:drawableEnd="@drawable/username_icon"
+                android:ems="10"
+                android:textCursorDrawable="@drawable/cursor_rounded"
+                android:hint="@string/enter_username"
+                android:backgroundTint="@color/gold"
+                android:inputType="textPersonName"
+                android:textColor="#01030E"
+                android:textColorHint="#656060"
+                app:layout_constraintBottom_toTopOf="@+id/etPass"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.427"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.983" />
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:drawableEnd="@drawable/password_icon"
-            android:ems="10"
-            android:textCursorDrawable="@drawable/cursor_rounded"
-            android:hint="@string/enter_password"
-            android:backgroundTint="@color/gold"
-            android:inputType="textPassword"
-            android:textColor="#01030E"
-            android:textColorHint="#656060"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent" />
-
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etConfPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginRight="10dp"
-            android:drawableEnd="@drawable/password_icon"
-            android:ems="10"
-            android:hint="@string/confirm_password"
-            android:backgroundTint="@color/gold"
-            android:inputType="textPassword"
-            android:textColor="#01030E"
-            android:textColorHint="#656060"
-            android:textCursorDrawable="@drawable/cursor_rounded"
-            app:layout_constraintBottom_toTopOf="@+id/registerButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.502"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etPass"
-            app:layout_constraintVertical_bias="0.585" />
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:drawableEnd="@drawable/password_icon"
+                android:ems="10"
+                android:textCursorDrawable="@drawable/cursor_rounded"
+                android:hint="@string/enter_password"
+                android:backgroundTint="@color/gold"
+                android:inputType="textPassword"
+                android:textColor="#01030E"
+                android:textColorHint="#656060"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent" />
 
 
-    </LinearLayout>
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etConfPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginRight="10dp"
+                android:drawableEnd="@drawable/password_icon"
+                android:ems="10"
+                android:hint="@string/confirm_password"
+                android:backgroundTint="@color/gold"
+                android:inputType="textPassword"
+                android:textColor="#01030E"
+                android:textColorHint="#656060"
+                android:textCursorDrawable="@drawable/cursor_rounded"
+                app:layout_constraintBottom_toTopOf="@+id/registerButton"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.502"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etPass"
+                app:layout_constraintVertical_bias="0.585" />
+
+
+        </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
@@ -155,16 +155,16 @@
         android:id="@+id/registerButton"
         android:layout_width="280dp"
         android:layout_height="77dp"
-        android:layout_marginBottom="120dp"
         android:background="@drawable/effect_button"
         android:elevation="1dp"
+        android:fontFamily="@font/londrina_solid"
         android:onClick="register"
         android:text="@string/register"
-        android:fontFamily="@font/londrina_solid"
         android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView" />
 
     <ImageView
         android:id="@+id/btnBack"

@@ -120,6 +120,7 @@
     <string name="damiano_palmisano" translatable="false">Damiano Palmisano</string>
     <string name="cristina_matino" translatable="false">Cristina Matino</string>
     <string name="icons_by_flaticon_com">Icons by Flaticon.com</string>
-    <string name="specialThanks">Special thanks to: Emanuele Dinaro for Images and Assets editing</string>
-    <string name="special_thanks_Moustapha">Special thanks to: Moustapha Danfa for French translation </string>
+    <string name="specialThanks">Special thanks to: </string>
+    <string name="thanks_Emanuele">Emanuele Dinaro for Images and Assets editing</string>
+    <string name="thanks_Moustapha">Moustapha Danfa for French translation </string>
 </resources>

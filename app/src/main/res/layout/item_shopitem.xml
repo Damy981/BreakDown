@@ -90,28 +90,11 @@
 
 
                 <TextView
-                    android:id="@+id/tvMax"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/londrina_solid"
-                    android:text="@string/max"
-                    android:textColor="@color/grey"
-                    android:textColorHighlight="@color/black_overlay"
-                    android:visibility="gone"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.673"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/textView_shop_onclick"
-                    app:layout_constraintVertical_bias="0.692"
-                    tools:visibility="gone" />
-
-                <TextView
                     android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="24dp"
-                    android:layout_marginBottom="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginBottom="3dp"
                     android:fontFamily="@font/londrina_solid"
                     android:text="@string/quantity"
                     android:textColor="#dadada"
@@ -129,6 +112,7 @@
                     app:layout_constraintEnd_toEndOf="@+id/textView_shop_onclick"
                     app:layout_constraintTop_toTopOf="@+id/textView_shop_onclick">
 
+
                     <ImageView
                         android:id="@+id/btnBuy"
                         android:layout_width="95dp"
@@ -140,7 +124,6 @@
                         android:focusable="true"
                         android:src="@drawable/shopping_bag" />
 
-
                     <TextView
                         android:id="@+id/textView_buy_shop"
                         android:layout_width="wrap_content"
@@ -150,8 +133,25 @@
                         android:alpha="0.90"
                         android:fontFamily="@font/londrina_solid"
                         android:textColor="#dadada"
-                        android:textSize="18sp" />
+                        android:textSize="14sp" />
                 </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tvMax"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/londrina_solid"
+                    android:text="@string/max"
+                    android:textColor="#dadada"
+                    android:textSize="26sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/textView_shop_onclick"
+                    app:layout_constraintHorizontal_bias="0.029"
+                    app:layout_constraintStart_toEndOf="@+id/tvQuantity"
+                    app:layout_constraintTop_toTopOf="@+id/textView_shop_onclick"
+                    app:layout_constraintVertical_bias="0.945"
+                    tools:visibility="gone" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 

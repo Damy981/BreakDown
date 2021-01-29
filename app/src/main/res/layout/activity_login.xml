@@ -13,19 +13,17 @@
         android:id="@+id/tvNotRegistered"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="690dp"
-        android:layout_marginEnd="50dp"
         android:fontFamily="@font/londrina_solid"
         android:onClick="openRegisterActivity"
         android:text="@string/not_registered_yet_register_now"
-        android:textSize="20sp"
         android:textColor="#CF9132"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/guestButton"
+        app:layout_constraintVertical_bias="0.408" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -153,64 +151,49 @@
 
     <ImageView
         android:id="@+id/imageView2"
-        android:layout_width="152dp"
-        android:layout_height="86dp"
-        android:layout_marginStart="131dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="128dp"
+        android:layout_width="132dp"
+        android:layout_height="102dp"
+        android:contentDescription="@string/todo"
         app:layout_constraintBottom_toTopOf="@+id/cardView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user_image"
-        android:contentDescription="@string/todo" />
+        app:srcCompat="@drawable/user_image" />
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="413dp"
-        android:layout_height="140dp"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="290dp"
+        android:layout_height="60dp"
+        android:background="@drawable/effect_button"
+        android:elevation="1dp"
+        android:fontFamily="@font/londrina_solid"
+        android:onClick="login"
+        android:text="@string/login"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView">
+        app:layout_constraintTop_toBottomOf="@+id/cardView"
+        app:layout_constraintVertical_bias="0.09" />
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="290dp"
-            android:layout_height="60dp"
-            android:layout_marginStart="60dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginBottom="152dp"
-            android:background="@drawable/effect_button"
-            android:fontFamily="@font/londrina_solid"
-            android:elevation="1dp"
-            android:onClick="login"
-            android:text="@string/login"
-            android:textSize="30sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <Button
-            android:id="@+id/guestButton"
-            android:layout_width="200dp"
-            android:layout_height="51dp"
-            android:layout_marginStart="-240dp"
-            android:layout_marginTop="75dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/effect_button"
-            android:elevation="1dp"
-            android:onClick="guestLogin"
-            android:text="@string/enter_as_guest"
-            android:fontFamily="@font/londrina_solid"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/tvNotRegistered"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-
-    </LinearLayout>
+    <Button
+        android:id="@+id/guestButton"
+        android:layout_width="200dp"
+        android:layout_height="51dp"
+        android:background="@drawable/effect_button"
+        android:elevation="1dp"
+        android:fontFamily="@font/londrina_solid"
+        android:onClick="guestLogin"
+        android:text="@string/enter_as_guest"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLogin"
+        app:layout_constraintVertical_bias="0.057" />
 
     <Button
         android:id="@+id/btnForgotPass"
