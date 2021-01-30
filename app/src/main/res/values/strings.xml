@@ -105,7 +105,7 @@
     <string name="quest5">Win 50 games in multiplayer mode</string>
     <string name="quest6">Create a level</string>
     <string name="quest7">Defuse 50 nitros</string>
-    <string name="roundsFinished">You finished your rounds.  \nWait your opponent to see match result.</string>
+    <string name="roundsFinished">You finished your rounds.\nWait your opponent to see match result.</string>
     <string name="search_opponent">FIND OPPONENT</string>
     <string name="language">Language</string>
     <string name="credits">Credits</string>

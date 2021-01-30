@@ -7,14 +7,12 @@
     android:background="@drawable/background"
     tools:context=".Fragments.SettingsFragment">
 
-
     <TextView
         android:id="@+id/tvSettings"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/settings"
-        android:textColor="@color/white"
         android:textAlignment="center"
         android:textSize="45sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -23,19 +21,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.062" />
-
     <ToggleButton
         android:id="@+id/tbAccelerometer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
-        android:layout_marginEnd="12dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
-
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvSettings"
+        app:layout_constraintVertical_bias="0.0" />
     <TextView
         android:id="@+id/tvAccelerometer"
         android:layout_width="wrap_content"
@@ -44,11 +43,12 @@
         android:fontFamily="@font/londrina_solid"
         android:text="@string/accelerometer"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.391"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile" />
-
+        app:layout_constraintTop_toBottomOf="@+id/viewSeparatorProfile"
+        app:layout_constraintVertical_bias="0.0" />
     <View
         android:id="@+id/viewSeparatorProfile"
         android:layout_width="0dp"
@@ -61,33 +61,34 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSettings" />
 
-
     <ToggleButton
         android:id="@+id/tbMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="16dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tbAccelerometer" />
+        app:layout_constraintHorizontal_bias="0.947"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.441" />
 
     <TextView
         android:id="@+id/tvMusic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="336dp"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/music"
         android:textAlignment="center"
         android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.265"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.433" />
     <ImageView
         android:id="@+id/ivBackSettings"
         android:layout_width="wrap_content"
@@ -108,8 +109,8 @@
 
     <Button
         android:id="@+id/btnCredits"
-        android:layout_width="199dp"
-        android:layout_height="72dp"
+        android:layout_width="172dp"
+        android:layout_height="76dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
         android:text="@string/credits"
@@ -120,12 +121,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.859" />
-
     <ImageView
         android:id="@+id/ivMusic"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="4dp"
         android:contentDescription="@string/todo"
         android:src="@drawable/music_icon"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -133,17 +132,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.432" />
-
     <ImageView
         android:id="@+id/ivAccelerometer"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginTop="172dp"
         android:background="@drawable/accelerometer_icon"
         android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/tvAccelerometer"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.234" />
 </androidx.constraintlayout.widget.ConstraintLayout>
