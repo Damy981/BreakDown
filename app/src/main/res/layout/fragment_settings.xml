@@ -109,7 +109,7 @@
 
     <Button
         android:id="@+id/btnCredits"
-        android:layout_width="172dp"
+        android:layout_width="200dp"
         android:layout_height="76dp"
         android:background="@drawable/effect_button"
         android:fontFamily="@font/londrina_solid"
