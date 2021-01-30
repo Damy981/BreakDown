@@ -106,7 +106,7 @@
     <string name="specialThanks">"Un ringraziamento speciale a: "</string>
     <string name="noInternetConnection">Nessuna connessione a internet</string>
     <string name="credits">Riconoscimenti</string>
-    <string name="thanks_Emanuele">Emanuele Dianaro per editing di immagini e risorse</string>
     <string name="thanks_Moustapha">Moustapha Danfa per la traduzione in francese</string>
     <string name="daily">Giornaliera</string>
+    <string name="thanks_Emanuele">Emanuele Dinaro per editing di immagini e risorse</string>
 </resources>

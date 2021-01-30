@@ -91,4 +91,22 @@
     <string name="leaderboard">CLASSEMENT</string>
     <string name="redeemed">Racheté</string>
     <string name="redeem">Rachète</string>
+    <string name="created_and_designed_by">Élaboré et créé par:</string>
+    <string name="specialThanks">"Remerciements spécial à: "</string>
+    <string name="credits">Remerciements</string>
+    <string name="quest2">Gagnez 5 matchs</string>
+    <string name="quest3">Gagnez 3 matchs sans perdre</string>
+    <string name="quest6">Crée un niveau</string>
+    <string name="thanks_Emanuele">Emanuele Dinaro pour montage des images et ressources</string>
+    <string name="thanks_Moustapha">Moustapha Danfa pour la traduction en français</string>
+    <string name="playWithUs">sur Breakdown, unis-toi aussi!</string>
+    <string name="connectionErrorRank">S\'il vous plaît, connectez-vous à Internet et redémarre l\'application pour voir le classement</string>
+    <string name="registerErrorMulti">Inscription nécessaire pour le multi joueur</string>
+    <string name="lives">Vie:</string>
+    <string name="daily">Journalière</string>
+    <string name="save_and_share">Sauve et partage</string>
+    <string name="quest7">Désamorce 50 nitro</string>
+    <string name="quest5">Gagnez 50 matchs en multijoueur</string>
+    <string name="scoreGame">Score:</string>
+    <string name="icons_by_flaticon_com">Icône par Flaticon.com</string>
 </resources>
