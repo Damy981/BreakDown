@@ -1,11 +1,11 @@
 BreakDown - Android Game
 
 Overview:
-BreakDown is a custom Arkanoid-style mobile game developed in 2019 for an Android exam project. The game combines classic brick-breaking mechanics with modern mobile features, including asynchronous multiplayer, daily missions, power-ups, and a level editor for user-generated content.
+BreakDown is a custom Arkanoid-style mobile game developed in 2020 for an Android exam project. The game combines classic brick-breaking mechanics with modern mobile features, including asynchronous multiplayer, daily missions, power-ups, and a level editor for user-generated content.
 
 Key Features:
 
-Asynchronous Multiplayer: Play against other players in a turn-based style, similar to QuizDuello.
+Asynchronous Multiplayer: Play against other players in a turn-based style.
 
 Power-Ups: Special bricks and balls that modify gameplay and strategy.
 
