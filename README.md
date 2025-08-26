@@ -20,3 +20,5 @@ This project demonstrates experience in mobile game development, multiplayer sys
 
 How to Run:
 The project was developed with Android Studio for mobile devices. Note: the codebase reflects Android development practices from 2019 and may require updates to run on modern devices.
+
+![menuBreakDown](https://github.com/user-attachments/assets/36545a03-8318-4579-9cba-b0d4c752171f)
